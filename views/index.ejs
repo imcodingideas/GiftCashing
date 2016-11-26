@@ -1,11 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title><%= title %></title>
+      <link rel="stylesheet" href="/assets/css/lib/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+      <link rel='stylesheet' href='/assets/css/dist/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <nav class="navbar navbar-static-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">GiftCashing</a>
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <h1 class="proposal">Receiving too many gifts and rather have cash?</h1>
+                    <p class="lead">Have your Sender purchase gifts at our Affiliates and we will pay you cash for the Gift. It’s that simple.</p>
+                    <p><a class="btn btn-outline-secondary btn-lg" href="#" role="button">Register for free and find out more!</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <h3 class="display-5">How it works?</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p>
+                    <object data="/assets/img/gift.svg" type="image/svg+xml"></object>
+                </p>
+                <h2>Notify</h2>
+                <p>Give Senders Information</p>
+            </div>
+            <div class="col-md-4">
+                <p>
+                    <object data="/assets/img/receive.svg" type="image/svg+xml"></object>
+                </p>
+                <h2>Receive</h2>
+                <p>Get Notified a Gift was Received</p>
+            </div>
+            <div class="col-md-4">
+                <p>
+                    <object data="/assets/img/gift.svg" type="image/svg+xml"></object>
+                </p>
+                <h2>$$$</h2>
+                <p>Receive Your Money!!!</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <footer>
+            <p>&copy; Gift Cashing 2016</p>
+        </footer>
+    </div> <!-- /container -->
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
   </body>
 </html>
