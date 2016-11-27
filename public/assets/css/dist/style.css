@@ -99,3 +99,8 @@ a.footer-email {
     color: #8E44AD;
     font-size: 16px;
 }
+
+a.nav-link.admin {
+    font-size: 20px;
+    color: #4A4A4A;
+}
