@@ -1,6 +1,13 @@
+html {
+    position: relative;
+    height: 100%;
+}
+
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight: 300;
+    margin-bottom: 60px;
+    min-height: 100%;
 }
 
 .navbar-static-top {
@@ -13,12 +20,23 @@ body {
     color: #ffffff;
 }
 
+a.nav-link {
+    padding: 1em;
+    line-height: 45px;
+    font-size: 20px;
+}
+
 .jumbotron {
     height: 359px;
     -moz-box-shadow: 0 2px 4px rgba(0,0,0,.5);
     -webkit-box-shadow: 0 2px 4px rgba(0,0,0,.5);
     box-shadow: 0 2px 4px rgba(0,0,0,.5);
     border-radius: 0;
+    background: url(/assets/img/hero.png) no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .btn.btn-outline-secondary.btn-lg {
@@ -27,13 +45,57 @@ body {
 
 .proposal {
     font-weight: lighter;
-    font-size: 2.2em;
+    font-size: 38px;
     color: #ffffff;
 }
 
 .lead {
-    font-size: 1.25em;
+    font-size: 21px;
     line-height: 1.25;
-    font-weight: normal;
     color: #ffffff
+}
+
+a.btn.btn-outline-secondary.btn-lg {
+    font-weight: 300;
+}
+
+.how {
+    color: #8E44AD;
+    font-size: 42px;
+    font-weight: 300;
+}
+
+.heading {
+    color: #8E44AD;
+    font-weight: 300;
+    font-size: 30px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 82px;
+    line-height: 25px;
+}
+
+.d-table {
+    display: table;
+}
+
+address {
+    border-left: 2px solid #6B6B6B;
+    padding-left: 15px;
+    color: #9A9A9A
+}
+
+p.text-md-right.contact {
+    font-size: 22px;
+    color: #9A9A9A;
+    margin-bottom: 10px;
+}
+
+a.footer-email {
+    color: #8E44AD;
+    font-size: 16px;
 }
