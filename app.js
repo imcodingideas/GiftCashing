@@ -15,7 +15,7 @@ const express = require('express'),
 
 const indexRoute = require('./routes/index'),
     usersRoute = require('./routes/users'),
-    giftsRoute = require('./routes/gifts/show');
+    giftsRoute = require('./routes/gifts.js');
 
 mongoose.connect('mongodb://localhost/giftcashing');
 

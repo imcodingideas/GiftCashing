@@ -12,7 +12,7 @@ var user = {
 
 /* GET Gifts page. */
 router.get('/', function(req, res, next) {
-    res.render('gifts/show', { title: 'Review Gifts', user: user });
+    res.render('gifts', { title: 'Review Gifts', user: user });
 });
 
 module.exports = router;
