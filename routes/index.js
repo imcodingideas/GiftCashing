@@ -20,7 +20,7 @@ router.post('/register', function (req, res) {
         lastName: req.body.lastName,
         alaisFirstName: req.body.alaisFirstName,
         alaisLastName: req.body.alaisLastName,
-        email: req.body.email
+        username: req.body.username
     });
     User.register(newUser, req.body.password, function (err, user) {
 
