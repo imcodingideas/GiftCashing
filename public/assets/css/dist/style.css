@@ -104,3 +104,63 @@ a.nav-link.admin {
     font-size: 20px;
     color: #4A4A4A;
 }
+
+.submenu {
+    height: 96px;
+    background-color: #EDEDED;
+}
+
+.nav-tabs {
+    border-bottom: 1px solid #EDEDED;
+}
+
+ul.nav.nav-tabs {
+    padding-top: 49px;
+}
+
+a.nav-link.tab {
+    font-size: 19px;
+    font-weight: 400;
+    height: 47px;
+    width: 91px;
+}
+
+.nav-tabs .nav-item.open .nav-link, .nav-tabs .nav-item.open .nav-link:focus, .nav-tabs .nav-item.open .nav-link:hover, .nav-tabs .nav-link.active, .nav-tabs .nav-link.active:focus, .nav-tabs .nav-link.active:hover {
+    color: #6B6B6B;
+}
+
+button.btn.btn-primary {
+    background-color: #8E44AD;
+    border-color: #8E44AD;
+}
+
+img.current-user {
+    border-radius: 50%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 142px;
+    height: 140px;
+}
+
+img.table-user {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+}
+
+span.real-name {
+    color: #4A4A4A;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+tr.row {
+    height: 121px;
+    background-color: #F6F4FB;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+    border-top: 3px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+}

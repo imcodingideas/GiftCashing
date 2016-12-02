@@ -1,6 +1,79 @@
 <% include ../../partials/head %>
 <% include ../../partials/header %>
 
-<h1>testing</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <img src="<%= user.image %>" class="current-user">
+            <p><%= user.name %></p>
+            <p>Admin View</p>
+            <button type="button" class="btn btn-primary">Create Gift</button>
+            <ul class="nav bd-sidenav">
+                <li class="bd-sidenav">Create</li>
+                <li class="bd-sidenav">Admins</li>
+                <li class="bd-sidenav">Members</li>
+                <li class="bd-sidenav active">Gifts</li>
+                <li class="bd-sidenav">Sign out</li>
+            </ul>
+        </div>
+
+        <div class="col-md-10 mt-1">
+            <table class="table">
+                <thead class="thead-inverse">
+                <tr>
+                    <th></th>
+                    <th>User</th>
+                    <th>Gift Description</th>
+                    <th>Order</th>
+                    <th>Date</th>
+                    <th>Payment</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="row">
+                    <td><input type="checkbox"></td>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="<%= user.image %>" class="table-user">
+                            </div>
+                            <div class="col-md-9">
+                                <span class="real-name pl-1"><%= user.name %></span>
+                                <p class="persona pl-1"><%= user.name %></p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>Amazon</td>
+                    <td>#32423</td>
+                    <td>11/28/2016</td>
+                    <td>
+                        <i class="fa fa-cc-paypal"></i>
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td><input type="checkbox"></td>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="<%= user.image %>" class="table-user">
+                            </div>
+                            <div class="col-md-9">
+                                <span class="real-name pl-1"><%= user.name %></span>
+                                <p class="persona pl-1"><%= user.name %></p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>Amazon</td>
+                    <td>#32423</td>
+                    <td>11/28/2016</td>
+                    <td>
+                        <i class="fa fa-cc-paypal"></i>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 <% include ../../partials/footer %>
