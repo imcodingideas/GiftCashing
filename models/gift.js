@@ -7,9 +7,8 @@ const mongoose = require('mongoose');
 // Schema Setup
 let giftSchema = new mongoose.Schema({
 	gift: String,
-    date: {
-        type: Date
-    },
+    date: Date,
+    
 	giftDescription: String,
 	giftAmount: String,
 	giftCode: String,
