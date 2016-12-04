@@ -2,8 +2,10 @@
 <% include ../partials/header %>
 
 <div class="container">
-    <% include ../partials/admin-sidebar.ejs %>
-    <h1>All Users</h1>
+    <div class="row">
+        <% include ../partials/admin-sidebar.ejs %>
+        <h1>All Users</h1>
+    </div>
 </div>
 
 <% users.forEach(function (user) { %>

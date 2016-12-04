@@ -6,7 +6,8 @@ const mongoose = require('mongoose');
 
 // Schema Setup
 let giftSchema = new mongoose.Schema({
-	gift: String,
+    username: String,
+	giftNumber: Number,
     date: Date,
     status: {
         review: String,
@@ -19,15 +20,14 @@ let giftSchema = new mongoose.Schema({
         pending: String,
         paid: String
     },
-	giftDescription: String,
-	giftAmount: String,
+    giftDescription: String,
+	giftAmount: Number,
 	giftCode: String,
 	redeemCode: String,
 	passCode: String,
 	senderFirstName: String,
 	senderLastName: String,
-	giftMessage: String,
-    username: String
+	giftMessage: String
 });
 
 module.exports = mongoose.model('Gift', giftSchema);

@@ -2,8 +2,60 @@
 <% include ../partials/header %>
 
 <div class="container">
-    <div class="row">
-        <% include ../partials/admin-sidebar %>
+    <% include ../partials/admin-sidebar %>
+    <div class="col-md-8">
+        <form id="new">
+            <div class="form-group">
+                <label for="username">For</label>
+                <input type="text" class="form-control" name="gift[username]" id="username" placeholder="Search">
+            </div>
+            <div class="form-inline">
+                <div class="form-group">
+                    <label for="giftNumber">Gift #</label>
+                    <input type="text" class="form-control" name="gift[giftNumber]" id="giftNumber" placeholder="3456789">
+                </div>
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" class="form-control" name="gift[date]" id="date">
+                </div>
+            </div>
+
+            <div class="form-inline">
+                <div class="form-group">
+                    <label for="giftDescription">Gift Description</label>
+                    <input type="text" class="form-control" name="gift[giftDescription]" id="giftDescription">
+                </div>
+                <div class="form-group">
+                    <label for="giftAmount">Gift Amount</label>
+                    <input type="number" class="form-control" name="gift[giftAmount]" id="giftAmount">
+                </div>
+            </div>
+
+            <div class="form-inline">
+                <div class="form-group">
+                    <label for="giftCode">Gift Code</label>
+                    <input type="text" class="form-control" name="gift[giftCode]" id="giftCode">
+                </div>
+                <div class="form-group">
+                    <label for="redeemCode">Redeem Code</label>
+                    <input type="text" class="form-control" name="gift[redeemCode]" id="redeemCode">
+                </div>
+                <div class="form-group">
+                    <label for="passCode">Passcode</label>
+                    <input type="text" class="form-control" name="gift[passCode]" id="passCode">
+                </div>
+            </div>
+            <div class="form-inline">
+                <div class="form-group">
+                    <label for="senderFirstName">Sender First Name</label>
+                    <input type="text" class="form-control" name="gift[senderFirstName]" id="senderFirstName">
+                </div>
+                <div class="form-group">
+                    <label for="senderLastName">Sender Last Name</label>
+                    <input type="text" class="form-control" name="gift[senderLastName]" id="senderLastName">
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 
