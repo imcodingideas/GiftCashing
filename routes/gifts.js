@@ -12,13 +12,11 @@ router.get('/', function(req, res, next) {
 
 router.get('/new', function (req, res, next) {
     User.findById(req.params.id, function (err, user) {
-        console.log('Hello ' + user);
-        res.send('There');
-        // if(err) {
-        //     console.log(err);
-        // } else {
-        //     res.render('gifts/new', { title: 'New Gift', user: user})
-        // }
+        if(err) {
+            console.log(err);
+        } else {
+            res.render('gifts/new', { title: 'New Gift', user: user})
+        }
     });
 });
 
