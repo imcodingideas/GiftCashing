@@ -41,6 +41,13 @@ router.get('/login', function (req, res) {
     res.render('login', { title: 'Login @ Gift Cashing' });
 });
 
+router.post('/login', passport.authenticate('local',
+    {
+        successRedirect: '/users',
+        failureRedirect: '/login'
+    }), function (req, res) {
+});
+
 // logout route
 router.get('/logout', function (req, res) {
     req.logout();
