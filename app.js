@@ -75,6 +75,6 @@ app.use(function(err, req, res, next) {
 
 app.use('/', indexRoute);
 app.use('/users', usersRoute);
-app.use('/gifts', giftsRoute);
+app.use('/users/:user_id/gifts', giftsRoute);
 
 module.exports = app;
