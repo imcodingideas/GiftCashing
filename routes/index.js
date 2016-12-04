@@ -31,7 +31,7 @@ router.post('/register', function (req, res) {
 
         passport.authenticate('local')(req, res, function () {
             req.flash('success', 'Welcome to GiftCashing' + user.firstName);
-            res.redirect('/gifts/');
+            res.redirect('/users/' + user._id);
         });
     });
 });
