@@ -8,7 +8,17 @@ const mongoose = require('mongoose');
 let giftSchema = new mongoose.Schema({
 	gift: String,
     date: Date,
-    
+    status: {
+        review: String,
+        accepted: {
+            type: String,
+            redeemed: Boolean
+        },
+        declined: String,
+        expired: String,
+        pending: String,
+        paid: String
+    },
 	giftDescription: String,
 	giftAmount: String,
 	giftCode: String,
