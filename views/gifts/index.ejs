@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-2">
             <img src="<%= user.image %>" class="current-user">
-            <p><%= user.name %></p>
+            <p><a href="/users/" + <%= user._id %>><%= user.name %></a></p>
             <p>Admin View</p>
             <button type="button" class="btn btn-primary">Create Gift</button>
             <ul class="nav bd-sidenav">

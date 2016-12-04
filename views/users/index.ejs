@@ -1,0 +1,13 @@
+<% include ../partials/head.ejs %>
+<% include ../partials/header %>
+
+<div class="container">
+    <h1>Users</h1>
+</div>
+
+<% users.forEach(function (user) { %>
+    <a href="/users/<%= user._id %>/edit"><%= user.firstName %></a>
+<% }); %>
+
+<% include ../partials/contact %>
+<% include ../partials/footer %>

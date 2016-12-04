@@ -4,16 +4,17 @@ const mongoose = require('mongoose'),
 let UserSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
-    alaisFirstName: String,
-    alaisLastName: String,
+    aliasFirstName: String,
+    aliasLastName: String,
     username: String,
+    phone: String,
     password: String,
     isAdmin: Boolean,
     addressLine1: String,
     addressLine2: String,
     city: String,
     state: String,
-    zipCode: String
+    zipCode: Number
 });
 
 UserSchema.plugin(passportLocalMongoose);
