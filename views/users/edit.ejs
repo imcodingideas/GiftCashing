@@ -2,7 +2,7 @@
 <% include ../partials/header %>
 
 <div class="container">
- <h1><%= user.firstName + ' ' + user.lastName %></h1>
+ <% include ../partials/admin-sidebar %>
 
  <form action="/users/<%= user._id %>/?_method=PUT" method="POST">
   <div class="col-md-8 offset-md-3">

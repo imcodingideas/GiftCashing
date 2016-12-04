@@ -129,7 +129,7 @@ a.nav-link.tab {
     color: #6B6B6B;
 }
 
-button.btn.btn-primary {
+a.btn.btn-primary {
     background-color: #8E44AD;
     border-color: #8E44AD;
 }
