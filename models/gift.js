@@ -18,13 +18,7 @@ let giftSchema = new mongoose.Schema({
 	senderFirstName: String,
 	senderLastName: String,
 	giftMessage: String,
-    user: {
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
-        },
-        username: String
-    }
+    username: String
 });
 
 module.exports = mongoose.model('Gift', giftSchema);

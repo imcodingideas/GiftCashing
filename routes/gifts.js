@@ -15,4 +15,9 @@ router.get('/', function(req, res, next) {
     res.render('gifts', { title: 'Review Gifts', user: user });
 });
 
+router.get('/new', function (req, res, next) {
+    console.log(req.params.id);
+   res.render('gifts/new', { title: 'New Gift'})
+});
+
 module.exports = router;
