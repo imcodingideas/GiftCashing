@@ -6,55 +6,54 @@
         <% include ../partials/admin-sidebar %>
         <div class="col-md-8">
             <form action="/users/<%= user._id %>/?_method=PUT" method="POST">
-                <div class="form-inline">
-                    <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6 form-group">
                         <label for="firstName">First Name</label>
                         <input type="text" class="form-control" name="user[firstName]" id="firstName" value="<%= user.firstName %>">
                     </div>
-                    <div class="form-group">
+                    <div class="col-sm-6 form-group">
                         <label for="lastName">Last Name</label>
                         <input type="text" class="form-control" name="user[lastName]" id="lastName" value="<%= user.lastName %>">
                     </div>
                 </div>
-                <div class="form-inline">
-                    <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6 form-group">
                         <label for="aliasFirstName">Alias First Name</label>
                         <input type="text" class="form-control" name="user[aliasFirstName]" id="aliasFirstName" value="<%= user.aliasFirstName %>">
                     </div>
-                    <div class="form-group">
+                    <div class="col-sm-6 form-group">
                         <label for="aliasLastName">Alias Last Name</label>
                         <input type="text" class="form-control" name="user[aliasLastName]" id="aliasLastName" value="<%= user.aliasLastName %>">
                     </div>
                 </div>
-
-                <div class="form-inline">
-                    <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6 form-group">
                         <label for="email">Email address</label>
                         <input type="email" class="form-control" id="email" name="user[username]" value="<%= user.username %>">
                     </div>
-                    <div class="form-group">
+                    <div class="col-sm-6 form-group">
                         <label for="phone">Phone</label>
                         <input type="text" class="form-control" name="user[phone]" id="phone" value="<%= user.phone %>">
                     </div>
                 </div>
 
-                <div class="form-inline">
-                    <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6 form-group">
                         <label for="addressLine1">Address Line 1</label>
                         <input type="text" class="form-control" name="user[addressLine1]" id="addressLine1" value="<%= user.addressLine1 %>">
                     </div>
-                    <div class="form-group">
+                    <div class="col-sm-6 form-group">
                         <label for="addressLine2">Address Line 2</label>
                         <input type="text" class="form-control" name="user[addressLine2]" id="addressLine2" value="<%= user.addressLine2 %>">
                     </div>
                 </div>
 
-                <div class="form-inline">
-                    <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6 form-group">
                         <label for="city">City</label>
                         <input type="text" class="form-control" name="user[city]" id="city" value="<%= user.city %>">
                     </div>
-                    <div class="form-group">
+                    <div class="col-sm-6 form-group">
                         <label for="state">State</label>
                         <select class="form-control" name="user[state]" id="state">
                             <option value="">Please Select</option>
@@ -113,10 +112,24 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="zipCode">Zip Code</label>
-                    <input type="text" class="form-control" name="user[zipCode]" id="zipCode" value="<%= user.zipCode %>">
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <label for="zipCode">Zip Code</label>
+                        <input type="text" class="form-control" name="user[zipCode]" id="zipCode" value="<%= user.zipCode %>">
+                    </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" name="gift[password]" id="password">
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label for="password">Confirm Password</label>
+                        <input type="password" class="form-control" name="gift[password]" id="password">
+                    </div>
+                </div>
+
                 <button type="submit" class="btn btn-primary">Update</button>
             </form>
         </div>
