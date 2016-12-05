@@ -1,11 +1,10 @@
-// Basic Gulp File
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var autoprefix = require('gulp-autoprefixer');
-var notify = require("gulp-notify");
-var bower = require('gulp-bower');
+const gulp = require('gulp'),
+     sass = require('gulp-sass'),
+     autoprefix = require('gulp-autoprefixer'),
+     notify = require("gulp-notify"),
+     bower = require('gulp-bower');
 
-var config = {
+let config = {
     bootstrapDir: './bower_components/bootstrap',
     fontawesomeDir: './bower_components/font-awesome',
     publicDir: './public',
