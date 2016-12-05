@@ -1,6 +1,10 @@
 @import "bootstrap";
 @import "font-awesome";
 
+$purple: #8E44AD;
+$grey: #6B6B6B;
+$dark-grey: #4A4A4A;
+$white: #ffffff;
 
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -11,11 +15,11 @@ body {
 }
 
 .navbar-static-top {
-  background-color: #8E44AD;
+  background-color: $purple;
   height: 78px;
   border-radius: 0;
   a {
-    color: #ffffff;
+    color: $white;
   }
 }
 
@@ -39,19 +43,19 @@ a.nav-link {
 }
 
 .btn.btn-outline-secondary.btn-lg {
-  color: #ffffff;
+  color: $white;
 }
 
 .proposal {
   font-weight: lighter;
   font-size: 38px;
-  color: #ffffff;
+  color: $white;
 }
 
 .lead {
   font-size: 21px;
   line-height: 1.25;
-  color: #ffffff;
+  color: $white;
 }
 
 a.btn.btn-outline-secondary.btn-lg {
@@ -64,13 +68,13 @@ a.btn.btn-outline-secondary.btn-lg {
 }
 
 .text-question {
-  color: #8E44AD;
+  color: $purple;
   font-size: 42px;
   font-weight: 300;
 }
 
 .heading {
-  color: #8E44AD;
+  color: $purple;
   font-weight: 300;
   font-size: 30px;
 }
@@ -84,7 +88,7 @@ a.btn.btn-outline-secondary.btn-lg {
 }
 
 address {
-  border-left: 2px solid #6B6B6B;
+  border-left: 2px solid $grey;
   padding-left: 15px;
   color: #9A9A9A;
 }
@@ -97,12 +101,12 @@ p.text-md-right.contact {
 
 a {
   &.footer-email {
-    color: #8E44AD;
+    color: $purple;
     font-size: 16px;
   }
   &.nav-link.admin {
     font-size: 20px;
-    color: #4A4A4A;
+    color: $dark-grey;
   }
 }
 
@@ -124,22 +128,22 @@ a.nav-link.tab {
 
 .nav-tabs {
   .nav-item.open .nav-link {
-    color: #6B6B6B;
+    color: $grey;
     &:focus, &:hover {
-      color: #6B6B6B;
+      color: $grey;
     }
   }
   .nav-link.active {
-    color: #6B6B6B;
+    color: $grey;
     &:focus, &:hover {
-      color: #6B6B6B;
+      color: $grey;
     }
   }
 }
 
 a.btn.btn-primary {
-  background-color: #8E44AD;
-  border-color: #8E44AD;
+  background-color: $purple;
+  border-color: $purple;
 }
 
 img {
@@ -158,7 +162,7 @@ img {
 }
 
 span.real-name {
-  color: #4A4A4A;
+  color: $dark-grey;
   font-size: 20px;
   font-weight: 400;
 }
@@ -171,14 +175,14 @@ tr.row {
 .table {
   td, th {
     vertical-align: middle;
-    border-top: 3px solid #ffffff;
-    border-bottom: 2px solid #ffffff;
+    border-top: 3px solid $white;
+    border-bottom: 2px solid $white;
   }
 }
 
 .breadcrumbs {
   font-weight: 500;
-  color: #6B6B6B;
+  color: $grey;
   letter-spacing: 1.1px;
   font-size: 22px;
 }
