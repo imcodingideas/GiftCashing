@@ -114,10 +114,6 @@ a.nav-link.admin {
     border-bottom: 1px solid #EDEDED;
 }
 
-ul.nav.nav-tabs {
-    padding-top: 49px;
-}
-
 a.nav-link.tab {
     font-size: 19px;
     font-weight: 400;
@@ -163,4 +159,11 @@ tr.row {
     vertical-align: middle;
     border-top: 3px solid #ffffff;
     border-bottom: 2px solid #ffffff;
+}
+
+.breadcrumbs {
+    font-weight: 500;
+    color: #6B6B6B;
+    letter-spacing: 1.1px;
+    font-size: 22px;
 }
