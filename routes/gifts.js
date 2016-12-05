@@ -7,7 +7,13 @@ const express = require('express'),
 
 /* GET Gifts page. */
 router.get('/', function(req, res, next) {
-    res.render('gifts', { title: 'Review Gifts' });
+    User.find({}, function (err, allUsers) {
+       if(err) {
+           console.log(err);
+       } else {
+           res.render('gifts', { title: 'Review Gifts', user: allUsers });
+       }
+    });
 });
 
 router.get('/new', function (req, res, next) {
