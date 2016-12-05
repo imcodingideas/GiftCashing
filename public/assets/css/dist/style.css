@@ -55,7 +55,12 @@ a.btn.btn-outline-secondary.btn-lg {
     font-weight: 300;
 }
 
-.how {
+.row.center-row {
+    display: flex;
+    justify-content: center;
+}
+
+.text-question {
     color: #8E44AD;
     font-size: 42px;
     font-weight: 300;
