@@ -1,0 +1,21 @@
+{
+  "name": "giftcashing",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Joseph Chambers <joseph@michael-chambers.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/imcodingideas/GiftCashing",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "bootstrap": "v4.0.0-alpha.5"
+  }
+}
