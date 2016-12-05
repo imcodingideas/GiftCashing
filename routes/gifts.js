@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
        if(err) {
            console.log(err);
        } else {
-           res.render('gifts', { title: 'Review Gifts', user: allUsers });
+           res.render('gifts', { title: 'Review Gifts', user: allUsers, breadcrumbsName: ''});
        }
     });
 });
@@ -21,7 +21,7 @@ router.get('/new', function (req, res, next) {
         if(err) {
             console.log(err);
         } else {
-            res.render('gifts/new', { title: 'New Gift', user: user})
+            res.render('gifts/new', { title: 'New Gift', user: user, breadcrumbsName: 'Create Gift'})
         }
     });
 });

@@ -38,7 +38,7 @@ router.get('/:id', function (req, res) {
             console.log(err);
         } else {
             //render show template with that campground
-            res.render('users/show', {user: foundUser, title: ''});
+            res.render('users/show', {user: foundUser, title: 'Profile', breadcrumbsName: 'Profile'});
         }
     });
 });
@@ -46,7 +46,7 @@ router.get('/:id', function (req, res) {
 // Edit User
 router.get('/:id/edit', function (req, res, next) {
     User.findById(req.params.id, function (err, foundUser) {
-        res.render('users/edit', {user: foundUser, title: ''});
+        res.render('users/edit', {user: foundUser, title: 'Member Profile', breadcrumbsName: 'Member Profile'});
     });
 });
 
