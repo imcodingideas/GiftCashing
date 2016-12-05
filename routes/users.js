@@ -10,8 +10,10 @@ router.get('/', function (req, res, next) {
      if(err) {
        console.log(err)
      } else {
-         console.log(allUsers);
-         res.render('users/index', {users: allUsers, title: ''})
+         res.json({
+             status: 'success',
+             data: allUsers
+         });
      }
   });
 });
