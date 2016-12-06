@@ -6,11 +6,11 @@
     </p>
     <p><%= user.aliasFirstName %> <%= user.aliasLastName %></p>
     <span>Admin View</span>
-    <a href="/users/<%= user._id %>/gifts/new" class="btn btn-primary">Create Gift</a>
+    <a href="/gifts/new" class="btn btn-primary">Create Gift</a>
     <ul class="nav bd-sidenav">
         <li class="bd-sidenav">Admins</li>
         <li class="bd-sidenav"><a href="/users">Members</a></li>
-        <li class="bd-sidenav"><a href="/users/<%= user._id %>/gifts">Gifts</a></li>
+        <li class="bd-sidenav"><a href="/gifts">Gifts</a></li>
         <li class="bd-sidenav"><a href="/logout">Sign out</a></li>
     </ul>
 </div>
