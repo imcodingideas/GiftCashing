@@ -1,7 +1,10 @@
 <!--admin sidebar-->
 <div class="col-md-2">
     <img src="#" class="current-user">
-    <p><a href="/users/<%= user._id %>/edit"><%= user.firstName %> <br> <%= user.lastName %></a></p>
+    <p>
+        <a href="/users/<%= user._id %>/edit"><%= user.firstName %> <br> <%= user.lastName %></a>
+    </p>
+    <p><%= user.aliasFirstName %> <%= user.aliasLastName %></p>
     <span>Admin View</span>
     <a href="/users/<%= user._id %>/gifts/new" class="btn btn-primary">Create Gift</a>
     <ul class="nav bd-sidenav">
