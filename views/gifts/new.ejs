@@ -3,7 +3,7 @@
 
 <div class="container">
     <div class="offset-md-2 col-md-9 mt-1 px-3">
-        <form id="new">
+        <form action="/users/<%= user._id %>/gifts/?_method=PUT" method="POST">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group">
@@ -65,6 +65,12 @@
                 <div class="col-sm-12 form-group">
                     <label for="giftMessage">Gift Message</label>
                     <textarea class="form-control" id="giftMessage" rows="3"></textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <button class="btn btn-lg btn-default btn-block btn-primary">Submit!</button>
                 </div>
             </div>
         </form>
