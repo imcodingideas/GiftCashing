@@ -2,22 +2,33 @@ const express = require('express'),
     router = express.Router({mergeParams: true}),
     User = require('../models/user'),
     Gift = require('../models/gift'),
-    faker = require('faker');
+    middleware = require('../middleware');
 
+
+router.get('/new', middleware.isLoggedIn, function (req, res, next) {
+    User.findById(req.params.id, function (err, user) {
+        if(err) {
+            req.flash('error', err.message);
+        } else {
+            res.render('gifts/new', { title: 'New Gift', user: user, breadcrumbsName: 'Create Gift'})
+        }
+    });
+});
 
 /* GET Gifts page. */
-router.get('/', function(req, res, next) {
+router.get('/', middleware.isLoggedIn, function(req, res, next) {
     User.find({}, function (err, allUsers) {
        if(err) {
            req.flash('error', err.message);
        } else {
-           res.render('gifts', { title: 'Review Gifts', user: allUsers, breadcrumbsName: ''});
+           console.log(req.body);
+           res.render('gifts', { title: 'Review Gifts', user: allUsers, breadcrumbsName: 'Hello'});
        }
     });
 });
 
 // Create a Gift
-router.post('/', function(req, res) {
+router.post('/', middleware.isLoggedIn, function(req, res, next) {
     // get data from form and add to gift array.
     let username = req.body.username,
         giftNumber = req.body.giftNumber,
@@ -32,27 +43,16 @@ router.post('/', function(req, res) {
         giftMessage = req.body.giftMessage,
         newGift = { username: username, giftNumber: giftNumber, date: date, giftDescription: giftDescription, giftAmount: giftAmount, giftCode: giftCode, redeemCode: giftCode, redeemCode: redeemCode, passCode: passCode, senderFirstName: senderFirstName, senderLastName: senderLastName, giftMessage: giftMessage };
 
-     // create a new gift, and save to the database
-     Gift.create(newGift, function (err, newlyCreated) {
+
+    Gift.create(req.body.id, newGift, function (err, newlyCreated) {
         if(err) {
             req.flash('error', err.message);
         } else {
             console.log(newlyCreated);
-            res.redirect('/')
-        }
-     });
-
-
-});
-
-router.get('/new', function (req, res, next) {
-    User.findById(req.params.id, function (err, user) {
-        if(err) {
-            req.flash('error', err.message);
-        } else {
-            res.render('gifts/new', { title: 'New Gift', user: user, breadcrumbsName: 'Create Gift'})
+            res.redirect('/users/' + req.body.id + '/gifts')
         }
     });
+
 });
 
 
