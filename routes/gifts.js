@@ -5,7 +5,7 @@ const express = require('express'),
     middleware = require('../middleware');
 
 /* GET Gifts page. */
-router.get('/', function(req, res, next) {
+router.get('/', middleware.isLoggedIn, function(req, res, next) {
 
     User.find({}, function (err, allUsers) {
        if(err) {
@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 });
 
 // Create a Gift
-router.post('/', function(req, res, next) {
+router.post('/', middleware.isLoggedIn, function(req, res, next) {
 
     // get data from form and add to gift array.
     let username = req.body.gift.username,
