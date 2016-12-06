@@ -9,7 +9,7 @@ const express = require('express'),
 router.get('/', function(req, res, next) {
     User.find({}, function (err, allUsers) {
        if(err) {
-           console.log(err);
+           req.flash('error', err.message);
        } else {
            res.render('gifts', { title: 'Review Gifts', user: allUsers, breadcrumbsName: ''});
        }
@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 router.get('/new', function (req, res, next) {
     User.findById(req.params.id, function (err, user) {
         if(err) {
-            console.log(err);
+            req.flash('error', err.message);
         } else {
             res.render('gifts/new', { title: 'New Gift', user: user, breadcrumbsName: 'Create Gift'})
         }
