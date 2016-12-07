@@ -15,7 +15,8 @@ const express = require('express'),
 
 const indexRoute = require('./routes/index'),
     usersRoute = require('./routes/users'),
-    giftsRoute = require('./routes/gifts.js');
+    giftsRoute = require('./routes/gifts.js'),
+    searchRoute = require('./routes/search');
 
 mongoose.connect('mongodb://localhost/giftcashing');
 
@@ -76,5 +77,6 @@ app.use(function(err, req, res, next) {
 app.use('/', indexRoute);
 app.use('/users', usersRoute);
 app.use('/gifts', giftsRoute);
+app.use('/search', searchRoute);
 
 module.exports = app;
