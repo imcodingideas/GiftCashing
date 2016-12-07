@@ -50,6 +50,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use(function (req, res, next) {
+    res.locals.currentUser = req.user;
     res.locals.error = req.flash('error');
     res.locals.success = req.flash('success');
     next();
@@ -66,9 +67,6 @@ app.use(function (req, res, next) {
 app.use(function(err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
-    res.locals.error = req.flash('error');
-    res.locals.success = req.flash('success');
-
     // render the error page
     res.status(err.status || 500);
     res.render('error');
