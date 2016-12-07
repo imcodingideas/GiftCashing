@@ -3,6 +3,8 @@ const express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
+    session = require('express-session'),
+    MongoStore = require('connect-mongo')(session),
     passport = require('passport'),
     flash = require('connect-flash'),
     LocalStrategy = require('passport-local'),
@@ -18,7 +20,9 @@ const indexRoute = require('./routes/index'),
     giftsRoute = require('./routes/gifts.js'),
     searchRoute = require('./routes/search');
 
-mongoose.connect('mongodb://localhost/giftcashing');
+const mongooseDB = 'mongodb://localhost/giftcashing';
+
+mongoose.connect(mongooseDB);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,7 +39,11 @@ app.use(flash());
 app.use(require('express-session')({
     secret: 'anything',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: new MongoStore({
+        url: mongooseDB,
+        touchAfter: 24 * 3600
+    })
 }));
 
 // PASSPORT CONFIGURATION
