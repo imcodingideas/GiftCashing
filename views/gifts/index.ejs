@@ -1,5 +1,6 @@
 <% include ../partials/head %>
-<% include ../partials/header %>
+<% include ../partials/admin-nav %>
+<% include ../partials/admin-action-tabs %>
 
 <div class="container">
     <div class="row">
@@ -17,15 +18,16 @@
                 </thead>
                 <tbody>
                 <tr class="row">
+
                     <td><input type="checkbox"></td>
                     <td>
                         <div class="row">
                             <div class="col-md-3">
-                                <img src="<%= user.image %>" class="table-user">
+                                <img src="#" class="table-user">
                             </div>
                             <div class="col-md-9">
-                                <span class="real-name pl-1"><%= user.name %></span>
-                                <p class="persona pl-1"><%= user.name %></p>
+                                <p class="real-name pl-1"><%= users.firstName %></p>
+                                <p class="persona pl-1"><%= users.lastName %></p>
                             </div>
                         </div>
                     </td>
