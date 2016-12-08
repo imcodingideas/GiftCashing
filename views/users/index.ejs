@@ -2,12 +2,33 @@
 <% include ../partials/admin-nav %>
 <% include ../partials/admin-action-tabs %>
 
+
 <div class="container">
     <div class="row">
-        <div class="offset-md-2 col-md-9 mt-1 px-3">
-            <% user.forEach(function (user) { %>
-                <a href="/users/<%= user._id %>/edit"><%= user.firstName %></a>
-            <% }); %>
+        <div class="offset-md-2 col-md-10 mt-1">
+
+            <table class="table">
+                <thead class="thead-inverse">
+                <tr>
+                    <th>User</th>
+                    <th>Total Gifts</th>
+                    <th>Last Login</th>
+                    <th>Total Amount</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <% users.forEach(function (user) { %>
+                <tr>
+                    <td><span class="real-name pl-1"><%= user.firstName + ' ' + user.lastName %></span></td>
+                    <td>14 Gifts</td>
+                    <td>11/28/2016</td>
+                    <td>$4000</td>
+                    <td>View Gifts</td>
+                </tr>
+                <% }) %>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

@@ -12,7 +12,7 @@ router.get('/', middleware.isLoggedIn, function(req, res, next) {
            req.flash('error', err.message);
        } else {
            // console.log(user);
-           res.render('gifts/index', { title: 'Review Gifts', user: allUsers, breadcrumbsName: 'Hello'});
+           res.render('gifts/index', { title: 'Review Gifts', users: allUsers, breadcrumbsName: 'Hello'});
        }
     });
 });

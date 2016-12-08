@@ -11,7 +11,7 @@ router.get('/', middleware.isLoggedIn, function (req, res, next) {
      if(err) {
          req.flash('error', err.message);
      } else {
-         res.render('users/index', {user: allUsers, title: 'All Users', breadcrumbsName: 'All Users'});
+         res.render('users/index', {users: allUsers, title: 'All Users', breadcrumbsName: 'Users'});
      }
   });
 });
