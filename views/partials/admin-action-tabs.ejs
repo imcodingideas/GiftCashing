@@ -1,37 +1,35 @@
-<div class="row submenu">
-    <div class="container pt-3">
-        <div class="row">
-            <% include ../partials/admin-sidebar %>
-            <div class="col-md-2">
-                <div class="breadcrumbs">
-                    <span class="current-page text-md-right"> > <%= breadcrumbsName %> > </span>
-                </div>
+<div class="container">
+    <div class="row submenu">
+        <% include ../partials/admin-sidebar %>
+        <div class="col-md-2 pt-3">
+            <div class="breadcrumbs">
+                <span class="current-page text-md-right"> > <%= breadcrumbsName %> > </span>
             </div>
-            <div class="col-md-8">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link tab active" data-toggle="tab" href="#home" role="tab">Review</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link tab" data-toggle="tab" href="#accepted-redeemed" role="tab">Accepted</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link tab" data-toggle="tab" href="#accepted-not-redeemed" role="tab">Accepted</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link tab" data-toggle="tab" href="#declined" role="tab">Declined</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link tab" data-toggle="tab" href="#expired" role="tab">Expired</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link tab" data-toggle="tab" href="#pending" role="tab">Pending</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link tab" data-toggle="tab" href="#paid" role="tab">Paid</a>
-                    </li>
-                </ul>
-            </div>
+        </div>
+        <div class="col-md-8 pt-3">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link tab active" data-toggle="tab" href="#home" role="tab">Review</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link tab" data-toggle="tab" href="#accepted-redeemed" role="tab">Accepted</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link tab" data-toggle="tab" href="#accepted-not-redeemed" role="tab">Accepted</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link tab" data-toggle="tab" href="#declined" role="tab">Declined</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link tab" data-toggle="tab" href="#expired" role="tab">Expired</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link tab" data-toggle="tab" href="#pending" role="tab">Pending</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link tab" data-toggle="tab" href="#paid" role="tab">Paid</a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

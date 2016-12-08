@@ -5,6 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="offset-md-2 col-md-10 mt-1">
+
             <table class="table">
                 <thead class="thead-inverse">
                 <tr>
@@ -17,27 +18,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="row">
-
-                    <td><input type="checkbox"></td>
-                    <td>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <img src="#" class="table-user">
-                            </div>
-                            <div class="col-md-9">
-                                <p class="real-name pl-1"><%= users.firstName %></p>
-                                <p class="persona pl-1"><%= users.lastName %></p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>Amazon</td>
-                    <td>#32423</td>
-                    <td>11/28/2016</td>
-                    <td>
-                        <i class="fa fa-cc-paypal"></i>
-                    </td>
-                </tr>
+                <% users.forEach(function (user) { %>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td><span class="real-name pl-1"><%= user.firstName + ' ' + user.lastName %></span></td>
+                        <td>Amazon</td>
+                        <td>#32423</td>
+                        <td>11/28/2016</td>
+                        <td><i class="fa fa-cc-paypal"></i></td>
+                    </tr>
+                <% }) %>
                 </tbody>
             </table>
         </div>
