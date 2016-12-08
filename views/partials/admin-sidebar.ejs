@@ -1,10 +1,10 @@
 <!--admin sidebar-->
 <div class="col-md-2">
-    <img src="#" class="current-user">
+    <img src="https://s.gravatar.com/avatar/0a07df079fd7a07e4cd0e5668835296c?s=80" class="current-user">
     <p>
-        <a href="/users/<%= currentUser._id %>/edit"><%= currentUser.firstName %> <br> <%= currentUser.lastName %></a>
+        <a href="/users/<%= currentUser._id %>/edit"><%= currentUser.firstName + ' ' + currentUser.lastName %></a>
+        <%= currentUser.aliasFirstName + ' ' + currentUser.aliasLastName %>
     </p>
-    <p><%= currentUser.aliasFirstName %> <%= currentUser.aliasLastName %></p>
     <span>Admin View</span>
     <a href="/gifts/new" class="btn btn-primary">Create Gift</a>
     <ul class="nav bd-sidenav">

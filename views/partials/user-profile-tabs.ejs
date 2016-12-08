@@ -1,20 +1,22 @@
-<div class="container">
-    <div class="row submenu">
-        <% include ../partials/admin-sidebar %>
-        <div class="col-md-2 pt-3">
-            <div class="breadcrumbs">
-                <span class="current-page text-md-right"> > <%= breadcrumbsName %> > </span>
+<div class="submenu">
+    <div class="container">
+        <div class="row">
+            <% include ../partials/admin-sidebar %>
+            <div class="col-md-2 pt-3">
+                <div class="breadcrumbs">
+                    <span class="current-page text-md-right"> > <%= breadcrumbsName %> > </span>
+                </div>
             </div>
-        </div>
-        <div class="col-md-8 pt-3">
-            <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link tab active" data-toggle="tab" href="#home" role="tab">Info</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link tab" data-toggle="tab" href="#payment-preference" role="tab">Payment</a>
-                </li>
-            </ul>
+            <div class="col-md-8 pt-3">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link tab active" data-toggle="tab" href="#home" role="tab">Info</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link tab" data-toggle="tab" href="#payment-preference" role="tab">Payment</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
