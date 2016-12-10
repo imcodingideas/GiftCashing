@@ -21,7 +21,7 @@ router.get('/', middleware.isLoggedIn, function(req, res, next) {
 router.post('/', middleware.isLoggedIn, function(req, res, next) {
 
     // get data from form and add to gift array.
-    let username = req.body.gift.username,
+    var username = req.body.gift.username,
         giftNumber = req.body.gift.giftNumber,
         date = req.body.date,
         giftDescription = req.body.gift.giftDescription,

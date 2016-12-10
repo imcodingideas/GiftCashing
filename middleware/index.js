@@ -1,7 +1,7 @@
 const User = require('../models/user'),
     Gift = require('../models/gift');
 
-let middlewareObj = {};
+var middlewareObj = {};
 
 middlewareObj.isLoggedIn = function(req, res, next){
     if(req.isAuthenticated()){
