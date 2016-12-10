@@ -5,7 +5,7 @@ const express = require('express'),
     middleware = require('../middleware');
 
 router.get('/', function (req, res) {
-    let firstName = req.param('firstName');
+    var firstName = req.param('firstName');
     User.findOne({firstName: new RegExp('^'+firstName+'$', "i")}, function(err, doc) {
         if(err) {
             console.log(err)

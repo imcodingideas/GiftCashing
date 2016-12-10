@@ -1,11 +1,10 @@
 /**
  * Created by joseph on 12/2/16.
  */
-'use strict';
 const mongoose = require('mongoose');
 
 // Schema Setup
-let giftSchema = new mongoose.Schema({
+var giftSchema = new mongoose.Schema({
     username: String,
 	giftNumber: Number,
     date: Date,

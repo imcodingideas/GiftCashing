@@ -4,7 +4,7 @@ const gulp = require('gulp'),
      notify = require("gulp-notify"),
      bower = require('gulp-bower');
 
-let config = {
+var config = {
     bootstrapDir: './bower_components/bootstrap',
     fontawesomeDir: './bower_components/font-awesome',
     publicDir: './public',
