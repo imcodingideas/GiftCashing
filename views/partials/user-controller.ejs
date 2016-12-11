@@ -1,26 +1,26 @@
-<div class="row mt-1 mb-1">
-    <div class="col-md-5">
+<div class="row mt-1 mb-1 p-1 flex-items-md-between flex-items-md-middle">
+    <div class="mr-1">
         <span class="checkbox d-inline-flex flex-items-md-middle"><input type="checkbox"> <span>Select All</span></span>
         <div class="btn-group pl-1">
-            <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Bulk Actions
+            <button type="button" class="btn btn-outline-primary btn-sm">
+              <span><i class="icon fa fa-file-excel-o"></i></span>
+              Export to Excel
             </button>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#"><i class="fa fa-check" aria-hidden="true"></i> Accept</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-ban" aria-hidden="true"></i> Decline</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-calendar-times-o" aria-hidden="true"></i> Expired</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Paid</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export to Excel</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
-            </div>
-            <button type="button" class="ml-2 btn btn-sm btn-outline-primary">GO</button>
         </div>
     </div>
-    <div class="col-md-2">
+    <div class="mr-1">
         <span><em>Showing 5 of 30</em></span>
     </div>
-    <div class="offset-md-1 col-md-2">
-        <span>Filter By: </span>
-        <button type="button" class="ml-2 btn btn-sm btn-primary"><i class="icon fa fa-search"></i></button>
+    <div class="filter">
+        <span class="mr-1">Filter By: </span>
+        <div class="input-group input-group-sm datepicker d-inline-flex">
+          <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
+          <input type="text" class="form-control" placeholder="Date from...">
+        </div>
+        <div class="input-group input-group-sm datepicker d-inline-flex">
+          <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
+          <input type="text" class="form-control" placeholder="Date from...">
+        </div>
+        <button type="button" class="btn btn-sm btn-primary"><i class="icon fa fa-search"></i></button>
     </div>
 </div>

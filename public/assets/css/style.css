@@ -7454,6 +7454,10 @@ a.nav-link {
   border-color: #8E44AD;
   background-color: #F6F4FB;
   border-radius: 4px !important; }
+  .btn-outline-primary:hover {
+    background-color: #8E44AD;
+    border-color: #8E44AD;
+    color: white; }
 
 .proposal {
   font-weight: lighter;
@@ -7503,7 +7507,7 @@ a.footer-email {
   font-size: 16px; }
 
 a.nav-link.admin {
-  font-size: 20px;
+  font-size: 18px;
   color: #4A4A4A; }
 
 .nav-tabs {
@@ -7585,6 +7589,13 @@ tr.row {
 
 .checkbox input {
   margin-right: 8px; }
+
+.datepicker {
+  width: 150px; }
+  .datepicker .input-group-addon {
+    background-color: white; }
+  .datepicker .form-control {
+    border-left-color: transparent; }
 
 .chip-user__img {
   width: 60px;

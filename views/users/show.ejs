@@ -1,12 +1,13 @@
 <% include ../partials/head.ejs %>
 <% include ../partials/admin-nav %>
-<% include ../partials/admin-action-tabs %>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-9 offset-md-3">
-            <em>Edit</em> <a href="/users/<%= user._id %>/edit"><%= user.firstName %></a>
-        </div>
+      <% include ../partials/admin-sidebar %>
+      <div class="col-md-10">
+        <% include ../partials/admin-action-tabs %>
+        <em>Edit</em> <a href="/users/<%= user._id %>/edit"><%= user.firstName %></a>
+      </div>
     </div>
 </div>
 

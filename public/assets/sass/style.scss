@@ -59,6 +59,12 @@ a.nav-link {
   border-color: $purple;
   background-color: $purple-light;
   border-radius: 4px !important;
+
+  &:hover {
+    background-color: $purple;
+    border-color: $purple;
+    color: white;
+  }
 }
 
 .proposal {
@@ -120,7 +126,7 @@ a {
     font-size: 16px;
   }
   &.nav-link.admin {
-    font-size: 20px;
+    font-size: 18px;
     color: $dark-grey;
   }
 }
@@ -232,6 +238,18 @@ tr.row {
 .checkbox {
   input {
     margin-right: 8px;
+  }
+}
+
+.datepicker {
+  width: 150px;
+
+  .input-group-addon {
+    background-color: white;
+  }
+
+  .form-control{
+    border-left-color: transparent;
   }
 }
 
