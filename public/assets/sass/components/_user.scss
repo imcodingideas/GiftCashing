@@ -1,0 +1,47 @@
+.chip-user {
+
+  &__img {
+    width: 60px;
+    height: 60px;
+
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  &__name {
+
+    .real-name {
+      font-size: 20px;
+    }
+
+    .alias-name {
+      font-size: 16px;
+    }
+  }
+}
+
+.current-user {
+
+  &__img {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+
+    img {
+      width: 120px;
+      height: 120px;
+    }
+  }
+
+  &__name {
+    font-size: 22px;
+  }
+
+  &__role {
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+}

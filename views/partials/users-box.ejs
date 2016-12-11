@@ -1,17 +1,10 @@
-<div class="submenu">
-    <div class="container">
-        <div class="row">
-            <% include ../partials/admin-sidebar %>
-            <div class="col-md-2 pt-3">
-                <div class="breadcrumbs">
-                    <span class="current-page text-md-right"> > <%= breadcrumbsName %> > </span>
-                </div>
-            </div>
-            <div class="col-md-3 offset-md-5 pt-3">
-                <div class="form-group">
-                    <input class="form-control" type="search" placeholder="Search" id="search-input">
-                </div>
-            </div>
-        </div>
+<div class="submenu mb-2">
+  <div class="row flex-items-md-between">
+    <div class="col-md">
+      <% include breadcrumbs %>
     </div>
+    <div class="col-md-4 d-flex flex-items-md-middle">
+      <% include searchform %>
+    </div>
+  </div>
 </div>

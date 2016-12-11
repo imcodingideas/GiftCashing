@@ -2,12 +2,21 @@
 @import "bootstrap";
 @import "font-awesome";
 
+
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+}
+
+a {
+  color: $purple;
+
+  &:hover {
+    color: $purple;
+  }
 }
 
 .navbar-static-top {
@@ -38,8 +47,18 @@ a.nav-link {
   background-size: cover;
 }
 
+.btn {
+  text-transform: uppercase;
+}
 .btn.btn-outline-secondary.btn-lg {
   color: $white;
+}
+
+.btn-outline-primary {
+  color: $purple;
+  border-color: $purple;
+  background-color: $purple-light;
+  border-radius: 4px !important;
 }
 
 .proposal {
@@ -107,19 +126,22 @@ a {
 }
 
 .submenu {
-  height: 96px;
-  background-color: #EDEDED;
 }
 
 .nav-tabs {
-  border-bottom: 1px solid #EDEDED;
+  border-bottom: 0
 }
 
+.nav-tabs .nav-item + .nav-item {
+  margin: 0;
+}
 a.nav-link.tab {
-  font-size: 19px;
+  color: $grey;
+  font-size: 14px;
   font-weight: 400;
-  height: 47px;
-  width: 91px;
+  padding: 16px 10px;
+  line-height: 1;
+  display: block;
 }
 
 .nav-tabs {
@@ -130,14 +152,15 @@ a.nav-link.tab {
     }
   }
   .nav-link.active {
-    color: $grey;
+    color: $purple;
+    font-weight: 400;
     &:focus, &:hover {
-      color: $grey;
+      color: $purple;
     }
   }
 }
 
-a.btn.btn-primary {
+.btn.btn-primary {
   background-color: $purple;
   border-color: $purple;
 }
@@ -171,8 +194,16 @@ tr.row {
 .table {
   td, th {
     vertical-align: middle;
-    border-top: 3px solid $white;
-    border-bottom: 2px solid $white;
+  }
+
+  tr {
+    background-color: $purple-light;
+    border-bottom: 4px solid white;
+    th {
+      font-weight: 300;
+      color: $dark-grey;
+      background-color: $purple-light;
+    }
   }
 }
 
@@ -181,4 +212,30 @@ tr.row {
   color: $grey;
   letter-spacing: 1.1px;
   font-size: 22px;
+  min-height: 48px;
 }
+
+.form-group {
+  margin: 0;
+  width: 100%;
+}
+
+.dropdown-item {
+  padding: 8px 16px;
+
+  i.fa {
+    margin-right: 10px;
+  }
+
+}
+
+.checkbox {
+  input {
+    margin-right: 8px;
+  }
+}
+
+//Components
+@import "components/user";
+@import "components/nav";
+@import "components/basics";

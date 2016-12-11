@@ -1,0 +1,27 @@
+.img {
+  &-circle {
+    border-radius: 100%;
+  }
+}
+
+.t-center {
+  text-align: center;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-inline-flex {
+  display: inline-flex;
+}
+
+.text {
+  &-primary {
+    color: $purple !important;
+  }
+
+  &-bold {
+    font-weight: 400;
+  }
+}

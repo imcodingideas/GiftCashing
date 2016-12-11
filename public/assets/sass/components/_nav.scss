@@ -1,0 +1,28 @@
+.navbar {
+  box-shadow: 0 10px 20px rgba($grey, 0.1);
+}
+
+.sidebar {
+  margin-top: 30px;
+  .nav__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav__item {
+    a {
+      display: block;
+      padding: 8px 20px;
+      text-transform: uppercase;
+      color: $dark-grey;
+    }
+
+    &.current {
+      a {
+        color: $purple;
+        font-weight: bold;
+      }
+    }
+  }
+}

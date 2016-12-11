@@ -1,38 +1,49 @@
 <% include ../partials/head %>
 <% include ../partials/admin-nav %>
-<% include ../partials/admin-action-tabs %>
 
 <div class="container">
-    <div class="row">
-        <div class="offset-md-2 col-md-10 mt-1">
-
-            <table class="table">
-                <thead class="thead-inverse">
+  <div class="row">
+    <% include ../partials/admin-sidebar %>
+    <div class="col-md-10">
+      <% include ../partials/admin-action-tabs %>
+      <main>
+        <table class="table">
+            <thead class="thead-inverse">
+            <tr>
+                <th></th>
+                <th>User</th>
+                <th>Gift Description</th>
+                <th>Order</th>
+                <th>Date</th>
+                <th>Payment</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% users.forEach(function (user) { %>
                 <tr>
-                    <th></th>
-                    <th>User</th>
-                    <th>Gift Description</th>
-                    <th>Order</th>
-                    <th>Date</th>
-                    <th>Payment</th>
+                    <td><input type="checkbox"></td>
+                    <td>
+                      <div class="chip-user d-flex flex-items-md-middle">
+                        <div class="chip-user__img mr-1">
+                          <img src="https://s.gravatar.com/avatar/0a07df079fd7a07e4cd0e5668835296c?s=80" alt="" class="img-circle">
+                        </div>
+                        <div class="chip-user__name">
+                          <span class="real-name d-block"><%= user.firstName + ' ' + user.lastName %></span>
+                          <span class="alias-name d-block"><%= user.aliasFirstName + ' ' + user.aliasLastName %></span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-primary text-bold">Amazon</td>
+                    <td class="text-primary text-bold">#32423</td>
+                    <td>11/28/2016</td>
+                    <td><i class="fa fa-cc-paypal"></i></td>
                 </tr>
-                </thead>
-                <tbody>
-                <% users.forEach(function (user) { %>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td><span class="real-name pl-1"><%= user.firstName + ' ' + user.lastName %></span></td>
-                        <td>Amazon</td>
-                        <td>#32423</td>
-                        <td>11/28/2016</td>
-                        <td><i class="fa fa-cc-paypal"></i></td>
-                    </tr>
-                <% }) %>
-                </tbody>
-            </table>
-        </div>
+            <% }) %>
+            </tbody>
+        </table>
+      </main>
     </div>
+  </div>
 </div>
-
 <% include ../partials/contact %>
 <% include ../partials/footer %>

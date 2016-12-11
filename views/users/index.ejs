@@ -1,17 +1,16 @@
-<% include ../partials/head.ejs %>
+<% include ../partials/head %>
 <% include ../partials/admin-nav %>
-<% include ../partials/users-box %>
-
-
 <div class="container">
     <div class="row">
-        <div class="offset-md-2 col-md-10 mt-1">
-
+      <% include ../partials/admin-sidebar %>
+        <div class="col-md-10">
+          <% include ../partials/users-box %>
+          <main>
             <% include ../partials/user-controller %>
-
             <table class="table">
                 <thead class="thead-inverse">
                 <tr>
+                    <th></th>
                     <th>User</th>
                     <th>Total Gifts</th>
                     <th>Last Login</th>
@@ -22,15 +21,27 @@
                 <tbody>
                 <% users.forEach(function (user) { %>
                 <tr>
-                    <td><span class="real-name pl-1"><%= user.firstName + ' ' + user.lastName %></span></td>
-                    <td>14 Gifts</td>
-                    <td>11/28/2016</td>
-                    <td>$4000</td>
-                    <td>View Gifts</td>
+                  <td><input type="checkbox"></td>
+                  <td>
+                    <div class="chip-user d-flex flex-items-md-middle">
+                      <div class="chip-user__img mr-1">
+                        <img src="https://s.gravatar.com/avatar/0a07df079fd7a07e4cd0e5668835296c?s=80" alt="" class="img-circle">
+                      </div>
+                      <div class="chip-user__name">
+                        <span class="real-name d-block"><%= user.firstName + ' ' + user.lastName %></span>
+                        <span class="alias-name d-block"><%= user.aliasFirstName + ' ' + user.aliasLastName %></span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-primary text-bold">14 Gifts</td>
+                  <td>11/28/2016</td>
+                  <td class="text-primary text-bold">$4000</td>
+                  <td><a href="#!" class="text-bold">View Gifts</a></td>
                 </tr>
                 <% }) %>
                 </tbody>
             </table>
+          </main>
         </div>
     </div>
 </div>
