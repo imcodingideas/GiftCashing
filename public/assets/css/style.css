@@ -7437,17 +7437,23 @@ a.nav-link {
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   border-radius: 0;
-  background: url(/assets/img/hero.png) no-repeat fixed;
+  background: url(/assets/img/hero.png) no-repeat top;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  background-color: #8E44AD; }
 
 .btn {
   text-transform: uppercase; }
 
 .btn.btn-outline-secondary.btn-lg, .btn-group-lg > .btn.btn-outline-secondary {
   color: #ffffff; }
+
+.btn-outline-secondary {
+  color: #ffffff; }
+  .btn-outline-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1); }
 
 .btn-outline-primary {
   color: #8E44AD;
@@ -7540,7 +7546,10 @@ a.nav-link.tab {
 
 .btn.btn-primary {
   background-color: #8E44AD;
-  border-color: #8E44AD; }
+  border-color: #8E44AD;
+  transition: 0.2s all ease-in; }
+  .btn.btn-primary:hover {
+    background-color: #703688; }
 
 img.current-user {
   border-radius: 50%;
@@ -7602,6 +7611,13 @@ tr.row {
 
 .admin-sidebar {
   margin-top: -60px; }
+
+.alert {
+  margin: 0;
+  width: 100%;
+  border-radius: 0;
+  padding: 20px;
+  text-align: center; }
 
 .chip-user__img {
   width: 60px;
@@ -7694,3 +7710,6 @@ tr.row {
 
 .text-primary {
   color: #8E44AD; }
+
+.margin-center {
+  margin: 0 auto; }

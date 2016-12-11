@@ -40,11 +40,12 @@ a.nav-link {
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   border-radius: 0;
-  background: url(/assets/img/hero.png) no-repeat fixed;
+  background: url(/assets/img/hero.png) no-repeat top;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  background-color: $purple;
 }
 
 .btn {
@@ -52,6 +53,13 @@ a.nav-link {
 }
 .btn.btn-outline-secondary.btn-lg {
   color: $white;
+}
+.btn-outline-secondary {
+  color: $white;
+
+  &:hover {
+    background-color: rgba(white,0.1);
+  }
 }
 
 .btn-outline-primary {
@@ -170,6 +178,11 @@ a.nav-link.tab {
 .btn.btn-primary {
   background-color: $purple;
   border-color: $purple;
+  transition: 0.2s all ease-in;
+
+  &:hover {
+    background-color: darken($purple, 10%);
+  }
 }
 
 img {
@@ -256,6 +269,14 @@ tr.row {
 
 .admin-sidebar {
   margin-top: -60px;
+}
+
+.alert {
+  margin: 0;
+  width: 100%;
+  border-radius: 0;
+  padding: 20px;
+  text-align: center;
 }
 
 //Components

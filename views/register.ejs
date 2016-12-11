@@ -6,53 +6,44 @@
     <form action="/register" method="post">
 
         <div class="row">
-            <div class="col-md-7 offset-md-2">
+            <div class="col-md-7 offset-md-2 p-2">
                 <h1>Register for a new account</h1>
                 <hr>
-                <div class="form-group row">
-                    <label for="firstName" class="col-xs-2 col-form-label">First Name</label>
-                    <div class="col-xs-10">
-                        <input class="form-control" type="text" name="firstName" placeholder="First Name" for="firstName">
-                    </div>
+                <div class="form-group row mb-2">
+                  <div class="col-md-6">
+                    <label for="firstName" class="d-block col-form-label">First Name</label>
+                    <input class="form-control" type="text" name="firstName" placeholder="First Name" for="firstName">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="lastName" class="d-block col-form-label">Last Name</label>
+                    <input class="form-control" type="text" name="lastName" placeholder="Last Name" for="lastName">
                 </div>
-
-                <div class="form-group row">
-                    <label for="lastName" class="col-xs-2 col-form-label">Last Name</label>
-                    <div class="col-xs-10">
-                        <input class="form-control" type="text" name="lastName" placeholder="Last Name" for="lastName">
-                    </div>
                 </div>
 
 
-                <div class="form-group row">
-                    <label for="alaisFirstName" class="col-xs-2 col-form-label">Alais First Name</label>
-                    <div class="col-xs-10">
-                        <input class="form-control" type="text" name="alaisFirstName" placeholder="Alais First Name" for="alaisFirstName">
-                    </div>
+                <div class="form-group row mb-2">
+                  <div class="col-md-6">
+                    <label for="alaisFirstName" class="d-block col-form-label">Alais First Name</label>
+                    <input class="form-control" type="text" name="alaisFirstName" placeholder="Alais First Name" for="alaisFirstName">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="alaisLastName" class="d-block col-form-label">Alais First Name</label>
+                    <input class="form-control" type="text" name="alaisLastName" placeholder="Alais Last Name" for="alaisLastName">
+                  </div>
                 </div>
 
-                <div class="form-group row">
-                    <label for="alaisLastName" class="col-xs-2 col-form-label">Alais First Name</label>
-                    <div class="col-xs-10">
-                        <input class="form-control" type="text" name="alaisLastName" placeholder="Alais Last Name" for="alaisLastName">
-                    </div>
+                <div class="form-group row mb-2">
+                  <div class="col-md-6">
+                    <label for="email" class="d-block col-form-label">Email</label>
+                    <input class="form-control" type="email" name="username" placeholder="Your Email" id="email">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="password" class="d-block col-form-label">Password</label>
+                    <input class="form-control" name="password" type="password" placeholder="Your Password" id="password">
+                  </div>
                 </div>
 
-                <div class="form-group row">
-                    <label for="email" class="col-xs-2 col-form-label">Email</label>
-                    <div class="col-xs-10">
-                        <input class="form-control" type="email" name="username" placeholder="Your Email" id="email">
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="password" class="col-xs-2 col-form-label">Password</label>
-                    <div class="col-xs-10">
-                        <input class="form-control" name="password" type="password" placeholder="Your Password" id="password">
-                    </div>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Sign Up Now!</button>
+                <button type="submit" class="btn btn-primary text-center margin-center d-block">Sign Up Now!</button>
             </div>
         </div>
 
