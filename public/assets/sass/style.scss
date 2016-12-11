@@ -132,6 +132,7 @@ a {
 }
 
 .submenu {
+  padding: 32px 0 0 0;
 }
 
 .nav-tabs {
@@ -251,6 +252,10 @@ tr.row {
   .form-control{
     border-left-color: transparent;
   }
+}
+
+.admin-sidebar {
+  margin-top: -60px;
 }
 
 //Components

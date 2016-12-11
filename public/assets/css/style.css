@@ -7510,6 +7510,9 @@ a.nav-link.admin {
   font-size: 18px;
   color: #4A4A4A; }
 
+.submenu {
+  padding: 32px 0 0 0; }
+
 .nav-tabs {
   border-bottom: 0; }
 
@@ -7596,6 +7599,9 @@ tr.row {
     background-color: white; }
   .datepicker .form-control {
     border-left-color: transparent; }
+
+.admin-sidebar {
+  margin-top: -60px; }
 
 .chip-user__img {
   width: 60px;

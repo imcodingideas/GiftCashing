@@ -1,11 +1,16 @@
 <% include ../partials/head %>
 <% include ../partials/admin-nav %>
-
+<div class="row" style="background-color: #EDEDED;">
+  <div class="container">
+    <div class="col-md-10 offset-md-2">
+      <% include ../partials/users-box %>
+    </div>
+  </div>
+</div>
 <div class="container">
     <div class="row">
       <% include ../partials/admin-sidebar %>
         <div class="col-md-10">
-          <% include ../partials/users-box %>
           <main>
             <% include ../partials/user-controller %>
             <table class="table">

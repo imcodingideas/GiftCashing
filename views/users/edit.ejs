@@ -1,10 +1,16 @@
 <% include ../partials/head %>
 <% include ../partials/admin-nav %>
+<div class="row" style="background-color: #EDEDED;">
+  <div class="container">
+    <div class="col-md-10 offset-md-2">
+      <% include ../partials/user-profile-tabs %>
+    </div>
+  </div>
+</div>
 <div class="container">
     <div class="row">
       <% include ../partials/admin-sidebar %>
-      <div class="col-md-10">
-          <% include ../partials/user-profile-tabs %>
+      <div class="col-md-10 pt-2">
           <form action="/users/<%= user._id %>/?_method=PUT" method="POST">
               <div class="tab-content">
                   <div class="tab-pane active" id="home" role="tabpanel">
