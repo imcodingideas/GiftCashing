@@ -7650,6 +7650,27 @@ tr.row {
     color: #8E44AD;
     font-weight: bold; }
 
+.nav-tabs-rounded {
+  border: 1px solid #8E44AD;
+  overflow: hidden;
+  border-radius: 8px;
+  display: inline-block; }
+  .nav-tabs-rounded .nav-link {
+    border-radius: 0;
+    border: 0;
+    line-height: 1;
+    padding: 8px 22px;
+    font-size: 18px; }
+    .nav-tabs-rounded .nav-link.active:hover, .nav-tabs-rounded .nav-link.active:focus {
+      background: #8E44AD;
+      color: white;
+      border-radius: 0;
+      font-weight: 300; }
+  .nav-tabs-rounded .nav-link.active {
+    background: #8E44AD;
+    color: white;
+    font-weight: 300; }
+
 .img-circle {
   border-radius: 100%; }
 
@@ -7667,3 +7688,9 @@ tr.row {
 
 .text-bold {
   font-weight: 400; }
+
+.bg-grey {
+  background-color: #EDEDED; }
+
+.text-primary {
+  color: #8E44AD; }

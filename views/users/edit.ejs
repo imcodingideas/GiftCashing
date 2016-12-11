@@ -1,6 +1,6 @@
 <% include ../partials/head %>
 <% include ../partials/admin-nav %>
-<div class="row" style="background-color: #EDEDED;">
+<div class="row bg-grey">
   <div class="container">
     <div class="col-md-10 offset-md-2">
       <% include ../partials/user-profile-tabs %>
@@ -10,11 +10,30 @@
 <div class="container">
     <div class="row">
       <% include ../partials/admin-sidebar %>
-      <div class="col-md-10 pt-2">
+      <div class="offset-md-1 col-md-6 pt-2">
+        <div class="row d-flex flex-items-md-between flex-items-md-middle mb-2">
+          <div class="chip-user d-flex flex-items-md-middle">
+            <div class="chip-user__img mr-1">
+              <img src="https://s.gravatar.com/avatar/0a07df079fd7a07e4cd0e5668835296c?s=80" alt="" class="img-circle">
+            </div>
+            <div class="chip-user__name">
+              <span class="real-name d-block text-primary text-bold"><%= user.firstName + ' ' + user.lastName %></span>
+              <span class="alias-name d-block text-bold"><%= user.aliasFirstName + ' ' + user.aliasLastName %></span>
+            </div>
+          </div>
+          <div class="prefered-payment">
+            <span class="d-block">Your preferred payment</span>
+            <div class="prefered-payment-icons">
+              <i class="fa fa-ban text-primary"></i>
+              <span class="text-primary">Not set yet</span>
+            </div>
+          </div>
+        </div>
+
           <form action="/users/<%= user._id %>/?_method=PUT" method="POST">
               <div class="tab-content">
                   <div class="tab-pane active" id="home" role="tabpanel">
-                  <div class="row">
+                  <div class="row mb-2">
                       <div class="col-sm-6 form-group">
                           <label for="firstName">First Name</label>
                           <input type="text" class="form-control" name="user[firstName]" id="firstName" value="<%= user.firstName %>">
@@ -24,7 +43,7 @@
                           <input type="text" class="form-control" name="user[lastName]" id="lastName" value="<%= user.lastName %>">
                       </div>
                   </div>
-                  <div class="row">
+                  <div class="row mb-2">
                       <div class="col-sm-6 form-group">
                           <label for="aliasFirstName">Alias First Name</label>
                           <input type="text" class="form-control" name="user[aliasFirstName]" id="aliasFirstName" value="<%= user.aliasFirstName %>">
@@ -34,7 +53,7 @@
                           <input type="text" class="form-control" name="user[aliasLastName]" id="aliasLastName" value="<%= user.aliasLastName %>">
                       </div>
                   </div>
-                  <div class="row">
+                  <div class="row mb-2">
                       <div class="col-sm-6 form-group">
                           <label for="email">Email address</label>
                           <input type="email" class="form-control" id="email" name="user[username]" value="<%= user.username %>">
@@ -45,7 +64,7 @@
                       </div>
                   </div>
 
-                  <div class="row">
+                  <div class="row mb-2">
                       <div class="col-sm-6 form-group">
                           <label for="addressLine1">Address Line 1</label>
                           <input type="text" class="form-control" name="user[addressLine1]" id="addressLine1" value="<%= user.addressLine1 %>">
@@ -56,7 +75,7 @@
                       </div>
                   </div>
 
-                  <div class="row">
+                  <div class="row mb-2">
                       <div class="col-sm-6 form-group">
                           <label for="city">City</label>
                           <input type="text" class="form-control" name="user[city]" id="city" value="<%= user.city %>">
@@ -120,14 +139,14 @@
                       </div>
                   </div>
 
-                  <div class="row">
+                  <div class="row mb-2">
                       <div class="col-sm-6 form-group">
                           <label for="zipCode">Zip Code</label>
                           <input type="text" class="form-control" name="user[zipCode]" id="zipCode" value="<%= user.zipCode %>">
                       </div>
                   </div>
 
-                  <div class="row">
+                  <div class="row mb-2">
                       <div class="col-sm-6 form-group">
                           <label for="password">Password</label>
                           <input type="password" class="form-control" name="gift[password]" id="password">
@@ -139,7 +158,155 @@
                   </div>
               </div>
                   <div class="tab-pane" id="payment-preference" role="tabpanel">
-                      <h1>Hello</h1>
+                    <ul class="nav nav-tabs nav-tabs-rounded" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#paypal" role="tab">PayPal</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#check" role="tab">Check</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#direct" role="tab">Direct deposit</a>
+                      </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                      <div class="tab-pane active" id="paypal" role="tabpanel">
+                        <div class="row pt-2">
+                          <div class="col-md-12">
+                            <span class="d-block mb-2">Enter E-Mail information</span>
+
+                            <div class="row">
+                              <div class="col-sm-6 form-group">
+                                  <label for="paypalemail">Enter valid E-Mail</label>
+                                  <input type="email" class="form-control" id="paypalemail" name="user[username]" placeholder="name@domain.com">
+                              </div>
+                            </div>
+                            <div class="row mt-2">
+                              <div class="col-sm-6 form-group">
+                                  <label for="paypalemailconfirmation">Confirm E-mail</label>
+                                  <input type="email" class="form-control" name="user[username]" id="paypalemailconfirmation" placeholder="name@domain.com">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tab-pane" id="check" role="tabpanel">
+                        <div class="row pt-2">
+                          <div class="col-md-12">
+                            <span class="d-block mb-2">Enter check information</span>
+
+                            <div class="row mb-2">
+                              <div class="col-sm-6 form-group">
+                                  <label for="addressLine1">Address Line 1</label>
+                                  <input type="text" class="form-control" name="user[addressLine1]" id="addressLine1">
+                              </div>
+                              <div class="col-sm-6 form-group">
+                                  <label for="addressLine2">Address Line 2</label>
+                                  <input type="text" class="form-control" name="user[addressLine2]" id="addressLine2">
+                              </div>
+                            </div>
+
+                            <div class="row mb-2">
+                              <div class="col-sm-6 form-group">
+                                  <label for="city">City</label>
+                                  <input type="text" class="form-control" name="user[city]" id="city">
+                              </div>
+                              <div class="col-sm-6 form-group">
+                                  <label for="state">State</label>
+                                  <select class="form-control" name="user[state]" id="state">
+                                      <option value="">Please Select</option>
+                                      <option value="AL">Alabama</option>
+                                      <option value="AK">Alaska</option>
+                                      <option value="AZ">Arizona</option>
+                                      <option value="AR">Arkansas</option>
+                                      <option value="CA">California</option>
+                                      <option value="CO">Colorado</option>
+                                      <option value="CT">Connecticut</option>
+                                      <option value="DE">Delaware</option>
+                                      <option value="DC">District Of Columbia</option>
+                                      <option value="FL">Florida</option>
+                                      <option value="GA">Georgia</option>
+                                      <option value="HI">Hawaii</option>
+                                      <option value="ID">Idaho</option>
+                                      <option value="IL">Illinois</option>
+                                      <option value="IN">Indiana</option>
+                                      <option value="IA">Iowa</option>
+                                      <option value="KS">Kansas</option>
+                                      <option value="KY">Kentucky</option>
+                                      <option value="LA">Louisiana</option>
+                                      <option value="ME">Maine</option>
+                                      <option value="MD">Maryland</option>
+                                      <option value="MA">Massachusetts</option>
+                                      <option value="MI">Michigan</option>
+                                      <option value="MN">Minnesota</option>
+                                      <option value="MS">Mississippi</option>
+                                      <option value="MO">Missouri</option>
+                                      <option value="MT">Montana</option>
+                                      <option value="NE">Nebraska</option>
+                                      <option value="NV">Nevada</option>
+                                      <option value="NH">New Hampshire</option>
+                                      <option value="NJ">New Jersey</option>
+                                      <option value="NM">New Mexico</option>
+                                      <option value="NY">New York</option>
+                                      <option value="NC">North Carolina</option>
+                                      <option value="ND">North Dakota</option>
+                                      <option value="OH">Ohio</option>
+                                      <option value="OK">Oklahoma</option>
+                                      <option value="OR">Oregon</option>
+                                      <option value="PA">Pennsylvania</option>
+                                      <option value="RI">Rhode Island</option>
+                                      <option value="SC">South Carolina</option>
+                                      <option value="SD">South Dakota</option>
+                                      <option value="TN">Tennessee</option>
+                                      <option value="TX">Texas</option>
+                                      <option value="UT">Utah</option>
+                                      <option value="VT">Vermont</option>
+                                      <option value="VA">Virginia</option>
+                                      <option value="WA">Washington</option>
+                                      <option value="WV">West Virginia</option>
+                                      <option value="WI">Wisconsin</option>
+                                      <option value="WY">Wyoming</option>
+                                  </select>
+                              </div>
+                            </div>
+
+                            <div class="row mb-2">
+                              <div class="col-sm-6 form-group">
+                                  <label for="zipCode">Zip Code</label>
+                                  <input type="text" class="form-control" name="user[zipCode]" id="zipCode">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tab-pane" id="direct" role="tabpanel">
+                        <div class="row pt-2">
+                          <div class="col-md-12">
+                            <span class="d-block mb-2">Enter bank information</span>
+                            <div class="row mb-2">
+                              <div class="col-sm-6 form-group">
+                                  <label for="routingOrTransit">Routing/Transit</label>
+                                  <input type="text" class="form-control" id="routingOrTransit">
+                              </div>
+                            </div>
+                            <div class="row mb-2">
+                              <div class="col-sm-6 form-group">
+                                  <label for="accountNumber">Account number</label>
+                                  <input type="text" class="form-control" id="accountNumber">
+                              </div>
+                            </div>
+                            <div class="row mb-2">
+                              <div class="col-sm-6 form-group">
+                                  <label for="confirmAccountNumber">Confirm Account number</label>
+                                  <input type="text" class="form-control" id="confirmAccountNumber">
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <button type="submit" class="mt-2 btn btn-primary">Update</button>
               </div>

@@ -1,80 +1,88 @@
 <% include ../partials/head %>
 <% include ../partials/admin-nav %>
-<% include ../partials/admin-action-tabs %>
-
+<div class="row bg-grey">
+  <div class="container">
+    <div class="col-md-10 offset-md-2">
+      <% include ../partials/admin-action-tabs %>
+    </div>
+  </div>
+</div>
 <div class="container">
-    <div class="offset-md-2 col-md-9 mt-1 px-3">
-        <form action="/gifts/" method="POST">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="form-group">
-                        <label for="username">For</label>
-                        <input type="text" class="form-control" name="gift[username]" id="username" placeholder="Search">
-                    </div>
-                </div>
-            </div>
+  <div class="row">
+    <% include ../partials/admin-sidebar %>
+    <div class="offset-md-1 col-md-6 pt-2">
+          <form action="/gifts/" method="POST">
+              <div class="row">
+                  <div class="col-sm-12">
+                      <div class="form-group">
+                          <label for="username">For</label>
+                          <input type="text" class="form-control" name="gift[username]" id="username" placeholder="Search">
+                      </div>
+                  </div>
+              </div>
 
-            <div class="row">
-                <div class="col-sm-6 form-group">
-                    <label for="giftNumber">Gift #</label>
-                    <input type="text" class="form-control" name="gift[giftNumber]" id="giftNumber" placeholder="3456789">
-                </div>
-                <div class="col-sm-6 form-group">
-                    <label for="date">Date</label>
-                    <input type="date" class="form-control" name="gift[date]" id="date">
-                </div>
-            </div>
+              <div class="row">
+                  <div class="col-sm-6 form-group">
+                      <label for="giftNumber">Gift #</label>
+                      <input type="text" class="form-control" name="gift[giftNumber]" id="giftNumber" placeholder="3456789">
+                  </div>
+                  <div class="col-sm-6 form-group">
+                      <label for="date">Date</label>
+                      <input type="date" class="form-control" name="gift[date]" id="date">
+                  </div>
+              </div>
 
-            <div class="row">
-                <div class="col-sm-6 form-group">
-                    <label for="giftDescription">Gift Description</label>
-                    <input type="text" class="form-control" name="gift[giftDescription]" id="giftDescription">
-                </div>
-                <div class="col-sm-6 form-group">
-                    <label for="giftAmount">Gift Amount</label>
-                    <input type="number" class="form-control" name="gift[giftAmount]" id="giftAmount">
-                </div>
-            </div>
+              <div class="row">
+                  <div class="col-sm-6 form-group">
+                      <label for="giftDescription">Gift Description</label>
+                      <input type="text" class="form-control" name="gift[giftDescription]" id="giftDescription">
+                  </div>
+                  <div class="col-sm-6 form-group">
+                      <label for="giftAmount">Gift Amount</label>
+                      <input type="number" class="form-control" name="gift[giftAmount]" id="giftAmount">
+                  </div>
+              </div>
 
-            <div class="row">
-                <div class="col-sm-4 form-group">
-                    <label for="giftCode">Gift Code</label>
-                    <input type="text" class="form-control" name="gift[giftCode]" id="giftCode">
-                </div>
-                <div class="col-sm-4 form-group">
-                    <label for="redeemCode">Redeem Code</label>
-                    <input type="text" class="form-control" name="gift[redeemCode]" id="redeemCode">
-                </div>
-                <div class="col-sm-4 form-group">
-                    <label for="passCode">Passcode</label>
-                    <input type="text" class="form-control" name="gift[passCode]" id="passCode">
-                </div>
-            </div>
+              <div class="row">
+                  <div class="col-sm-4 form-group">
+                      <label for="giftCode">Gift Code</label>
+                      <input type="text" class="form-control" name="gift[giftCode]" id="giftCode">
+                  </div>
+                  <div class="col-sm-4 form-group">
+                      <label for="redeemCode">Redeem Code</label>
+                      <input type="text" class="form-control" name="gift[redeemCode]" id="redeemCode">
+                  </div>
+                  <div class="col-sm-4 form-group">
+                      <label for="passCode">Passcode</label>
+                      <input type="text" class="form-control" name="gift[passCode]" id="passCode">
+                  </div>
+              </div>
 
-            <div class="row">
-                <div class="col-sm-6 form-group">
-                    <label for="senderFirstName">Sender First Name</label>
-                    <input type="text" class="form-control" name="gift[senderFirstName]" id="senderFirstName">
-                </div>
-                <div class="col-sm-6 form-group">
-                    <label for="senderLastName">Sender Last Name</label>
-                    <input type="text" class="form-control" name="gift[senderLastName]" id="senderLastName">
-                </div>
-            </div>
+              <div class="row">
+                  <div class="col-sm-6 form-group">
+                      <label for="senderFirstName">Sender First Name</label>
+                      <input type="text" class="form-control" name="gift[senderFirstName]" id="senderFirstName">
+                  </div>
+                  <div class="col-sm-6 form-group">
+                      <label for="senderLastName">Sender Last Name</label>
+                      <input type="text" class="form-control" name="gift[senderLastName]" id="senderLastName">
+                  </div>
+              </div>
 
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                    <label for="giftMessage">Gift Message</label>
-                    <textarea class="form-control" id="giftMessage" rows="3"></textarea>
-                </div>
-            </div>
+              <div class="row">
+                  <div class="col-sm-12 form-group">
+                      <label for="giftMessage">Gift Message</label>
+                      <textarea class="form-control" id="giftMessage" rows="3"></textarea>
+                  </div>
+              </div>
 
-            <div class="row">
-                <div class="form-group">
-                    <button class="btn btn-lg btn-default btn-block btn-primary">Submit!</button>
-                </div>
-            </div>
-        </form>
+              <div class="row">
+                  <div class="form-group t-center p-2">
+                      <button class="btn btn-lg btn-default btn-primary">Create gift!</button>
+                  </div>
+              </div>
+          </form>
+      </div>
     </div>
 </div>
 

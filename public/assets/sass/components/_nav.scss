@@ -26,3 +26,32 @@
     }
   }
 }
+
+.nav-tabs-rounded {
+  border: 1px solid $purple;
+  overflow: hidden;
+  border-radius: 8px;
+  display: inline-block;
+
+  .nav-link {
+    border-radius: 0;
+    border: 0;
+    line-height: 1;
+    padding: 8px 22px;
+    font-size: 18px;
+    &.active:hover, &.active:focus {
+      background: $purple;
+      color: white;
+      border-radius: 0;
+      font-weight: 300;
+    }
+
+  }
+
+  .nav-link.active {
+    background: $purple;
+    color: white;
+    font-weight: 300;
+
+  }
+}
