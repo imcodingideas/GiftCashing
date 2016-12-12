@@ -21,17 +21,17 @@ router.get('/', middleware.isLoggedIn, function(req, res, next) {
 router.post('/', middleware.isLoggedIn, function(req, res, next) {
 
     // get data from form and add to gift array.
-    var username = req.body.gift.username,
-        giftNumber = req.body.gift.giftNumber,
+    var username = req.body.username,
+        giftNumber = req.body.giftNumber,
         date = req.body.date,
-        giftDescription = req.body.gift.giftDescription,
-        giftAmount = req.body.gift.giftAmount,
-        giftCode = req.body.gift.giftCode,
-        redeemCode = req.body.gift.redeemCode,
-        passCode = req.body.gift.passCode,
-        senderFirstName = req.body.gift.senderFirstName,
-        senderLastName = req.body.gift.senderLastName,
-        giftMessage = req.body.gift.giftMessage,
+        giftDescription = req.body.giftDescription,
+        giftAmount = req.body.giftAmount,
+        giftCode = req.body.giftCode,
+        redeemCode = req.body.redeemCode,
+        passCode = req.body.passCode,
+        senderFirstName = req.body.senderFirstName,
+        senderLastName = req.body.senderLastName,
+        giftMessage = req.body.giftMessage,
         newGift = { username: username, giftNumber: giftNumber, date: date, giftDescription: giftDescription, giftAmount: giftAmount, giftCode: giftCode, redeemCode: giftCode, redeemCode: redeemCode, passCode: passCode, senderFirstName: senderFirstName, senderLastName: senderLastName, giftMessage: giftMessage };
 
 
