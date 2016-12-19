@@ -174,23 +174,6 @@
           </div>
           <div class="tab-pane" id="payment-preference" role="tabpanel">
 
-            <br/>
-            Preferred Payment Method:
-            <label class="form-check-inline">
-              <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]" id="inlineRadio1" value="paypal" <% if (user.preferredPaymentMethod === "paypal") { %> checked="checked" <% } %>>
-              <i class="fa fa-paypal"> </i> PayPal
-            </label>
-            <label class="form-check-inline">
-              <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]" id="inlineRadio2" value="check" <% if (user.preferredPaymentMethod === "check") { %> checked="checked" <% } %>>
-              <i class="fa fa-bank"> </i> Cheque
-            </label>
-            <label class="form-check-inline">
-              <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]" id="inlineRadio3" value="deposit" <% if (user.preferredPaymentMethod === "deposit") { %> checked="checked" <% } %>>
-              <i class="fa fa-dollar"> </i> Deposit
-            </label>
-            <br/>
-            <br/>
-
             <ul class="nav nav-tabs nav-tabs-rounded" role="tablist">
               <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#paypal" role="tab">PayPal</a>
