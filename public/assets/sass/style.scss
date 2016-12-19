@@ -279,6 +279,11 @@ tr.row {
   text-align: center;
 }
 
+/** @sayanriju 19/12/16 **/
+.hover-pointer {
+  cursor: pointer;
+}
+
 //Components
 @import "components/user";
 @import "components/nav";

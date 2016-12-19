@@ -7619,6 +7619,10 @@ tr.row {
   padding: 20px;
   text-align: center; }
 
+/** @sayanriju 19/12/16 **/
+.hover-pointer {
+  cursor: pointer; }
+
 .chip-user__img {
   width: 60px;
   height: 60px; }
@@ -7713,9 +7717,3 @@ tr.row {
 
 .margin-center {
   margin: 0 auto; }
-
-  /** @sayanriju 19/12/16 **/
-
-.hover-pointer {
-  cursor: pointer;
-}
