@@ -1,37 +1,37 @@
-const gulp = require('gulp'),
-     sass = require('gulp-sass'),
-     autoprefix = require('gulp-autoprefixer'),
-     notify = require("gulp-notify"),
-     bower = require('gulp-bower');
+// Dependencies
+var gulp = require('gulp');
+var nodemon = require('gulp-nodemon');
+var notify = require('gulp-notify');
+var livereload = require('gulp-livereload');
 
-var config = {
-    bootstrapDir: './bower_components/bootstrap',
-    fontawesomeDir: './bower_components/font-awesome',
-    publicDir: './public',
-    bowerDir: './bower_components'
-}
-
-gulp.task('bower', function() {
-    return bower()
-        .pipe(gulp.dest(config.bowerDir))
+// Task
+gulp.task('server', function() {
+	// listen for changes
+	livereload.listen();
+	// configure nodemon
+	nodemon({
+		// the script to run the app
+//	  exec: 'node-inspector & node --debug',
+		nodeArgs: ['--debug'],
+		script: 'bin/www',
+		ext: 'js ejs json css html',
+		"ignore": ["public/*"],
+	}).on('restart', function(){
+		// when the app has restarted, run livereload.
+		gulp.src('*.*')
+			.pipe(livereload({ start: true }))
+			// .pipe(notify('Restarted Server & Reloading page...'));
+	})
 });
 
-gulp.task('fonts', function() {
-    return gulp.src(config.bowerDir + '/font-awesome/fonts/**.*')
-        .pipe(gulp.dest('./public/assets/fonts'));
+gulp.task('client', function() {
+  gulp.src('public/**/*.{js,css,html}')
+    .pipe(livereload({ start: true }));
 });
 
-gulp.task('css', function() {
-    return gulp.src('./public/assets/sass/style.scss')
-        .pipe(sass({
-            includePaths: [config.bootstrapDir + '/scss', config.fontawesomeDir + '/scss'],
-        }))
-        .pipe(gulp.dest(config.publicDir + '/assets/css'));
+gulp.task('watch', function() {
+  livereload.listen();
+  gulp.watch('public/**/*.{js,css,html}', ['client']);
 });
 
-// Watch task
-gulp.task('watch',function() {
-    gulp.watch('./public/assets/sass/**/*.scss', ['css']);
-});
-
-gulp.task('default', ['bower', 'fonts', 'css']);
+gulp.task('default', ['watch', 'server']);

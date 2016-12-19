@@ -30,6 +30,8 @@
     "gulp-bower": "0.0.13",
     "gulp-notify": "^2.2.0",
     "gulp-sass": "^2.3.2",
-    "gulp-sourcemaps": "^1.9.1"
+    "gulp-sourcemaps": "^1.9.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-nodemon": "^2.1.0"
   }
 }
