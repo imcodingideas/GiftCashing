@@ -175,7 +175,7 @@
           <div class="tab-pane" id="payment-preference" role="tabpanel">
 
             <br/>
-            Preferred Payment Method: &nbsp;&nbsp;
+            Preferred Payment Method:
             <label class="form-check-inline">
               <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]" id="inlineRadio1" value="paypal" <% if (user.preferredPaymentMethod === "paypal") { %> checked="checked" <% } %>>
               <i class="fa fa-paypal"> </i> PayPal
@@ -211,14 +211,14 @@
 
                     <div class="row">
                       <div class="col-sm-6 form-group">
-                        <label for="paypalemail">Enter valid E-Mail</label>
-                        <input type="email" class="form-control" id="paypalemail" name="paypal[email]" placeholder="name@domain.com" value="<%= user.paymentPreference.paypal.email %>">
+                        <label for="paypalEmail">Enter valid E-Mail</label>
+                        <input type="email" class="form-control" id="paypalEmail" name="paypal[email]" placeholder="name@domain.com" value="<%= user.paymentPreference.paypal.email %>">
                       </div>
                     </div>
                     <div class="row mt-2">
                       <div class="col-sm-6 form-group">
-                        <label for="paypalemailconfirmation">Confirm E-mail</label>
-                        <input type="email" class="form-control" id="paypalemailconfirmation" placeholder="name@domain.com" >
+                        <label for="paypalEmailConfirmation">Confirm E-mail</label>
+                        <input type="email" class="form-control" id="paypalEmailConfirmation" placeholder="name@domain.com" >
                       </div>
                     </div>
                   </div>
