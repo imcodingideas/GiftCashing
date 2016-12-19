@@ -13,8 +13,9 @@
       <div class="offset-md-1 col-md-6 pt-2">
         <div class="row d-flex flex-items-md-between flex-items-md-middle mb-2">
           <div class="chip-user d-flex flex-items-md-middle">
-            <div class="chip-user__img mr-1">
-              <img src="https://s.gravatar.com/avatar/0a07df079fd7a07e4cd0e5668835296c?s=80" alt="" class="img-circle">
+            <div class="chip-user__img mr-1 hover-pointer" onclick="$('#profile-pic-chooser').trigger('click');" >
+              <%# <img src="https://s.gravatar.com/avatar/0a07df079fd7a07e4cd0e5668835296c?s=80" alt="" class="img-circle hover-pointer">%>
+              <img id="profile-pic-show" src="<%= user.profilePic || "https://s.gravatar.com/avatar/0a07df079fd7a07e4cd0e5668835296c?s=80" %>" class="img-circle hover-pointer" >
             </div>
             <div class="chip-user__name">
               <span class="real-name d-block text-primary text-bold"><%= user.firstName + ' ' + user.lastName %></span>
@@ -31,6 +32,8 @@
         </div>
 
           <form action="/users/<%= user._id %>/?_method=PUT" method="POST">
+            <input type="file" id="profile-pic-chooser" style="display: none; " />
+            <input type="hidden" id="profile-pic-data-url" name="user[profilePic]" val="" style="display: none; "/>
               <div class="tab-content">
                   <div class="tab-pane active" id="home" role="tabpanel">
                   <div class="row mb-2">
@@ -313,6 +316,25 @@
       </div>
     </div>
 </div>
+
+<script>
+/* Profile Pic */
+  $("#profile-pic-chooser").change(function (e) {
+    console.log($(this));
+    var file = $(this).get(0).files[0];
+    var reader = new FileReader();
+
+    reader.addEventListener("load", function () {
+      $('#profile-pic-data-url').val(reader.result);
+      $('#profile-pic-show').attr('src', reader.result);
+      // console.log(reader.result);
+    }, false);
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  })
+</script>
 
 <% include ../partials/contact %>
 <% include ../partials/footer %>

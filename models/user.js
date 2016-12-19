@@ -14,7 +14,8 @@ var UserSchema = new mongoose.Schema({
     addressLine2: String,
     city: String,
     state: String,
-    zipCode: Number
+    zipCode: Number,
+    profilePic: String // expects a data url for the image
 });
 
 UserSchema.plugin(passportLocalMongoose);
