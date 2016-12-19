@@ -26,7 +26,14 @@ var giftSchema = new mongoose.Schema({
 	passCode: String,
 	senderFirstName: String,
 	senderLastName: String,
-	giftMessage: String
+	giftMessage: String,
+    paymentMethod: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'PaymentPreference'
+        },
+        username: String
+    },
 });
 
 module.exports = mongoose.model('Gift', giftSchema);

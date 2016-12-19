@@ -179,13 +179,13 @@
                             <div class="row">
                               <div class="col-sm-6 form-group">
                                   <label for="paypalemail">Enter valid E-Mail</label>
-                                  <input type="email" class="form-control" id="paypalemail" name="user[username]" placeholder="name@domain.com">
+                                  <input type="email" class="form-control" id="paypalemail" name="paypal[email]" placeholder="name@domain.com">
                               </div>
                             </div>
                             <div class="row mt-2">
                               <div class="col-sm-6 form-group">
                                   <label for="paypalemailconfirmation">Confirm E-mail</label>
-                                  <input type="email" class="form-control" name="user[username]" id="paypalemailconfirmation" placeholder="name@domain.com">
+                                  <input type="email" class="form-control" id="paypalemailconfirmation" placeholder="name@domain.com">
                               </div>
                             </div>
                           </div>
@@ -199,22 +199,22 @@
                             <div class="row mb-2">
                               <div class="col-sm-6 form-group">
                                   <label for="addressLine1">Address Line 1</label>
-                                  <input type="text" class="form-control" name="user[addressLine1]" id="addressLine1">
+                                  <input type="text" class="form-control" name="check[addressLine1]" id="addressLine1">
                               </div>
                               <div class="col-sm-6 form-group">
                                   <label for="addressLine2">Address Line 2</label>
-                                  <input type="text" class="form-control" name="user[addressLine2]" id="addressLine2">
+                                  <input type="text" class="form-control" name="check[addressLine2]" id="addressLine2">
                               </div>
                             </div>
 
                             <div class="row mb-2">
                               <div class="col-sm-6 form-group">
                                   <label for="city">City</label>
-                                  <input type="text" class="form-control" name="user[city]" id="city">
+                                  <input type="text" class="form-control" name="check[city]" id="city">
                               </div>
                               <div class="col-sm-6 form-group">
                                   <label for="state">State</label>
-                                  <select class="form-control" name="user[state]" id="state">
+                                  <select class="form-control" name="check[state]" id="state">
                                       <option value="">Please Select</option>
                                       <option value="AL">Alabama</option>
                                       <option value="AK">Alaska</option>
@@ -274,7 +274,7 @@
                             <div class="row mb-2">
                               <div class="col-sm-6 form-group">
                                   <label for="zipCode">Zip Code</label>
-                                  <input type="text" class="form-control" name="user[zipCode]" id="zipCode">
+                                  <input type="text" class="form-control" name="check[zipCode]" id="zipCode">
                               </div>
                             </div>
                           </div>
@@ -287,13 +287,13 @@
                             <div class="row mb-2">
                               <div class="col-sm-6 form-group">
                                   <label for="routingOrTransit">Routing/Transit</label>
-                                  <input type="text" class="form-control" id="routingOrTransit">
+                                  <input type="text" class="form-control" name="deposit[routingOrTransit]" id="routingOrTransit">
                               </div>
                             </div>
                             <div class="row mb-2">
                               <div class="col-sm-6 form-group">
                                   <label for="accountNumber">Account number</label>
-                                  <input type="text" class="form-control" id="accountNumber">
+                                  <input type="text" class="form-control" name="deposit[accountNumber]" id="accountNumber">
                               </div>
                             </div>
                             <div class="row mb-2">
@@ -302,7 +302,6 @@
                                   <input type="text" class="form-control" id="confirmAccountNumber">
                               </div>
                             </div>
-
                           </div>
                         </div>
                       </div>
