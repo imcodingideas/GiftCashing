@@ -173,6 +173,22 @@
           </div>
           <div class="tab-pane" id="payment-preference" role="tabpanel">
 
+            <div class="mb-2">
+              <p class="mt-1">Preferred Payment Method:</p>
+              <label class="form-check-inline">
+                <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]" id="inlineRadio1" value="paypal" <% if (user.preferredPaymentMethod === "paypal") { %> checked="checked" <% } %>>
+                <i class="fa fa-paypal"> </i> PayPal
+              </label>
+              <label class="form-check-inline">
+                <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]" id="inlineRadio2" value="check" <% if (user.preferredPaymentMethod === "check") { %> checked="checked" <% } %>>
+                <i class="fa fa-bank"> </i> Cheque
+              </label>
+              <label class="form-check-inline">
+                <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]" id="inlineRadio3" value="deposit" <% if (user.preferredPaymentMethod === "deposit") { %> checked="checked" <% } %>>
+                <i class="fa fa-dollar"> </i> Deposit
+              </label>
+            </div>
+
             <ul class="nav nav-tabs nav-tabs-rounded" role="tablist">
               <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#paypal" role="tab">PayPal</a>
@@ -181,7 +197,7 @@
                 <a class="nav-link" data-toggle="tab" href="#check" role="tab">Check</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#direct" role="tab">Direct deposit</a>
+                <a class="nav-link disabled" data-toggle="tab" href="#direct" role="tab">Direct deposit</a>
               </li>
             </ul>
             <!-- Tab panes -->
@@ -194,7 +210,7 @@
                     <div class="row">
                       <div class="col-sm-6 form-group">
                         <label for="paypalEmail">Enter valid E-Mail</label>
-                        <input type="email" class="form-control" id="paypalEmail" name="paypal[email]" placeholder="name@domain.com" value="">
+                        <input type="email" class="form-control" id="paypalEmail" name="paypal[email]" placeholder="name@domain.com" value="<%= user.paymentPreference.paypal.email %>">
                       </div>
                     </div>
                     <div class="row mt-2">
@@ -214,18 +230,18 @@
                     <div class="row mb-2">
                       <div class="col-sm-6 form-group">
                         <label for="addressLine1">Address Line 1</label>
-                        <input type="text" class="form-control" name="check[addressLine1]" id="addressLine1"  value="">
+                        <input type="text" class="form-control" name="check[addressLine1]" id="addressLine1"  value="<%= user.paymentPreference.check.addressLine1 %>">
                       </div>
                       <div class="col-sm-6 form-group">
                         <label for="addressLine2">Address Line 2</label>
-                        <input type="text" class="form-control" name="check[addressLine2]" id="addressLine2"  value="">
+                        <input type="text" class="form-control" name="check[addressLine2]" id="addressLine2"  value="<%= user.paymentPreference.check.addressLine2 %>">
                       </div>
                     </div>
 
                     <div class="row mb-2">
                       <div class="col-sm-6 form-group">
                         <label for="city">City</label>
-                        <input type="text" class="form-control" name="check[city]" id="city" value="">
+                        <input type="text" class="form-control" name="check[city]" id="city" value="<%= user.paymentPreference.check.city %>">
                       </div>
                       <div class="col-sm-6 form-group">
                         <label for="state">State</label>
@@ -289,7 +305,7 @@
                     <div class="row mb-2">
                       <div class="col-sm-6 form-group">
                         <label for="zipCode">Zip Code</label>
-                        <input type="text" class="form-control" name="check[zipCode]" id="zipCode" value="">
+                        <input type="text" class="form-control" name="check[zipCode]" id="zipCode" value="<%= user.paymentPreference.check.zipCode %>">
                       </div>
                     </div>
                   </div>
@@ -302,13 +318,13 @@
                     <div class="row mb-2">
                       <div class="col-sm-6 form-group">
                         <label for="routingOrTransit">Routing/Transit</label>
-                        <input type="text" class="form-control" name="deposit[routingOrTransit]" id="routingOrTransit" value="">
+                        <input type="text" class="form-control" name="deposit[routingOrTransit]" id="routingOrTransit" value="<%= user.paymentPreference.deposit.routingOrTransit %>">
                       </div>
                     </div>
                     <div class="row mb-2">
                       <div class="col-sm-6 form-group">
                         <label for="accountNumber">Account number</label>
-                        <input type="text" class="form-control" name="deposit[accountNumber]" id="accountNumber" value="">
+                        <input type="text" class="form-control" name="deposit[accountNumber]" id="accountNumber" value="<%= user.paymentPreference.deposit.accountNumber %>">
                       </div>
                     </div>
                     <div class="row mb-2">
