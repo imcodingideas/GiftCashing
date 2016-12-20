@@ -14,7 +14,17 @@ var UserSchema = new mongoose.Schema({
     addressLine2: String,
     city: String,
     state: String,
-    zipCode: Number
+    zipCode: Number,
+    profilePic: String, // expects a data url for the image
+    preferredPaymentMethod: {
+      type: String,
+      enum: ["", "paypal", "check", "deposit"],
+      default: ""
+    },
+    paymentPreference:  {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'PaymentPreference'
+    }
 });
 
 UserSchema.plugin(passportLocalMongoose);
