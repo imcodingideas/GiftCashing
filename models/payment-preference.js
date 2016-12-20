@@ -2,18 +2,42 @@ const mongoose = require('mongoose');
 
 var paymentPreferenceSchema = new mongoose.Schema({
   paypal: {
-    email: String
+    email: {
+        type: String,
+        default: ''
+    }
   },
   check: {
-    addressLine1: String,
-    addressLine2: String,
-    city: String,
-    state: String,
-    zipCode: Number
+    addressLine1: {
+        type: String,
+        default: ''
+    },
+    addressLine2: {
+        type: String,
+        default: ''
+    },
+    city: {
+        type: String,
+        default: ''
+    },
+    state: {
+        type: String,
+        default: ''
+    },
+    zipCode: {
+        type: Number,
+        default: ''
+    }
   },
   deposit: {
-    routingOrTransit: String,
-    accountNumber: String
+    routingOrTransit: {
+        type: String,
+        default: ''
+    },
+    accountNumber: {
+        type: String,
+        default: ''
+    }
   }
 });
 
