@@ -58,7 +58,7 @@ router.get('/:id', middleware.isLoggedIn, function(req, res) {
 router.get('/:id/edit', middleware.isLoggedIn, function(req, res, next) {
   User
   .findOne({_id: req.params.id})
-  .populate("paymentPreference")
+  .populate('paymentPreference')
   .exec(function(err, foundUser) {
     res.render('users/edit', {
       user: foundUser,
@@ -70,32 +70,34 @@ router.get('/:id/edit', middleware.isLoggedIn, function(req, res, next) {
 
 // Update User
 router.put('/:id', middleware.isLoggedIn, function(req, res, next) {
-      console.log(req.body);
-      // Save Payment PaymentPreference first
-      var paymentPreference = new PaymentPreference({
-        paypal: req.body.paypal,
-        deposit: req.body.deposit,
-        check: req.body.check
-      });
-      paymentPreference.save(function(err, savedPayment) {
-          if (err) {
-            req.flash('error', err.message); // error saving payment pref
-          } else {
-            var userData = req.body.user;
-            userData.paymentPreference = savedPayment._id;
-            //find and update correct campground
-            User.findByIdAndUpdate(req.params.id, userData, function(err, updatedUser) {
-              if (err) {
-                req.flash('error', err.message);
-              } else {
-                //redirect show page
-                res.redirect('/users/' + req.params.id);
-              }
-            })
+console.log(req.body);
+// Save Payment PaymentPreference first
+var paymentPreference = new PaymentPreference({
+  paypal: req.body.paypal,
+  deposit: req.body.deposit,
+  check: req.body.check
+});
 
-          }
-        });
+paymentPreference.save(function(err, savedPayment) {
+    if (err) {
+      req.flash('error', err.message); // error saving payment pref
+    } else {
+      var userData = req.body.user;
+      userData.paymentPreference = savedPayment._id;
+
+      //find and update user
+      User.findByIdAndUpdate(req.params.id, userData, function(err, updatedUser) {
+        if (err) {
+          req.flash('error', err.message);
+        } else {
+          //redirect show page
+          res.redirect('/users/' + req.params.id);
+        }
       });
 
+    }
+  });
+});
 
-      module.exports = router;
+
+module.exports = router;

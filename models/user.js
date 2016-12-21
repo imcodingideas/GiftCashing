@@ -15,11 +15,11 @@ var UserSchema = new mongoose.Schema({
     city: String,
     state: String,
     zipCode: Number,
-    profilePic: String, // expects a data url for the image
+    profilePic: String,
     preferredPaymentMethod: {
       type: String,
-      enum: ["", "paypal", "check", "deposit"],
-      default: ""
+      enum: ['', 'paypal', 'check', 'deposit'],
+      default: ''
     },
     paymentPreference:  {
       type: mongoose.Schema.Types.ObjectId,

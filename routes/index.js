@@ -55,7 +55,7 @@ router.post('/register', function(req, res) {
     }
     mailer.sendMail(mailOpts, function(err, info) {
       if (err) console.log("Mailing Err: ", err);
-      console.log('mailing......................', info); // NO WAITING!!!
+      console.log('mailing......................', info);
     });
 
     passport.authenticate('local')(req, res, function() {
