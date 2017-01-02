@@ -11,7 +11,6 @@ let auth = {
 let smtpTransport = nodemailer.createTransport(mg(auth));
 
 smtpTransport.sendMail({
-    from: 'joseph@michael-chambers.com',
     host: 'smtp.mailgun.org',
 });
 
