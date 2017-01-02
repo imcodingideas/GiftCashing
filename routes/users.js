@@ -6,21 +6,44 @@ User = require('../models/user'),
   PaymentPreference = require('../models/payment-preference'),
   middleware = require('../middleware');
 
+var locus = require('locus');
+
 /* GET users listing. */
 router.get('/', middleware.isLoggedIn, function(req, res, next) {
+  var noMatch;
 
-  // get all users from db
-  User.find({}, function(err, allUsers) {
-    if (err) {
-      req.flash('error', err.message);
-    } else {
-      res.render('users/index', {
-        users: allUsers,
-        title: 'All Users',
-        breadcrumbsName: 'Users'
-      });
-    }
-  });
+  if(req.query.search) {
+    const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+    User.find({username: regex}, function(err, allUsers) {
+        if (err) {
+            req.flash('error', err.message);
+        } else {
+          if(allUsers.length < 1) {
+            noMatch = 'No users were found based on that query ' + req.query.search;
+          }
+          res.render('users/index', {
+              users: allUsers,
+              title: 'Search Results',
+              breadcrumbsName: 'Users',
+              noMatch: noMatch
+          });
+        }
+    });
+  } else {
+    // get all users from db
+    User.find({}, function(err, allUsers) {
+        if (err) {
+            req.flash('error', err.message);
+        } else {
+            res.render('users/index', {
+                users: allUsers,
+                title: 'All Users',
+                breadcrumbsName: 'Users',
+                noMatch: noMatch
+            });
+        }
+    });
+  }
 });
 
 // update user
@@ -99,5 +122,8 @@ paymentPreference.save(function(err, savedPayment) {
   });
 });
 
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
 module.exports = router;

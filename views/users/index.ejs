@@ -25,6 +25,13 @@
                 </tr>
                 </thead>
                 <tbody>
+                <% if(noMatch !== undefined) { %>
+                <tr>
+                    <td>
+                        <%= noMatch %>
+                    </td>
+                </tr>
+                <% } %>
                 <% users.forEach(function (user) { %>
                 <tr>
                   <td><input type="checkbox"></td>
