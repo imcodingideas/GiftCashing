@@ -53,7 +53,6 @@ router.post('/register', function(req, res) {
     `;
 
     let mailOpts = {
-      from: 's26c.sayan@gmail.com',
       to: newUser.username,
       subject: 'Welcome to GiftCashing.com',
       html: welcomeEmail

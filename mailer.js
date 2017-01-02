@@ -1,13 +1,15 @@
-var nodemailer = require("nodemailer");
-// NOTE:  Change the values below to your own SMTP server. Mailgun is recommended for prod usage
-var smtpTransport = nodemailer.createTransport({
-  host: 'smtp-pulse.com',
-  port: 465,
-  secure: true, // use SSL
-  auth: {
-      user: 's26c.sayan@gmail.com',
-      pass: 'Gne7SFoGLJ75B'
-  }
+const nodemailer = require('nodemailer'),
+      mg = require('nodemailer-mailgun-transport');
+
+let smtpTransport = nodemailer.createTransport(mg(auth));
+
+smtpTransport.sendMail({
+    host: 'smtp.mailgun.org',
+    auth: {
+        from: 'joseph@michael-chambers.com',
+        api_key: 'key-8a976a9cba0ee1e86ec07d7398b544e8',
+        domain: 'sandboxb1fd7de656fe403591f3528498bfd132.mailgun.org'
+    }
 });
 
 module.exports = smtpTransport;
