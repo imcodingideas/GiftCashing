@@ -53,7 +53,7 @@ router.put('/', middleware.isLoggedIn, (req, res, next) =>{
         if (err) {
             req.flash('error', err.message);
         } else {
-            res.redirect('/users/' + req.params.id, {
+            res.redirect('/users/' + req.params.id + '/edit' , {
                 user: updatedUser
             });
         }
