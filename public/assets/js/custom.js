@@ -32,4 +32,29 @@ $( document ).ready(function() {
 		$('.check').prop('checked', $(this).prop('checked'));
 	});
 
+    $('#userSearch').autocomplete({
+        source: function (request, responce) {
+            $.ajax({
+                url: '/search',
+                type: 'GET',
+                data: { aliasFirstName: request.term },
+                success: function (data) {
+                    responce($.map(data, function (el) {
+                        let fullName = el.aliasFirstName + ' ' + el.aliasLastName;
+                        return {
+                            label: fullName,
+                            value: el._id
+                        };
+                    }));
+                }
+            });
+        },
+
+        focus: function (event, ul) {
+            this.value = ul.item.label;
+            event.preventDefault();
+        }
+
+    });
+
 } );

@@ -13,7 +13,7 @@ router.get('/', middleware.isLoggedIn, (req, res, next) =>{
   let noMatch;
 
   if(req.query.search) {
-    const fuzzy = new RegExp(escapeRegex(req.query.search), 'gi');
+    let fuzzy = new RegExp(escapeRegex(req.query.search), 'gi');
     User.find({username: fuzzy}, (err, allUsers) =>{
         if (err) {
             req.flash('error', err.message);
@@ -64,6 +64,7 @@ router.put('/', middleware.isLoggedIn, (req, res, next) =>{
 router.get('/:id/edit', middleware.isLoggedIn, (req, res, next) =>{
     User
     .findOne({_id: req.params.id}, (err, foundUser) =>{
+    	console.log(foundUser)
         res.render('users/edit', {
             user: foundUser,
             title: 'Member Profile',
@@ -82,7 +83,7 @@ router.put('/:id', middleware.isLoggedIn, (req, res, next) =>{
 			req.flash('error', err.message);
 		} else {
 			//redirect show page
-			res.redirect('/users/' + req.params.id);
+			res.redirect('/users/' + req.params.id + '/edit');
 		}
 	});
 
