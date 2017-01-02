@@ -3,9 +3,9 @@
  */
 $(document).ready(function () {
 
-    var grabUser = $('#username').val();
+    let grabUser = $('#username').val();
 
-    var init = {
+    let init = {
         url: '/search?',
         search: 'grabUser'
     };
