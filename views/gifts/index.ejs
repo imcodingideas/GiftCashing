@@ -43,7 +43,15 @@
                     <td class="text-primary text-bold">Amazon</td>
                     <td class="text-primary text-bold">#32423</td>
                     <td>11/28/2016</td>
-                    <td><i class="fa fa-cc-paypal"></i></td>
+                    <% if (user.preferredPaymentMethod === 'paypal') { %>
+                        <td><i class="fa fa-cc-paypal"></i></td>
+                    <% } else if (user.preferredPaymentMethod === 'check') { %>
+                        <td><i class="fa fa-bank text-primary"> </i></td>
+                    <% } else if (user.preferredPaymentMethod === 'deposit') { %>
+                        <td><i class="fa fa-dollar text-primary"> </i></td>
+                    <% } else { %>
+                        <td><i class="fa fa-ban text-primary"> </i></td>
+                    <% }  %>
                 </tr>
             <% }) %>
             </tbody>
