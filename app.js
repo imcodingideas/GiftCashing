@@ -19,7 +19,7 @@ const indexRoute = require('./routes/index'),
     giftsRoute = require('./routes/gifts.js'),
     searchRoute = require('./routes/search');
 
-const mongooseDB = 'mongodb://localhost/giftcashing';
+const mongooseDB = process.env.DATABASEURL || 'mongodb://localhost/giftcashing';
 
 mongoose.connect(mongooseDB);
 
