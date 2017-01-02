@@ -60,23 +60,6 @@ router.put('/', middleware.isLoggedIn, (req, res, next) =>{
     });
 });
 
-// shows more info about one user
-router.get('/:id', middleware.isLoggedIn, (req, res) =>{
-	//find the user with provided ID
-    User.findById(req.params.id).populate('gifts').exec((err, foundUser) =>{
-        if (err) {
-            req.flash('error', err.message);
-        } else {
-            //render show template with that campground
-            res.render('users/show', {
-                user: foundUser,
-                title: 'Profile',
-                breadcrumbsName: 'Profile'
-            });
-        }
-    });
-});
-
 // Edit User
 router.get('/:id/edit', middleware.isLoggedIn, (req, res, next) =>{
     User
