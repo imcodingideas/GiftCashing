@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 const nodemailer = require('nodemailer'),
 	mg = require('nodemailer-mailgun-transport');
 
