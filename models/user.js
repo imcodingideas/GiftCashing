@@ -24,6 +24,10 @@ var UserSchema = new mongoose.Schema({
     paymentPreference:  {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'PaymentPreference'
+    },
+    lastLoginDate: {
+        type: Date,
+        default: Date.now
     }
 });
 
