@@ -4,7 +4,6 @@ const express = require('express'),
     mergeParams: true
   });
 User = require('../models/user'),
-  PaymentPreference = require('../models/payment-preference'),
   middleware = require('../middleware');
 
 let locus = require('locus');
@@ -63,7 +62,7 @@ router.put('/', middleware.isLoggedIn, (req, res, next) =>{
 
 // shows more info about one user
 router.get('/:id', middleware.isLoggedIn, (req, res) =>{
-  //find the user with provided ID
+	//find the user with provided ID
     User.findById(req.params.id).populate('gifts').exec((err, foundUser) =>{
         if (err) {
             req.flash('error', err.message);
@@ -81,9 +80,7 @@ router.get('/:id', middleware.isLoggedIn, (req, res) =>{
 // Edit User
 router.get('/:id/edit', middleware.isLoggedIn, (req, res, next) =>{
     User
-    .findOne({_id: req.params.id})
-    .populate('paymentPreference')
-    .exec(function(err, foundUser) {
+    .findOne({_id: req.params.id}, (err, foundUser) =>{
         res.render('users/edit', {
             user: foundUser,
             title: 'Member Profile',
@@ -94,33 +91,18 @@ router.get('/:id/edit', middleware.isLoggedIn, (req, res, next) =>{
 
 // Update User
 router.put('/:id', middleware.isLoggedIn, (req, res, next) =>{
-console.log(req.body);
-// Save Payment PaymentPreference first
-let paymentPreference = new PaymentPreference({
-    paypal: req.body.paypal,
-    deposit: req.body.deposit,
-    check: req.body.check
-});
+	let userData = req.body.user;
 
-paymentPreference.save((err, savedPayment) =>{
-    if (err) {
-        req.flash('error', err.message); // error saving payment pref
-    } else {
-        let userData = req.body.user;
-        userData.paymentPreference = savedPayment._id;
+	//find and update user
+	User.findByIdAndUpdate(req.params.id, userData, (err, updatedUser) =>{
+		if (err) {
+			req.flash('error', err.message);
+		} else {
+			//redirect show page
+			res.redirect('/users/' + req.params.id);
+		}
+	});
 
-        //find and update user
-        User.findByIdAndUpdate(req.params.id, userData, (err, updatedUser) =>{
-            if (err) {
-                req.flash('error', err.message);
-            } else {
-                //redirect show page
-                res.redirect('/users/' + req.params.id);
-            }
-        });
-
-    }
-  });
 });
 
 function escapeRegex(text) {
