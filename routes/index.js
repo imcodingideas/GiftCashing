@@ -23,13 +23,15 @@ router.get('/register', function(req, res) {
 
 // handle sign up logic
 router.post('/register', function(req, res) {
-  var newUser = new User({
+
+  let newUser = new User({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     alaisFirstName: req.body.alaisFirstName,
     alaisLastName: req.body.alaisLastName,
     username: req.body.username
   });
+
   User.register(newUser, req.body.password, function(err, user) {
 
     if (err) {
@@ -38,23 +40,27 @@ router.post('/register', function(req, res) {
         title: 'Review Gifts'
       });
     }
-    // Send Welcome Email
-    console.log('sending welcome email............');
-    var htmlMsg = `<p>Dear ${newUser.firstName} ${newUser.lastName},</p>
-    <p>Thank you for registering with GiftCashing.com. We look forward to providing our Services.</p>
-    <p>Start receiving cash for gifts.  It’s simple and convenient.</p>
-    <p>To learn how, access your online account and view the “How it Works” page.  If you have questions/concerns, contact us at support@giftcashing.com</p>
-    <p>Best Regards,<br/>
-    GiftCashing.com
-    </p>`
-    var mailOpts = {
-      from: "s26c.sayan@gmail.com",
-      to: newUser.username, // username is the email
-      subject: `Welcome to GiftCashing.com`,
-      html: htmlMsg
-    }
+
+    // Send the Welcome Email
+    let welcomeEmail;
+    welcomeEmail = `
+        <p>Dear ${newUser.firstName} ${newUser.lastName},</p>
+        <p>Thank you for registering with GiftCashing.com. We look forward to providing our services.</p>
+        <p>Start receiving cash for gifts. It’s simple and convenient.</p>
+        <p>To learn how, access your online account and view the "How it Works" page. If you have questions/concerns, contact us at support@giftcashing.com</p>
+        <p>Best Regards,<br/>
+        GiftCashing.com</p>
+    `;
+
+    let mailOpts = {
+      from: 's26c.sayan@gmail.com',
+      to: newUser.username,
+      subject: 'Welcome to GiftCashing.com',
+      html: welcomeEmail
+    };
+
     mailer.sendMail(mailOpts, function(err, info) {
-      if (err) console.log("Mailing Err: ", err);
+      if (err) console.log('Mailing Error: ', err);
       console.log('mailing......................', info);
     });
 
@@ -62,6 +68,7 @@ router.post('/register', function(req, res) {
       req.flash('success', 'Welcome to GiftCashing' + user.firstName);
       res.redirect('/users/' + user._id);
     });
+
   });
 });
 
@@ -73,8 +80,8 @@ router.get('/login', function(req, res) {
 });
 
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/users',
-  failureRedirect: '/login'
+    successRedirect: '/users',
+    failureRedirect: '/login'
 }), function(req, res) {});
 
 // logout route
