@@ -26,7 +26,7 @@
             </tr>
             </thead>
             <tbody>
-            <% users.forEach(function (user) { %>
+            <% gifts.forEach(function (gift) { %>
                 <tr>
                     <td><input type="checkbox" class="check"></td>
                     <td>
@@ -35,19 +35,20 @@
                           <img src="https://s.gravatar.com/avatar/0a07df079fd7a07e4cd0e5668835296c?s=80" alt="" class="img-circle">
                         </div>
                         <div class="chip-user__name">
-                          <span class="real-name d-block"><%= user.firstName + ' ' + user.lastName %></span>
-                          <span class="alias-name d-block"><%= user.aliasFirstName + ' ' + user.aliasLastName %></span>
+                          <span class="real-name d-block"><%= gift.user.firstName + ' ' + gift.user.lastName %></span>
+                          <span class="alias-name d-block"><%= gift.user.aliasFirstName + ' ' + gift.user.aliasLastName %></span>
                         </div>
                       </div>
                     </td>
-                    <td class="text-primary text-bold">Amazon</td>
-                    <td class="text-primary text-bold">#32423</td>
+                    <td class="text-primary text-bold"><%= gift.giftDescription %></td>
+                    <td class="text-primary text-bold">#<%= gift.giftCode %></td>
                     <td>11/28/2016</td>
-                    <% if (user.preferredPaymentMethod === 'paypal') { %>
+                    <% console.log(gift) %>
+                    <% if (gift.user.preferredPaymentMethod === 'paypal') { %>
                         <td><i class="fa fa-cc-paypal"></i></td>
-                    <% } else if (user.preferredPaymentMethod === 'check') { %>
+                    <% } else if (gift.user.preferredPaymentMethod === 'check') { %>
                         <td><i class="fa fa-bank text-primary"> </i></td>
-                    <% } else if (user.preferredPaymentMethod === 'deposit') { %>
+                    <% } else if (gift.user.preferredPaymentMethod === 'deposit') { %>
                         <td><i class="fa fa-dollar text-primary"> </i></td>
                     <% } else { %>
                         <td><i class="fa fa-ban text-primary"> </i></td>
