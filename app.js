@@ -1,23 +1,24 @@
 const express = require('express'),
-    app = express(),
-    bodyParser = require('body-parser'),
-    mongoose = require('mongoose'),
-    session = require('express-session'),
-    MongoStore = require('connect-mongo')(session),
-    passport = require('passport'),
-    flash = require('connect-flash'),
-    LocalStrategy = require('passport-local'),
-    methodOverride = require('method-override'),
-    logger = require('morgan'),
-    cookieParser = require('cookie-parser'),
-    User = require('./models/user'),
-    faker = require('faker'),
-    path = require('path');
+  _ = require('lodash'),
+  app = express(),
+  bodyParser = require('body-parser'),
+  mongoose = require('mongoose'),
+  session = require('express-session'),
+  MongoStore = require('connect-mongo')(session),
+  passport = require('passport'),
+  flash = require('connect-flash'),
+  LocalStrategy = require('passport-local'),
+  methodOverride = require('method-override'),
+  logger = require('morgan'),
+  cookieParser = require('cookie-parser'),
+  User = require('./models/user'),
+  faker = require('faker'),
+  path = require('path');
 
 const indexRoute = require('./routes/index'),
-    usersRoute = require('./routes/users'),
-    giftsRoute = require('./routes/gifts.js'),
-    searchRoute = require('./routes/search');
+  usersRoute = require('./routes/users'),
+  giftsRoute = require('./routes/gifts.js'),
+  searchRoute = require('./routes/search');
 
 const mongooseDB = process.env.DATABASEURL || 'mongodb://localhost/giftcashing';
 
@@ -31,18 +32,18 @@ app.use(logger('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/bower_components',  express.static(__dirname + '/bower_components'));
+app.use('/bower_components', express.static(__dirname + '/bower_components'));
 app.use(methodOverride("_method"));
 app.use(flash());
 
 app.use(require('express-session')({
-    secret: 'anything',
-    resave: false,
-    saveUninitialized: false,
-    store: new MongoStore({
-        url: mongooseDB,
-        touchAfter: 24 * 3600
-    })
+  secret: 'anything',
+  resave: false,
+  saveUninitialized: false,
+  store: new MongoStore({
+    url: mongooseDB,
+    touchAfter: 24 * 3600
+  })
 }));
 
 // PASSPORT CONFIGURATION
@@ -57,10 +58,10 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use(function (req, res, next) {
-    res.locals.currentUser = req.user;
-    res.locals.error = req.flash('error');
-    res.locals.success = req.flash('success');
-    next();
+  res.locals.currentUser = req.user;
+  res.locals.error = req.flash('error');
+  res.locals.success = req.flash('success');
+  next();
 });
 
 app.use('/', indexRoute);

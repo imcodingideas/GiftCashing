@@ -20,7 +20,16 @@
     "express": "~4.14.0",
     "express-session": "^1.14.2",
     "faker": "^3.1.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-bower": "0.0.13",
+    "gulp-livereload": "^3.8.1",
+    "gulp-nodemon": "^2.1.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.9.1",
     "locus": "^1.2.0",
+    "lodash": "^4.17.4",
     "method-override": "^2.3.7",
     "mongoose": "^4.7.1",
     "morgan": "~1.7.0",
@@ -31,14 +40,6 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.0.0",
-    "serve-favicon": "~2.3.0",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.1",
-    "gulp-bower": "0.0.13",
-    "gulp-notify": "^2.2.0",
-    "gulp-sass": "^2.3.2",
-    "gulp-sourcemaps": "^1.9.1",
-    "gulp-livereload": "^3.8.1",
-    "gulp-nodemon": "^2.1.0"
+    "serve-favicon": "~2.3.0"
   }
 }
