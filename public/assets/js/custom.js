@@ -13,7 +13,7 @@ $( document ).ready(function() {
     $( '#dateto' ).datepicker();
 
     /* Profile Pic */
-    $('#profile-pic-chooser').change(function (e) {
+    $('#profile-pic-chooser').change((e) => {
         console.log($(this));
         let file = $(this).get(0).files[0];
         let reader = new FileReader();
@@ -33,13 +33,13 @@ $( document ).ready(function() {
 	});
 
     $('#userSearch').autocomplete({
-        source: function (request, responce) {
+        source: (request, responce) => {
             $.ajax({
                 url: '/search',
                 type: 'GET',
                 data: { aliasFirstName: request.term },
-                success: function (data) {
-                    responce($.map(data, function (el) {
+                success: (data) => {
+                    responce($.map(data, (el) => {
                         let fullName = el.aliasFirstName + ' ' + el.aliasLastName;
                         return {
                             label: fullName,
