@@ -1,5 +1,8 @@
 /*jshint esversion: 6 */
-const express = require('express'),
+'use strict';
+
+const
+  express = require('express'),
   _ = require('lodash'),
   router = express.Router({
     mergeParams: true

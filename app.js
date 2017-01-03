@@ -1,5 +1,5 @@
-const express = require('express'),
-  _ = require('lodash'),
+const
+  express = require('express'),
   app = express(),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
@@ -13,6 +13,7 @@ const express = require('express'),
   cookieParser = require('cookie-parser'),
   User = require('./models/user'),
   faker = require('faker'),
+  _ = require('lodash'),
   path = require('path');
 
 const indexRoute = require('./routes/index'),

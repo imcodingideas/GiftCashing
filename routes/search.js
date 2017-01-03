@@ -1,9 +1,12 @@
-/*jshint esversion: 6 */
-const express = require('express'),
-  _ = require('lodash');
-router = express.Router({
-  mergeParams: true
-}),
+/*jslint node: true */
+'use strict';
+
+const
+  express = require('express'),
+  router = express.Router({
+    mergeParams: true
+  }),
+  _ = require('lodash'),
   User = require('../models/user'),
   middleware = require('../middleware');
 

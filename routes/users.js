@@ -1,10 +1,11 @@
 /*jshint esversion: 6 */
+'use strict';
 const express = require('express'),
   _ = require('lodash'),
   router = express.Router({
     mergeParams: true
-  });
-User = require('../models/user'),
+  }),
+  User = require('../models/user'),
   middleware = require('../middleware');
 
 let locus = require('locus');
