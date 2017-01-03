@@ -39,8 +39,6 @@ router.post('/register', (req, res) => {
 
   User.register(newUser, req.body.password, (err, user) => {
 
-    eval(locus);
-
     if (err) {
       req.flash('error', err.message);
       return res.render('register', {
