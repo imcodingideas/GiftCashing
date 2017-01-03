@@ -18,33 +18,32 @@ router.get('/', middleware.isLoggedIn, (req, res, next) => {
     User.find({username: fuzzy}, (err, allUsers) => {
       if (err) {
         req.flash('error', err.message);
-      } else {
-        if (allUsers.length < 1) {
-          noMatch = 'No users were found based on that query ' + req.query.search;
-        }
-        res.render('users/index', {
-          users: allUsers,
-          title: 'Search Results',
-          breadcrumbsName: 'Users',
-          noMatch: noMatch
-        });
       }
-    });
-  } else {
-    // get all users from db
-    User.find({}, (err, allUsers) => {
-      if (err) {
-        req.flash('error', err.message);
-      } else {
-        res.render('users/index', {
-          users: allUsers,
-          title: 'All Users',
-          breadcrumbsName: 'Users',
-          noMatch: noMatch
-        });
+      if (allUsers.length < 1) {
+        noMatch = 'No users were found based on that query ' + req.query.search;
       }
+
+      res.render('users/index', {
+        users: allUsers,
+        title: 'Search Results',
+        breadcrumbsName: 'Users',
+        noMatch: noMatch
+      });
     });
   }
+  // get all users from db
+  User.find({}, (err, allUsers) => {
+    if (err) {
+      req.flash('error', err.message);
+    }
+
+    res.render('users/index', {
+      users: allUsers,
+      title: 'All Users',
+      breadcrumbsName: 'Users',
+      noMatch: noMatch
+    });
+  });
 });
 
 // update user
@@ -54,6 +53,7 @@ router.put('/', middleware.isLoggedIn, (req, res, next) => {
     if (err) {
       return req.flash('error', err.message);
     }
+
     res.redirect('/users/' + req.params.id + '/edit', {
       user: updatedUser
     });
@@ -81,6 +81,7 @@ router.put('/:id', middleware.isLoggedIn, (req, res, next) => {
     if (err) {
       return req.flash('error', err.message);
     }
+
     //redirect show page
     res.redirect('/users/' + req.params.id + '/edit');
   });
