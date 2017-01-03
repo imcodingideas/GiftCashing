@@ -32,12 +32,14 @@ router.post('/register', (req, res) => {
   let newUser = new User({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    alaisFirstName: req.body.alaisFirstName,
-    alaisLastName: req.body.alaisLastName,
+    aliasFirstName: req.body.aliasFirstName,
+    aliasLastName: req.body.aliasLastName,
     username: req.body.username
   });
 
   User.register(newUser, req.body.password, (err, user) => {
+
+    eval(locus);
 
     if (err) {
       req.flash('error', err.message);
