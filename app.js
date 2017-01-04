@@ -16,12 +16,14 @@ const
   _ = require('lodash'),
   path = require('path');
 
-const indexRoute = require('./routes/index'),
+const
+  indexRoute = require('./routes/index'),
   usersRoute = require('./routes/users'),
   giftsRoute = require('./routes/gifts.js'),
   searchRoute = require('./routes/search');
 
-const mongooseDB = process.env.DATABASEURL || 'mongodb://localhost/giftcashing';
+const
+  mongooseDB = process.env.DATABASEURL || 'mongodb://localhost/giftcashing';
 
 mongoose.connect(mongooseDB);
 
