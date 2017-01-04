@@ -1,15 +1,15 @@
-<% include ../partials/head %>
-<% include ../partials/admin-nav %>
+<% include ../../partials/head %>
+<% include ../../partials/admin/nav %>
 <div class="row bg-grey">
   <div class="container">
     <div class="col-md-10 offset-md-2">
-      <% include ../partials/user-profile-tabs %>
+      <% include ../../partials/user-profile-tabs %>
     </div>
   </div>
 </div>
 <div class="container">
   <div class="row">
-    <% include ../partials/admin-sidebar %>
+    <% include ../../partials/admin/sidebar %>
     <div class="offset-md-1 col-md-6 pt-2">
       <div class="row d-flex flex-items-md-between flex-items-md-middle mb-2">
         <div class="chip-user d-flex flex-items-md-middle">
@@ -43,7 +43,7 @@
         </div>
       </div>
 
-      <form action="/users/<%= user._id %>/?_method=PUT" method="POST">
+      <form action="/admin/users/<%= user._id %>/?_method=PUT" method="POST">
         <input type="file" id="profile-pic-chooser" class="hidden-xs-up"/>
         <input type="hidden" id="profile-pic-data-url" name="user[profilePic]" class="hidden-xs-up"
                value="<%= user.profilePic %>"/>
@@ -223,8 +223,8 @@
                     <div class="row">
                       <div class="col-sm-6 form-group">
                         <label for="paypalEmail">Enter valid E-Mail</label>
-                        <input type="email" class="form-control" id="paypalEmail" name="user[paymentPreference]"
-                               placeholder="name@domain.com" value="<%= user.paymentPreference.paypal.email || '' %>">
+                        <input type="email" class="form-control" id="paypalEmail" name="user[paypalEmail]"
+                               placeholder="name@domain.com" value="<%= user.paypalEmail || '' %>">
                       </div>
                     </div>
                     <div class="row mt-2">
@@ -245,12 +245,12 @@
                       <div class="col-sm-6 form-group">
                         <label for="addressLine1">Address Line 1</label>
                         <input type="text" class="form-control" name="" id="addressLine1"
-                               value="<%= user.paymentPreference.check.addressLine1 %>">
+                               value="<%#= user.paymentPreference.check.addressLine1 %>">
                       </div>
                       <div class="col-sm-6 form-group">
                         <label for="addressLine2">Address Line 2</label>
                         <input type="text" class="form-control" name="" id="addressLine2"
-                               value="<%= user.paymentPreference.check.addressLine2 %>">
+                               value="<%#= user.paymentPreference.check.addressLine2 %>">
                       </div>
                     </div>
 
@@ -258,7 +258,7 @@
                       <div class="col-sm-6 form-group">
                         <label for="city">City</label>
                         <input type="text" class="form-control" name="" id="city"
-                               value="<%= user.paymentPreference.check.city %>">
+                               value="<%#= user.paymentPreference.check.city %>">
                       </div>
                       <div class="col-sm-6 form-group">
                         <label for="state">State</label>
@@ -323,7 +323,7 @@
                       <div class="col-sm-6 form-group">
                         <label for="zipCode">Zip Code</label>
                         <input type="text" class="form-control" name="" id="zipCode"
-                               value="<%= user.paymentPreference.check.zipCode %>">
+                               value="<%#= user.paymentPreference.check.zipCode %>">
                       </div>
                     </div>
                   </div>
@@ -337,14 +337,14 @@
                       <div class="col-sm-6 form-group">
                         <label for="routingOrTransit">Routing/Transit</label>
                         <input type="text" class="form-control" name="" id="routingOrTransit"
-                               value="<%= user.paymentPreference.deposit.routingOrTransit %>">
+                               value="<%#= user.paymentPreference.deposit.routingOrTransit %>">
                       </div>
                     </div>
                     <div class="row mb-2">
                       <div class="col-sm-6 form-group">
                         <label for="accountNumber">Account number</label>
                         <input type="text" class="form-control" name="" id="accountNumber"
-                               value="<%= user.paymentPreference.deposit.accountNumber %>">
+                               value="<%#= user.paymentPreference.deposit.accountNumber %>">
                       </div>
                     </div>
                     <div class="row mb-2">
@@ -366,5 +366,5 @@
   </div>
 </div>
 
-<% include ../partials/contact %>
-<% include ../partials/footer %>
+<% include ../../partials/contact %>
+<% include ../../partials/footer %>

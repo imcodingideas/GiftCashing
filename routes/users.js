@@ -24,7 +24,7 @@ router.get('/', middleware.isLoggedIn, (req, res, next) => {
         noMatch = 'No users were found based on that query ' + req.query.search;
       }
 
-      res.render('users/index', {
+      res.render('admin/users/index', {
         users: allUsers,
         title: 'Search Results',
         breadcrumbsName: 'Users',
@@ -38,7 +38,7 @@ router.get('/', middleware.isLoggedIn, (req, res, next) => {
       req.flash('error', err.message);
     }
 
-    res.render('users/index', {
+    res.render('admin/users/index', {
       users: allUsers,
       title: 'All Users',
       breadcrumbsName: 'Users',
@@ -65,7 +65,7 @@ router.put('/', middleware.isLoggedIn, (req, res, next) => {
 router.get('/:id/edit', middleware.isLoggedIn, (req, res, next) => {
   User
     .findOne({_id: req.params.id}, (err, foundUser) => {
-      res.render('users/edit', {
+      res.render('admin/users/edit', {
         user: foundUser,
         title: 'Member Profile',
         breadcrumbsName: 'Member Profile'

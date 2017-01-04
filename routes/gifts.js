@@ -22,7 +22,7 @@ router.get('/', middleware.isLoggedIn, (req, res, next) => {
         return res.status(500).send(err.message);
       }
 
-      res.render('gifts/index', {
+      res.render('admin/gifts/index', {
         title: 'Review Gifts',
         gifts: gifts,
         breadcrumbsName: 'Gifts'
@@ -69,7 +69,7 @@ router.post('/', middleware.isLoggedIn, (req, res, next) => {
 });
 
 router.get('/new', middleware.isLoggedIn, (req, res, next) => {
-  res.render('gifts/new', {
+  res.render('admin/gifts/new', {
     title: 'New Gift',
     user: req.user,
     breadcrumbsName: 'Create Gift'
