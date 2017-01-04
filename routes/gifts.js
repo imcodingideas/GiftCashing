@@ -63,7 +63,7 @@ router.post('/', middleware.isLoggedIn, (req, res, next) => {
     if (err) {
       return res.status(500).send(err.message);
     }
-    res.redirect('/gifts');
+    res.redirect('/admin/gifts');
   });
 
 });

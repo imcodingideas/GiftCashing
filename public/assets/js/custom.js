@@ -36,7 +36,7 @@ $(document).ready(function () {
   $('#userSearch').autocomplete({
     source: (request, responce) => {
       $.ajax({
-        url: '/search',
+        url: '/admin/search',
         type: 'GET',
         data: {aliasFirstName: request.term},
         success: (data) => {

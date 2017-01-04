@@ -71,7 +71,7 @@ router.post('/register', (req, res) => {
 
     passport.authenticate('local')(req, res, () => {
       req.flash('success', 'Welcome to GiftCashing' + user.firstName);
-      res.redirect('/users/' + user._id + '/edit');
+      res.redirect('/admin/users/' + user._id + '/edit');
     });
 
   });
@@ -85,7 +85,7 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/users',
+  successRedirect: '/admin/users',
   failureRedirect: '/login'
 }), function (req, res) {
 });

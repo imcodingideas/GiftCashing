@@ -5,15 +5,15 @@
       <img src="https://s.gravatar.com/avatar/0a07df079fd7a07e4cd0e5668835296c?s=80" alt="" class="img-circle">
     </figure>
     <div class="current-user__name d-block">
-      <a href="/users/<%= currentUser._id %>/edit"><%= currentUser.firstName + ' ' + currentUser.lastName %></a>
+      <a href="/admin/users/<%= currentUser._id %>/edit"><%= currentUser.firstName + ' ' + currentUser.lastName %></a>
     </div>
     <span class="current-user__role d-block">Admin view</span>
-    <a href="/gifts/new" class="btn btn-primary">Create Gift</a>
+    <a href="/admin/gifts/new" class="btn btn-primary">Create Gift</a>
   </div>
   <nav class="nav sidebar">
     <ul class="nav__list">
-      <li class="nav__item"><a href="/users">Members</a></li>
-      <li class="nav__item"><a href="/gifts">Gifts</a></li>
+      <li class="nav__item"><a href="/admin/users">Members</a></li>
+      <li class="nav__item"><a href="/admin/gifts">Gifts</a></li>
       <li class="nav__item"><a href="/logout">Sign out</a></li>
     </ul>
   </nav>

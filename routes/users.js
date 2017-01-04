@@ -55,7 +55,7 @@ router.put('/', middleware.isLoggedIn, (req, res, next) => {
       return req.flash('error', err.message);
     }
 
-    res.redirect('/users/' + req.params.id + '/edit', {
+    res.redirect('/admin/users/' + req.params.id + '/edit', {
       user: updatedUser
     });
   });
@@ -84,7 +84,7 @@ router.put('/:id', middleware.isLoggedIn, (req, res, next) => {
     }
 
     //redirect show page
-    res.redirect('/users/' + req.params.id + '/edit');
+    res.redirect('/admin/users/' + req.params.id + '/edit');
   });
 
 });

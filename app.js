@@ -68,9 +68,9 @@ app.use(function (req, res, next) {
 });
 
 app.use('/', indexRoute);
-app.use('/users', usersRoute);
-app.use('/gifts', giftsRoute);
-app.use('/search', searchRoute);
+app.use('/admin/users', usersRoute);
+app.use('/admin/gifts', giftsRoute);
+app.use('/admin/search', searchRoute);
 
 mongoose.Promise = global.Promise;
 
