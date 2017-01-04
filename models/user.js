@@ -5,6 +5,17 @@ const
   Types = Schema.Types,
   passportLocalMongoose = require('passport-local-mongoose');
 
+const paymentPreference = {
+    paypalEmail:Types.String,
+    check: {
+      addressLine1: Types.String,
+      addressLine2: Types.String,
+      city: Types.String,
+      state: Types.String,
+      zipCode: Types.String
+    }
+};
+
 let UserSchema = new mongoose.Schema({
   firstName: Types.String,
   lastName: Types.String,
@@ -29,44 +40,7 @@ let UserSchema = new mongoose.Schema({
     default: ''
   },
   paymentPreference: {
-    paypal: {
-      email: {
-        type: Types.String,
-        default: ''
-      }
-    },
-    check: {
-      addressLine1: {
-        type: Types.String,
-        default: ''
-      },
-      addressLine2: {
-        type: Types.String,
-        default: ''
-      },
-      city: {
-        type: Types.String,
-        default: ''
-      },
-      state: {
-        type: Types.String,
-        default: ''
-      },
-      zipCode: {
-        type: Types.Number,
-        default: ''
-      }
-    },
-    deposit: {
-      routingOrTransit: {
-        type: Types.String,
-        default: ''
-      },
-      accountNumber: {
-        type: Types.String,
-        default: ''
-      }
-    }
+    type: paymentPreference
   },
   lastLoginDate: {
     type: Date,
