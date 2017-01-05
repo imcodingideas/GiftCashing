@@ -69,7 +69,7 @@ app.use(function (req, res, next) {
 });
 
 app.use('/', indexRoute);
-app.use('/admin/users', usersRoute);
+app.use(usersRoute);
 app.use('/admin/gifts', giftsRoute);
 app.use('/admin/search', searchRoute);
 app.use('/dashboard', dashboardRoute);

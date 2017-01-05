@@ -11,7 +11,7 @@ const express = require('express'),
 let locus = require('locus');
 
 /* GET users listing. */
-router.get('/', middleware.isLoggedIn, (req, res, next) => {
+router.get('/admin/users', middleware.isLoggedIn, (req, res, next) => {
   let noMatch;
 
   if (req.query.search) {
@@ -48,7 +48,7 @@ router.get('/', middleware.isLoggedIn, (req, res, next) => {
 });
 
 // update user
-router.put('/', middleware.isLoggedIn, (req, res, next) => {
+router.put('/dashboard/profile/', middleware.isLoggedIn, (req, res, next) => {
   //find and update correct user
   User.findByIdAndUpdate(req.params.id, req.body.user, (err, updatedUser) => {
     if (err) {
@@ -62,10 +62,10 @@ router.put('/', middleware.isLoggedIn, (req, res, next) => {
 });
 
 // Edit User
-router.get('/:id/edit', middleware.isLoggedIn, (req, res, next) => {
+router.get('/dashboard/profile/:id/edit', middleware.isLoggedIn, (req, res, next) => {
   User
     .findOne({_id: req.params.id}, (err, foundUser) => {
-      res.render('admin/users/edit', {
+      res.render('dashboard/profile/edit', {
         user: foundUser,
         title: 'Member Profile',
         breadcrumbsName: 'Member Profile'
@@ -74,7 +74,7 @@ router.get('/:id/edit', middleware.isLoggedIn, (req, res, next) => {
 });
 
 // Update User
-router.put('/:id', middleware.isLoggedIn, (req, res, next) => {
+router.put('/dashboard/profile/:id', middleware.isLoggedIn, (req, res, next) => {
   let userData = req.body.user;
 
   //find and update user
@@ -84,7 +84,7 @@ router.put('/:id', middleware.isLoggedIn, (req, res, next) => {
     }
 
     //redirect show page
-    res.redirect('/admin/users/' + req.params.id + '/edit');
+    res.redirect('/dashboard/profile/' + req.params.id + '/edit');
   });
 
 });
