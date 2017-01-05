@@ -24,7 +24,10 @@ let UserSchema = new mongoose.Schema({
   username: Types.String,
   phone: Types.String,
   password: Types.String,
-  isAdmin: Types.Boolean,
+  isAdmin: {
+    type: Types.Boolean,
+    default: false
+  },
   addressLine1: Types.String,
   addressLine2: Types.String,
   city: Types.String,

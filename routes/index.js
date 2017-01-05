@@ -12,6 +12,8 @@ const
   middleware = require('../middleware'),
   mailer = require('../mailer');
 
+let locus = require('locus');
+
 /* GET home page. */
 router.get('/', (req, res, next) => {
   res.render('index', {
@@ -71,7 +73,7 @@ router.post('/register', (req, res) => {
 
     passport.authenticate('local')(req, res, () => {
       req.flash('success', 'Welcome to GiftCashing' + user.firstName);
-      res.redirect('/admin/users/' + user._id + '/edit');
+      res.redirect('/dashboard');
     });
 
   });
@@ -84,10 +86,15 @@ router.get('/login', (req, res) => {
   });
 });
 
-router.post('/login', passport.authenticate('local', {
-  successRedirect: '/admin/users',
-  failureRedirect: '/login'
-}), function (req, res) {
+router.post('/login', passport.authenticate('local'), (req, res) => {
+  if(req.user.isAdmin === true) {
+    res.redirect('/admin/users')
+  }
+  if(req.user.isAdmin === false) {
+    res.redirect('/dashboard')
+  }
+
+  res.redirect('/login');
 });
 
 // logout route
