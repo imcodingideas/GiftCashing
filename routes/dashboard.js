@@ -7,11 +7,24 @@ const
     mergeParams: true
   }),
   User = require('../models/user'),
+  Gift = require('../models/gift'),
   middleware = require('../middleware');
 
 router.get('/', middleware.isLoggedIn, (req, res) => {
-  console.log(req.user)
-  res.send('Hello');
+  Gift
+    .find({})
+    .populate('user')
+    .exec(function (err, gifts) {
+      if (err) {
+        return res.status(500).send(err.message);
+      }
+
+      res.render('dashboard/received/index', {
+        title: 'Received Gifts',
+        gifts: gifts,
+        breadcrumbsName: 'Received'
+      });
+    });
 });
 
 module.exports = router;
