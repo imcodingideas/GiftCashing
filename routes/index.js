@@ -86,15 +86,16 @@ router.get('/login', (req, res) => {
   });
 });
 
-router.post('/login', passport.authenticate('local'), (req, res) => {
-  if(req.user.isAdmin === true) {
-    res.redirect('/admin/users')
-  }
-  if(req.user.isAdmin === false) {
-    res.redirect('/dashboard')
-  }
 
-  res.redirect('/login');
+router.post('/login', passport.authenticate('local', {
+  failureRedirect: '/login'
+}), (req, res) => {
+  if (req.user.isAdmin === true) {
+    res.redirect('/admin/users');
+  }
+  if (req.user.isAdmin === false) {
+    res.redirect('/dashboard');
+  }
 });
 
 // logout route
