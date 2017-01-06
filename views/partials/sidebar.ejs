@@ -32,7 +32,10 @@
         <div class="current-user__name d-block">
             <a href="/dashboard/profile/<%= currentUser._id %>/edit"><%= currentUser.firstName + ' ' + currentUser.lastName %></a>
         </div>
-        <a href="#" class="btn btn-primary">Share</a>
+        <div class="current-user__name d-block">
+            <span class="current-user__role d-block"><%= currentUser.aliasFirstName + ' ' + currentUser.aliasLastName %></span>
+        </div>
+        <a href="/dashboard/share/" class="btn btn-primary">Share</a>
     </div>
     <nav class="nav sidebar">
         <ul class="nav__list">
