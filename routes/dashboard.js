@@ -10,21 +10,19 @@ const
   Gift = require('../models/gift'),
   middleware = require('../middleware');
 
-router.get('/', middleware.isLoggedIn, (req, res) => {
-  Gift
-    .find({})
-    .populate('user')
-    .exec(function (err, gifts) {
-      if (err) {
-        return res.status(500).send(err.message);
+router.get('/dashboard/received', middleware.isLoggedIn, (req, res) => {
+  User
+    .findOne({_id: req.user.id}, (err, user) => {
+      if(err) {
+        req.flash('error', err.message);
       }
 
       res.render('dashboard/received/index', {
         title: 'Received Gifts',
-        gifts: gifts,
         breadcrumbsName: 'Received'
       });
-    });
+      console.log(user)
+  });
 });
 
 module.exports = router;

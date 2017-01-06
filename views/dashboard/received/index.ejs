@@ -13,51 +13,7 @@
         <div class="col-md-10">
             <main>
                 <% include ../../partials/dashboard/controller %>
-                <table class="table">
-                    <thead class="thead-inverse">
-                    <tr>
-                        <th></th>
-                        <th>User</th>
-                        <th>Gift Description</th>
-                        <th>Order</th>
-                        <th>Date</th>
-                        <th>Payment</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <% gifts.forEach((gift) => { %>
-                    <tr>
-                        <td><input type="checkbox" class="check"></td>
-                        <td>
-                            <div class="chip-user d-flex flex-items-md-middle">
-                                <div class="chip-user__img mr-1">
-                                    <img src="https://s.gravatar.com/avatar/0a07df079fd7a07e4cd0e5668835296c?s=80"
-                                         class="img-circle">
-                                </div>
-                                <div class="chip-user__name">
-                          <span class="real-name d-block"><%= gift.user.firstName + ' '
-                              + gift.user.lastName %></span>
-                                    <span class="alias-name d-block"><%= gift.user.aliasFirstName + ' '
-                                        + gift.user.aliasLastName %></span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="text-primary text-bold"><%= gift.giftDescription %></td>
-                        <td class="text-primary text-bold">#<%= gift.giftCode %></td>
-                        <td>11/28/2016</td>
-                        <% if (gift.user.preferredPaymentMethod === 'paypal') { %>
-                        <td><i class="fa fa-cc-paypal"></i></td>
-                        <% } else if (gift.user.preferredPaymentMethod === 'check') { %>
-                        <td><i class="fa fa-bank text-primary"> </i></td>
-                        <% } else if (gift.user.preferredPaymentMethod === 'deposit') { %>
-                        <td><i class="fa fa-dollar text-primary"> </i></td>
-                        <% } else { %>
-                        <td><i class="fa fa-ban text-primary"> </i></td>
-                        <% } %>
-                    </tr>
-                    <% }) %>
-                    </tbody>
-                </table>
+                <h1>Here I am</h1>
             </main>
         </div>
     </div>

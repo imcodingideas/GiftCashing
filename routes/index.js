@@ -94,7 +94,7 @@ router.post('/login', passport.authenticate('local', {
     res.redirect('/admin/users');
   }
   if (req.user.isAdmin === false) {
-    res.redirect('/dashboard');
+    res.redirect('/dashboard/received');
   }
 });
 

@@ -72,7 +72,7 @@ app.use('/', indexRoute);
 app.use(usersRoute);
 app.use('/admin/gifts', giftsRoute);
 app.use('/admin/search', searchRoute);
-app.use('/dashboard', dashboardRoute);
+app.use(dashboardRoute);
 
 mongoose.Promise = global.Promise;
 
