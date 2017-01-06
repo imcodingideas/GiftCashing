@@ -30,7 +30,7 @@ const schema = new Schema({
   status: {
     type: statusSchema,
     default: {
-      review: false,
+      review: true,
       accepted: false,
       redeemed: false,
       declined: false,

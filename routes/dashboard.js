@@ -16,7 +16,7 @@ router.get(
   (req, res) => {
     const query = {
       user: req.user._id,
-      'status.review': false
+      'status.review': true
     };
 
     Gift

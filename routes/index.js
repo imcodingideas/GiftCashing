@@ -104,7 +104,7 @@ router.post(
     failureRedirect: '/login'
   }), (req, res) => {
     if (req.user.isAdmin === true) {
-      res.redirect('/admin/users');
+      res.redirect('/admin/gifts?filter=review');
     }
     if (req.user.isAdmin === false) {
       res.redirect('/dashboard/received');
