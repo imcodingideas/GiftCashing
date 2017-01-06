@@ -6,9 +6,8 @@ const express = require('express'),
     mergeParams: true
   }),
   User = require('../models/user'),
+  locus = require('locus'),
   middleware = require('../middleware');
-
-let locus = require('locus');
 
 /* GET users listing. */
 router.get('/admin/users', middleware.isLoggedIn, (req, res, next) => {
@@ -76,8 +75,10 @@ router.get(
   '/dashboard/profile/:id/edit',
   middleware.isLoggedIn,
   (req, res, next) => {
+
     User
       .findOne({_id: req.params.id}, (err, foundUser) => {
+
         res.render('dashboard/profile/edit', {
           user: foundUser,
           title: 'Member Profile',
@@ -98,6 +99,7 @@ router.put(
       .findByIdAndUpdate(
         req.params.id, userData,
         (err, updatedUser) => {
+
           if (err) {
             return req.flash('error', err.message);
           }

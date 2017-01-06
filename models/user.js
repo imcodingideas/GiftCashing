@@ -17,11 +17,27 @@ const paymentPreference = {
 };
 
 let UserSchema = new mongoose.Schema({
-  firstName: Types.String,
-  lastName: Types.String,
-  aliasFirstName: Types.String,
-  aliasLastName: Types.String,
-  username: Types.String,
+  firstName: {
+    type: Types.String,
+    required: true
+  },
+  lastName: {
+    type: Types.String,
+    required: true
+  },
+  aliasFirstName: {
+    type: Types.String,
+    required: true
+  },
+  aliasLastName: {
+    type: Types.String,
+    required: true
+  },
+  username: {
+    type: Types.String,
+    unique: true,
+    required: true
+  },
   phone: Types.String,
   password: Types.String,
   isAdmin: {
@@ -35,7 +51,7 @@ let UserSchema = new mongoose.Schema({
   zipCode: Types.Number,
   profilePic: {
     type: Types.String,
-    default: 'https://s.gravatar.com/avatar/0a07df079fd7a07e4cd0e5668835296c?s=80'
+    default: ''
   },
   preferredPaymentMethod: {
     type: Types.String,
