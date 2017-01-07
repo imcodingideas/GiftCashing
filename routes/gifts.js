@@ -17,159 +17,58 @@ router.get(
   '/',
   middleware.isLoggedIn,
   (req, res, next) => {
+    let query = {};
+
+    switch(req.query.filter) {
+      case 'review' :
+        query = {'status.review': true};
+        break;
+      case 'accepted-redeemed' :
+        query = { 'status.accepted': { $not: { $gt: true } }};
+        break;
+      case 'accepted-not-redeemed' :
+        query = { 'status.accepted': { $not: { $gt: false } }};
+        break;
+      case 'declined' :
+        query = {'status.declined': true};
+        break;
+      case 'expired' :
+        query = {'status.expired': true};
+        break;
+      case 'pending' :
+        query = {'status.pending': true};
+        break;
+      case 'paid' :
+        query = {'status.paid': true};
+        break;
+    }
+
     let noMatch;
-    let message = 'Sorry, cant find any users';
+    let message = 'Sorry, cant find any users.';
 
     if (Object.keys(req.query).length === 0) {
       res.redirect('/admin/gifts?filter=review');
     }
-    if (req.query.filter === 'review') {
-      Gift
-        .find({'status.review': true})
-        .populate('user')
-        .exec(function (err, gifts) {
-          if (err) {
-            return res.status(500).send(err.message);
-          }
-          if (gifts.length < 1) {
-            noMatch = message;
-          }
 
-          res.render('admin/gifts/index', {
-            title: 'Review Gifts',
-            gifts: gifts,
-            breadcrumbsName: 'Gifts',
-            noMatch: noMatch
-          });
+    Gift
+      .find(query)
+      .populate('user')
+      .exec(function (err, gifts) {
+        if (err) {
+          return res.status(500).send(err.message);
+        }
+        if (gifts.length < 1) {
+          noMatch = message;
+        }
 
+        res.render('admin/gifts/index', {
+          title: 'Review Gifts',
+          gifts: gifts,
+          breadcrumbsName: 'Gifts',
+          noMatch: noMatch
         });
-    }
-    if (req.query.filter === 'accepted-redeemed') {
-      Gift
-        .find({'status.accepted': true})
-        .populate('user')
-        .exec(function (err, gifts) {
-          if (err) {
-            return res.status(500).send(err.message);
-          }
-          if (gifts.length < 1) {
-            noMatch = message;
-          }
 
-          res.render('admin/gifts/index', {
-            title: 'Review Gifts',
-            gifts: gifts,
-            breadcrumbsName: 'Gifts',
-            noMatch: noMatch
-          });
-
-        });
-    }
-    if (req.query.filter === 'accepted-not-redeemed') {
-      Gift
-        .find({'status.accepted': false})
-        .populate('user')
-        .exec(function (err, gifts) {
-          if (err) {
-            return res.status(500).send(err.message);
-          }
-          if (gifts.length < 1) {
-            noMatch = message;
-          }
-
-          res.render('admin/gifts/index', {
-            title: 'Review Gifts',
-            gifts: gifts,
-            breadcrumbsName: 'Gifts',
-            noMatch: noMatch
-          });
-
-        });
-    }
-    if (req.query.filter === 'declined') {
-      Gift
-        .find({'status.declined': true})
-        .populate('user')
-        .exec(function (err, gifts) {
-          if (err) {
-            return res.status(500).send(err.message);
-          }
-          if (gifts.length < 1) {
-            noMatch = message;
-          }
-
-          res.render('admin/gifts/index', {
-            title: 'Review Gifts',
-            gifts: gifts,
-            breadcrumbsName: 'Gifts',
-            noMatch: noMatch
-          });
-
-        });
-    }
-    if (req.query.filter === 'expired') {
-      Gift
-        .find({'status.expired': true})
-        .populate('user')
-        .exec(function (err, gifts) {
-          if (err) {
-            return res.status(500).send(err.message);
-          }
-          if (gifts.length < 1) {
-            noMatch = message;
-          }
-
-          res.render('admin/gifts/index', {
-            title: 'Review Gifts',
-            gifts: gifts,
-            breadcrumbsName: 'Gifts',
-            noMatch: noMatch
-          });
-
-        });
-    }
-    if (req.query.filter === 'pending') {
-      Gift
-        .find({'status.pending': true})
-        .populate('user')
-        .exec(function (err, gifts) {
-          if (err) {
-            return res.status(500).send(err.message);
-          }
-          if (gifts.length < 1) {
-            noMatch = message;
-          }
-
-          res.render('admin/gifts/index', {
-            title: 'Review Gifts',
-            gifts: gifts,
-            breadcrumbsName: 'Gifts',
-            noMatch: noMatch
-          });
-
-        });
-    }
-    if (req.query.filter === 'paid') {
-      Gift
-        .find({'status.paid': true})
-        .populate('user')
-        .exec(function (err, gifts) {
-          if (err) {
-            return res.status(500).send(err.message);
-          }
-          if (gifts.length < 1) {
-            noMatch = message;
-          }
-
-          res.render('admin/gifts/index', {
-            title: 'Review Gifts',
-            gifts: gifts,
-            breadcrumbsName: 'Gifts',
-            noMatch: noMatch
-          });
-
-        });
-    }
+      });
 
   });
 
