@@ -50,7 +50,7 @@ gulp.task('server', function() {
       .pipe(livereload({
         start: true
       }))
-      // .pipe(notify('Restarted Server & Reloading page...'));
+      .pipe(notify('Restarted Server & Reloading page...'));
   })
 });
 

@@ -43,7 +43,7 @@ router.get(
     Gift
       .find(query)
       .populate('user')
-      .exec(function (err, gifts) {
+      .exec((err, gifts) => {
         if (err) {
           return res.status(500).send(err.message);
         }
