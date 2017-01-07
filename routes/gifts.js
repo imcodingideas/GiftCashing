@@ -51,8 +51,7 @@ router.get(
         res.render('admin/gifts/index', {
           title: 'Review Gifts',
           gifts: gifts,
-          breadcrumbsName: 'Gifts',
-          noMatch: noMatch
+          breadcrumbsName: 'Gifts'
         });
 
       });
