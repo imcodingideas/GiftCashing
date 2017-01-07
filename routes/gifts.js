@@ -18,6 +18,7 @@ router.get(
   middleware.isLoggedIn,
   (req, res, next) => {
     let noMatch;
+    let message = 'Sorry, cant find any users';
 
     if (Object.keys(req.query).length === 0) {
       res.redirect('/admin/gifts?filter=review');
@@ -31,7 +32,7 @@ router.get(
             return res.status(500).send(err.message);
           }
           if (gifts.length < 1) {
-            noMatch = 'No users were found based on that query';
+            noMatch = message;
           }
 
           res.render('admin/gifts/index', {
@@ -52,7 +53,7 @@ router.get(
             return res.status(500).send(err.message);
           }
           if (gifts.length < 1) {
-            noMatch = 'No users were found based on that query';
+            noMatch = message;
           }
 
           res.render('admin/gifts/index', {
@@ -73,7 +74,7 @@ router.get(
             return res.status(500).send(err.message);
           }
           if (gifts.length < 1) {
-            noMatch = 'No users were found based on that query';
+            noMatch = message;
           }
 
           res.render('admin/gifts/index', {
@@ -94,7 +95,7 @@ router.get(
             return res.status(500).send(err.message);
           }
           if (gifts.length < 1) {
-            noMatch = 'No users were found based on that query';
+            noMatch = message;
           }
 
           res.render('admin/gifts/index', {
@@ -115,7 +116,7 @@ router.get(
             return res.status(500).send(err.message);
           }
           if (gifts.length < 1) {
-            noMatch = 'No users were found based on that query';
+            noMatch = message;
           }
 
           res.render('admin/gifts/index', {
@@ -136,7 +137,7 @@ router.get(
             return res.status(500).send(err.message);
           }
           if (gifts.length < 1) {
-            noMatch = 'No users were found based on that query';
+            noMatch = message;
           }
 
           res.render('admin/gifts/index', {
@@ -157,7 +158,7 @@ router.get(
             return res.status(500).send(err.message);
           }
           if (gifts.length < 1) {
-            noMatch = 'No users were found based on that query';
+            noMatch = message;
           }
 
           res.render('admin/gifts/index', {
