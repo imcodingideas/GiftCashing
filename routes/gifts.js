@@ -17,12 +17,9 @@ router.get(
   '/',
   middleware.isLoggedIn,
   (req, res, next) => {
-    let query = {};
+    let query = {'status.review': true};
 
     switch(req.query.filter) {
-      case 'review' :
-        query = {'status.review': true};
-        break;
       case 'accepted-redeemed' :
         query = { 'status.accepted': { $not: { $gt: true } }};
         break;
@@ -43,22 +40,12 @@ router.get(
         break;
     }
 
-    let noMatch;
-    let message = 'Sorry, cant find any users.';
-
-    if (Object.keys(req.query).length === 0) {
-      res.redirect('/admin/gifts?filter=review');
-    }
-
     Gift
       .find(query)
       .populate('user')
       .exec(function (err, gifts) {
         if (err) {
           return res.status(500).send(err.message);
-        }
-        if (gifts.length < 1) {
-          noMatch = message;
         }
 
         res.render('admin/gifts/index', {
