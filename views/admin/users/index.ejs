@@ -49,7 +49,7 @@
                   <td class="text-primary text-bold">14 Gifts</td>
                   <td><%= user.lastLoginDate.toLocaleDateString() %></td>
                   <td class="text-primary text-bold">$4000</td>
-                  <td><a href="#!" class="text-bold">View Gifts</a></td>
+                  <td><a href="/admin/users/<%= user._id %>/gifts" class="text-bold">View Gifts</a></td>
                 </tr>
                 <% }) %>
                 </tbody>

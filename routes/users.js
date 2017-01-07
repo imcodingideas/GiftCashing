@@ -6,6 +6,7 @@ const express = require('express'),
     mergeParams: true
   }),
   User = require('../models/user'),
+  Gift = require('../models/gift'),
   locus = require('locus'),
   middleware = require('../middleware');
 
@@ -101,6 +102,35 @@ router.put(
           //redirect show page
           res.redirect('/dashboard/profile/' + req.params.id + '/edit');
         });
+
+  });
+
+router.get(
+  '/admin/users/:id/gifts',
+  middleware.isLoggedIn,
+  (req, res, next) => {
+
+    const query = {
+      user: req.user._id
+    };
+
+    Gift
+      .find(query)
+      .populate('user')
+      .exec((err, gifts) => {
+        if (err) {
+          console.error(err);
+          gifts = [];
+        }
+
+        let breadcrumbsName = req.user.firstName + 's Received Gifts';
+
+        res.render('admin/users/gifts', {
+          title: 'Received Gifts',
+          breadcrumbsName: breadcrumbsName,
+          gifts: gifts
+        });
+      });
 
   });
 
