@@ -63,13 +63,4 @@ $(document).ready(function () {
       .html(selectedAction + '<span class="caret"></span>');
   });
 
-  $('ul.nav-tabs a').click(function () {
-    $('.active').removeClass('active');
-    $(this).addClass('active');
-    localStorage.setItem('state', $('.active').attr('href'));
-  });
-
-  if (!!localStorage.getItem('state'))
-    $('a[href="' + localStorage.getItem('state') + '"]').addClass('active');
-
 });
