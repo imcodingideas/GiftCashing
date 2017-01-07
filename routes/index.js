@@ -120,4 +120,15 @@ router.get(
     res.redirect('/');
   });
 
+router.get(
+  '/admin/created-gift',
+  middleware.isLoggedIn,
+  (req, res, next) => {
+    res.render('admin/created-gift/index', {
+      title: 'Order Created',
+      user: req.user,
+      breadcrumbsName: 'Created Gift'
+    })
+  });
+
 module.exports = router;

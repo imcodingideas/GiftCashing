@@ -11,6 +11,7 @@ const
   Gift = require('../models/gift'),
   middleware = require('../middleware');
 
+
 /* GET Gifts page. */
 router.get(
   '/',
@@ -208,7 +209,7 @@ router.post(
         if (err) {
           return res.status(500).send(err.message);
         }
-        res.redirect('/admin/gifts');
+        res.redirect('/admin/created-gift');
       });
 
   });
@@ -223,6 +224,5 @@ router.get(
       breadcrumbsName: 'Create Gift'
     })
   });
-
 
 module.exports = router;
