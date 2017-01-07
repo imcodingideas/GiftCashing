@@ -14,13 +14,11 @@ $(document).ready(function () {
 
   /* Profile Pic */
   $('#profile-pic-chooser').change((e) => {
-    // console.log($(this));
     let file = $(this).get(0).files[0];
     let reader = new FileReader();
     reader.addEventListener('load', () => {
       $('#profile-pic-data-url').val(reader.result);
       $('#profile-pic-show').attr('src', reader.result);
-      // console.log(reader.result);
     }, false);
     if (file) {
       reader.readAsDataURL(file);
@@ -62,7 +60,16 @@ $(document).ready(function () {
     let selectedAction = $(this).text();
     $(this).parents('.dropdown')
       .find('.dropdown-toggle')
-      .html(selectedAction+'<span class="caret"></span>');
+      .html(selectedAction + '<span class="caret"></span>');
   });
+
+  $('ul.nav-tabs a').click(function () {
+    $('.active').removeClass('active');
+    $(this).addClass('active');
+    localStorage.setItem('state', $('.active').attr('href'));
+  });
+
+  if (!!localStorage.getItem('state'))
+    $('a[href="' + localStorage.getItem('state') + '"]').addClass('active');
 
 });

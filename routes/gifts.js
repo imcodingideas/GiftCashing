@@ -51,7 +51,7 @@ router.get(
             return res.status(500).send(err.message);
           }
           if (gifts.length < 1) {
-            noMatch = 'No users were found based on that query ';
+            noMatch = 'No users were found based on that query';
           }
 
           res.render('admin/gifts/index', {
@@ -63,7 +63,7 @@ router.get(
 
         });
     }
-    if (req.query.filter === 'accepted-redeemed') {
+    if (req.query.filter === 'accepted-not-redeemed') {
       Gift
         .find({'status.accepted': false})
         .populate('user')
@@ -72,7 +72,7 @@ router.get(
             return res.status(500).send(err.message);
           }
           if (gifts.length < 1) {
-            noMatch = 'No users were found based on that query ';
+            noMatch = 'No users were found based on that query';
           }
 
           res.render('admin/gifts/index', {
@@ -93,7 +93,7 @@ router.get(
             return res.status(500).send(err.message);
           }
           if (gifts.length < 1) {
-            noMatch = 'No users were found based on that query ';
+            noMatch = 'No users were found based on that query';
           }
 
           res.render('admin/gifts/index', {
@@ -114,7 +114,7 @@ router.get(
             return res.status(500).send(err.message);
           }
           if (gifts.length < 1) {
-            noMatch = 'No users were found based on that query ';
+            noMatch = 'No users were found based on that query';
           }
 
           res.render('admin/gifts/index', {
@@ -135,7 +135,7 @@ router.get(
             return res.status(500).send(err.message);
           }
           if (gifts.length < 1) {
-            noMatch = 'No users were found based on that query ';
+            noMatch = 'No users were found based on that query';
           }
 
           res.render('admin/gifts/index', {
