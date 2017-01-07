@@ -11,7 +11,6 @@ const express = require('express'),
 
 /* GET users listing. */
 router.get('/admin/users', middleware.isLoggedIn, (req, res, next) => {
-  let noMatch;
 
   if (req.query.search) {
     let fuzzy = new RegExp(req.query.search, 'gi');
@@ -21,16 +20,12 @@ router.get('/admin/users', middleware.isLoggedIn, (req, res, next) => {
           if (err) {
             req.flash('error', err.message);
           }
-          if (allUsers.length < 1) {
-            noMatch = 'No users were found based on that query ' + req.query.search;
-          }
 
           res.render(
             'admin/users/index', {
               users: allUsers,
               title: 'Search Results',
-              breadcrumbsName: 'Users',
-              noMatch: noMatch
+              breadcrumbsName: 'Users'
             });
         });
   }
@@ -46,8 +41,7 @@ router.get('/admin/users', middleware.isLoggedIn, (req, res, next) => {
           'admin/users/index', {
             users: allUsers,
             title: 'All Users',
-            breadcrumbsName: 'Users',
-            noMatch: noMatch
+            breadcrumbsName: 'Users'
           });
       });
 });

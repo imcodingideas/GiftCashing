@@ -25,10 +25,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <% if(noMatch !== undefined) { %>
+                <% if(!users || users.length < 1) { %>
                 <tr>
                     <td>
-                        <%= noMatch %>
+                        <h1>No users were found based on that query</h1>
                     </td>
                 </tr>
                 <% } %>

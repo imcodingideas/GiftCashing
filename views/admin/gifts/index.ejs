@@ -27,10 +27,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <% if(noMatch !== undefined) { %>
+                    <% if(!gifts || gifts.length < 1) { %>
                     <tr>
                         <td>
-                            <%= noMatch %>
+                            <h1>No gifts to show</h1>
                         </td>
                     </tr>
                     <% } %>
