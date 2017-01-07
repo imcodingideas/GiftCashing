@@ -40,8 +40,9 @@
                         <td>
                             <div class="chip-user d-flex flex-items-md-middle">
                                 <div class="chip-user__img mr-1">
+                                    <a href="/admin/users/<%= gift.user._id %>/gifts/<%= gift._id %>">
                                     <img src="https://s.gravatar.com/avatar/0a07df079fd7a07e4cd0e5668835296c?s=80"
-                                         class="img-circle">
+                                         class="img-circle"></a>
                                 </div>
                                 <div class="chip-user__name">
                           <span class="real-name d-block"><%= gift.user.firstName + ' '

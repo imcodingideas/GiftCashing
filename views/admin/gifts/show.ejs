@@ -1,0 +1,23 @@
+<% include ../../partials/head.ejs %>
+<% include ../../partials/nav %>
+<div class="row bg-grey">
+    <div class="container">
+        <div class="col-md-10 offset-md-2">
+            <% include ../../partials/admin/action-tabs %>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <% include ../../partials/sidebar %>
+        <div class="col-md-10">
+
+            <main>
+                <% include ../../partials/admin/gift-controller %>
+                <h1>This page shows specific gift. Check Sketch</h1>
+            </main>
+        </div>
+    </div>
+</div>
+<% include ../../partials/contact %>
+<% include ../../partials/footer %>

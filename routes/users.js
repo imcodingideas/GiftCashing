@@ -134,4 +134,33 @@ router.get(
 
   });
 
+router.get(
+  '/admin/users/:id/gifts/:gift_id',
+  middleware.isLoggedIn,
+  (req, res, next) => {
+
+    const query = {
+      user: req.user._id
+    };
+
+    Gift
+      .find(query)
+      .populate('user')
+      .exec((err, gifts) => {
+        if (err) {
+          console.error(err);
+          gifts = [];
+        }
+
+        let breadcrumbsName = req.user.firstName + 's Received Gift';
+
+        res.render('admin/gifts/show', {
+          title: 'Received Gifts',
+          breadcrumbsName: breadcrumbsName,
+          gifts: gifts
+        });
+      });
+
+  });
+
 module.exports = router;
