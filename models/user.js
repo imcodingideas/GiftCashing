@@ -16,7 +16,7 @@ const paymentPreference = {
     }
 };
 
-let UserSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   firstName: {
     type: Types.String,
     required: true
