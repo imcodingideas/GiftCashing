@@ -22,9 +22,7 @@
                     <div class="col-xs-12 col-md-5">
                         <h5 class="text-bold text-primary"><%= gift.giftDescription %></h5>
                         <% if(gift.giftMessage === undefined) { %>
-                        <div class="container">
-                            <p class="messages">No Message was sent with this gift</p>
-                        </div>
+                        <p>No Message was sent with this gift</p>
                         <% } else { %>
                         <p><%= gift.giftMessage %></p>
                         <% } %>
@@ -37,7 +35,7 @@
                         <button class="btn btn-outline-primary btn-sm d-block mt-1 full-width">Decline</button>
                     </div>
                     <div class="col-xs-12 col-md-3">
-                        <span>Date: <strong class="text-primary">10/29/2018</strong></span>
+                        <span>Date: <strong class="text-primary"><%= gift.date.toLocaleDateString() %></strong></span>
                         <p class="mt-1 mb-0">Gift #:</p>
                         <strong class="text-primary"><%= gift.giftNumber %></strong>
                         <a class="btn btn-primary btn-sm d-block mt-1 full-width" href="#" data-toggle="modal"

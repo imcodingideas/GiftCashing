@@ -51,7 +51,7 @@
                                 #<%= gift.giftCode %>
                             </a>
                         </td>
-                        <td>11/28/2016</td>
+                        <td><%= gift.date.toLocaleDateString() %></td>
                         <% if (gift.user.preferredPaymentMethod === 'paypal') { %>
                         <td><i class="fa fa-cc-paypal"></i></td>
                         <% } else if (gift.user.preferredPaymentMethod === 'check') { %>
