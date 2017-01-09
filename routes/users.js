@@ -73,6 +73,9 @@ router.get(
 
     User
       .findOne({_id: req.params.id}, (err, foundUser) => {
+        if (err) {
+          req.flash('error', err.message);
+        }
 
         res.render('dashboard/profile/edit', {
           user: foundUser,
@@ -119,7 +122,7 @@ router.get(
       .populate('user')
       .exec((err, gifts) => {
         if (err) {
-          console.error(err);
+          req.flash('error', err.message);
           gifts = [];
         }
 
@@ -137,23 +140,20 @@ router.get(
   middleware.isLoggedIn,
   (req, res, next) => {
 
-    const query = {
-      user: req.user._id
-    };
-
     Gift
-      .find(query)
+      .findById(req.params.gift_id)
       .populate('user')
-      .exec((err, gifts) => {
+      .exec((err, foundGift) => {
         if (err) {
-          console.error(err);
-          gifts = [];
+          req.flash('error', err.message);
         }
 
+        console.log(foundGift);
+
         res.render('admin/gifts/show', {
-          title: 'Received Gifts',
+          title: 'Received Gift',
           breadcrumbsName: 'Gift',
-          gifts: gifts
+          foundGift: foundGift
         });
       });
 

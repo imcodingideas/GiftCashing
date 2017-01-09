@@ -48,7 +48,7 @@ router.get(
       .populate('user')
       .exec((err, gifts) => {
         if (err) {
-          console.error(err);
+          req.flash('error', err.message);
           gifts = [];
         }
 

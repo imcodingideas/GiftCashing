@@ -45,7 +45,7 @@ router.get(
       .populate('user')
       .exec((err, gifts) => {
         if (err) {
-          return res.status(500).send(err.message);
+          req.flash('error', err.message);
         }
 
         res.render('admin/gifts/index', {
@@ -93,7 +93,7 @@ router.post(
     Gift
       .create(newGift, (err, newlyCreated) => {
         if (err) {
-          return res.status(500).send(err.message);
+          req.flash('error', err.message);
         }
         res.redirect('/admin/created-gift');
       });
