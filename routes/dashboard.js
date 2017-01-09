@@ -11,13 +11,37 @@ const
   middleware = require('../middleware');
 
 router.get(
-  '/dashboard/received',
+  '/dashboard/gifts',
   middleware.isLoggedIn,
   (req, res) => {
-    const query = {
-      user: req.user._id,
-      'status.review': true
-    };
+    let query = {};
+
+    switch (req.query.filter) {
+      case 'received' :
+        query = {
+          user: req.user._id,
+          'status.review': true
+        };
+        break;
+      case 'declined' :
+        query = {
+          user: req.user._id,
+          'status.declined': true
+        };
+        break;
+      case 'pending' :
+        query = {
+          user: req.user._id,
+          'status.pending': true
+        };
+        break;
+      case 'paid' :
+        query = {
+          user: req.user._id,
+          'status.paid': true
+        };
+        break;
+    }
 
     Gift
       .find(query)
@@ -28,7 +52,7 @@ router.get(
           gifts = [];
         }
 
-        res.render('dashboard/received/index', {
+        res.render('dashboard/gifts/index', {
           title: 'Received Gifts',
           breadcrumbsName: 'Received',
           gifts: gifts

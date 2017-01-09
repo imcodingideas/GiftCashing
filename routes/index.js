@@ -82,7 +82,7 @@ router.post(
         passport
           .authenticate('local')(req, res, () => {
             req.flash('success', 'Welcome to GiftCashing' + user.firstName);
-            res.redirect('/dashboard/received');
+            res.redirect('/dashboard/gifts?filter=received');
           });
 
       });
@@ -107,7 +107,7 @@ router.post(
       res.redirect('/admin/gifts?filter=review');
     }
     if (req.user.isAdmin === false) {
-      res.redirect('/dashboard/received');
+      res.redirect('/dashboard/gifts?filter=received');
     }
   });
 
