@@ -123,11 +123,9 @@ router.get(
           gifts = [];
         }
 
-        let breadcrumbsName = req.user.firstName + 's Received Gifts';
-
         res.render('admin/users/gifts', {
           title: 'Received Gifts',
-          breadcrumbsName: breadcrumbsName,
+          breadcrumbsName: 'Gifts',
           gifts: gifts
         });
       });
@@ -152,11 +150,9 @@ router.get(
           gifts = [];
         }
 
-        let breadcrumbsName = req.user.firstName + 's Received Gift';
-
         res.render('admin/gifts/show', {
           title: 'Received Gifts',
-          breadcrumbsName: breadcrumbsName,
+          breadcrumbsName: 'Gift',
           gifts: gifts
         });
       });
