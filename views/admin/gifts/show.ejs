@@ -16,79 +16,87 @@
                 <% include ../../partials/admin/received-controller %>
 
                 <header class="row specific-gift-header">
-                  <a href="#!" class="tab-prev-next"><i class="icon fa fa-chevron-left"></i></a>
-                  <div class="specific-gift-header-details">
-                    <div class="specific-gift-header-details-thumb">
-                      <img src="<%= foundGift.user.profilePic || '/assets/img/user.png' %>" alt="">
+                    <a href="#!" class="tab-prev-next"><i class="icon fa fa-chevron-left"></i></a>
+                    <div class="specific-gift-header-details">
+                        <div class="specific-gift-header-details-thumb">
+                            <img src="<%= foundGift.user.profilePic || '/assets/img/user.png' %>" alt="">
+                        </div>
+                        <div class="specific-gift-header-details-desc">
+                            <span>Gift Description:</span>
+                            <h4><%= foundGift.giftDescription %></h4>
+                        </div>
+                        <div class="specific-gift-header-details-desc">
+                            <span>Gift Order:</span>
+                            <h4>#<%= foundGift.giftNumber %></h4>
+                        </div>
+                        <div class="specific-gift-header-details-desc">
+                            <span>Date:</span>
+                            <h4><%= foundGift.date.toLocaleDateString() %></h4>
+                        </div>
                     </div>
-                    <div class="specific-gift-header-details-desc">
-                      <span>Gift Description:</span>
-                      <h4><%= foundGift.giftDescription %></h4>
-                    </div>
-                    <div class="specific-gift-header-details-desc">
-                      <span>Gift Order:</span>
-                      <h4>#<%= foundGift.giftNumber %></h4>
-                    </div>
-                    <div class="specific-gift-header-details-desc">
-                      <span>Date:</span>
-                      <h4><%= foundGift.date.toLocaleDateString() %></h4>
-                    </div>
-                  </div>
-                  <a href="#!" class="tab-prev-next"><i class="icon fa fa-chevron-right"></i></a>
+                    <a href="#!" class="tab-prev-next"><i class="icon fa fa-chevron-right"></i></a>
                 </header>
                 <div class="row specific-gift-user p-1">
-                  <div class="col-xs-6 col-md-12 mt-2 mb-2">
-                    <span>Sender:</span>
-                    <h4><%= foundGift.senderFirstName + ' ' + foundGift.senderLastName  %></h4>
-                  </div>
-                  <div class="col-xs-6 col-md-4 mt-1 mb-1">
-                    <span>User:</span>
-                    <h4 class="text-primary"><%= foundGift.user.firstName + ' ' + foundGift.user.lastName %></h4>
-                  </div>
-                  <div class="col-xs-6 col-md-4 mt-1 mb-1">
-                    <span>Alias:</span>
-                    <h4><%= foundGift.user.aliasFirstName + ' ' + foundGift.user.aliasLastName %></h4>
-                  </div>
-                  <div class="col-xs-6 col-md-4 mt-1 mb-1">
-                    <span>Your preferred payment:</span>
-                    <div class="prefered-payment-icons">
-                        <% if (foundGift.user.preferredPaymentMethod === 'paypal') { %>
-                        <i class="fa fa-paypal text-primary"></i>
-                        <span class="text-primary">Paypal</span>
-                        <% } else if (foundGift.user.preferredPaymentMethod === 'check') { %>
-                        <i class="fa fa-bank text-primary"> </i>
-                        <span class="text-primary">Check</span>
-                        <% } else if (foundGift.user.preferredPaymentMethod === 'deposit') { %>
-                        <i class="fa fa-dollar text-primary"> </i>
-                        <span class="text-primary">Deposit</span>
-                        <% } else { %>
-                        <i class="fa fa-ban text-primary"> </i>
-                        <span class="text-primary"> Not Yet Set!</span>
-                        <% }  %>
+                    <div class="col-xs-6 col-md-12 mt-2 mb-2">
+                        <span>Sender:</span>
+                        <h4><%= foundGift.senderFirstName + ' ' + foundGift.senderLastName %></h4>
                     </div>
-                  </div>
+                    <div class="col-xs-6 col-md-4 mt-1 mb-1">
+                        <span>User:</span>
+                        <h4 class="text-primary"><%= foundGift.user.firstName + ' ' + foundGift.user.lastName %></h4>
+                    </div>
+                    <div class="col-xs-6 col-md-4 mt-1 mb-1">
+                        <span>Alias:</span>
+                        <h4><%= foundGift.user.aliasFirstName + ' ' + foundGift.user.aliasLastName %></h4>
+                    </div>
+                    <div class="col-xs-6 col-md-4 mt-1 mb-1">
+                        <span>Your preferred payment:</span>
+                        <div class="prefered-payment-icons">
+                            <% if (foundGift.user.preferredPaymentMethod === 'paypal') { %>
+                            <i class="fa fa-paypal text-primary"></i>
+                            <span class="text-primary">Paypal</span>
+                            <% } else if (foundGift.user.preferredPaymentMethod === 'check') { %>
+                            <i class="fa fa-bank text-primary"> </i>
+                            <span class="text-primary">Check</span>
+                            <% } else if (foundGift.user.preferredPaymentMethod === 'deposit') { %>
+                            <i class="fa fa-dollar text-primary"> </i>
+                            <span class="text-primary">Deposit</span>
+                            <% } else { %>
+                            <i class="fa fa-ban text-primary"> </i>
+                            <span class="text-primary"> Not Yet Set!</span>
+                            <% } %>
+                        </div>
+                    </div>
                 </div>
                 <div class="row specific-gift-specs p-1">
-                  <div class="col-xs-6 col-md-3 bg-purple-light p-1">
-                    <span>Amount:</span>
-                    <h4 class="text-primary">$<%= foundGift.giftAmount %></h4>
-                  </div>
-                  <div class="col-xs-6 col-md-3 bg-purple-light p-1">
-                    <span>Passcode:</span>
-                    <h4 class="text-primary"><%= foundGift.passCode %></h4>
-                  </div>
-                  <div class="col-xs-6 col-md-3 bg-purple-light p-1">
-                    <span>Gift Code:</span>
-                    <h4 class="text-primary"><%= foundGift.giftCode %></h4>
-                  </div>
-                  <div class="col-xs-6 col-md-3 bg-purple-light p-1">
-                    <span>Redeem Code:</span>
-                    <h4 class="text-primary"><%= foundGift.redeemCode %></h4>
-                  </div>
-                  <div class="col-xs-12 bg-purple-light">
-                    <span class="row p-1 bg-white">This is the message received with the gift:</span>
-                    <p class="message pt-1 pb-1">Bacon ipsum dolor amet tenderloin fatback beef ribs boudin meatball beef, bresaola chuck shankle. Ball tip strip steak cupim shoulder fatback meatloaf drumstick turducken. Pork belly biltong ham tail short loin prosciutto short ribs corned beef venison sirloin filet mignon pastrami. Spare ribs chuck tenderloin corned beef venison cupim short ribs t-bone kielbasa capicola drumstick frankfurter ham hock shank meatloaf. Porchetta ball tip jerky, biltong pig pork beef ribs drumstick. Fatback beef ribs chicken, leberkas shoulder venison prosciutto andouille shank capicola chuck bacon kielbasa kevin t-bone.</p>
-                  </div>
+                    <div class="col-xs-6 col-md-3 bg-purple-light p-1">
+                        <span>Amount:</span>
+                        <h4 class="text-primary">$<%= foundGift.giftAmount %></h4>
+                    </div>
+                    <div class="col-xs-6 col-md-3 bg-purple-light p-1">
+                        <span>Passcode:</span>
+                        <h4 class="text-primary"><%= foundGift.passCode %></h4>
+                    </div>
+                    <div class="col-xs-6 col-md-3 bg-purple-light p-1">
+                        <span>Gift Code:</span>
+                        <h4 class="text-primary"><%= foundGift.giftCode %></h4>
+                    </div>
+                    <div class="col-xs-6 col-md-3 bg-purple-light p-1">
+                        <span>Redeem Code:</span>
+                        <h4 class="text-primary"><%= foundGift.redeemCode %></h4>
+                    </div>
+                    <% if(foundGift.giftMessage === undefined) { %>
+                    <div class="container empty-state">
+                        <i class="icon fa fa-gift"></i>
+                        <h1>No Message was sent with this gift</h1>
+                    </div>
+                    <% } else { %>
+                    <div class="col-xs-12 bg-purple-light">
+                        <span class="row p-1 bg-white">This is the message received with the gift:</span>
+                        <p class="message pt-1 pb-1"><%= foundGift.giftMessage %></p>
+                    </div>
+                    <% } %>
+
                 </div>
             </main>
         </div>
