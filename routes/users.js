@@ -111,7 +111,7 @@ router.get(
   (req, res, next) => {
 
     const query = {
-      user: req.user._id
+      user: req.params.id
     };
 
     Gift
