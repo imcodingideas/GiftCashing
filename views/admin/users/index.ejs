@@ -25,20 +25,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <% if(!users || users.length < 1) { %>
-                <tr>
-                    <td>
-                        <h1>No users were found based on that query</h1>
-                    </td>
-                </tr>
-                <% } %>
                 <% users.forEach(function (user) { %>
                 <tr>
                   <td><input type="checkbox" class="check"></td>
                   <td>
                     <div class="chip-user d-flex flex-items-md-middle">
                       <div class="chip-user__img mr-1">
-                        <img src="https://s.gravatar.com/avatar/0a07df079fd7a07e4cd0e5668835296c?s=80" alt="" class="img-circle">
+                        <img src="/assets/img/admin.png" alt="" class="img-circle">
                       </div>
                       <div class="chip-user__name">
                         <span class="real-name d-block"><%= user.firstName + ' ' + user.lastName %></span>
@@ -54,6 +47,12 @@
                 <% }) %>
                 </tbody>
             </table>
+            <% if(!users || users.length < 1) { %>
+            <div class="container empty-state">
+              <i class="icon fa fa-users"></i>
+              <h1>No users were found based on that query</h1>
+            </div>
+            <% } %>
           </main>
         </div>
     </div>

@@ -21,7 +21,6 @@ a {
 
 .navbar-static-top {
   background-color: $purple;
-  height: 78px;
   border-radius: 0;
   a {
     color: $white;
@@ -35,21 +34,16 @@ a.nav-link {
 }
 
 .jumbotron {
-  height: 359px;
-  -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  border-radius: 0;
-  background: url(/assets/img/hero.png) no-repeat top;
+  min-height: 360px;
+  background-image: url(/assets/img/hero.jpg);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  background-color: $purple;
 }
-
 .btn {
   text-transform: uppercase;
+  white-space: normal;
 }
 .btn.btn-outline-secondary.btn-lg {
   color: $white;
@@ -283,3 +277,4 @@ tr.row {
 @import "components/user";
 @import "components/nav";
 @import "components/basics";
+@import "components/emptystate";

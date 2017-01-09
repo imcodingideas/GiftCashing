@@ -63,4 +63,8 @@ $(document).ready(function () {
       .html(selectedAction + '<span class="caret"></span>');
   });
 
+  $('.toggle-nav').on('click', () => {
+    $('.navbar-nav').toggleClass('show');
+  });
+
 });

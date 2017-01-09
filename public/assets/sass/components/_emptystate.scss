@@ -1,0 +1,24 @@
+.empty-state {
+  text-align: center;
+  padding: 4rem;
+}
+
+.empty-state i.icon {
+  width: 150px;
+  height: 150px;
+  color: $purple;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  margin: 2rem auto;
+  background: #fafafa;
+  padding: 2rem;
+  border-radius: 50%;
+}
+
+.empty-state h1 {
+  font-size: 28px;
+  color: $purple;
+  font-weight: 300;
+}

@@ -1,5 +1,51 @@
 .navbar {
   box-shadow: 0 10px 20px rgba($grey, 0.1);
+  margin-bottom: -2px;
+  .toggle-nav{
+    display: none;
+    padding: 16px;
+  }
+  ul {
+    display: block;
+
+    li {
+
+    }
+  }
+}
+@media (max-width: 768px){
+  .navbar {
+
+    .toggle-nav{
+      display: block;
+
+    }
+    .container {
+      margin: 0;
+      display: table;
+      padding: 0;
+      width: 100%;
+    }
+    ul {
+      display: none;
+
+      &.show {
+        display: block;
+      }
+      li {
+        float: none;
+        display: block;
+        width: 100%;
+        margin-left: 0 !important;
+
+        a{
+          padding: 16px 0 !important;
+        }
+
+      }
+    }
+  }
+
 }
 
 .sidebar {

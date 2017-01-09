@@ -27,13 +27,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <% if(!gifts || gifts.length < 1) { %>
-                    <tr>
-                        <td>
-                            <h1>No gifts to show</h1>
-                        </td>
-                    </tr>
-                    <% } %>
                     <% gifts.forEach((gift) => { %>
                     <tr>
                         <td><input type="checkbox" class="check"></td>
@@ -41,7 +34,7 @@
                             <div class="chip-user d-flex flex-items-md-middle">
                                 <div class="chip-user__img mr-1">
                                     <a href="/admin/users/<%= gift.user._id %>/gifts/<%= gift._id %>">
-                                    <img src="https://s.gravatar.com/avatar/0a07df079fd7a07e4cd0e5668835296c?s=80"
+                                    <img src="/assets/img/admin.png"
                                          class="img-circle"></a>
                                 </div>
                                 <div class="chip-user__name">
@@ -68,6 +61,12 @@
                     <% }) %>
                     </tbody>
                 </table>
+                <% if(!gifts || gifts.length < 1) { %>
+                <div class="container empty-state">
+                  <i class="icon fa fa-gift"></i>
+                  <h1>No gifts to show</h1>
+                </div>
+                <% } %>
             </main>
         </div>
     </div>
