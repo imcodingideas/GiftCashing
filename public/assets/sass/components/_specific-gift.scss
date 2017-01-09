@@ -1,0 +1,49 @@
+.specific-gift-header {
+    background-color: $purple-light;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+
+    .tab-prev-next {
+      font-size: 28px;
+      color: $purple;
+      width: 80px;
+      height: 80px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &-details {
+      width: auto;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      flex-grow: 1;
+      border-right: 2px solid white;
+      border-left: 2px solid white;
+      &-desc {
+        margin: 10px;
+        margin-right: auto;
+
+        span {
+
+        }
+
+        h4 {
+          color: $purple;
+          font-weight: 600;
+          margin: 0;
+        }
+      }
+
+      &-thumb {
+        width: 60px;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+}

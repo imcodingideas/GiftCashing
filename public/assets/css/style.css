@@ -7729,6 +7729,12 @@ tr.row {
 .bg-grey {
   background-color: #EDEDED; }
 
+.bg-white {
+  background-color: white; }
+
+.bg-purple-light {
+  background-color: #F6F4FB; }
+
 .text-primary {
   color: #8E44AD; }
 
@@ -7756,3 +7762,37 @@ tr.row {
   font-size: 28px;
   color: #8E44AD;
   font-weight: 300; }
+
+.specific-gift-header {
+  background-color: #F6F4FB;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0; }
+  .specific-gift-header .tab-prev-next {
+    font-size: 28px;
+    color: #8E44AD;
+    width: 80px;
+    height: 80px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center; }
+  .specific-gift-header-details {
+    width: auto;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    flex-grow: 1;
+    border-right: 2px solid white;
+    border-left: 2px solid white; }
+    .specific-gift-header-details-desc {
+      margin: 10px;
+      margin-right: auto; }
+      .specific-gift-header-details-desc h4 {
+        color: #8E44AD;
+        font-weight: 600;
+        margin: 0; }
+    .specific-gift-header-details-thumb {
+      width: 60px; }
+      .specific-gift-header-details-thumb img {
+        width: 100%; }
