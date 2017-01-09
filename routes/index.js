@@ -82,7 +82,7 @@ router.post(
         passport
           .authenticate('local')(req, res, () => {
             req.flash('success', 'Welcome to GiftCashing' + user.firstName);
-            res.redirect('/dashboard');
+            res.redirect('/dashboard/received');
           });
 
       });
