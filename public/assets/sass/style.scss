@@ -287,3 +287,55 @@ tr.row {
 td.user-gift {
     visibility: hidden;
 }
+
+.gift-received, .share-messages {
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.15);
+  border-radius: 4px;
+}
+
+.share-messages {
+  display: flex;
+  align-items: center;
+}
+
+.social-link {
+  display: block;
+  text-align: center;
+  opacity: 0.8;
+  transition: 0.2s all ease-in;
+
+  i {
+    margin: 0 auto;
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: $purple;
+    margin-bottom: 8px;
+
+    &.fa-twitter {
+      background-color: #1da1f2;
+    }
+
+    &.fa-facebook {
+      background-color: #3b5998;
+    }
+  }
+  span {
+    &.twitter {
+      color: #1da1f2;
+    }
+    &.facebook {
+      color: #3b5998;
+    }
+  }
+
+  &:hover {
+    text-decoration: none;
+    opacity: 1;
+  }
+}

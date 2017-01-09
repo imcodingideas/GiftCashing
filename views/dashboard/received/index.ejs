@@ -15,17 +15,29 @@
             <main>
                 <% include ../../partials/dashboard/controller %>
                 <% gifts.forEach((gift) => { %>
-                <div class="row">
-                    <div class="col-md-12">
-                        <span><%= gift.giftNumber %></span>
-                        <span><%= gift.giftAmount %></span>
-                        <span><%= gift.giftDescription %></span>
-                        <span><%= gift.giftAmount %></span>
-                        <span><%= gift.giftCode %></span>
-                        <span><%= gift.senderFirstName %></span>
-                        <span><%= gift.senderLastName %></span>
-                        <span><%= gift.giftMessage %></span>
-                    </div>
+                <div class="row bg-purple-light mb-1 p-1 gift-received">
+                  <div class="col-xs-12 col-md-1 p-2">
+                    <input type="checkbox" class="check">
+                  </div>
+                  <div class="col-xs-12 col-md-5">
+                    <h5 class="text-bold text-primary"><%= gift.giftDescription %></h5>
+                    <!-- Remove the first paragraph when this works -->
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta eius impedit error eligendi, blanditiis quos harum recusandae doloribus quam, deserunt illum obcaecati, ducimus laborum.</p>
+                    <p><%= gift.giftMessage %></p>
+                  </div>
+                  <div class="col-xs-12 col-md-3">
+                    <span>Ammount: <strong class="text-primary">$<%= gift.giftAmount %></strong></span>
+                    <p class="mt-1 mb-0">Sent by:</p>
+                    <strong class="text-primary"><%= gift.senderFirstName %></strong>
+                    <strong class="text-primary"><%= gift.senderLastName %></strong>
+                    <button class="btn btn-outline-primary btn-sm d-block mt-1 full-width">Decline</button>
+                  </div>
+                  <div class="col-xs-12 col-md-3">
+                    <span>Date: <strong class="text-primary">29/10/2018</strong></span>
+                    <p class="mt-1 mb-0">Gift #:</p>
+                    <strong class="text-primary"><%= gift.giftNumber %></strong>
+                    <a class="btn btn-primary btn-sm d-block mt-1 full-width" href="#" data-toggle="modal" data-target="#acceptGiftModal">Accept</a>
+                  </div>
                 </div>
                 <% }) %>
             </main>
@@ -33,4 +45,5 @@
     </div>
 </div>
 <% include ../../partials/contact %>
+<% include ../../partials/acceptgift %>
 <% include ../../partials/footer %>

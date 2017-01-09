@@ -7724,7 +7724,10 @@ tr.row {
   color: #8E44AD !important; }
 
 .text-bold {
-  font-weight: 400; }
+  font-weight: 500; }
+
+.text-light {
+  font-weight: 300; }
 
 .bg-grey {
   background-color: #EDEDED; }
@@ -7740,6 +7743,9 @@ tr.row {
 
 .margin-center {
   margin: 0 auto; }
+
+.full-width {
+  width: 100%; }
 
 .empty-state {
   text-align: center;
@@ -7802,3 +7808,40 @@ tr.row {
 
 td.user-gift {
   visibility: hidden; }
+
+.gift-received, .share-messages {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+  border-radius: 4px; }
+
+.share-messages {
+  display: flex;
+  align-items: center; }
+
+.social-link {
+  display: block;
+  text-align: center;
+  opacity: 0.8;
+  transition: 0.2s all ease-in; }
+  .social-link i {
+    margin: 0 auto;
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #8E44AD;
+    margin-bottom: 8px; }
+    .social-link i.fa-twitter {
+      background-color: #1da1f2; }
+    .social-link i.fa-facebook {
+      background-color: #3b5998; }
+  .social-link span.twitter {
+    color: #1da1f2; }
+  .social-link span.facebook {
+    color: #3b5998; }
+  .social-link:hover {
+    text-decoration: none;
+    opacity: 1; }
