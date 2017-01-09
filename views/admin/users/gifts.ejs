@@ -33,7 +33,7 @@
                         <td class="user-gift">
                             <div class="chip-user d-flex flex-items-md-middle">
                                 <div class="chip-user__img mr-1">
-                                    <a href="/admin/users/<%= gift.user._id %>/gifts/<%= gift._id %>">
+                                    <a href="/dashboard/profile/<%= gift.user._id %>/edit">
                                     <img src="<%= gift.user.profilePic || '/assets/img/user.png' %>"
                                          class="img-circle"></a>
                                 </div>
@@ -47,7 +47,11 @@
                         </td>
                         <td><input type="checkbox" class="check"></td>
                         <td class="text-primary text-bold"><%= gift.giftDescription %></td>
-                        <td class="text-primary text-bold">#<%= gift.giftCode %></td>
+                        <td class="text-primary text-bold">
+                            <a href="/admin/users/<%= gift.user._id %>/gifts/<%= gift._id %>">
+                                #<%= gift.giftCode %>
+                            </a>
+                        </td>
                         <td>11/28/2016</td>
                         <% if (gift.user.preferredPaymentMethod === 'paypal') { %>
                         <td><i class="fa fa-cc-paypal"></i></td>
