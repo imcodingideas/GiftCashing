@@ -7845,3 +7845,10 @@ td.user-gift {
   .social-link:hover {
     text-decoration: none;
     opacity: 1; }
+
+.link-actions a {
+  color: #6B6B6B;
+  font-size: 24px;
+  margin: 0 10px; }
+  .link-actions a:hover {
+    color: #8E44AD; }

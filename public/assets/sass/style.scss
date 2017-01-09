@@ -339,3 +339,13 @@ td.user-gift {
     opacity: 1;
   }
 }
+
+.link-actions a {
+    color: $grey;
+    font-size: 24px;
+    margin: 0 10px;
+
+    &:hover {
+      color: $purple;
+    }
+}
