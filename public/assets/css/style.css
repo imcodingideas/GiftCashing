@@ -7796,3 +7796,9 @@ tr.row {
       width: 60px; }
       .specific-gift-header-details-thumb img {
         width: 100%; }
+
+.gift-list-content-by-user tr:first-child .user-gift:first-child {
+  visibility: visible; }
+
+td.user-gift {
+  visibility: hidden; }

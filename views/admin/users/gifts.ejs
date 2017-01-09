@@ -18,19 +18,19 @@
                 <table class="table">
                     <thead class="thead-inverse">
                     <tr>
-                        <th></th>
                         <th>User</th>
+                        <th></th>
                         <th>Gift Description</th>
                         <th>Order</th>
                         <th>Date</th>
                         <th>Payment</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="gift-list-content-by-user">
                     <% gifts.forEach((gift) => { %>
-                    <tr>
-                        <td><input type="checkbox" class="check"></td>
-                        <td>
+                    <tr class="gift-list-item">
+
+                        <td class="user-gift">
                             <div class="chip-user d-flex flex-items-md-middle">
                                 <div class="chip-user__img mr-1">
                                     <a href="/admin/users/<%= gift.user._id %>/gifts/<%= gift._id %>">
@@ -45,6 +45,7 @@
                                 </div>
                             </div>
                         </td>
+                        <td><input type="checkbox" class="check"></td>
                         <td class="text-primary text-bold"><%= gift.giftDescription %></td>
                         <td class="text-primary text-bold">#<%= gift.giftCode %></td>
                         <td>11/28/2016</td>
