@@ -11,41 +11,35 @@ const express = require('express'),
   middleware = require('../middleware');
 
 /* GET users listing. */
-router.get('/admin/users', middleware.isLoggedIn, (req, res, next) => {
+router.get('/admin/users',
+  middleware.isLoggedIn,
+  (req, res, next) => {
+    let query = {};
 
-  if (req.query.search) {
-    let fuzzy = new RegExp(req.query.search, 'gi');
+    switch (req.query.search) {
+      default :
+        query = {username: new RegExp(req.query.search, 'gi')};
+        break;
+    }
+
     User
-      .find({username: fuzzy},
-        (err, allUsers) => {
-          if (err) {
-            req.flash('error', err.message);
-          }
-
-          res.render(
-            'admin/users/index', {
-              users: allUsers,
-              title: 'Search Results',
-              breadcrumbsName: 'Users'
-            });
-        });
-  }
-  // get all users from db
-  User
-    .find({},
-      (err, allUsers) => {
+      .find(query)
+      .populate('gift')
+      .exec((err, allUsers) => {
         if (err) {
           req.flash('error', err.message);
         }
 
+        console.log(req.query)
+
         res.render(
           'admin/users/index', {
             users: allUsers,
-            title: 'All Users',
+            title: 'Users',
             breadcrumbsName: 'Users'
           });
       });
-});
+  });
 
 // update user
 router.put(
