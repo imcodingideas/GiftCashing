@@ -3,10 +3,12 @@
 <aside class="col-md-2 admin-sidebar">
     <div class="current-user t-center">
         <figure class="current-user__img">
-            <img src="<%= currentUser.profilePic || '/assets/img/user.png' %>" alt="" class="img-circle">
+            <img src="<%= currentUser.profilePic || '/assets/img/user.png' %>" class="img-circle">
         </figure>
         <div class="current-user__name d-block">
-            <a href="/dashboard/profile/<%= currentUser._id %>/edit"><%= currentUser.firstName + ' ' + currentUser.lastName %></a>
+            <a href="/dashboard/profile/<%= currentUser._id %>/edit">
+                <%= currentUser.firstName + ' ' + currentUser.lastName %>
+            </a>
         </div>
         <span class="current-user__role d-block">Admin view</span>
         <a href="/admin/gifts/new" class="btn btn-primary">Create Gift</a>
@@ -22,18 +24,21 @@
 <!--admin sidebar-->
 
 <% } else { %>
-
 <!--user sidebar-->
 <aside class="col-md-2 admin-sidebar">
     <div class="current-user t-center">
         <figure class="current-user__img">
-            <img src="<%= currentUser.profilePic || '/assets/img/user.png' %>" alt="" class="img-circle">
+            <img src="<%= currentUser.profilePic || '/assets/img/user.png' %>" class="img-circle">
         </figure>
         <div class="current-user__name d-block">
-            <a href="/dashboard/profile/<%= currentUser._id %>/edit"><%= currentUser.firstName + ' ' + currentUser.lastName %></a>
+            <a href="/dashboard/profile/<%= currentUser._id %>/edit">
+                <%= currentUser.firstName + ' ' + currentUser.lastName %>
+            </a>
         </div>
         <div class="current-user__name d-block">
-            <span class="current-user__role d-block"><%= currentUser.aliasFirstName + ' ' + currentUser.aliasLastName %></span>
+            <span class="current-user__role d-block">
+                <%= currentUser.aliasFirstName + ' ' + currentUser.aliasLastName %>
+            </span>
         </div>
         <a href="/dashboard/share/" class="btn btn-primary">Share</a>
     </div>

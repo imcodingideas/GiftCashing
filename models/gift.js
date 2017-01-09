@@ -18,7 +18,7 @@ const statusSchema = {
   paid: Types.Boolean
 };
 
-const schema = new Schema({
+const GiftSchema = new Schema({
   user: {
     type: Types.ObjectId,
     ref: 'User',
@@ -49,4 +49,4 @@ const schema = new Schema({
   giftMessage: Types.String
 });
 
-module.exports = mongoose.model('Gift', schema);
+module.exports = mongoose.model('Gift', GiftSchema);

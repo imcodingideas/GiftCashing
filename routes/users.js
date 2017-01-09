@@ -30,8 +30,6 @@ router.get('/admin/users',
           req.flash('error', err.message);
         }
 
-        console.log(req.query)
-
         res.render(
           'admin/users/index', {
             users: allUsers,
@@ -141,8 +139,6 @@ router.get(
         if (err) {
           req.flash('error', err.message);
         }
-
-        console.log(foundGift);
 
         res.render('admin/gifts/show', {
           title: 'Received Gift',
