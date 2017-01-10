@@ -67,10 +67,6 @@ const UserSchema = new mongoose.Schema({
   }
 });
 
-UserSchema.virtual('fullName').get(function () {
-  console.log(this)
-});
-
 UserSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('User', UserSchema);

@@ -50,9 +50,7 @@ router.post(
 
         if (err) {
           req.flash('error', err.message);
-          return res.render('register', {
-            title: 'Review Gifts'
-          });
+          res.redirect('back');
         }
 
         // Send the Welcome Email
@@ -101,7 +99,8 @@ router.get(
 router.post(
   '/login',
   passport.authenticate('local', {
-    failureRedirect: '/login'
+    failureRedirect: '/login',
+    failureFlash: true
   }), (req, res) => {
     if (req.user.isAdmin === true) {
       res.redirect('/admin/gifts?filter=review');
