@@ -89,4 +89,9 @@ router.get(
 
   });
 
+router.put('/:id/gifts/:gift_id',
+  (req, res) => {
+    res.send('Hello')
+  });
+
 module.exports = router;
