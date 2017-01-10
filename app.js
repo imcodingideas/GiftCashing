@@ -19,6 +19,7 @@ const
 const
   indexRoute = require('./routes/index'),
   usersRoute = require('./routes/users'),
+  profileRoute = require('./routes/profile'),
   giftsRoute = require('./routes/gifts.js'),
   searchRoute = require('./routes/search'),
   dashboardRoute = require('./routes/dashboard');
@@ -70,6 +71,7 @@ app.use(function (req, res, next) {
 
 app.use('/', indexRoute);
 app.use(usersRoute);
+app.use('/dashboard/profile', profileRoute);
 app.use('/admin/gifts', giftsRoute);
 app.use('/admin/search', searchRoute);
 app.use(dashboardRoute);
