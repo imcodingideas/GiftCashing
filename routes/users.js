@@ -11,7 +11,7 @@ const express = require('express'),
   middleware = require('../middleware');
 
 /* GET users listing. */
-router.get('/admin/users',
+router.get('/',
   middleware.isLoggedIn,
   (req, res, next) => {
     let query = {};
@@ -41,7 +41,7 @@ router.get('/admin/users',
 
 
 router.get(
-  '/admin/users/:id/gifts',
+  '/:id/gifts',
   middleware.isLoggedIn,
   (req, res, next) => {
 
@@ -68,7 +68,7 @@ router.get(
   });
 
 router.get(
-  '/admin/users/:id/gifts/:gift_id',
+  '/:id/gifts/:gift_id',
   middleware.isLoggedIn,
   (req, res, next) => {
 

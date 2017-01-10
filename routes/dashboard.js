@@ -11,7 +11,7 @@ const
   middleware = require('../middleware');
 
 router.get(
-  '/dashboard/gifts',
+  '/gifts',
   middleware.isLoggedIn,
   (req, res) => {
     let query = {};
@@ -62,7 +62,7 @@ router.get(
 
 
 router.get(
-  '/dashboard/share',
+  '/share',
   middleware.isLoggedIn,
   (req, res) => {
     User

@@ -70,11 +70,11 @@ app.use(function (req, res, next) {
 });
 
 app.use('/', indexRoute);
-app.use(usersRoute);
+app.use('/admin/users', usersRoute);
 app.use('/dashboard/profile', profileRoute);
 app.use('/admin/gifts', giftsRoute);
 app.use('/admin/search', searchRoute);
-app.use(dashboardRoute);
+app.use('/dashboard', dashboardRoute);
 
 mongoose.Promise = global.Promise;
 
