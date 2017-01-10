@@ -19,7 +19,7 @@
                     <a href="#!" class="tab-prev-next"><i class="icon fa fa-chevron-left"></i></a>
                     <div class="specific-gift-header-details">
                         <div class="specific-gift-header-details-thumb">
-                            <img src="<%= foundGift.user.profilePic || '/assets/img/user.png' %>">
+                            <img class="img-circle" src="<%= foundGift.user.profilePic || '/assets/img/user.png' %>">
                         </div>
                         <div class="specific-gift-header-details-desc">
                             <span>Gift Description:</span>
@@ -89,7 +89,7 @@
                     </div>
                     <% if(foundGift.giftMessage === undefined) { %>
                     <div class="container empty-state">
-                        <i class="icon fa fa-gift"></i>
+                        <i class="icon fa fa-envelope-open"></i>
                         <h1>No Message was sent with this gift</h1>
                     </div>
                     <% } else { %>
