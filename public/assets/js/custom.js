@@ -67,4 +67,12 @@ $(document).ready(function () {
     $('.navbar-nav').toggleClass('show');
   });
 
+  $('#acceptGiftModal').on('show.bs.modal', function (e) {
+    let button = $(e.relatedTarget);
+    let senderFirstName = button.data('whatever');
+
+    let modal = $(this);
+    modal.find('.modal-title').text('Say thanks to ' + senderFirstName)
+  });
+
 });
