@@ -72,7 +72,8 @@ $(document).ready(function () {
     let senderFirstName = button.data('whatever');
 
     let modal = $(this);
-    modal.find('.modal-title').text('Say thanks to ' + senderFirstName)
+    modal.find('.modal-title').text('Say thanks to ' + senderFirstName);
+    modal.find('#message-text').attr('placeholder', 'Hey, ' + senderFirstName + ' thanks for gift!');
   });
 
 });
