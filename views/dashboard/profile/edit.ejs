@@ -14,7 +14,7 @@
             <div class="row d-flex flex-items-md-between flex-items-md-middle mb-2 p-2">
                 <div class="chip-user d-flex flex-items-md-middle">
                     <div class="chip-user__img mr-1" onclick="$('#profile-pic-chooser').trigger('click');" role="button">
-                        <img id="profile-pic-show" src="<%= user.profilePic || '/assets/img/user.png' %>" class="img-circle hover-pointer">
+                        <img id="profile-pic-show" src="<%= '/assets/img/user.png' %>" class="img-circle hover-pointer">
                     </div>
                     <div class="chip-user__name">
                         <span class="real-name d-block text-primary text-bold"><%= user.firstName + ' ' + user.lastName %></span>
@@ -37,13 +37,13 @@
                         <% } else { %>
                         <i class="fa fa-ban text-primary"> </i>
                         <span class="text-primary"> Not Yet Set!</span>
-                        <% }  %>
+                        <% } %>
 
                     </div>
                 </div>
             </div>
 
-            <form action="/dashboard/profile/<%= user._id %>/?_method=PUT" method="POST">
+            <form enctype="multipart/form-data" action="/dashboard/profile/<%= user._id %>/?_method=PUT" method="POST">
                 <input type="file" id="profile-pic-chooser" class="hidden-xs-up"/>
                 <input type="hidden" id="profile-pic-data-url" name="user[profilePic]" class="hidden-xs-up"
                        value="<%= user.profilePic %>"/>
@@ -102,7 +102,8 @@
                         <div class="row mb-2">
                             <div class="col-sm-6 form-group">
                                 <label for="city">City</label>
-                                <input type="text" class="form-control" name="user[city]" id="city" value="<%= user.city %>">
+                                <input type="text" class="form-control" name="user[city]" id="city"
+                                       value="<%= user.city %>">
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label for="state">State</label>
@@ -166,7 +167,8 @@
                         <div class="row mb-2">
                             <div class="col-sm-6 form-group">
                                 <label for="zipCode">Zip Code</label>
-                                <input type="text" class="form-control" name="user[zipCode]" id="zipCode" value="<%= user.zipCode %>">
+                                <input type="text" class="form-control" name="user[zipCode]" id="zipCode"
+                                       value="<%= user.zipCode %>">
                             </div>
                         </div>
 
@@ -186,18 +188,33 @@
                         <div class="mb-2">
                             <p class="mt-1">Preferred Payment Method:</p>
                             <label class="form-check-inline">
-                                <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]" id="inlineRadio1"
-                                       value="paypal" <% if (user.preferredPaymentMethod === "paypal") { %> checked="checked" <% } %>>
+                                <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]"
+                                       id="inlineRadio1"
+                                       value="paypal"
+                                        <% if (user.preferredPaymentMethod === "paypal") { %>
+                                       checked="checked"
+                                        <% } %>
+                                >
                                 <i class="fa fa-paypal"> </i> PayPal
                             </label>
                             <label class="form-check-inline">
-                                <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]" id="inlineRadio2"
-                                       value="check" <% if (user.preferredPaymentMethod === "check") { %> checked="checked" <% } %>>
+                                <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]"
+                                       id="inlineRadio2"
+                                       value="check"
+                                        <% if (user.preferredPaymentMethod === "check") { %>
+                                       checked="checked"
+                                        <% } %>
+                                >
                                 <i class="fa fa-bank"> </i> Check
                             </label>
                             <label class="form-check-inline">
-                                <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]" id="inlineRadio3"
-                                       value="deposit" <% if (user.preferredPaymentMethod === "deposit") { %> checked="checked" <% } %>>
+                                <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]"
+                                       id="inlineRadio3"
+                                       value="deposit"
+                                        <% if (user.preferredPaymentMethod === "deposit") { %>
+                                       checked="checked"
+                                        <% } %>
+                                >
                                 <i class="fa fa-dollar"> </i> Deposit
                             </label>
                         </div>
@@ -223,14 +240,17 @@
                                         <div class="row">
                                             <div class="col-sm-6 form-group">
                                                 <label for="paypalEmail">Enter valid E-Mail</label>
-                                                <input type="email" class="form-control" id="paypalEmail" name="user[paypalEmail]"
-                                                       placeholder="name@domain.com" value="<%= user.paypalEmail || '' %>">
+                                                <input type="email" class="form-control" id="paypalEmail"
+                                                       name="user[paypalEmail]"
+                                                       placeholder="name@domain.com"
+                                                       value="<%= user.paypalEmail || '' %>">
                                             </div>
                                         </div>
                                         <div class="row mt-2">
                                             <div class="col-sm-6 form-group">
                                                 <label for="paypalEmailConfirmation">Confirm E-mail</label>
-                                                <input type="email" class="form-control" id="paypalEmailConfirmation" placeholder="name@domain.com" >
+                                                <input type="email" class="form-control" id="paypalEmailConfirmation"
+                                                       placeholder="name@domain.com">
                                             </div>
                                         </div>
                                     </div>
@@ -365,6 +385,26 @@
         </div>
     </div>
 </div>
+
+<script>
+    /* Profile Pic */
+    $('#profile-pic-chooser').change(function (e) {
+      console.log($(this).prop('files'));
+      let file = $(this).prop('files')[0];
+      let reader = new FileReader();
+
+      reader.addEventListener('load', function () {
+        $('#profile-pic-data-url').val(reader.result);
+        $('#profile-pic-show').attr('src', reader.result);
+         console.log(reader.result);
+      }, false);
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+
+    });
+</script>
 
 <% include ../../partials/contact %>
 <% include ../../partials/footer %>

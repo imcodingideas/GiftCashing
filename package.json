@@ -33,6 +33,7 @@
     "method-override": "^2.3.7",
     "mongoose": "^4.7.1",
     "morgan": "~1.7.0",
+    "multer": "^1.2.1",
     "node-sass": "^3.13.0",
     "nodemailer": "^2.7.0",
     "nodemailer-mailgun-transport": "^1.2.4",

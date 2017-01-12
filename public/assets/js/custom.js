@@ -12,19 +12,6 @@ $(document).ready(function () {
   $('#datefrom').datepicker();
   $('#dateto').datepicker();
 
-  /* Profile Pic */
-  $('#profile-pic-chooser').change((e) => {
-    let file = $(this).get(0).files[0];
-    let reader = new FileReader();
-    reader.addEventListener('load', () => {
-      $('#profile-pic-data-url').val(reader.result);
-      $('#profile-pic-show').attr('src', reader.result);
-    }, false);
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  });
-
   /* Select All */
   $('#checkAll').click(function () {
     $('.check').prop('checked',
