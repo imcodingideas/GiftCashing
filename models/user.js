@@ -67,7 +67,13 @@ const UserSchema = new mongoose.Schema({
   },
   notes: {
     type: Types.String
-  }
+  },
+  gifts: [{
+    type: Types.ObjectId,
+    ref: 'Gift',
+    required: true,
+    index: true
+  }]
 });
 
 UserSchema.plugin(passportLocalMongoose);
