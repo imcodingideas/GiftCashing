@@ -34,7 +34,7 @@
                             <div class="chip-user d-flex flex-items-md-middle">
                                 <div class="chip-user__img mr-1">
                                     <a href="/dashboard/profile/<%= gift.user._id %>/edit">
-                                    <img class="img-circle" src="<%= '/assets/img/user.png' %>"></a>
+                                    <img class="img-circle" src="<%= gift.user.profilePic || '/assets/img/user.png' %>"></a>
                                 </div>
                                 <div class="chip-user__name">
                           <span class="real-name d-block"><%= gift.user.firstName + ' '

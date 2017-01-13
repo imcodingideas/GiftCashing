@@ -19,25 +19,7 @@ const storage = multer.diskStorage({
       callback(null, req.params.id + file.originalname);
     }
   }),
-  upload = multer({storage: storage}).single('profilePic');
-
-// update user
-router.put(
-  '/',
-  middleware.isLoggedIn,
-  (req, res, next) => {
-    //find and update correct user
-    User
-      .findByIdAndUpdate(req.params.id, req.body.user, (err, updatedUser) => {
-        if (err) {
-          return req.flash('error', err.message);
-        }
-
-        res.redirect('/admin/users/' + req.params.id + '/edit', {
-          user: updatedUser
-        });
-      });
-  });
+  upload = multer({storage: storage});
 
 // Edit User
 router.get(
@@ -65,32 +47,22 @@ router.get(
 router.put(
   '/:id',
   middleware.isLoggedIn,
+  upload.single('pic'),
   (req, res, next) => {
-
     //find and update user
     User
       .findByIdAndUpdate(
         req.params.id, req.body.user,
         (err, updatedUser) => {
+
           if (err) {
             return req.flash('error', err.message);
           }
 
-          /**
-           * @todo figure out why updatedUser != req.body.user
-           */
-
-          upload(req, res, (err) => {
-            if (err) {
-              eval(locus);
-              return req.flash('error', err.message);
-            }
-            updatedUser = req.body.user;
-
-            //redirect show page
-            res.redirect('/dashboard/profile/' + req.params.id + '/edit');
-          });
+          //redirect show page
+          res.redirect('/dashboard/profile/' + req.params.id + '/edit');
         });
+
   });
 
 module.exports = router;
