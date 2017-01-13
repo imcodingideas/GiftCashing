@@ -27,11 +27,11 @@ const UserSchema = new mongoose.Schema({
   },
   aliasFirstName: {
     type: Types.String,
-    required: true
+    unique: true
   },
   aliasLastName: {
     type: Types.String,
-    required: true
+    unique: true
   },
   username: {
     type: Types.String,
