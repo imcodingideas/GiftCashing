@@ -62,8 +62,11 @@ const UserSchema = new mongoose.Schema({
     type: paymentPreference
   },
   lastLoginDate: {
-    type: Date,
+    type: Types.Date,
     default: Date.now
+  },
+  notes: {
+    type: Types.String
   }
 });
 

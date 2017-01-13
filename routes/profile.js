@@ -33,8 +33,6 @@ router.get(
           req.flash('error', err.message);
         }
 
-        console.log(foundUser);
-
         res.render('dashboard/profile/edit', {
           user: foundUser,
           title: 'Member Profile',
