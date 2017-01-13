@@ -11,6 +11,9 @@ $(document).ready(function () {
 
   $('#datefrom').datepicker();
   $('#dateto').datepicker();
+  $('#createGiftDate').datepicker({
+    dateFormat: 'mm-dd-yy'
+  }).datepicker('setDate', '0');
 
   /* Select All */
   $('#checkAll').click(function () {
@@ -19,13 +22,13 @@ $(document).ready(function () {
   });
 
   $('#userSearch').autocomplete({
-    source: (request, responce) => {
+    source: function (request, responce) {
       $.ajax({
         url: '/admin/search',
         type: 'GET',
         data: {aliasFirstName: request.term},
         success: (data) => {
-          responce($.map(data, (el) => {
+          responce($.map(data, function (el) {
             let fullName = el.aliasFirstName + ' ' + el.aliasLastName;
             return {
               label: fullName,
@@ -43,14 +46,14 @@ $(document).ready(function () {
 
   });
 
-  $('.dropdown-menu a').click(() => {
+  $('.dropdown-menu a').click(function () {
     let selectedAction = $(this).text();
     $(this).parents('.dropdown')
       .find('.dropdown-toggle')
       .html(selectedAction + '<span class="caret"></span>');
   });
 
-  $('.toggle-nav').on('click', () => {
+  $('.toggle-nav').on('click', function () {
     $('.navbar-nav').toggleClass('show');
   });
 
