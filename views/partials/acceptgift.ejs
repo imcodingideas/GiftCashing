@@ -1,25 +1,27 @@
 <div class="accept-gift">
-    <div class="modal fade" id="acceptGiftModal" tabindex="-1" role="dialog" aria-labelledby="acceptGiftModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="acceptGiftModalLabel"></h4>
-                </div>
-                <div class="modal-body">
-                    <form>
+    <div class="modal fade" id="acceptGiftModal" tabindex="-1" role="dialog" aria-labelledby="acceptGiftModalLabel"
+         aria-hidden="true">
+        <form action="" method="put">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="acceptGiftModalLabel"></h4>
+                    </div>
+                    <div class="modal-body">
                         <div class="form-group">
-                            <textarea class="form-control" id="message-text" rows="6" placeholder=""></textarea>
+                            <textarea class="form-control" id="message-text" name="message" rows="6"
+                                      placeholder=""></textarea>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">Accept</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Accept</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>

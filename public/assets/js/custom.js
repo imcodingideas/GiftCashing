@@ -57,13 +57,35 @@ $(document).ready(function () {
     $('.navbar-nav').toggleClass('show');
   });
 
-  $('#acceptGiftModal').on('show.bs.modal', function (e) {
+  let $acceptGiftModal = $('#acceptGiftModal');
+  $acceptGiftModal.on('show.bs.modal', function (e) {
     let button = $(e.relatedTarget);
-    let senderFirstName = button.data('whatever');
+    let senderFirstName = button.data('sender');
+    let id = button.data('id');
 
     let modal = $(this);
+    modal.find('form:first').attr('action', '/dashboard/gifts/' + id + '/accepted');
     modal.find('.modal-title').text('Say thanks to ' + senderFirstName);
     modal.find('#message-text').attr('placeholder', 'Hey, ' + senderFirstName + ' thanks for gift!');
+  });
+
+  $acceptGiftModal.find('form').submit(function (e) {
+    e.preventDefault();
+
+    let $this = $(this);
+
+    $.ajax({
+      url: $this.attr('action'),
+      type: $this.attr('method'),
+      data: $this.serializeArray(),
+      success: function (response) {
+        $acceptGiftModal.modal('hide');
+        window.location.reload();
+      },
+      error: function () {
+        alert('Oops exception happened. Please contact support.');
+      }
+    });
   });
 
 });

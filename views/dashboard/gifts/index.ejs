@@ -38,8 +38,9 @@
                         <span>Date: <strong class="text-primary"><%= gift.date.toLocaleDateString() %></strong></span>
                         <p class="mt-1 mb-0">Gift #:</p>
                         <strong class="text-primary"><%= gift.giftNumber %></strong>
-                        <a class="btn btn-primary btn-sm d-block mt-1 full-width" href="#" data-toggle="modal"
-                           data-target="#acceptGiftModal" data-whatever="<%= gift.senderFirstName %>">Accept</a>
+                        <a class="btn btn-primary btn-sm d-block mt-1 full-width" href="#" data-id="<%= gift._id %>"
+                           data-toggle="modal"
+                           data-target="#acceptGiftModal" data-sender="<%= gift.senderFirstName %>">Accept</a>
                     </div>
                 </div>
                 <% }) %>
