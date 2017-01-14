@@ -16,15 +16,15 @@ const
 router.get(
   '/',
   middleware.isLoggedIn,
-  (req, res, next) => {
+  (req, res) => {
     let query = {'status.review': true};
 
-    switch(req.query.filter) {
+    switch (req.query.filter) {
       case 'accepted-redeemed' :
-        query = { 'status.accepted': true };
+        query = {'status.accepted': true};
         break;
       case 'accepted-not-redeemed' :
-        query = { 'status.accepted': { $not: { $gt: true } }};
+        query = {'status.accepted': {$not: {$gt: true}}};
         break;
       case 'declined' :
         query = {'status.declined': true};
@@ -62,7 +62,7 @@ router.get(
 router.post(
   '/',
   middleware.isLoggedIn,
-  (req, res, next) => {
+  (req, res) => {
 
     // get data from form and add to gift array.
     let user = req.body.user,
@@ -95,7 +95,23 @@ router.post(
         if (err) {
           req.flash('error', err.message);
         }
-        res.redirect('/admin/created-gift');
+
+        if (!err) {
+          User.findByIdAndUpdate(
+            user,
+            {
+              $push: {
+                gifts: newlyCreated._id
+              }
+            },
+            (err, result) => {
+              if (err) {
+                req.flash('error', err.message);
+              }
+
+              res.redirect('/admin/created-gift');
+            })
+        }
       });
 
   });
@@ -103,7 +119,7 @@ router.post(
 router.get(
   '/new',
   middleware.isLoggedIn,
-  (req, res, next) => {
+  (req, res) => {
     res.render('admin/gifts/new', {
       title: 'New Gift',
       user: req.user,

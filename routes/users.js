@@ -13,7 +13,7 @@ const express = require('express'),
 /* GET users listing. */
 router.get('/',
   middleware.isLoggedIn,
-  (req, res, next) => {
+  (req, res) => {
     let query = {};
 
     switch (req.query.search) {
@@ -24,11 +24,21 @@ router.get('/',
 
     User
       .find(query)
-      .populate('gift')
+      .populate('gifts')
       .exec((err, allUsers) => {
         if (err) {
           req.flash('error', err.message);
         }
+
+        allUsers = allUsers.map(user => {
+          user.totalAmountOfGifts = 0;
+          if (user.gifts.length > 0) {
+            for (let gift of user.gifts) {
+              user.totalAmountOfGifts += gift.giftAmount;
+            }
+          }
+          return user;
+        });
 
         res.render(
           'admin/users/index', {
@@ -43,7 +53,7 @@ router.get('/',
 router.get(
   '/:id/gifts',
   middleware.isLoggedIn,
-  (req, res, next) => {
+  (req, res) => {
 
     const query = {
       user: req.params.id
@@ -70,7 +80,7 @@ router.get(
 router.get(
   '/:id/gifts/:gift_id',
   middleware.isLoggedIn,
-  (req, res, next) => {
+  (req, res) => {
 
     Gift
       .findById(req.params.gift_id)
@@ -89,6 +99,7 @@ router.get(
 
   });
 
+/* Update Gift listing. */
 router.put('/:id/gifts/:gift_id',
   (req, res) => {
     res.send('Hello')
