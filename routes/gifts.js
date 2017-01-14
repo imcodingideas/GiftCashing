@@ -21,10 +21,10 @@ router.get(
 
     switch(req.query.filter) {
       case 'accepted-redeemed' :
-        query = { 'status.accepted': { $not: { $gt: true } }};
+        query = { 'status.accepted': true };
         break;
       case 'accepted-not-redeemed' :
-        query = { 'status.accepted': { $not: { $gt: false } }};
+        query = { 'status.accepted': { $not: { $gt: true } }};
         break;
       case 'declined' :
         query = {'status.declined': true};
