@@ -23,8 +23,8 @@ router.get(
       case 'accepted-redeemed' :
         query = {'status.accepted': true};
         break;
-      case 'accepted-not-redeemed' :
-        query = {'status.accepted': {$not: {$gt: true}}};
+      case 'declined' :
+        query = {'status.declined': true};
         break;
       case 'pending' :
         query = {'status.pending': true};
