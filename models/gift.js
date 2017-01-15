@@ -13,7 +13,6 @@ const statusSchema = {
   accepted: Types.Boolean,
   declined: Types.Boolean,
   redeemed: Types.Boolean,
-  pending: Types.Boolean,
   paid: Types.Boolean
 };
 
