@@ -12,8 +12,6 @@ const statusSchema = {
   review: Types.Boolean,
   accepted: Types.Boolean,
   redeemed: Types.Boolean,
-  declined: Types.Boolean,
-  expired: Types.Boolean,
   pending: Types.Boolean,
   paid: Types.Boolean
 };
@@ -34,8 +32,6 @@ const GiftSchema = new Schema({
       accepted: false,
       redeemed: false,
       declined: false,
-      expired: false,
-      pending: false,
       paid: false
     }
   },
