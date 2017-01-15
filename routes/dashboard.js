@@ -29,6 +29,12 @@ router.get(
           'status.declined': true
         };
         break;
+      case 'pending' :
+        query = {
+          user: req.user._id,
+          'status.accepted': true
+        };
+        break;
       case 'paid' :
         query = {
           user: req.user._id,
