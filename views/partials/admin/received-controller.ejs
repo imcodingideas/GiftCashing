@@ -1,41 +1,47 @@
 <div class="row mt-1 mb-1 p-1 flex-items-md-between">
-    <div class="mr-1">
-        <form action="">
-            <div class="btn-group pl-1">
-                <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Actions
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=accept">
-                        <i class="fa fa-check" aria-hidden="true"></i> Accept</a>
-                    <a class="dropdown-item" href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=decline">
-                        <i class="fa fa-ban" aria-hidden="true"></i> Decline</a>
-                    <a class="dropdown-item" href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=paid">
-                        <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Paid</a>
-                    <a class="dropdown-item" href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=excel">
-                        <i class="fa fa-file-excel-o" aria-hidden="true"></i> Export to Excel</a>
-                    <a class="dropdown-item" href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=delete">
-                        <i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
-                </div>
-                <button type="button" class="ml-2 btn btn-sm btn-outline-primary">GO</button>
-            </div>
-        </form>
-    </div>
-    <div class="mr-1">
-        <span><em>Showing 5 of 30</em></span>
-    </div>
-    <div class="link-actions">
-      <a href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=decline">
-          <i class="icon fa fa-ban"></i></a>
-      <a href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=paid">
-          <i class="icon fa fa-cart-arrow-down"></i></a>
-      <a href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=excel">
-          <i class="icon fa fa-file-excel-o"></i></a>
-      <a href="#">
-          <i class="icon fa fa-chevron-left"></i></a>
-      <a href="#">
-          <i class="icon fa fa-chevron-right"></i></a>
-      <a href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=delete">
-          <i class="icon fa fa-trash-o"></i></a>
-    </div>
+  <div class="mr-1">
+    <form action="">
+      <div class="btn-group pl-1">
+        <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+          Actions
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item"
+             href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=accept">
+            <i class="fa fa-check" aria-hidden="true"></i> Accept</a>
+          <a class="dropdown-item"
+             href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=decline">
+            <i class="fa fa-ban" aria-hidden="true"></i> Decline</a>
+          <a class="dropdown-item" href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=paid">
+            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Paid</a>
+          <a class="dropdown-item" href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=excel">
+            <i class="fa fa-file-excel-o" aria-hidden="true"></i> Export to Excel</a>
+          <a class="dropdown-item"
+             href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=delete">
+            <i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
+        </div>
+        <button type="button" class="ml-2 btn btn-sm btn-outline-primary">GO</button>
+      </div>
+    </form>
+  </div>
+  <div class="mr-1">
+    <% if(pagination) { %>
+    <span><em>Showing <%= pagination.showing %> of <%= pagination.records %></em></span>
+    <% } %>
+  </div>
+  <div class="link-actions">
+    <a href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=decline">
+      <i class="icon fa fa-ban"></i></a>
+    <a href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=paid">
+      <i class="icon fa fa-cart-arrow-down"></i></a>
+    <a href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=excel">
+      <i class="icon fa fa-file-excel-o"></i></a>
+    <a href="#">
+      <i class="icon fa fa-chevron-left"></i></a>
+    <a href="#">
+      <i class="icon fa fa-chevron-right"></i></a>
+    <a href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=delete">
+      <i class="icon fa fa-trash-o"></i></a>
+  </div>
 </div>

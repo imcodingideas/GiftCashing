@@ -1,80 +1,108 @@
 <% include ../../partials/head.ejs %>
 <% include ../../partials/nav %>
 <div class="row bg-grey">
-    <div class="container">
-        <div class="col-md-10 offset-md-2">
-            <% include ../../partials/no-tabs %>
-        </div>
+  <div class="container">
+    <div class="col-md-10 offset-md-2">
+      <% include ../../partials/no-tabs %>
     </div>
+  </div>
 </div>
 <div class="container">
-    <div class="row">
-        <% include ../../partials/sidebar %>
-        <div class="col-md-10">
+  <div class="row">
+    <% include ../../partials/sidebar %>
+    <div class="col-md-10">
 
-            <main>
-                <% include ../../partials/admin/gift-controller %>
+      <main>
+        <% include ../../partials/admin/gift-controller %>
 
-                <table class="table">
-                    <thead class="thead-inverse">
-                    <tr>
-                        <th>User</th>
-                        <th></th>
-                        <th>Gift Description</th>
-                        <th>Order</th>
-                        <th>Date</th>
-                        <th>Payment</th>
-                    </tr>
-                    </thead>
-                    <tbody class="gift-list-content-by-user">
-                    <% gifts.forEach((gift) => { %>
-                    <tr class="gift-list-item">
+        <table class="table">
+          <thead class="thead-inverse">
+          <tr>
+            <th>User</th>
+            <th></th>
+            <th>Gift Description</th>
+            <th>Order</th>
+            <th>Date</th>
+            <th>Payment</th>
+          </tr>
+          </thead>
+          <tbody class="gift-list-content-by-user">
+          <% items.forEach((gift) => { %>
+          <tr class="gift-list-item">
 
-                        <td class="user-gift">
-                            <div class="chip-user d-flex flex-items-md-middle">
-                                <div class="chip-user__img mr-1">
-                                    <a href="/dashboard/profile/<%= gift.user._id %>/edit">
-                                    <img class="img-circle" src="<%= gift.user.profilePic || '/assets/img/user.png' %>"
-                                         class="img-circle"></a>
-                                </div>
-                                <div class="chip-user__name">
+            <td class="user-gift">
+              <div class="chip-user d-flex flex-items-md-middle">
+                <div class="chip-user__img mr-1">
+                  <a href="/dashboard/profile/<%= gift.user._id %>/edit">
+                    <img class="img-circle" src="<%= gift.user.profilePic || '/assets/img/user.png' %>"
+                         class="img-circle"></a>
+                </div>
+                <div class="chip-user__name">
                           <span class="real-name d-block"><%= gift.user.firstName + ' '
-                              + gift.user.lastName %></span>
-                                    <span class="alias-name d-block"><%= gift.user.aliasFirstName + ' '
-                                        + gift.user.aliasLastName %></span>
-                                </div>
-                            </div>
-                        </td>
-                        <td><input type="checkbox" class="check"></td>
-                        <td class="text-primary text-bold"><%= gift.giftDescription %></td>
-                        <td class="text-primary text-bold">
-                            <a href="/admin/users/<%= gift.user._id %>/gifts/<%= gift._id %>">
-                                #<%= gift.giftCode %>
-                            </a>
-                        </td>
-                        <td><%= gift.date.toLocaleDateString() %></td>
-                        <% if (gift.user.preferredPaymentMethod === 'paypal') { %>
-                        <td><i class="fa fa-cc-paypal"></i></td>
-                        <% } else if (gift.user.preferredPaymentMethod === 'check') { %>
-                        <td><i class="fa fa-bank text-primary"> </i></td>
-                        <% } else if (gift.user.preferredPaymentMethod === 'deposit') { %>
-                        <td><i class="fa fa-dollar text-primary"> </i></td>
-                        <% } else { %>
-                        <td><i class="fa fa-ban text-primary"> </i></td>
-                        <% } %>
-                    </tr>
-                    <% }) %>
-                    </tbody>
-                </table>
-                <% if(!gifts || gifts.length < 1) { %>
-                  <div class="container empty-state">
-                    <i class="icon fa fa-gift"></i>
-                    <h1>No gifts to show</h1>
-                  </div>
-                <% } %>
-            </main>
+                            + gift.user.lastName %></span>
+                  <span class="alias-name d-block"><%= gift.user.aliasFirstName + ' '
+                    + gift.user.aliasLastName %></span>
+                </div>
+              </div>
+            </td>
+            <td><input type="checkbox" class="check"></td>
+            <td class="text-primary text-bold"><%= gift.giftDescription %></td>
+            <td class="text-primary text-bold">
+              <a href="/admin/users/<%= gift.user._id %>/gifts/<%= gift._id %>">
+                #<%= gift.giftCode %>
+              </a>
+            </td>
+            <td><%= gift.date.toLocaleDateString() %></td>
+            <% if (gift.user.preferredPaymentMethod === 'paypal') { %>
+            <td><i class="fa fa-cc-paypal"></i></td>
+            <% } else if (gift.user.preferredPaymentMethod === 'check') { %>
+            <td><i class="fa fa-bank text-primary"> </i></td>
+            <% } else if (gift.user.preferredPaymentMethod === 'deposit') { %>
+            <td><i class="fa fa-dollar text-primary"> </i></td>
+            <% } else { %>
+            <td><i class="fa fa-ban text-primary"> </i></td>
+            <% } %>
+          </tr>
+          <% }) %>
+          </tbody>
+        </table>
+        <% if(!items || items.length < 1) { %>
+        <div class="container empty-state">
+          <i class="icon fa fa-gift"></i>
+          <h1>No gifts to show</h1>
         </div>
+        <% } %>
+      </main>
+
+      <pagination>
+        <% if(pagination.pages > 1) { %>
+        <ul class="pagination">
+          <li class="page-item <%= (query.page == 1) ? 'disabled' : '' %>">
+            <a href="/admin/users/<%= user._id %>/gifts?filter=<%= query.filter %>&page=1" class="page-link"> << </a>
+          </li>
+          <li class="page-item <%= (query.page == 1) ? 'disabled' : '' %>">
+            <a href="/admin/users/<%= user._id %>/gifts?filter=<%= query.filter %>&page=<%= (query.page > 1)? query.page-1 : 1 %>" class="page-link"> < </a>
+          </li>
+
+          <% for(let page = 1; page <= pagination.pages; page++) { %>
+          <li class="page-item <%= (query.page == page)? 'active' : '' %>">
+            <a href="/admin/users/<%= user._id %>/gifts?filter=<%= query.filter %>&page=<%= page %>" class="page-link">
+              <%= page %>
+            </a>
+          </li>
+          <% } %>
+
+          <li class="page-item <%= (query.page >= pagination.pages) ? 'disabled' : '' %>">
+            <a href="/admin/users/<%= user._id %>/gifts?filter=<%= query.filter %>&page=<%= (query.page < pagination.pages)? query.page+1 : pagination.pages %>" class="page-link"> > </a>
+          </li>
+          <li class="page-item <%= (query.page >= pagination.pages) ? 'disabled' : '' %>">
+            <a href="/admin/users/<%= user._id %>/gifts?filter=<%= query.filter %>&page=<%= pagination.pages %>" class="page-link"> >> </a>
+          </li>
+        </ul>
+        <% } %>
+      </pagination>
     </div>
+  </div>
 </div>
 <% include ../../partials/contact %>
 <% include ../../partials/footer %>

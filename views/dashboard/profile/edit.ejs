@@ -1,423 +1,552 @@
 <% include ../../partials/head %>
 <% include ../../partials/nav %>
 <div class="row bg-grey">
-    <div class="container">
-        <div class="col-md-10 offset-md-2">
-            <% include ../../partials/user-profile-tabs %>
-        </div>
+  <div class="container">
+    <div class="col-md-10 offset-md-2">
+      <% include ../../partials/user-profile-tabs %>
     </div>
+  </div>
 </div>
 <div class="container">
-    <div class="row">
-        <% include ../../partials/sidebar %>
-        <div class="offset-md-1 col-md-6 pt-2">
-            <div class="row d-flex flex-items-md-between flex-items-md-middle mb-2 p-2">
-                <div class="chip-user d-flex flex-items-md-middle">
-                    <div class="chip-user__img mr-1" onclick="$('#profile-pic-chooser').trigger('click');"
-                         role="button">
-                        <img id="profile-pic-show" src="<%= user.profilePic || '/assets/img/user.png' %>"
-                             class="img-circle hover-pointer">
-                    </div>
-                    <div class="chip-user__name">
-                        <span class="real-name d-block text-primary text-bold"><%= user.firstName + ' ' + user.lastName %></span>
-                        <span class="alias-name d-block text-bold"><%= user.aliasFirstName + ' ' + user.aliasLastName %></span>
-                    </div>
-                </div>
-                <div class="prefered-payment">
-                    <span class="d-block">Your preferred payment</span>
-                    <div class="prefered-payment-icons">
+  <div class="row">
+    <% include ../../partials/sidebar %>
+    <div class="offset-md-1 col-md-6 pt-2">
+      <div class="row d-flex flex-items-md-between flex-items-md-middle mb-2 p-2">
+        <div class="chip-user d-flex flex-items-md-middle">
+          <div class="chip-user__img mr-1" onclick="$('#profile-pic-chooser').trigger('click');"
+               role="button">
+            <img id="profile-pic-show" src="<%= user.profilePic || '/assets/img/user.png' %>"
+                 class="img-circle hover-pointer">
+          </div>
+          <div class="chip-user__name">
+            <span class="real-name d-block text-primary text-bold"><%= user.firstName + ' ' + user.lastName %></span>
+            <span class="alias-name d-block text-bold"><%= user.aliasFirstName + ' ' + user.aliasLastName %></span>
+          </div>
+        </div>
+        <div class="prefered-payment">
+          <span class="d-block">Your preferred payment</span>
+          <div class="prefered-payment-icons">
 
-                        <% if (user.preferredPaymentMethod === 'paypal') { %>
-                        <i class="fa fa-paypal text-primary"></i>
-                        <span class="text-primary">Paypal</span>
-                        <% } else if (user.preferredPaymentMethod === 'check') { %>
-                        <i class="fa fa-bank text-primary"> </i>
-                        <span class="text-primary">Check</span>
-                        <% } else if (user.preferredPaymentMethod === 'deposit') { %>
-                        <i class="fa fa-dollar text-primary"> </i>
-                        <span class="text-primary">Deposit</span>
-                        <% } else { %>
-                        <i class="fa fa-ban text-primary"> </i>
-                        <span class="text-primary"> Not Yet Set!</span>
-                        <% } %>
+            <% if (user.preferredPaymentMethod === 'paypal') { %>
+            <i class="fa fa-paypal text-primary"></i>
+            <span class="text-primary">Paypal</span>
+            <% } else if (user.preferredPaymentMethod === 'check') { %>
+            <i class="fa fa-bank text-primary"> </i>
+            <span class="text-primary">Check</span>
+            <% } else if (user.preferredPaymentMethod === 'deposit') { %>
+            <i class="fa fa-dollar text-primary"> </i>
+            <span class="text-primary">Deposit</span>
+            <% } else { %>
+            <i class="fa fa-ban text-primary"> </i>
+            <span class="text-primary"> Not Yet Set!</span>
+            <% } %>
 
-                    </div>
-                </div>
+          </div>
+        </div>
+      </div>
+
+      <form enctype="multipart/form-data" action="/dashboard/profile/<%= user._id %>/?_method=PUT" method="POST">
+        <input type="file" id="profile-pic-chooser" class="hidden-xs-up"/>
+        <input type="hidden" id="profile-pic-data-url" name="user[profilePic]" class="hidden-xs-up"
+               value="<%= user.profilePic %>"/>
+        <div class="tab-content">
+          <div class="tab-pane active" id="home" role="tabpanel">
+            <div class="row mb-2">
+              <div class="col-sm-6 form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" name="user[firstName]" id="firstName"
+                       value="<%= user.firstName %>">
+              </div>
+              <div class="col-sm-6 form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" name="user[lastName]" id="lastName"
+                       value="<%= user.lastName %>">
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-sm-6 form-group">
+                <label for="aliasFirstName">Alias First Name</label>
+                <input type="text" class="form-control" name="user[aliasFirstName]" id="aliasFirstName"
+                       value="<%= user.aliasFirstName %>">
+              </div>
+              <div class="col-sm-6 form-group">
+                <label for="aliasLastName">Alias Last Name</label>
+                <input type="text" class="form-control" name="user[aliasLastName]" id="aliasLastName"
+                       value="<%= user.aliasLastName %>">
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-sm-6 form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" name="user[username]"
+                       value="<%= user.username %>">
+              </div>
+              <div class="col-sm-6 form-group">
+                <label for="phone">Phone</label>
+                <input type="text" class="form-control" name="user[phone]" id="phone"
+                       value="<%= user.phone %>">
+              </div>
             </div>
 
-            <form enctype="multipart/form-data" action="/dashboard/profile/<%= user._id %>/?_method=PUT" method="POST">
-                <input type="file" id="profile-pic-chooser" class="hidden-xs-up"/>
-                <input type="hidden" id="profile-pic-data-url" name="user[profilePic]" class="hidden-xs-up"
-                       value="<%= user.profilePic %>"/>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="home" role="tabpanel">
-                        <div class="row mb-2">
-                            <div class="col-sm-6 form-group">
-                                <label for="firstName">First Name</label>
-                                <input type="text" class="form-control" name="user[firstName]" id="firstName"
-                                       value="<%= user.firstName %>">
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label for="lastName">Last Name</label>
-                                <input type="text" class="form-control" name="user[lastName]" id="lastName"
-                                       value="<%= user.lastName %>">
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-sm-6 form-group">
-                                <label for="aliasFirstName">Alias First Name</label>
-                                <input type="text" class="form-control" name="user[aliasFirstName]" id="aliasFirstName"
-                                       value="<%= user.aliasFirstName %>">
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label for="aliasLastName">Alias Last Name</label>
-                                <input type="text" class="form-control" name="user[aliasLastName]" id="aliasLastName"
-                                       value="<%= user.aliasLastName %>">
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-sm-6 form-group">
-                                <label for="email">Email address</label>
-                                <input type="email" class="form-control" id="email" name="user[username]"
-                                       value="<%= user.username %>">
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label for="phone">Phone</label>
-                                <input type="text" class="form-control" name="user[phone]" id="phone"
-                                       value="<%= user.phone %>">
-                            </div>
-                        </div>
+            <div class="row mb-2">
+              <div class="col-sm-6 form-group">
+                <label for="addressLine1">Address Line 1</label>
+                <input type="text" class="form-control" name="user[addressLine1]" id="addressLine1"
+                       value="<%= user.addressLine1 %>">
+              </div>
+              <div class="col-sm-6 form-group">
+                <label for="addressLine2">Address Line 2</label>
+                <input type="text" class="form-control" name="user[addressLine2]" id="addressLine2"
+                       value="<%= user.addressLine2 %>">
+              </div>
+            </div>
 
-                        <div class="row mb-2">
-                            <div class="col-sm-6 form-group">
-                                <label for="addressLine1">Address Line 1</label>
-                                <input type="text" class="form-control" name="user[addressLine1]" id="addressLine1"
-                                       value="<%= user.addressLine1 %>">
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label for="addressLine2">Address Line 2</label>
-                                <input type="text" class="form-control" name="user[addressLine2]" id="addressLine2"
-                                       value="<%= user.addressLine2 %>">
-                            </div>
-                        </div>
+            <div class="row mb-2">
+              <div class="col-sm-6 form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control" name="user[city]" id="city"
+                       value="<%= user.city %>">
+              </div>
+              <div class="col-sm-6 form-group">
+                <label for="state">State</label>
+                <select class="form-control" name="user[state]" id="state">
+                  <option value="">Please Select</option>
+                  <option value="AL">Alabama</option>
+                  <option value="AK">Alaska</option>
+                  <option value="AZ">Arizona</option>
+                  <option value="AR">Arkansas</option>
+                  <option value="CA">California</option>
+                  <option value="CO">Colorado</option>
+                  <option value="CT">Connecticut</option>
+                  <option value="DE">Delaware</option>
+                  <option value="DC">District Of Columbia</option>
+                  <option value="FL">Florida</option>
+                  <option value="GA">Georgia</option>
+                  <option value="HI">Hawaii</option>
+                  <option value="ID">Idaho</option>
+                  <option value="IL">Illinois</option>
+                  <option value="IN">Indiana</option>
+                  <option value="IA">Iowa</option>
+                  <option value="KS">Kansas</option>
+                  <option value="KY">Kentucky</option>
+                  <option value="LA">Louisiana</option>
+                  <option value="ME">Maine</option>
+                  <option value="MD">Maryland</option>
+                  <option value="MA">Massachusetts</option>
+                  <option value="MI">Michigan</option>
+                  <option value="MN">Minnesota</option>
+                  <option value="MS">Mississippi</option>
+                  <option value="MO">Missouri</option>
+                  <option value="MT">Montana</option>
+                  <option value="NE">Nebraska</option>
+                  <option value="NV">Nevada</option>
+                  <option value="NH">New Hampshire</option>
+                  <option value="NJ">New Jersey</option>
+                  <option value="NM">New Mexico</option>
+                  <option value="NY">New York</option>
+                  <option value="NC">North Carolina</option>
+                  <option value="ND">North Dakota</option>
+                  <option value="OH">Ohio</option>
+                  <option value="OK">Oklahoma</option>
+                  <option value="OR">Oregon</option>
+                  <option value="PA">Pennsylvania</option>
+                  <option value="RI">Rhode Island</option>
+                  <option value="SC">South Carolina</option>
+                  <option value="SD">South Dakota</option>
+                  <option value="TN">Tennessee</option>
+                  <option value="TX">Texas</option>
+                  <option value="UT">Utah</option>
+                  <option value="VT">Vermont</option>
+                  <option value="VA">Virginia</option>
+                  <option value="WA">Washington</option>
+                  <option value="WV">West Virginia</option>
+                  <option value="WI">Wisconsin</option>
+                  <option value="WY">Wyoming</option>
+                </select>
+              </div>
+            </div>
 
-                        <div class="row mb-2">
-                            <div class="col-sm-6 form-group">
-                                <label for="city">City</label>
-                                <input type="text" class="form-control" name="user[city]" id="city"
-                                       value="<%= user.city %>">
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label for="state">State</label>
-                                <select class="form-control" name="user[state]" id="state">
-                                    <option value="">Please Select</option>
-                                    <option value="AL">Alabama</option>
-                                    <option value="AK">Alaska</option>
-                                    <option value="AZ">Arizona</option>
-                                    <option value="AR">Arkansas</option>
-                                    <option value="CA">California</option>
-                                    <option value="CO">Colorado</option>
-                                    <option value="CT">Connecticut</option>
-                                    <option value="DE">Delaware</option>
-                                    <option value="DC">District Of Columbia</option>
-                                    <option value="FL">Florida</option>
-                                    <option value="GA">Georgia</option>
-                                    <option value="HI">Hawaii</option>
-                                    <option value="ID">Idaho</option>
-                                    <option value="IL">Illinois</option>
-                                    <option value="IN">Indiana</option>
-                                    <option value="IA">Iowa</option>
-                                    <option value="KS">Kansas</option>
-                                    <option value="KY">Kentucky</option>
-                                    <option value="LA">Louisiana</option>
-                                    <option value="ME">Maine</option>
-                                    <option value="MD">Maryland</option>
-                                    <option value="MA">Massachusetts</option>
-                                    <option value="MI">Michigan</option>
-                                    <option value="MN">Minnesota</option>
-                                    <option value="MS">Mississippi</option>
-                                    <option value="MO">Missouri</option>
-                                    <option value="MT">Montana</option>
-                                    <option value="NE">Nebraska</option>
-                                    <option value="NV">Nevada</option>
-                                    <option value="NH">New Hampshire</option>
-                                    <option value="NJ">New Jersey</option>
-                                    <option value="NM">New Mexico</option>
-                                    <option value="NY">New York</option>
-                                    <option value="NC">North Carolina</option>
-                                    <option value="ND">North Dakota</option>
-                                    <option value="OH">Ohio</option>
-                                    <option value="OK">Oklahoma</option>
-                                    <option value="OR">Oregon</option>
-                                    <option value="PA">Pennsylvania</option>
-                                    <option value="RI">Rhode Island</option>
-                                    <option value="SC">South Carolina</option>
-                                    <option value="SD">South Dakota</option>
-                                    <option value="TN">Tennessee</option>
-                                    <option value="TX">Texas</option>
-                                    <option value="UT">Utah</option>
-                                    <option value="VT">Vermont</option>
-                                    <option value="VA">Virginia</option>
-                                    <option value="WA">Washington</option>
-                                    <option value="WV">West Virginia</option>
-                                    <option value="WI">Wisconsin</option>
-                                    <option value="WY">Wyoming</option>
-                                </select>
-                            </div>
-                        </div>
+            <div class="row mb-2">
+              <div class="col-sm-6 form-group">
+                <label for="zipCode">Zip Code</label>
+                <input type="text" class="form-control" name="user[zipCode]" id="zipCode"
+                       value="<%= user.zipCode %>">
+              </div>
+            </div>
 
-                        <div class="row mb-2">
-                            <div class="col-sm-6 form-group">
-                                <label for="zipCode">Zip Code</label>
-                                <input type="text" class="form-control" name="user[zipCode]" id="zipCode"
-                                       value="<%= user.zipCode %>">
-                            </div>
-                        </div>
+            <div class="row mb-2">
+              <div class="col-sm-6 form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="user[password]" id="password">
+              </div>
+              <div class="col-sm-6 form-group">
+                <label for="password">Confirm Password</label>
+                <input type="password" class="form-control" name="user[password]" id="password">
+              </div>
+            </div>
 
-                        <div class="row mb-2">
-                            <div class="col-sm-6 form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" name="user[password]" id="password">
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label for="password">Confirm Password</label>
-                                <input type="password" class="form-control" name="user[password]" id="password">
-                            </div>
-                        </div>
-
-                        <% if(currentUser.isAdmin === true) { %>
-                        <div class="row md-2">
-                            <div class="col-sm-12 form-group">
-                                <label for="notes">Notes/Comments</label>
-                                <textarea class="form-control" type="text" name="user[notes]" id="notes" rows="3" placeholder="internal; for Admin view only">
+            <% if(currentUser.isAdmin) { %>              
+              <div class="row md-2">
+                <div class="col-sm-12 form-group">                
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="user[isAdmin]" id="isAdmin"
+                        value="<%= (user.isAdmin)?true:false %>" <% if (user.isAdmin) { %> checked <% } %> > Administrator
+                    </label>
+                  </div>                
+                </div>
+              </div>
+            <% } %>
+            
+            <% if(currentUser.isAdmin === true) { %>                        
+            <div class="row md-2">
+              <div class="col-sm-12 form-group">
+                <label for="notes">Notes/Comments</label>
+                <textarea class="form-control" type="text" name="user[notes]" id="notes" rows="3"
+                          placeholder="internal; for Admin view only">
                                     <%= user.notes %>
                                 </textarea>
-                            </div>
-                        </div>
+              </div>
+            </div>
+            <% } %>            
+
+          </div>
+          <div class="tab-pane" id="payment-preference" role="tabpanel">
+
+            <div class="mb-2">
+              <p class="mt-1">Preferred Payment Method:</p>
+              <label class="form-check-inline">
+                <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]"
+                       id="inlineRadio1"
+                       value="paypal"
+                        <% if (user.preferredPaymentMethod === "paypal") { %>
+                       checked="checked"
                         <% } %>
+                >
+                <i class="fa fa-paypal"> </i> PayPal
+              </label>
+              <label class="form-check-inline">
+                <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]"
+                       id="inlineRadio2"
+                       value="check"
+                        <% if (user.preferredPaymentMethod === "check") { %>
+                       checked="checked"
+                        <% } %>
+                >
+                <i class="fa fa-bank"> </i> Check
+              </label>
+              <label class="form-check-inline">
+                <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]"
+                       id="inlineRadio3"
+                       value="deposit"
+                        <% if (user.preferredPaymentMethod === "deposit") { %>
+                       checked="checked"
+                        <% } %>
+                >
+                <i class="fa fa-dollar"> </i> Deposit
+              </label>
+            </div>
 
+            <ul class="nav nav-tabs nav-tabs-rounded" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#paypal">PayPal</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#check">Check</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#direct">Direct deposit</a>
+              </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div class="tab-pane active" id="paypal" role="tabpanel">
+                <div class="row pt-2">
+                  <div class="col-md-12">
+                    <span class="d-block mb-2">Enter E-Mail information</span>
+
+                    <div class="row">
+                      <div class="col-sm-6 form-group">
+                        <label for="paypalEmail">Enter valid E-Mail</label>
+                        <input type="email" class="form-control" id="paypalEmail"
+                               name="user[paymentPreference][paypalEmail]"
+                               placeholder="name@domain.com"
+                               value="<%= (user.paymentPreference) ? (user.paymentPreference.paypalEmail) : '' %>">
+                      </div>
                     </div>
-                    <div class="tab-pane" id="payment-preference" role="tabpanel">
-
-                        <div class="mb-2">
-                            <p class="mt-1">Preferred Payment Method:</p>
-                            <label class="form-check-inline">
-                                <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]"
-                                       id="inlineRadio1"
-                                       value="paypal"
-                                        <% if (user.preferredPaymentMethod === "paypal") { %>
-                                       checked="checked"
-                                        <% } %>
-                                >
-                                <i class="fa fa-paypal"> </i> PayPal
-                            </label>
-                            <label class="form-check-inline">
-                                <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]"
-                                       id="inlineRadio2"
-                                       value="check"
-                                        <% if (user.preferredPaymentMethod === "check") { %>
-                                       checked="checked"
-                                        <% } %>
-                                >
-                                <i class="fa fa-bank"> </i> Check
-                            </label>
-                            <label class="form-check-inline">
-                                <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]"
-                                       id="inlineRadio3"
-                                       value="deposit"
-                                        <% if (user.preferredPaymentMethod === "deposit") { %>
-                                       checked="checked"
-                                        <% } %>
-                                >
-                                <i class="fa fa-dollar"> </i> Deposit
-                            </label>
-                        </div>
-
-                        <ul class="nav nav-tabs nav-tabs-rounded" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#paypal">PayPal</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#check">Check</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled" href="#direct">Direct deposit</a>
-                            </li>
-                        </ul>
-                        <!-- Tab panes -->
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="paypal" role="tabpanel">
-                                <div class="row pt-2">
-                                    <div class="col-md-12">
-                                        <span class="d-block mb-2">Enter E-Mail information</span>
-
-                                        <div class="row">
-                                            <div class="col-sm-6 form-group">
-                                                <label for="paypalEmail">Enter valid E-Mail</label>
-                                                <input type="email" class="form-control" id="paypalEmail"
-                                                       name="user[paypalEmail]"
-                                                       placeholder="name@domain.com"
-                                                       value="<%= user.paypalEmail || '' %>">
-                                            </div>
-                                        </div>
-                                        <div class="row mt-2">
-                                            <div class="col-sm-6 form-group">
-                                                <label for="paypalEmailConfirmation">Confirm E-mail</label>
-                                                <input type="email" class="form-control" id="paypalEmailConfirmation"
-                                                       placeholder="name@domain.com">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="check" role="tabpanel">
-                                <div class="row pt-2">
-                                    <div class="col-md-12">
-                                        <span class="d-block mb-2">Enter check information</span>
-
-                                        <div class="row mb-2">
-                                            <div class="col-sm-6 form-group">
-                                                <label for="addressLine1">Address Line 1</label>
-                                                <input type="text" class="form-control" name="" id="addressLine1"
-                                                       value="<%#= user.paymentPreference.check.addressLine1 %>">
-                                            </div>
-                                            <div class="col-sm-6 form-group">
-                                                <label for="addressLine2">Address Line 2</label>
-                                                <input type="text" class="form-control" name="" id="addressLine2"
-                                                       value="<%#= user.paymentPreference.check.addressLine2 %>">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-2">
-                                            <div class="col-sm-6 form-group">
-                                                <label for="city">City</label>
-                                                <input type="text" class="form-control" name="" id="city"
-                                                       value="<%#= user.paymentPreference.check.city %>">
-                                            </div>
-                                            <div class="col-sm-6 form-group">
-                                                <label for="state">State</label>
-                                                <select class="form-control" name="" id="state">
-                                                    <option value="">Please Select</option>
-                                                    <option value="AL">Alabama</option>
-                                                    <option value="AK">Alaska</option>
-                                                    <option value="AZ">Arizona</option>
-                                                    <option value="AR">Arkansas</option>
-                                                    <option value="CA">California</option>
-                                                    <option value="CO">Colorado</option>
-                                                    <option value="CT">Connecticut</option>
-                                                    <option value="DE">Delaware</option>
-                                                    <option value="DC">District Of Columbia</option>
-                                                    <option value="FL">Florida</option>
-                                                    <option value="GA">Georgia</option>
-                                                    <option value="HI">Hawaii</option>
-                                                    <option value="ID">Idaho</option>
-                                                    <option value="IL">Illinois</option>
-                                                    <option value="IN">Indiana</option>
-                                                    <option value="IA">Iowa</option>
-                                                    <option value="KS">Kansas</option>
-                                                    <option value="KY">Kentucky</option>
-                                                    <option value="LA">Louisiana</option>
-                                                    <option value="ME">Maine</option>
-                                                    <option value="MD">Maryland</option>
-                                                    <option value="MA">Massachusetts</option>
-                                                    <option value="MI">Michigan</option>
-                                                    <option value="MN">Minnesota</option>
-                                                    <option value="MS">Mississippi</option>
-                                                    <option value="MO">Missouri</option>
-                                                    <option value="MT">Montana</option>
-                                                    <option value="NE">Nebraska</option>
-                                                    <option value="NV">Nevada</option>
-                                                    <option value="NH">New Hampshire</option>
-                                                    <option value="NJ">New Jersey</option>
-                                                    <option value="NM">New Mexico</option>
-                                                    <option value="NY">New York</option>
-                                                    <option value="NC">North Carolina</option>
-                                                    <option value="ND">North Dakota</option>
-                                                    <option value="OH">Ohio</option>
-                                                    <option value="OK">Oklahoma</option>
-                                                    <option value="OR">Oregon</option>
-                                                    <option value="PA">Pennsylvania</option>
-                                                    <option value="RI">Rhode Island</option>
-                                                    <option value="SC">South Carolina</option>
-                                                    <option value="SD">South Dakota</option>
-                                                    <option value="TN">Tennessee</option>
-                                                    <option value="TX">Texas</option>
-                                                    <option value="UT">Utah</option>
-                                                    <option value="VT">Vermont</option>
-                                                    <option value="VA">Virginia</option>
-                                                    <option value="WA">Washington</option>
-                                                    <option value="WV">West Virginia</option>
-                                                    <option value="WI">Wisconsin</option>
-                                                    <option value="WY">Wyoming</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-2">
-                                            <div class="col-sm-6 form-group">
-                                                <label for="zipCode">Zip Code</label>
-                                                <input type="text" class="form-control" name="" id="zipCode"
-                                                       value="<%#= user.paymentPreference.check.zipCode %>">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="direct" role="tabpanel">
-                                <div class="row pt-2">
-                                    <div class="col-md-12">
-                                        <span class="d-block mb-2">Enter bank information</span>
-                                        <div class="row mb-2">
-                                            <div class="col-sm-6 form-group">
-                                                <label for="routingOrTransit">Routing/Transit</label>
-                                                <input type="text" class="form-control" name="" id="routingOrTransit"
-                                                       value="<%#= user.paymentPreference.deposit.routingOrTransit %>">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-2">
-                                            <div class="col-sm-6 form-group">
-                                                <label for="accountNumber">Account number</label>
-                                                <input type="text" class="form-control" name="" id="accountNumber"
-                                                       value="<%#= user.paymentPreference.deposit.accountNumber %>">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-2">
-                                            <div class="col-sm-6 form-group">
-                                                <label for="confirmAccountNumber">Confirm Account number</label>
-                                                <input type="text" class="form-control" id="confirmAccountNumber">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="row mt-2">
+                      <div class="col-sm-6 form-group">
+                        <label for="paypalEmailConfirmation">Confirm E-mail</label>
+                        <input type="email" class="form-control" id="paypalEmailConfirmation"
+                               placeholder="name@domain.com">
+                      </div>
                     </div>
-
-                    <button type="submit" class="mt-2 btn btn-primary">Update</button>
+                  </div>
                 </div>
-            </form>
+              </div>
+              <div class="tab-pane" id="check" role="tabpanel">
+                <div class="row pt-2">
+                  <div class="col-md-12">
+                    <span class="d-block mb-2">Enter check information</span>
+
+                    <div class="row mb-2">
+                      <div class="col-sm-6 form-group">
+                        <label for="addressLine1">Address Line 1</label>
+                        <input type="text" class="form-control" 
+                          name="user[paymentPreference][check][addressLine1]" id="addressLine1"
+                               value="<%= (user.paymentPreference) ? (user.paymentPreference.check.addressLine1) : '' %>">
+                      </div>
+                      <div class="col-sm-6 form-group">
+                        <label for="addressLine2">Address Line 2</label>
+                        <input type="text" class="form-control" 
+                          name="user[paymentPreference][check][addressLine2]" id="addressLine2"
+                          value="<%= (user.paymentPreference) ? (user.paymentPreference.check.addressLine2) : '' %>">
+                      </div>
+                    </div>
+
+                    <div class="row mb-2">
+                      <div class="col-sm-6 form-group">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" 
+                          name="user[paymentPreference][check][city]" id="city"
+                          value="<%= (user.paymentPreference) ? (user.paymentPreference.check.city) : '' %>">
+                      </div>
+                      <div class="col-sm-6 form-group">
+                        <label for="state">State</label>
+                        <select class="form-control" 
+                          name="user[paymentPreference][check][state]" id="state">
+                          <option value="">Please Select</option>
+                          <option value="AL" <% if(user.paymentPreference && user.paymentPreference.check.state == 'AL') { %> selected <% } %> >
+                              Alabama
+                          </option>
+                          <option value="AK" <% if(user.paymentPreference && user.paymentPreference.check.state == 'AK') { %> selected <% } %> >
+                              Alaska
+                          </option>
+                          <option value="AZ" <% if(user.paymentPreference && user.paymentPreference.check.state == 'AZ') { %> selected <% } %> >
+                              Arizona
+                          </option>
+                          <option value="AR" <% if(user.paymentPreference && user.paymentPreference.check.state == 'AR') { %> selected <% } %> >
+                              Arkansas
+                          </option>
+                          <option value="CA" <% if(user.paymentPreference && user.paymentPreference.check.state == 'CA') { %> selected <% } %> >
+                              California
+                          </option>
+                          <option value="CO" <% if(user.paymentPreference && user.paymentPreference.check.state == 'CO') { %> selected <% } %> >
+                              Colorado
+                          </option>
+                          <option value="CT" <% if(user.paymentPreference && user.paymentPreference.check.state == 'CT') { %> selected <% } %> >
+                              Connecticut
+                          </option>
+                          <option value="DE" <% if(user.paymentPreference && user.paymentPreference.check.state == 'DE') { %> selected <% } %> >
+                              Delaware
+                          </option>
+                          <option value="DC" <% if(user.paymentPreference && user.paymentPreference.check.state == 'DC') { %> selected <% } %> >
+                              District Of Columbia
+                           </option>
+                          <option value="FL" <% if(user.paymentPreference && user.paymentPreference.check.state == 'FL') { %> selected <% } %> >
+                              Florida
+                          </option>
+                          <option value="GA" <% if(user.paymentPreference && user.paymentPreference.check.state == 'GA') { %> selected <% } %> >
+                              Georgia
+                          </option>
+                          <option value="HI" <% if(user.paymentPreference && user.paymentPreference.check.state == 'HI') { %> selected <% } %> >
+                              Hawaii
+                          </option>
+                          <option value="ID" <% if(user.paymentPreference && user.paymentPreference.check.state == 'ID') { %> selected <% } %> >
+                              Idaho
+                          </option>
+                          <option value="IL" <% if(user.paymentPreference && user.paymentPreference.check.state == 'IL') { %> selected <% } %> >
+                              Illinois
+                          </option>
+                          <option value="IN" <% if(user.paymentPreference && user.paymentPreference.check.state == 'IN') { %> selected <% } %> >
+                              Indiana
+                          </option>
+                          <option value="IA" <% if(user.paymentPreference && user.paymentPreference.check.state == 'IA') { %> selected <% } %> >
+                              Iowa
+                          </option>
+                          <option value="KS" <% if(user.paymentPreference && user.paymentPreference.check.state == 'KS') { %> selected <% } %> >
+                              Kansas
+                          </option>
+                          <option value="KY" <% if(user.paymentPreference && user.paymentPreference.check.state == 'KY') { %> selected <% } %> >
+                              Kentucky
+                          </option>
+                          <option value="LA" <% if(user.paymentPreference && user.paymentPreference.check.state == 'LA') { %> selected <% } %> >
+                              Louisiana
+                          </option>
+                          <option value="ME" <% if(user.paymentPreference && user.paymentPreference.check.state == 'ME') { %> selected <% } %> >
+                              Maine
+                          </option>
+                          <option value="MD" <% if(user.paymentPreference && user.paymentPreference.check.state == 'MD') { %> selected <% } %> >
+                              Maryland
+                          </option>
+                          <option value="MA" <% if(user.paymentPreference && user.paymentPreference.check.state == 'MA') { %> selected <% } %> >
+                              Massachusetts
+                          </option>
+                          <option value="MI" <% if(user.paymentPreference && user.paymentPreference.check.state == 'MI') { %> selected <% } %> >
+                              Michigan
+                          </option>
+                          <option value="MN" <% if(user.paymentPreference && user.paymentPreference.check.state == 'MN') { %> selected <% } %> >
+                              Minnesota
+                          </option>
+                          <option value="MS" <% if(user.paymentPreference && user.paymentPreference.check.state == 'MS') { %> selected <% } %> >
+                              Mississippi
+                          </option>
+                          <option value="MO" <% if(user.paymentPreference && user.paymentPreference.check.state == 'MO') { %> selected <% } %> >
+                              Missouri
+                          </option>
+                          <option value="MT" <% if(user.paymentPreference && user.paymentPreference.check.state == 'MT') { %> selected <% } %> >
+                              Montana
+                          </option>
+                          <option value="NE" <% if(user.paymentPreference && user.paymentPreference.check.state == 'NE') { %> selected <% } %> >
+                              Nebraska
+                          </option>
+                          <option value="NV" <% if(user.paymentPreference && user.paymentPreference.check.state == 'NV') { %> selected <% } %> >
+                              Nevada
+                          </option>
+                          <option value="NH" <% if(user.paymentPreference && user.paymentPreference.check.state == 'NH') { %> selected <% } %> >
+                              New Hampshire
+                           </option>
+                          <option value="NJ" <% if(user.paymentPreference && user.paymentPreference.check.state == 'NJ') { %> selected <% } %> >
+                              New Jersey
+                          </option>
+                          <option value="NM" <% if(user.paymentPreference && user.paymentPreference.check.state == 'NM') { %> selected <% } %> >
+                              New Mexico
+                          </option>
+                          <option value="NY" <% if(user.paymentPreference && user.paymentPreference.check.state == 'NY') { %> selected <% } %> >
+                              New York
+                          </option>
+                          <option value="NC" <% if(user.paymentPreference && user.paymentPreference.check.state == 'NC') { %> selected <% } %> >
+                              North Carolina
+                          </option>
+                          <option value="ND" <% if(user.paymentPreference && user.paymentPreference.check.state == 'ND') { %> selected <% } %> >
+                              North Dakota
+                          </option>
+                          <option value="OH" <% if(user.paymentPreference && user.paymentPreference.check.state == 'OH') { %> selected <% } %> >
+                              Ohio
+                          </option>
+                          <option value="OK" <% if(user.paymentPreference && user.paymentPreference.check.state == 'OK') { %> selected <% } %> >
+                              Oklahoma
+                          </option>
+                          <option value="OR" <% if(user.paymentPreference && user.paymentPreference.check.state == 'OR') { %> selected <% } %> >
+                              Oregon
+                          </option>
+                          <option value="PA" <% if(user.paymentPreference && user.paymentPreference.check.state == 'PA') { %> selected <% } %> >
+                              Pennsylvania
+                          </option>
+                          <option value="RI" <% if(user.paymentPreference && user.paymentPreference.check.state == 'RI') { %> selected <% } %> >
+                              Rhode Island
+                          </option>
+                          <option value="SC" <% if(user.paymentPreference && user.paymentPreference.check.state == 'SC') { %> selected <% } %> >
+                              South Carolina
+                          </option>
+                          <option value="SD" <% if(user.paymentPreference && user.paymentPreference.check.state == 'SD') { %> selected <% } %> >
+                              South Dakota
+                          </option>
+                          <option value="TN" <% if(user.paymentPreference && user.paymentPreference.check.state == 'TN') { %> selected <% } %> >
+                              Tennessee
+                          </option>
+                          <option value="TX" <% if(user.paymentPreference && user.paymentPreference.check.state == 'TX') { %> selected <% } %> >
+                              Texas
+                          </option>
+                          <option value="UT" <% if(user.paymentPreference && user.paymentPreference.check.state == 'UT') { %> selected <% } %> >
+                              Utah
+                          </option>
+                          <option value="VT" <% if(user.paymentPreference && user.paymentPreference.check.state == 'VT') { %> selected <% } %> >
+                              Vermont
+                          </option>
+                          <option value="VA" <% if(user.paymentPreference && user.paymentPreference.check.state == 'VA') { %> selected <% } %> >
+                              Virginia
+                          </option>
+                          <option value="WA" <% if(user.paymentPreference && user.paymentPreference.check.state == 'WA') { %> selected <% } %> >
+                              Washington
+                          </option>
+                          <option value="WV" <% if(user.paymentPreference && user.paymentPreference.check.state == 'WV') { %> selected <% } %> >
+                              West Virginia
+                          </option>
+                          <option value="WI" <% if(user.paymentPreference && user.paymentPreference.check.state == 'WI') { %> selected <% } %> >
+                              Wisconsin
+                          </option>
+                          <option value="WY" <% if(user.paymentPreference && user.paymentPreference.check.state == 'WY') { %> selected <% } %> >
+                              Wyoming
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="row mb-2">
+                      <div class="col-sm-6 form-group">
+                        <label for="zipCode">Zip Code</label>
+                        <input type="text" class="form-control" 
+                          name="user[paymentPreference][check][zipCode]" id="zipCode"
+                          value="<%= (user.paymentPreference) ? (user.paymentPreference.check.zipCode) : '' %>">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="direct" role="tabpanel">
+                <div class="row pt-2">
+                  <div class="col-md-12">
+                    <span class="d-block mb-2">Enter bank information</span>
+                    <div class="row mb-2">
+                      <div class="col-sm-6 form-group">
+                        <label for="routingOrTransit">Routing/Transit</label>
+                        <input type="text" class="form-control" name="" id="routingOrTransit"
+                               value="<%#= user.paymentPreference.deposit.routingOrTransit %>">
+                      </div>
+                    </div>
+                    <div class="row mb-2">
+                      <div class="col-sm-6 form-group">
+                        <label for="accountNumber">Account number</label>
+                        <input type="text" class="form-control" name="" id="accountNumber"
+                               value="<%#= user.paymentPreference.deposit.accountNumber %>">
+                      </div>
+                    </div>
+                    <div class="row mb-2">
+                      <div class="col-sm-6 form-group">
+                        <label for="confirmAccountNumber">Confirm Account number</label>
+                        <input type="text" class="form-control" id="confirmAccountNumber">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="mt-2 btn btn-primary">Update</button>
         </div>
+      </form>
     </div>
+  </div>
 </div>
 
 <script>
-    /* Profile Pic */
-    $('#profile-pic-chooser').change(function (e) {
-      console.log($(this).prop('files'));
-      let file = $(this).prop('files')[0];
-      let reader = new FileReader();
+  /* Profile Pic */
+  $('#profile-pic-chooser').change(function(e) {
+    console.log($(this).prop('files'));
+    let file = $(this).prop('files')[0];
+    let reader = new FileReader();
 
-      reader.addEventListener('load', function () {
-        $('#profile-pic-data-url').val(reader.result);
-        $('#profile-pic-show').attr('src', reader.result);
-        console.log(reader.result);
-      }, false);
+    reader.addEventListener('load', function() {
+      $('#profile-pic-data-url').val(reader.result);
+      $('#profile-pic-show').attr('src', reader.result);
+      console.log(reader.result);
+    }, false);
 
-      if (file) {
-        reader.readAsDataURL(file);
-      }
+    if(file) {
+      reader.readAsDataURL(file);
+    }
 
-    });
+  });
+
+  $('#isAdmin').change(function (){
+    if (this.checked) {      
+      $('#isAdmin').val(true);
+    }else{      
+      $('#isAdmin').val(false);
+    }
+  });
 </script>
 
 <% include ../../partials/contact %>

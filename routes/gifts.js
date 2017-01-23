@@ -9,17 +9,19 @@ const
   _ = require('lodash'),
   User = require('../models/user'),
   Gift = require('../models/gift'),
-  middleware = require('../middleware');
-
+  middleware = require('../middleware'),
+  async = require('async'),
+  getPaginated = require('../components/getPaginated');
 
 /* GET Gifts page. */
 router.get(
   '/',
   middleware.isLoggedIn,
   (req, res) => {
-    let query = {'status.review': true};
 
-    switch (req.query.filter) {
+    let query = {'status.review': true};
+    
+    switch(req.query.filter) {
       case 'accepted-redeemed' :
         query = {'status.accepted': true};
         break;
@@ -34,22 +36,11 @@ router.get(
         break;
     }
 
-    Gift
-      .find(query)
-      .populate('user')
-      .exec((err, gifts) => {
-        if (err) {
-          req.flash('error', err.message);
-        }
-
-        res.render('admin/gifts/index', {
-          title: 'Review Gifts',
-          gifts: gifts,
-          breadcrumbsName: 'Gifts'
-        });
-
-      });
-
+    getPaginated(Gift, 'user', query, req, result => {
+      result.title ='Review Gifts';
+      result.breadcrumbsName = 'Gifts';
+      res.render('admin/gifts/index', result);
+    });
   });
 
 // Create a Gift
@@ -57,7 +48,7 @@ router.post(
   '/',
   middleware.isLoggedIn,
   (req, res) => {
-
+    
     // get data from form and add to gift array.
     let user = req.body.user,
       giftNumber = req.body.giftNumber,
@@ -83,31 +74,30 @@ router.post(
         senderLastName: senderLastName,
         giftMessage: giftMessage
       };
-
+    
     Gift
       .create(newGift, (err, newlyCreated) => {
-        if (err) {
+        if(err) {
           req.flash('error', err.message);
         }
-
-        if (!err) {
+        
+        if(!err) {
           User.findByIdAndUpdate(
-            user,
-            {
+            user, {
               $push: {
                 gifts: newlyCreated._id
               }
             },
             (err, result) => {
-              if (err) {
+              if(err) {
                 req.flash('error', err.message);
               }
-
+              
               res.redirect('/admin/created-gift');
             })
         }
       });
-
+    
   });
 
 router.get(
@@ -118,7 +108,63 @@ router.get(
       title: 'New Gift',
       user: req.user,
       breadcrumbsName: 'Create Gift'
-    })
+    });
+  });
+
+
+/* PUT Gifts page. */
+function updateGiftStatus(gift, done) {
+  let id = gift._id;
+  gift.changedStatusDate = new Date();
+  
+  gift = _.pick(gift, ['status', 'changedStatusDate']);
+  for(let s in gift.status) {
+    gift.status[s] = (gift.status[s] === 'true' || gift.status[s] === true);
+  }
+  
+  //find gift for update
+  Gift
+    .findByIdAndUpdate(
+      id,
+      gift,
+      (err) => {
+        if(err) {
+          done(`Error updating the Gift: ${gift._id}`);
+        }
+        done(null, 'Gift success update.');
+      });
+}
+router.put(
+  '/',
+  middleware.isLoggedIn,
+  (req, res) => {
+    
+    if(
+      !_.isArray(req.body.gifts)
+      || _.isEmpty(req.body.gifts)
+    ) {
+      return res.send({
+        success: true
+      });
+    }
+    
+    async.each(
+      req.body.gifts,
+      updateGiftStatus,
+      (err) => {
+        if(err) {
+          console.log('err async each: ', err);
+          return res.status(500).send({
+            success: false,
+            message: 'Error, contact support'
+          });
+        }
+        
+        return res.send({
+          success: true,
+          message: 'Update success'
+        });
+      });
   });
 
 module.exports = router;

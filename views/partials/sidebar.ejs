@@ -1,57 +1,57 @@
 <% if(currentUser.isAdmin === true) { %>
 <!--admin sidebar-->
 <aside class="col-md-2 admin-sidebar">
-    <div class="current-user t-center">
-        <figure class="current-user__img">
-            <img src="<%= currentUser.profilePic || '/assets/img/user.png' %>" class="img-circle">
-        </figure>
-        <div class="current-user__name d-block">
-            <a href="/dashboard/profile/<%= currentUser._id %>/edit">
-                <%= currentUser.firstName + ' ' + currentUser.lastName %>
-            </a>
-        </div>
-        <span class="current-user__role d-block">Admin view</span>
-        <a href="/admin/gifts/new" class="btn btn-primary">Create Gift</a>
+  <div class="current-user t-center">
+    <figure class="current-user__img">
+      <img src="<%= currentUser.profilePic || '/assets/img/user.png' %>" class="img-circle">
+    </figure>
+    <div class="current-user__name d-block">
+      <a href="/dashboard/profile/<%= currentUser._id %>/edit">
+        <%= currentUser.firstName + ' ' + currentUser.lastName %>
+      </a>
     </div>
-    <nav class="nav sidebar">
-        <ul class="nav__list">
-            <li class="nav__item"><a href="/admin/users">Members</a></li>
-            <li class="nav__item"><a href="#">Admins</a></li>
-            <li class="nav__item"><a href="/admin/gifts?filter=review">Gifts</a></li>
-            <li class="nav__item"><a href="/logout">Sign out</a></li>
-        </ul>
-    </nav>
+    <span class="current-user__role d-block">Admin view</span>
+    <a href="/admin/gifts/new" class="btn btn-primary">Create Gift</a>
+  </div>
+  <nav class="nav sidebar">
+    <ul class="nav__list">
+      <li class="nav__item"><a href="/admin/users">Members</a></li>
+      <li class="nav__item"><a href="#">Admins</a></li>
+      <li class="nav__item"><a href="/admin/gifts?filter=review">Gifts</a></li>
+      <li class="nav__item"><a href="/logout">Sign out</a></li>
+    </ul>
+  </nav>
 </aside>
 <!--admin sidebar-->
 
 <% } else { %>
 <!--user sidebar-->
 <aside class="col-md-2 admin-sidebar">
-    <div class="current-user t-center">
-        <figure class="current-user__img">
-            <img src="<%= currentUser.profilePic || '/assets/img/user.png' %>" class="img-circle">
-        </figure>
-        <div class="current-user__name d-block">
-            <a href="/dashboard/profile/<%= currentUser._id %>/edit">
-                <%= currentUser.firstName + ' ' + currentUser.lastName %>
-            </a>
-        </div>
-        <div class="current-user__name d-block">
+  <div class="current-user t-center">
+    <figure class="current-user__img">
+      <img src="<%= currentUser.profilePic || '/assets/img/user.png' %>" class="img-circle">
+    </figure>
+    <div class="current-user__name d-block">
+      <a href="/dashboard/profile/<%= currentUser._id %>/edit">
+        <%= currentUser.firstName + ' ' + currentUser.lastName %>
+      </a>
+    </div>
+    <div class="current-user__name d-block">
             <span class="current-user__role d-block">
                 <%= currentUser.aliasFirstName + ' ' + currentUser.aliasLastName %>
             </span>
-        </div>
-        <a href="/dashboard/share/" class="btn btn-primary">Share</a>
     </div>
-    <nav class="nav sidebar">
-        <ul class="nav__list">
-            <li class="nav__item"><a href="/dashboard/gifts?filter=received">Received</a></li>
-            <li class="nav__item"><a href="/dashboard/gifts?filter=declined">Declined</a></li>
-            <li class="nav__item"><a href="/dashboard/gifts?filter=pending">Pending</a></li>
-            <li class="nav__item"><a href="/dashboard/gifts?filter=paid">Paid</a></li>
-            <li class="nav__item"><a href="/logout">Sign out</a></li>
-        </ul>
-    </nav>
+    <a href="/dashboard/share/" class="btn btn-primary">Share</a>
+  </div>
+  <nav class="nav sidebar">
+    <ul class="nav__list">
+      <li class="nav__item"><a href="/dashboard/gifts?filter=received">Received</a></li>
+      <li class="nav__item"><a href="/dashboard/gifts?filter=declined">Declined</a></li>
+      <li class="nav__item"><a href="/dashboard/gifts?filter=pending">Pending</a></li>
+      <li class="nav__item"><a href="/dashboard/gifts?filter=paid">Paid</a></li>
+      <li class="nav__item"><a href="/logout">Sign out</a></li>
+    </ul>
+  </nav>
 </aside>
 <!--user sidebar-->
 <% } %>

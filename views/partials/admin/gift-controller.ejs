@@ -1,24 +1,35 @@
 <div class="row mt-1 mb-1 p-1 flex-items-md-between">
     <div class="mr-1">
-        <form action="">
-            <span class="checkbox d-inline-flex flex-items-md-middle"><input type="checkbox" id="checkAll"> <span>Select All</span></span>
+        <form id="goForm" action="/admin/gifts/?_method=PUT" method="POST">
+            <span class="checkbox d-inline-flex flex-items-md-middle">
+                <input type="checkbox" id="checkAll" onchange="selectedAllGifts()"> <span>Select All</span>
+            </span>
             <div class="btn-group pl-1">
-                <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button id="bulkActions" type="button" class="btn btn-secondary btn-sm
+                dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Bulk Actions
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#"><i class="fa fa-check" aria-hidden="true"></i> Accept</a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-ban" aria-hidden="true"></i> Decline</a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Paid</a>
+                    <a class="dropdown-item" href="#" onclick="updateStatusType('accepted')">
+                        <i class="fa fa-check" aria-hidden="true"></i> Accept
+                    </a>
+                    <a class="dropdown-item" href="#" onclick="updateStatusType('declined')">
+                        <i class="fa fa-ban" aria-hidden="true"></i> Decline
+                    </a>
+                    <a class="dropdown-item" href="#" onclick="updateStatusType('paid')">
+                        <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Paid
+                    </a>
                     <a class="dropdown-item" href="#"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export to Excel</a>
                     <a class="dropdown-item" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
                 </div>
-                <button type="button" class="ml-2 btn btn-sm btn-outline-primary">GO</button>
+                <button type="submit" class="ml-2 btn btn-sm btn-outline-primary">GO</button>
             </div>
         </form>
     </div>
     <div class="mr-1">
-        <span><em>Showing 5 of 30</em></span>
+        <% if(pagination) { %>
+        <span><em>Showing <%= pagination.showing %> of <%= pagination.records %></em></span>
+        <% } %>
     </div>
     <div class="filter">
       <span class="mr-1">Search By: </span>

@@ -1,62 +1,90 @@
 <% include ../../partials/head %>
 <% include ../../partials/nav %>
 <div class="row bg-grey">
-    <div class="container">
-        <div class="col-md-10 offset-md-2">
-            <% include ../../partials/no-tabs %>
-        </div>
+  <div class="container">
+    <div class="col-md-10 offset-md-2">
+      <% include ../../partials/no-tabs %>
     </div>
+  </div>
 </div>
 <div class="container">
-    <div class="row">
-        <% include ../../partials/sidebar %>
-        <div class="col-md-10">
-            <main>
-                <% include ../../partials/admin/user-controller %>
-                <table class="table">
-                    <thead class="thead-inverse">
-                    <tr>
-                        <th></th>
-                        <th>User</th>
-                        <th>Total Gifts</th>
-                        <th>Last Login</th>
-                        <th>Total Amount</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <% users.forEach(function (user) { %>
-                    <tr>
-                        <td><input type="checkbox" class="check"></td>
-                        <td>
-                            <div class="chip-user d-flex flex-items-md-middle">
-                                <div class="chip-user__img mr-1">
-                                    <a href="/dashboard/profile/<%= user._id %>/edit">
-                                        <img src="<%= user.profilePic || '/assets/img/user.png' %>" class="img-circle"></a>
-                                </div>
-                                <div class="chip-user__name">
-                                    <span class="real-name d-block"><%= user.firstName + ' ' + user.lastName %></span>
-                                    <span class="alias-name d-block"><%= user.aliasFirstName + ' ' + user.aliasLastName %></span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="text-primary text-bold"><%= user.gifts.length %> Gift(s)</td>
-                        <td><%= user.lastLoginDate.toLocaleDateString() %></td>
-                        <td class="text-primary text-bold">$<%= user.totalAmountOfGifts %></td>
-                        <td><a href="/admin/users/<%= user._id %>/gifts" class="text-bold">View Gifts</a></td>
-                    </tr>
-                    <% }) %>
-                    </tbody>
-                </table>
-                <% if(!users || users.length < 1) { %>
-                <div class="container empty-state">
-                    <i class="icon fa fa-users"></i>
-                    <h1>No users were found based on that query</h1>
+  <div class="row">
+    <% include ../../partials/sidebar %>
+    <div class="col-md-10">
+      <main>
+        <% include ../../partials/admin/user-controller %>
+        <table class="table">
+          <thead class="thead-inverse">
+          <tr>
+            <th></th>
+            <th>User</th>
+            <th>Total Gifts</th>
+            <th>Last Login</th>
+            <th>Total Amount</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% items.forEach(function (user) { %>
+          <tr>
+            <td><input type="checkbox" class="check"></td>
+            <td>
+              <div class="chip-user d-flex flex-items-md-middle">
+                <div class="chip-user__img mr-1">
+                  <a href="/dashboard/profile/<%= user._id %>/edit">
+                    <img src="<%= user.profilePic || '/assets/img/user.png' %>" class="img-circle"></a>
                 </div>
-                <% } %>
-            </main>
+                <div class="chip-user__name">
+                  <span class="real-name d-block"><%= user.firstName + ' ' + user.lastName %></span>
+                  <span class="alias-name d-block"><%= user.aliasFirstName + ' ' + user.aliasLastName %></span>
+                </div>
+              </div>
+            </td>
+            <td class="text-primary text-bold"><%= user.gifts.length %> Gift(s)</td>
+            <td><%= user.lastLoginDate.toLocaleDateString() %></td>
+            <td class="text-primary text-bold">$<%= user.totalAmountOfGifts %></td>
+            <td><a href="/admin/users/<%= user._id %>/gifts" class="text-bold">View Gifts</a></td>
+          </tr>
+          <% }) %>
+          </tbody>
+        </table>
+        <% if(!items || items.length < 1) { %>
+        <div class="container empty-state">
+          <i class="icon fa fa-users"></i>
+          <h1>No users were found based on that query</h1>
         </div>
+        <% } %>
+      </main>
+
+      <pagination>
+        <% if(pagination.pages > 1) { %>
+        <ul class="pagination">
+          <li class="page-item <%= (query.page == 1) ? 'disabled' : '' %>">
+            <a href="/admin/users?filter=<%= query.filter %>&page=1" class="page-link"> << </a>
+          </li>
+          <li class="page-item <%= (query.page == 1) ? 'disabled' : '' %>">
+            <a href="/admin/users?filter=<%= query.filter %>&page=<%= (query.page > 1)? query.page-1 : 1 %>" class="page-link"> < </a>
+          </li>
+
+          <% for(let page = 1; page <= pagination.pages; page++) { %>
+          <li class="page-item <%= (query.page == page)? 'active' : '' %>">
+            <a href="/admin/users?filter=<%= query.filter %>&page=<%= page %>" class="page-link">
+              <%= page %>
+            </a>
+          </li>
+          <% } %>
+
+          <li class="page-item <%= (query.page >= pagination.pages) ? 'disabled' : '' %>">
+            <a href="/admin/users?filter=<%= query.filter %>&page=<%= (query.page < pagination.pages)? query.page+1 : pagination.pages %>" class="page-link"> > </a>
+          </li>
+          <li class="page-item <%= (query.page >= pagination.pages) ? 'disabled' : '' %>">
+            <a href="/admin/users?filter=<%= query.filter %>&page=<%= pagination.pages %>" class="page-link"> >> </a>
+          </li>
+        </ul>
+        <% } %>
+      </pagination>
     </div>
+  </div>
 </div>
 
 <% include ../../partials/contact %>

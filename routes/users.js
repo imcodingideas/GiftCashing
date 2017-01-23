@@ -8,45 +8,35 @@ const express = require('express'),
   User = require('../models/user'),
   Gift = require('../models/gift'),
   locus = require('locus'),
-  middleware = require('../middleware');
+  middleware = require('../middleware'),
+  getPaginated = require('../components/getPaginated');
 
 /* GET users listing. */
 router.get('/',
   middleware.isLoggedIn,
   (req, res) => {
     let query = {};
-
-    switch (req.query.search) {
+    
+    switch(req.query.search) {
       default :
         query = {username: new RegExp(req.query.search, 'gi')};
         break;
     }
-
-    User
-      .find(query)
-      .populate('gifts')
-      .exec((err, allUsers) => {
-        if (err) {
-          req.flash('error', err.message);
-        }
-
-        allUsers = allUsers.map(user => {
-          user.totalAmountOfGifts = 0;
-          if (user.gifts.length > 0) {
-            for (let gift of user.gifts) {
-              user.totalAmountOfGifts += gift.giftAmount;
-            }
+    
+    getPaginated(User, 'gifts', query, req, result => {
+      result.title ='Users';
+      result.breadcrumbsName = 'Users';
+      result.items = result.items.map(user => {
+        user.totalAmountOfGifts = 0;
+        if(user.gifts.length > 0) {
+          for(let gift of user.gifts) {
+            user.totalAmountOfGifts += gift.giftAmount;
           }
-          return user;
-        });
-
-        res.render(
-          'admin/users/index', {
-            users: allUsers,
-            title: 'Users',
-            breadcrumbsName: 'Users'
-          });
+        }
+        return user;
       });
+      res.render('admin/users/index', result);
+    });
   });
 
 
@@ -54,49 +44,64 @@ router.get(
   '/:id/gifts',
   middleware.isLoggedIn,
   (req, res) => {
-
+    
     const query = {
       user: req.params.id
     };
-
-    Gift
-      .find(query)
-      .populate('user')
-      .exec((err, gifts) => {
-        if (err) {
-          req.flash('error', err.message);
-          gifts = [];
-        }
-
-        res.render('admin/users/gifts', {
-          title: 'Received Gifts',
-          breadcrumbsName: 'Gifts',
-          gifts: gifts
-        });
-      });
-
+  
+    getPaginated(Gift, 'user', query, req, result => {
+      result.user = (result.items.length > 0) ? result.items[0].user : {_id : query.user};
+      result.title = 'Review Gifts';
+      result.breadcrumbsName = 'Gifts';
+      res.render('admin/users/gifts', result);
+    });
   });
 
 router.get(
   '/:id/gifts/:gift_id',
   middleware.isLoggedIn,
   (req, res) => {
-
-    Gift
-      .findById(req.params.gift_id)
-      .populate('user')
-      .exec((err, foundGift) => {
-        if (err) {
-          req.flash('error', err.message);
+  
+    
+    User.findById(req.params.id, (err, user) => {
+      let pagination = {
+        page: 1,
+        perPage: 1,
+        pages: user.gifts.length,
+        showing: 1,
+        records: user.gifts.length,
+        previousGiftId: req.params.gift_id,
+        nextGiftId: req.params.gift_id
+      };
+      
+      let giftIds = user.gifts;
+      if(giftIds.length > 1) {
+        for(let i = 0; i < giftIds.length; i++) {
+          if(giftIds[i] == req.params.gift_id) {
+            if(i > 0) pagination.previousGiftId = giftIds[i-1];
+            if(i < giftIds.length-1) pagination.nextGiftId = giftIds[i+1];
+            pagination.showing = i+1;
+            break;
+          }
         }
-
-        res.render('admin/gifts/show', {
-          title: 'Received Gift',
-          breadcrumbsName: 'Gift',
-          foundGift: foundGift
+      }
+      
+      Gift
+        .findById(req.params.gift_id)
+        .populate('user')
+        .exec((err, foundGift) => {
+          if(err) {
+            req.flash('error', err.message);
+          }
+      
+          res.render('admin/gifts/show', {
+            title: 'Received Gift',
+            breadcrumbsName: 'Gift',
+            foundGift: foundGift,
+            pagination
+          });
         });
-      });
-
+    });
   });
 
 /* Update Gift listing. */

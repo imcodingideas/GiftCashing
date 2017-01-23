@@ -23,7 +23,11 @@ const GiftSchema = new Schema({
     required: true,
     index: true
   },
-  giftNumber: Types.Number,
+  giftNumber: {
+    type: Types.Number,
+    unique: true,
+    required: true
+  },
   date: Date,
   status: {
     type: statusSchema,
@@ -42,7 +46,8 @@ const GiftSchema = new Schema({
   passCode: Types.String,
   senderFirstName: Types.String,
   senderLastName: Types.String,
-  giftMessage: Types.String
+  giftMessage: Types.String,
+  changedStatusDate: Types.Date
 });
 
 module.exports = mongoose.model('Gift', GiftSchema);

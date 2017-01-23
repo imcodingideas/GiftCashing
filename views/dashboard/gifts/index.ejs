@@ -1,58 +1,58 @@
 <% include ../../partials/head.ejs %>
 <% include ../../partials/nav %>
 <div class="row bg-grey">
-    <div class="container">
-        <div class="col-md-10 offset-md-2">
-            <% include ../../partials/no-tabs %>
-        </div>
+  <div class="container">
+    <div class="col-md-10 offset-md-2">
+      <% include ../../partials/no-tabs %>
     </div>
+  </div>
 </div>
 <div class="container">
-    <div class="row">
-        <% include ../../partials/sidebar %>
+  <div class="row">
+    <% include ../../partials/sidebar %>
 
-        <div class="col-md-10">
-            <main>
-                <% include ../../partials/dashboard/controller %>
-                <% gifts.forEach((gift) => { %>
-                <div class="row bg-purple-light mb-1 p-1 gift-received">
-                    <div class="col-xs-12 col-md-1 p-2">
-                        <input type="checkbox" class="check">
-                    </div>
-                    <div class="col-xs-12 col-md-5">
-                        <h5 class="text-bold text-primary"><%= gift.giftDescription %></h5>
-                        <% if(gift.giftMessage === undefined) { %>
-                        <p>No Message was sent with this gift</p>
-                        <% } else { %>
-                        <p><%= gift.giftMessage %></p>
-                        <% } %>
-                    </div>
-                    <div class="col-xs-12 col-md-3">
-                        <span>Amount: <strong class="text-primary">$<%= gift.giftAmount %></strong></span>
-                        <p class="mt-1 mb-0">Sent by:</p>
-                        <strong class="text-primary"><%= gift.senderFirstName %></strong>
-                        <strong class="text-primary"><%= gift.senderLastName %></strong>
-                        <button class="btn btn-outline-primary btn-sm d-block mt-1 full-width">Decline</button>
-                    </div>
-                    <div class="col-xs-12 col-md-3">
-                        <span>Date: <strong class="text-primary"><%= gift.date.toLocaleDateString() %></strong></span>
-                        <p class="mt-1 mb-0">Gift #:</p>
-                        <strong class="text-primary"><%= gift.giftNumber %></strong>
-                        <a class="btn btn-primary btn-sm d-block mt-1 full-width" href="#" data-id="<%= gift._id %>"
-                           data-toggle="modal"
-                           data-target="#acceptGiftModal" data-sender="<%= gift.senderFirstName %>">Accept</a>
-                    </div>
-                </div>
-                <% }) %>
-                <% if(!gifts || gifts.length < 1) { %>
-                <div class="container empty-state">
-                    <i class="icon fa fa-gift"></i>
-                    <h1>No gifts to show</h1>
-                </div>
-                <% } %>
-            </main>
+    <div class="col-md-10">
+      <main>
+        <% include ../../partials/dashboard/controller %>
+        <% gifts.forEach((gift) => { %>
+        <div class="row bg-purple-light mb-1 p-1 gift-received">
+          <div class="col-xs-12 col-md-1 p-2">
+            <input type="checkbox" class="check">
+          </div>
+          <div class="col-xs-12 col-md-5">
+            <h5 class="text-bold text-primary"><%= gift.giftDescription %></h5>
+            <% if(gift.giftMessage === undefined) { %>
+            <p>No Message was sent with this gift</p>
+            <% } else { %>
+            <p><%= gift.giftMessage %></p>
+            <% } %>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <span>Amount: <strong class="text-primary">$<%= gift.giftAmount %></strong></span>
+            <p class="mt-1 mb-0">Sent by:</p>
+            <strong class="text-primary"><%= gift.senderFirstName %></strong>
+            <strong class="text-primary"><%= gift.senderLastName %></strong>
+            <button class="btn btn-outline-primary btn-sm d-block mt-1 full-width">Decline</button>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <span>Date: <strong class="text-primary"><%= gift.date.toLocaleDateString() %></strong></span>
+            <p class="mt-1 mb-0">Gift #:</p>
+            <strong class="text-primary"><%= gift.giftNumber %></strong>
+            <a class="btn btn-primary btn-sm d-block mt-1 full-width" href="#" data-id="<%= gift._id %>"
+               data-toggle="modal"
+               data-target="#acceptGiftModal" data-sender="<%= gift.senderFirstName %>">Accept</a>
+          </div>
         </div>
+        <% }) %>
+        <% if(!gifts || gifts.length < 1) { %>
+        <div class="container empty-state">
+          <i class="icon fa fa-gift"></i>
+          <h1>No gifts to show</h1>
+        </div>
+        <% } %>
+      </main>
     </div>
+  </div>
 </div>
 <% include ../../partials/contact %>
 <% include ../../partials/acceptgift %>

@@ -1,26 +1,29 @@
 <div class="row mt-1 mb-1 p-1 flex-items-md-between flex-items-md-middle">
-    <div class="mr-1">
-        <span class="checkbox d-inline-flex flex-items-md-middle"><input type="checkbox" id="checkAll"> <span>Select All</span></span>
-        <div class="btn-group pl-1">
-            <button type="button" class="btn btn-outline-primary btn-sm">
-              <span><i class="icon fa fa-file-excel-o"></i></span>
-              Export to Excel
-            </button>
-        </div>
+  <div class="mr-1">
+    <span class="checkbox d-inline-flex flex-items-md-middle"><input type="checkbox"
+                                                                     id="checkAll"> <span>Select All</span></span>
+    <div class="btn-group pl-1">
+      <button type="button" class="btn btn-outline-primary btn-sm">
+        <span><i class="icon fa fa-file-excel-o"></i></span>
+        Export to Excel
+      </button>
     </div>
-    <div class="mr-1">
-        <span><em>Showing 5 of 30</em></span>
+  </div>
+  <div class="mr-1">
+    <% if(pagination) { %>
+    <span><em>Showing <%= pagination.showing %> of <%= pagination.records %></em></span>
+    <% } %>
+  </div>
+  <div class="filter">
+    <span class="mr-1">Filter By: </span>
+    <div class="input-group input-group-sm datepicker d-inline-flex">
+      <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
+      <input type="text" class="form-control" id="datefrom" placeholder="Date from...">
     </div>
-    <div class="filter">
-        <span class="mr-1">Filter By: </span>
-        <div class="input-group input-group-sm datepicker d-inline-flex">
-          <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
-          <input type="text" class="form-control" id="datefrom" placeholder="Date from...">
-        </div>
-        <div class="input-group input-group-sm datepicker d-inline-flex">
-          <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
-          <input type="text" class="form-control" id="dateto" placeholder="Date from...">
-        </div>
-        <button type="button" class="btn btn-sm btn-primary"><i class="icon fa fa-search"></i></button>
+    <div class="input-group input-group-sm datepicker d-inline-flex">
+      <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
+      <input type="text" class="form-control" id="dateto" placeholder="Date from...">
     </div>
+    <button type="button" class="btn btn-sm btn-primary"><i class="icon fa fa-search"></i></button>
+  </div>
 </div>

@@ -1,32 +1,33 @@
 <nav class="navbar navbar-static-top">
-    <div class="container">
-        <a class="navbar-brand" href="/">
-            <img src="/assets/img/logo.svg" alt="Logo">
-        </a>
-        <a href="#/" class="toggle-nav float-xs-right">
-          <i class="icon fa fa-bars"></i>
-        </a>
-        <ul class="nav navbar-nav float-md-right">
-            <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#contactUsModal">Contact Us</a>
-            </li>
-            <% if(!currentUser) { %>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/register">Register</a>
-                </li>
-            <% } else { %>
-                <li class="nav-item">
-                    <a class="nav-link" href="/dashboard/profile/<%= currentUser._id %>/edit">Signed In As <%= currentUser.firstName %></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout">Logout</a>
-                </li>
-            <% } %>
-        </ul>
-    </div>
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="/assets/img/logo.svg" alt="Logo">
+    </a>
+    <a href="#/" class="toggle-nav float-xs-right">
+      <i class="icon fa fa-bars"></i>
+    </a>
+    <ul class="nav navbar-nav float-md-right">
+      <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#contactUsModal">Contact Us</a>
+      </li>
+      <% if(!currentUser) { %>
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/register">Register</a>
+      </li>
+      <% } else { %>
+      <li class="nav-item">
+        <a class="nav-link" href="/dashboard/profile/<%= currentUser._id %>/edit">Signed In
+          As <%= currentUser.firstName %></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+      <% } %>
+    </ul>
+  </div>
 </nav>
 
 <% include alerts %>

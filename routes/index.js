@@ -10,7 +10,8 @@ const
   passport = require('passport'),
   User = require('../models/user'),
   middleware = require('../middleware'),
-  mailer = require('../mailer');
+  mailer = require('../mailer'),
+  mailService = require('../services/mailService');
 
 let locus = require('locus');
 
@@ -36,7 +37,7 @@ router.get(
 router.post(
   '/register',
   (req, res) => {
-
+    
     let newUser = new User({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -44,15 +45,15 @@ router.post(
       aliasLastName: req.body.aliasLastName,
       username: req.body.username
     });
-
+    
     User
       .register(newUser, req.body.password, (err, user) => {
-
-        if (err) {
+        
+        if(err) {
           req.flash('error', err.message);
           res.redirect('back');
         }
-
+        
         // Send the Welcome Email
         let welcomeEmail;
         welcomeEmail = `
@@ -63,26 +64,26 @@ router.post(
 	        <p>Best Regards,<br/>
 	        GiftCashing.com</p>
     	`;
-
+        
         let emailOptions = {
           from: 'joseph@michael-chambers.com',
           to: newUser.username,
           subject: 'Welcome to GiftCashing.com',
           html: welcomeEmail
         };
-
+        
         mailer
           .sendMail(emailOptions, (err, info) => {
-            if (err) console.log('Mailing Error: ', err);
+            if(err) console.log('Mailing Error: ', err);
             console.log('mailing......................', info);
           });
-
+        
         passport
           .authenticate('local')(req, res, () => {
             req.flash('success', 'Welcome to GiftCashing' + user.firstName);
             res.redirect('/dashboard/gifts?filter=received');
           });
-
+        
       });
   });
 
@@ -102,10 +103,30 @@ router.post(
     failureRedirect: '/login',
     failureFlash: true
   }), (req, res) => {
-    if (req.user.isAdmin === true) {
+    
+    let user = {
+      lastLoginDate: new Date()
+    };
+    
+    //Update last login date
+    User
+      .findOneAndUpdate(
+        {'username': req.user.username},
+        user,
+        (err, foundUser) => {
+          if(err) {
+            console.log('lastLoginDate error update: ', err);
+          }
+          /**
+           * Are we saving this?
+           */
+          console.log('lastLoginDate success update');
+        });
+    
+    if(req.user.isAdmin === true) {
       res.redirect('/admin/gifts?filter=review');
     }
-    if (req.user.isAdmin === false) {
+    if(req.user.isAdmin === false) {
       res.redirect('/dashboard/gifts?filter=received');
     }
   });
@@ -128,6 +149,53 @@ router.get(
       user: req.user,
       breadcrumbsName: 'Created Gift'
     })
+  });
+
+//Show forgot password
+router.get(
+  '/forgot-password',
+  (req, res) => {
+    res.render('forgot-password', {
+      title: 'Forgot password @ Gift Cashing'
+    });
+  });
+
+//process forgot password
+router.post(
+  '/forgot-password',
+  (req, res) => {
+    //generate random password
+    let passwordString = Math.random().toString(36).slice(-10);
+    
+    User
+      .findOne(
+        {'username': req.body.email},
+        (err, foundUser) => {
+          if(err) {
+            req.flash('error', 'Internal error');
+            res.redirect('back');
+          }
+          if(foundUser) {
+            foundUser.setPassword(
+              passwordString,
+              () => {
+                foundUser.save(
+                  (errSaving, resultSave) => {
+                    if(errSaving) {
+                      req.flash('error', errSaving.message);
+                      res.redirect('back');
+                    }
+                    
+                    mailService.sendForgotPassword(foundUser, passwordString);
+                    req.flash('success', 'Please check your email.');
+                    res.redirect('/login');
+                  });
+              });
+          } else {
+            req.flash('error', 'Cannot find a user by that email.');
+            res.redirect('back');
+          }
+        });
   });
 
 module.exports = router;
