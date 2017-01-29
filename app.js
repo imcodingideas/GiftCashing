@@ -22,7 +22,8 @@ const
   profileRoute = require('./routes/profile'),
   giftsRoute = require('./routes/gifts.js'),
   searchRoute = require('./routes/search'),
-  dashboardRoute = require('./routes/dashboard');
+  dashboardRoute = require('./routes/dashboard'),
+  adminsRoute = require('./routes/admin');
 
 const
   mongooseDB = process.env.DATABASEURL || 'mongodb://localhost/giftcashing';
@@ -82,6 +83,8 @@ app.use('/dashboard/profile', profileRoute);
 app.use('/admin/gifts', giftsRoute);
 app.use('/admin/search', searchRoute);
 app.use('/dashboard', dashboardRoute);
+
+app.use('/admin/admins', adminsRoute);
 
 mongoose.Promise = global.Promise;
 
