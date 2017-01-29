@@ -13,12 +13,14 @@ const
   async = require('async'),
   getPaginated = require('../components/getPaginated');
 
+const excel = require('../components/excel');
+
 /* GET Gifts page. */
 router.get(
   '/',
   middleware.isLoggedIn,
   (req, res) => {
-
+    
     let query = {'status.review': true};
     
     switch(req.query.filter) {
@@ -35,7 +37,7 @@ router.get(
         query = {'status.paid': true};
         break;
     }
-
+    
     getPaginated(Gift, 'user', query, req, result => {
       result.title ='Review Gifts';
       result.breadcrumbsName = 'Gifts';
@@ -167,4 +169,11 @@ router.put(
       });
   });
 
+
+/* Export to excel report*/
+router.post('/excel-report', function (req, res){
+  var report = excel.generateGifts(req.body.gifts || []);
+  res.attachment('report.xlsx');
+  return res.status(200).send(report);
+});
 module.exports = router;

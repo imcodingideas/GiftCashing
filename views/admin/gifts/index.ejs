@@ -147,12 +147,19 @@
 
   var statusType = defaultStatusType;
 
+  var bulkAction = 'default';
+
   //Update status type for param
   function updateStatusType(type) {
     statusType = defaultStatusType;
     statusType.review = false;
     statusType[type] = true;
+    bulkAction = 'status';
     console.log('update status to :', type);
+  }
+
+  function actionExcel(){
+    bulkAction = 'excel';
   }
 
   $('#goForm').submit(function(e) {
@@ -160,31 +167,81 @@
 
     console.log('goForm clicked');
 
-    //Update status object in collection gifts
-    gifts.forEach(function(gift) {
-      gift.status = statusType;
-    });
+    //if action is update status
+    if (bulkAction === 'status') {
+      //Update status object in collection gifts
+      gifts.forEach(function(gift) {
+        gift.status = statusType;
+      });
 
-    console.log('gifts update: ', gifts);
+      var $this = $(this);
+      $.ajax({
+        url: $this.attr('action'),
+        type: $this.attr('method'),
+        data: {gifts: gifts},
+        success: function(response) {
+          if(response.message) {
+            $('.noty-alerts:first').noty({text: response.message, type: 'success'});
+          }
+          setTimeout(function() {window.location.reload();}, 3000);
+        },
+        error: function(jqXHR) {
+          var response = $.parseJSON(jqXHR.responseText);
+          if(response.message) {
+            $('.noty-alerts:first').noty({text: response.message, type: 'alert'});
+          }
+        }
+      });
+    }else if(bulkAction === 'excel'){
+      //Export to excel
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/admin/gifts/excel-report', true);
+      xhr.responseType = 'arraybuffer';
+      xhr.onload = function () {
+        if (this.status === 200) {
+          var filename = "";
+          var disposition = xhr.getResponseHeader('Content-Disposition');
+          if (disposition && disposition.indexOf('attachment') !== -1) {
+            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+            var matches = filenameRegex.exec(disposition);
+            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+          }
+          var type = xhr.getResponseHeader('Content-Type');
 
-    var $this = $(this);
-    $.ajax({
-      url: $this.attr('action'),
-      type: $this.attr('method'),
-      data: {gifts: gifts},
-      success: function(response) {
-        if(response.message) {
-          $('.noty-alerts:first').noty({text: response.message, type: 'success'});
+          var blob = new Blob([this.response], { type: type });
+          if (typeof window.navigator.msSaveBlob !== 'undefined') {
+            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+            window.navigator.msSaveBlob(blob, filename);
+          } else {
+            var URL = window.URL || window.webkitURL;
+            var downloadUrl = URL.createObjectURL(blob);
+
+            if (filename) {
+              // use HTML5 a[download] attribute to specify filename
+              var a = document.createElement("a");
+              // safari doesn't support this yet
+              if (typeof a.download === 'undefined') {
+                window.location = downloadUrl;
+              } else {
+                a.href = downloadUrl;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+              }
+            } else {
+              window.location = downloadUrl;
+            }
+
+            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+          }
+        }else{
+          alert('Error, contact support');
         }
-        setTimeout(function() {window.location.reload();}, 3000);
-      },
-      error: function(jqXHR) {
-        var response = $.parseJSON(jqXHR.responseText);
-        if(response.message) {
-          $('.noty-alerts:first').noty({text: response.message, type: 'alert'});
-        }
-      }
-    });
+      };
+      xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      xhr.send(JSON.stringify({gifts: gifts}));
+    }
+
   });
 
 </script>
