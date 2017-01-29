@@ -39,7 +39,7 @@ router.get(
     }
     
     getPaginated(Gift, 'user', query, req, result => {
-      result.title ='Review Gifts';
+      result.title = 'Review Gifts';
       result.breadcrumbsName = 'Gifts';
       res.render('admin/gifts/index', result);
     });
@@ -171,9 +171,11 @@ router.put(
 
 
 /* Export to excel report*/
-router.post('/excel-report', function (req, res){
-  var report = excel.generateGifts(req.body.gifts || []);
-  res.attachment('report.xlsx');
-  return res.status(200).send(report);
-});
+router.post(
+  '/excel-report',
+  (req, res) => {
+    let report = excel.generateGifts(req.body.gifts || []);
+    res.attachment('report.xlsx');
+    return res.status(200).send(report);
+  });
 module.exports = router;
