@@ -22,6 +22,25 @@ $(document).ready(function() {
   });
   
   
+  var giftsFrom = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    remote: {
+      // TODO: This search endpoint should be request the data with query parameter instead aliasFirstNAme
+      url: '/admin/search?aliasFirstName=%QUERY',
+      wildcard: '%QUERY'
+    }
+  });
+  
+  $('#typehead-search .typeahead').typeahead(null, {
+    name: 'gifts_from',
+    display: 'value',
+    source: giftsFrom
+  }).on('typeahead:selected', function(obj, data) {
+    $('#userId').val(data.id);
+  });
+  
+  
   $('.dropdown-menu a').click(function() {
     let selectedAction = $(this).text();
     $(this).parents('.dropdown')

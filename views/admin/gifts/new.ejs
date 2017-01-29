@@ -18,15 +18,13 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group" >
-              <label for="username">Search test</label>
-              <div id="searchtest">
+              <label for="username">For</label>
+              <div id="typehead-search">
                 <input type="text" class="form-control typeahead" name="userName" id="test" placeholder="Search" autocomplete="off">
               </div>
             </div>
           </div>
         </div>
-          
-          
 
         <div class="row">
           <div class="col-sm-6 form-group">
@@ -104,26 +102,3 @@
 
 <% include ../../partials/contact %>
 <% include ../../partials/footer %>
-
-<script>
-  // TODO: Where is the correct path for this script?  
-  $(document).ready(function() {
-      var giftsFrom = new Bloodhound({
-          datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-          queryTokenizer: Bloodhound.tokenizers.whitespace,
-          remote: {
-              // TODO: This search endpoint should be request the data with query parameter instead aliasFirstNAme
-              url: '/admin/search?aliasFirstName=%QUERY',
-              wildcard: '%QUERY'
-          }
-      });
-
-      $('#searchtest .typeahead').typeahead(null, {
-          name: 'gifts_from',
-          display: 'value',
-          source: giftsFrom
-      }).on('typeahead:selected', function (obj, data) {
-          $('#userId').val(data.id);
-      });
-  });
-</script>
