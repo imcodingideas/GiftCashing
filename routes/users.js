@@ -11,6 +11,9 @@ const express = require('express'),
   middleware = require('../middleware'),
   getPaginated = require('../components/getPaginated');
 
+const excel = require('../components/excel');
+
+
 /* GET users listing. */
 router.get('/',
   middleware.isLoggedIn,
@@ -104,10 +107,104 @@ router.get(
     });
   });
 
+/**
+ * Delete a Gift 
+ * @param  {Id of Gift} giftId 
+ * @param  {Response} res     
+ */
+function deleteGift(giftId, res){
+  Gift.remove({_id: giftId}, (err) => {  
+    if (!err) {
+      return res.send({
+        success: true,
+        message: 'Delete success'
+      });      
+    }else{
+      return res.status(500).send({
+        success: false,
+        message: 'Error, contact support'
+      });
+    }
+  });
+}
+
 /* Update Gift listing. */
 router.put('/:id/gifts/:gift_id',
   (req, res) => {
-    res.send('Hello')
+    
+    var status = {
+      "paid" : false,
+      "declined" : false,
+      "redeemed" : false,
+      "accepted" : false,
+      "review" : false
+    };    
+    
+    switch(req.body.action || ''){
+      case 'accepted':
+        status['accepted'] = true;
+        break;
+      case 'declined':
+          status['declined'] = true;
+        break;
+      case 'paid':
+        status['paid'] = true;
+        break;
+      case 'delete':
+        return deleteGift(req.params.gift_id || '', res);
+        break;
+      default:
+        return res.status(500).send({
+          success: false,
+          message: 'Error, contact support'
+        });
+    };
+
+    var gift = {      
+      status: status
+    };    
+
+    //Update status gift
+    Gift.findOneAndUpdate(
+      {'_id': req.params.gift_id || ''},
+      gift,
+      (err, foundGift)=>{
+        if (!err) {
+          return res.send({
+            success: true,
+            message: 'Update success'
+          });
+        }else{          
+          return res.status(500).send({
+            success: false,
+            message: 'Error, contact support'
+          });
+        }
+    });
+    
   });
+
+
+
+/*Gift specific to excel report*/
+router.get('/excel-gift/:gift_id', function (req, res){  
+  Gift
+    .findById(req.params.gift_id || '', (err, gift) => {
+      if (err) {        
+        return res.status(500).send({
+          success: false,
+          message: 'Error, contact support'
+        });
+      }else{                
+        //dataset for report excel
+        var gifts = [];
+        gifts.push(gift);        
+        //Call function to generate the excel
+        var report = excel.generateGifts(gifts);
+        res.attachment('report.xlsx');
+        return res.status(200).send(report);
+      } 
+  });
+});
 
 module.exports = router;

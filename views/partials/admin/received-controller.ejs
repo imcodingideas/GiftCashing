@@ -1,29 +1,34 @@
 <div class="row mt-1 mb-1 p-1 flex-items-md-between">
-  <div class="mr-1">
-    <form action="">
-      <div class="btn-group pl-1">
+  <div class="mr-1">    
+      <div class="btn-group pl-1" id="bulkActions">
         <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
           Actions
         </button>
         <div class="dropdown-menu">
+          <a class="dropdown-item" id="accepted"
+            href="#" onclick="updateAction('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'accepted');">
+            <i class="fa fa-check" aria-hidden="true"></i> Accept
+          </a>
           <a class="dropdown-item"
-             href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=accept">
-            <i class="fa fa-check" aria-hidden="true"></i> Accept</a>
-          <a class="dropdown-item"
-             href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=decline">
-            <i class="fa fa-ban" aria-hidden="true"></i> Decline</a>
-          <a class="dropdown-item" href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=paid">
-            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Paid</a>
-          <a class="dropdown-item" href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=excel">
-            <i class="fa fa-file-excel-o" aria-hidden="true"></i> Export to Excel</a>
-          <a class="dropdown-item"
-             href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=delete">
-            <i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
+             href="#" id="declined" onclick="updateAction('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'declined');">
+            <i class="fa fa-ban" aria-hidden="true"></i> Decline
+          </a>
+          <a class="dropdown-item" id="paid" 
+            href="#" onclick="updateAction('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'paid');">
+            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Paid
+          </a>
+          <a class="dropdown-item" id="excel" 
+            href="/admin/users/excel-gift/<%= foundGift.id %>" target="_blank">
+            <i class="fa fa-file-excel-o" aria-hidden="true"></i> Export to Excel
+          </a>
+          <a class="dropdown-item" id="delete"
+             href="#" onclick="updateAction('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'delete');">
+            <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+          </a>
         </div>
-        <button type="button" class="ml-2 btn btn-sm btn-outline-primary">GO</button>
-      </div>
-    </form>
+        <button type="button" class="ml-2 btn btn-sm btn-outline-primary" onclick="go()">GO</button>
+      </div>    
   </div>
   <div class="mr-1">
     <% if(pagination) { %>
@@ -31,17 +36,73 @@
     <% } %>
   </div>
   <div class="link-actions">
-    <a href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=decline">
-      <i class="icon fa fa-ban"></i></a>
-    <a href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=paid">
-      <i class="icon fa fa-cart-arrow-down"></i></a>
-    <a href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=excel">
-      <i class="icon fa fa-file-excel-o"></i></a>
+    <a href="#" onclick="updateActionAndGo('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'declined');">
+      <i class="icon fa fa-ban"></i>
+    </a>
+    <a href="#" onclick="updateActionAndGo('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'paid');">
+      <i class="icon fa fa-cart-arrow-down"></i>
+    </a>
+    <a href="/admin/users/excel-gift/<%= foundGift.id %>" target="_blank">
+      <i class="icon fa fa-file-excel-o"></i>
+    </a>
     <a href="#">
-      <i class="icon fa fa-chevron-left"></i></a>
+      <i class="icon fa fa-chevron-left"></i>
+    </a>
     <a href="#">
-      <i class="icon fa fa-chevron-right"></i></a>
-    <a href="/admin/users/<%= foundGift.user._id %>/gifts/<%= foundGift.id %>?action=delete">
-      <i class="icon fa fa-trash-o"></i></a>
+      <i class="icon fa fa-chevron-right"></i>
+    </a>
+    <a href="#" onclick="updateActionAndGo('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'delete');">
+      <i class="icon fa fa-trash-o"></i>
+    </a>
   </div>
 </div>
+
+
+<script>
+  
+  var data = {};
+
+  function updateAction (userId, giftId, action){
+    data = {
+      userId: userId,
+      giftId: giftId,
+      action: action      
+    };
+
+    //remove class for a active
+    /*$('#bulkActions a').removeClass('active');
+    //add active class for item
+    $('#' + action).addClass('active');*/
+  }
+
+  function go(){    
+    if (data.userId && data.giftId && data.action) {      
+      var url = '/admin/users/' +  data.userId + '/gifts/' + data.giftId;      
+      $.ajax({
+        url: url,
+        type: 'PUT',
+        data: {action: data.action},
+        success: function (res){
+          console.log('res: ', res);
+          if (res.success) {
+            alert(res.message);
+            if (data.action === 'delete') {
+              window.location.href= '/admin/gifts'; 
+            }
+          }
+        },
+        error: function (err){
+          console.log('err: ', err);
+          alert(err.message);
+        }
+      });
+    }    
+  }
+
+  function updateActionAndGo(userId, giftId, action){
+    updateAction(userId, giftId, action);
+    setTimeout(function (){
+      go(); 
+    }, 800);        
+  }
+</script>
