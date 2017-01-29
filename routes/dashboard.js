@@ -30,7 +30,7 @@ router.get(
           'status.declined': true
         };
         break;
-      case 'pending' :
+      case 'accepted-redeemed' :
         query = {
           user: req.user._id,
           'status.accepted': true
