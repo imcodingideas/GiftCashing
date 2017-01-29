@@ -109,59 +109,366 @@
               </div>
               <div class="col-sm-6 form-group">
                 <label for="state">State</label>
-                <select class="form-control" name="user[state]" id="state">
+                <select class="form-control"
+                        name="user[state]" id="state">
                   <option value="">Please Select</option>
-                  <option value="AL">Alabama</option>
-                  <option value="AK">Alaska</option>
-                  <option value="AZ">Arizona</option>
-                  <option value="AR">Arkansas</option>
-                  <option value="CA">California</option>
-                  <option value="CO">Colorado</option>
-                  <option value="CT">Connecticut</option>
-                  <option value="DE">Delaware</option>
-                  <option value="DC">District Of Columbia</option>
-                  <option value="FL">Florida</option>
-                  <option value="GA">Georgia</option>
-                  <option value="HI">Hawaii</option>
-                  <option value="ID">Idaho</option>
-                  <option value="IL">Illinois</option>
-                  <option value="IN">Indiana</option>
-                  <option value="IA">Iowa</option>
-                  <option value="KS">Kansas</option>
-                  <option value="KY">Kentucky</option>
-                  <option value="LA">Louisiana</option>
-                  <option value="ME">Maine</option>
-                  <option value="MD">Maryland</option>
-                  <option value="MA">Massachusetts</option>
-                  <option value="MI">Michigan</option>
-                  <option value="MN">Minnesota</option>
-                  <option value="MS">Mississippi</option>
-                  <option value="MO">Missouri</option>
-                  <option value="MT">Montana</option>
-                  <option value="NE">Nebraska</option>
-                  <option value="NV">Nevada</option>
-                  <option value="NH">New Hampshire</option>
-                  <option value="NJ">New Jersey</option>
-                  <option value="NM">New Mexico</option>
-                  <option value="NY">New York</option>
-                  <option value="NC">North Carolina</option>
-                  <option value="ND">North Dakota</option>
-                  <option value="OH">Ohio</option>
-                  <option value="OK">Oklahoma</option>
-                  <option value="OR">Oregon</option>
-                  <option value="PA">Pennsylvania</option>
-                  <option value="RI">Rhode Island</option>
-                  <option value="SC">South Carolina</option>
-                  <option value="SD">South Dakota</option>
-                  <option value="TN">Tennessee</option>
-                  <option value="TX">Texas</option>
-                  <option value="UT">Utah</option>
-                  <option value="VT">Vermont</option>
-                  <option value="VA">Virginia</option>
-                  <option value="WA">Washington</option>
-                  <option value="WV">West Virginia</option>
-                  <option value="WI">Wisconsin</option>
-                  <option value="WY">Wyoming</option>
+                  <option value="AL"
+                          <% if(user.paymentPreference && user.state == 'AL') { %>
+                          selected
+                          <% } %>
+                  >
+                    Alabama
+                  </option>
+                  <option value="AK"
+                          <% if(user.paymentPreference && user.state == 'AK') { %>
+                          selected
+                          <% } %>
+                  >
+                    Alaska
+                  </option>
+                  <option value="AZ"
+                          <% if(user.paymentPreference && user.state == 'AZ') { %>
+                          selected
+                          <% } %>
+                  >
+                    Arizona
+                  </option>
+                  <option value="AR"
+                          <% if(user.paymentPreference && user.state == 'AR') { %>
+                          selected
+                          <% } %>
+                  >
+                    Arkansas
+                  </option>
+                  <option value="CA"
+                          <% if(user.paymentPreference && user.state == 'CA') { %>
+                          selected
+                          <% } %>
+                  >
+                    California
+                  </option>
+                  <option value="CO"
+                          <% if(user.paymentPreference && user.state == 'CO') { %>
+                          selected
+                          <% } %>
+                  >
+                    Colorado
+                  </option>
+                  <option value="CT"
+                          <% if(user.paymentPreference && user.state == 'CT') { %>
+                          selected
+                          <% } %>
+                  >
+                    Connecticut
+                  </option>
+                  <option value="DE"
+                          <% if(user.paymentPreference && user.state == 'DE') { %>
+                          selected
+                          <% } %>
+                  >
+                    Delaware
+                  </option>
+                  <option value="DC"
+                          <% if(user.paymentPreference && user.state == 'DC') { %>
+                          selected
+                          <% } %>
+                  >
+                    District Of Columbia
+                  </option>
+                  <option value="FL"
+                          <% if(user.paymentPreference && user.state == 'FL') { %>
+                          selected
+                          <% } %>
+                  >
+                    Florida
+                  </option>
+                  <option value="GA"
+                          <% if(user.paymentPreference && user.state == 'GA') { %>
+                          selected
+                          <% } %>
+                  >
+                    Georgia
+                  </option>
+                  <option value="HI"
+                          <% if(user.paymentPreference && user.state == 'HI') { %>
+                          selected
+                          <% } %>
+                  >
+                    Hawaii
+                  </option>
+                  <option value="ID"
+                          <% if(user.paymentPreference && user.state == 'ID') { %>
+                          selected
+                          <% } %>
+                  >
+                    Idaho
+                  </option>
+                  <option value="IL"
+                          <% if(user.paymentPreference && user.state == 'IL') { %>
+                          selected
+                          <% } %>
+                  >
+                    Illinois
+                  </option>
+                  <option value="IN"
+                          <% if(user.paymentPreference && user.state == 'IN') { %>
+                          selected
+                          <% } %>
+                  >
+                    Indiana
+                  </option>
+                  <option value="IA"
+                          <% if(user.paymentPreference && user.state == 'IA') { %>
+                          selected
+                          <% } %>
+                  >
+                    Iowa
+                  </option>
+                  <option value="KS"
+                          <% if(user.paymentPreference && user.state == 'KS') { %>
+                          selected
+                          <% } %>
+                  >
+                    Kansas
+                  </option>
+                  <option value="KY"
+                          <% if(user.paymentPreference && user.state == 'KY') { %>
+                          selected
+                          <% } %>
+                  >
+                    Kentucky
+                  </option>
+                  <option value="LA"
+                          <% if(user.paymentPreference && user.state == 'LA') { %>
+                          selected
+                          <% } %>
+                  >
+                    Louisiana
+                  </option>
+                  <option value="ME"
+                          <% if(user.paymentPreference && user.state == 'ME') { %>
+                          selected
+                          <% } %>
+                  >
+                    Maine
+                  </option>
+                  <option value="MD"
+                          <% if(user.paymentPreference && user.state == 'MD') { %>
+                          selected
+                          <% } %>
+                  >
+                    Maryland
+                  </option>
+                  <option value="MA"
+                          <% if(user.paymentPreference && user.state == 'MA') { %>
+                          selected
+                          <% } %>
+                  >
+                    Massachusetts
+                  </option>
+                  <option value="MI"
+                          <% if(user.paymentPreference && user.state == 'MI') { %>
+                          selected
+                          <% } %>
+                  >
+                    Michigan
+                  </option>
+                  <option value="MN"
+                          <% if(user.paymentPreference && user.state == 'MN') { %>
+                          selected
+                          <% } %>
+                  >
+                    Minnesota
+                  </option>
+                  <option value="MS"
+                          <% if(user.paymentPreference && user.state == 'MS') { %>
+                          selected
+                          <% } %>
+                  >
+                    Mississippi
+                  </option>
+                  <option value="MO"
+                          <% if(user.paymentPreference && user.state == 'MO') { %>
+                          selected
+                          <% } %>
+                  >
+                    Missouri
+                  </option>
+                  <option value="MT"
+                          <% if(user.paymentPreference && user.state == 'MT') { %>
+                          selected
+                          <% } %>
+                  >
+                    Montana
+                  </option>
+                  <option value="NE"
+                          <% if(user.paymentPreference && user.state == 'NE') { %>
+                          selected
+                          <% } %>
+                  >
+                    Nebraska
+                  </option>
+                  <option value="NV"
+                          <% if(user.paymentPreference && user.state == 'NV') { %>
+                          selected
+                          <% } %>
+                  >
+                    Nevada
+                  </option>
+                  <option value="NH"
+                          <% if(user.paymentPreference && user.state == 'NH') { %>
+                          selected
+                          <% } %>
+                  >
+                    New Hampshire
+                  </option>
+                  <option value="NJ"
+                          <% if(user.paymentPreference && user.state == 'NJ') { %>
+                          selected
+                          <% } %>
+                  >
+                    New Jersey
+                  </option>
+                  <option value="NM"
+                          <% if(user.paymentPreference && user.state == 'NM') { %>
+                          selected
+                          <% } %>
+                  >
+                    New Mexico
+                  </option>
+                  <option value="NY"
+                          <% if(user.paymentPreference && user.state == 'NY') { %>
+                          selected
+                          <% } %>
+                  >
+                    New York
+                  </option>
+                  <option value="NC"
+                          <% if(user.paymentPreference && user.state == 'NC') { %>
+                          selected
+                          <% } %>
+                  >
+                    North Carolina
+                  </option>
+                  <option value="ND"
+                          <% if(user.paymentPreference && user.state == 'ND') { %>
+                          selected
+                          <% } %>
+                  >
+                    North Dakota
+                  </option>
+                  <option value="OH"
+                          <% if(user.paymentPreference && user.state == 'OH') { %>
+                          selected
+                          <% } %>
+                  >
+                    Ohio
+                  </option>
+                  <option value="OK"
+                          <% if(user.paymentPreference && user.state == 'OK') { %>
+                          selected
+                          <% } %>
+                  >
+                    Oklahoma
+                  </option>
+                  <option value="OR"
+                          <% if(user.paymentPreference && user.state == 'OR') { %>
+                          selected
+                          <% } %>
+                  >
+                    Oregon
+                  </option>
+                  <option value="PA"
+                          <% if(user.paymentPreference && user.state == 'PA') { %>
+                          selected
+                          <% } %>
+                  >
+                    Pennsylvania
+                  </option>
+                  <option value="RI"
+                          <% if(user.paymentPreference && user.state == 'RI') { %>
+                          selected
+                          <% } %>
+                  >
+                    Rhode Island
+                  </option>
+                  <option value="SC"
+                          <% if(user.paymentPreference && user.state == 'SC') { %>
+                          selected
+                          <% } %>
+                  >
+                    South Carolina
+                  </option>
+                  <option value="SD"
+                          <% if(user.paymentPreference && user.state == 'SD') { %>
+                          selected
+                          <% } %>
+                  >
+                    South Dakota
+                  </option>
+                  <option value="TN"
+                          <% if(user.paymentPreference && user.state == 'TN') { %>
+                          selected
+                          <% } %>
+                  >
+                    Tennessee
+                  </option>
+                  <option value="TX"
+                          <% if(user.paymentPreference && user.state == 'TX') { %>
+                          selected
+                          <% } %>
+                  >
+                    Texas
+                  </option>
+                  <option value="UT"
+                          <% if(user.paymentPreference && user.state == 'UT') { %>
+                          selected
+                          <% } %>
+                  >
+                    Utah
+                  </option>
+                  <option value="VT"
+                          <% if(user.paymentPreference && user.state == 'VT') { %>
+                          selected
+                          <% } %>
+                  >
+                    Vermont
+                  </option>
+                  <option value="VA"
+                          <% if(user.paymentPreference && user.state == 'VA') { %>
+                          selected
+                          <% } %>
+                  >
+                    Virginia
+                  </option>
+                  <option value="WA"
+                          <% if(user.paymentPreference && user.state == 'WA') { %>
+                          selected
+                          <% } %>
+                  >
+                    Washington
+                  </option>
+                  <option value="WV"
+                          <% if(user.paymentPreference && user.state == 'WV') { %>
+                          selected
+                          <% } %>
+                  >
+                    West Virginia
+                  </option>
+                  <option value="WI"
+                          <% if(user.paymentPreference && user.state == 'WI') { %>
+                          selected
+                          <% } %>
+                  >
+                    Wisconsin
+                  </option>
+                  <option value="WY"
+                          <% if(user.paymentPreference && user.state == 'WY') { %>
+                          selected
+                          <% } %>
+                  >
+                    Wyoming
+                  </option>
                 </select>
               </div>
             </div>
@@ -185,20 +492,24 @@
               </div>
             </div>
 
-            <% if(currentUser.isAdmin) { %>              
-              <div class="row md-2">
-                <div class="col-sm-12 form-group">                
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" name="user[isAdmin]" id="isAdmin"
-                        value="<%= (user.isAdmin)?true:false %>" <% if (user.isAdmin) { %> checked <% } %> > Administrator
-                    </label>
-                  </div>                
+            <% if(currentUser.isAdmin) { %>
+            <div class="row md-2">
+              <div class="col-sm-12 form-group">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="user[isAdmin]" id="isAdmin"
+                           value="<%= (user.isAdmin) ? true : false %>"
+                            <% if (user.isAdmin) { %>
+                           checked
+                            <% } %>
+                    > Administrator
+                  </label>
                 </div>
               </div>
+            </div>
             <% } %>
-            
-            <% if(currentUser.isAdmin === true) { %>                        
+
+            <% if(currentUser.isAdmin === true) { %>
             <div class="row md-2">
               <div class="col-sm-12 form-group">
                 <label for="notes">Notes/Comments</label>
@@ -208,7 +519,7 @@
                                 </textarea>
               </div>
             </div>
-            <% } %>            
+            <% } %>
 
           </div>
           <div class="tab-pane" id="payment-preference" role="tabpanel">
@@ -292,182 +603,386 @@
                     <div class="row mb-2">
                       <div class="col-sm-6 form-group">
                         <label for="addressLine1">Address Line 1</label>
-                        <input type="text" class="form-control" 
-                          name="user[paymentPreference][check][addressLine1]" id="addressLine1"
+                        <input type="text" class="form-control"
+                               name="user[paymentPreference][check][addressLine1]" id="addressLine1"
                                value="<%= (user.paymentPreference) ? (user.paymentPreference.check.addressLine1) : '' %>">
                       </div>
                       <div class="col-sm-6 form-group">
                         <label for="addressLine2">Address Line 2</label>
-                        <input type="text" class="form-control" 
-                          name="user[paymentPreference][check][addressLine2]" id="addressLine2"
-                          value="<%= (user.paymentPreference) ? (user.paymentPreference.check.addressLine2) : '' %>">
+                        <input type="text" class="form-control"
+                               name="user[paymentPreference][check][addressLine2]" id="addressLine2"
+                               value="<%= (user.paymentPreference) ? (user.paymentPreference.check.addressLine2) : '' %>">
                       </div>
                     </div>
 
                     <div class="row mb-2">
                       <div class="col-sm-6 form-group">
                         <label for="city">City</label>
-                        <input type="text" class="form-control" 
-                          name="user[paymentPreference][check][city]" id="city"
-                          value="<%= (user.paymentPreference) ? (user.paymentPreference.check.city) : '' %>">
+                        <input type="text" class="form-control"
+                               name="user[paymentPreference][check][city]" id="city"
+                               value="<%= (user.paymentPreference) ? (user.paymentPreference.check.city) : '' %>">
                       </div>
                       <div class="col-sm-6 form-group">
                         <label for="state">State</label>
-                        <select class="form-control" 
-                          name="user[paymentPreference][check][state]" id="state">
+                        <select class="form-control"
+                                name="user[paymentPreference][check][state]" id="state">
                           <option value="">Please Select</option>
-                          <option value="AL" <% if(user.paymentPreference && user.paymentPreference.check.state == 'AL') { %> selected <% } %> >
-                              Alabama
+                          <option value="AL"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'AL') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Alabama
                           </option>
-                          <option value="AK" <% if(user.paymentPreference && user.paymentPreference.check.state == 'AK') { %> selected <% } %> >
-                              Alaska
+                          <option value="AK"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'AK') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Alaska
                           </option>
-                          <option value="AZ" <% if(user.paymentPreference && user.paymentPreference.check.state == 'AZ') { %> selected <% } %> >
-                              Arizona
+                          <option value="AZ"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'AZ') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Arizona
                           </option>
-                          <option value="AR" <% if(user.paymentPreference && user.paymentPreference.check.state == 'AR') { %> selected <% } %> >
-                              Arkansas
+                          <option value="AR"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'AR') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Arkansas
                           </option>
-                          <option value="CA" <% if(user.paymentPreference && user.paymentPreference.check.state == 'CA') { %> selected <% } %> >
-                              California
+                          <option value="CA"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'CA') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            California
                           </option>
-                          <option value="CO" <% if(user.paymentPreference && user.paymentPreference.check.state == 'CO') { %> selected <% } %> >
-                              Colorado
+                          <option value="CO"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'CO') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Colorado
                           </option>
-                          <option value="CT" <% if(user.paymentPreference && user.paymentPreference.check.state == 'CT') { %> selected <% } %> >
-                              Connecticut
+                          <option value="CT"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'CT') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Connecticut
                           </option>
-                          <option value="DE" <% if(user.paymentPreference && user.paymentPreference.check.state == 'DE') { %> selected <% } %> >
-                              Delaware
+                          <option value="DE"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'DE') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Delaware
                           </option>
-                          <option value="DC" <% if(user.paymentPreference && user.paymentPreference.check.state == 'DC') { %> selected <% } %> >
-                              District Of Columbia
-                           </option>
-                          <option value="FL" <% if(user.paymentPreference && user.paymentPreference.check.state == 'FL') { %> selected <% } %> >
-                              Florida
+                          <option value="DC"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'DC') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            District Of Columbia
                           </option>
-                          <option value="GA" <% if(user.paymentPreference && user.paymentPreference.check.state == 'GA') { %> selected <% } %> >
-                              Georgia
+                          <option value="FL"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'FL') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Florida
                           </option>
-                          <option value="HI" <% if(user.paymentPreference && user.paymentPreference.check.state == 'HI') { %> selected <% } %> >
-                              Hawaii
+                          <option value="GA"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'GA') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Georgia
                           </option>
-                          <option value="ID" <% if(user.paymentPreference && user.paymentPreference.check.state == 'ID') { %> selected <% } %> >
-                              Idaho
+                          <option value="HI"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'HI') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Hawaii
                           </option>
-                          <option value="IL" <% if(user.paymentPreference && user.paymentPreference.check.state == 'IL') { %> selected <% } %> >
-                              Illinois
+                          <option value="ID"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'ID') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Idaho
                           </option>
-                          <option value="IN" <% if(user.paymentPreference && user.paymentPreference.check.state == 'IN') { %> selected <% } %> >
-                              Indiana
+                          <option value="IL"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'IL') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Illinois
                           </option>
-                          <option value="IA" <% if(user.paymentPreference && user.paymentPreference.check.state == 'IA') { %> selected <% } %> >
-                              Iowa
+                          <option value="IN"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'IN') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Indiana
                           </option>
-                          <option value="KS" <% if(user.paymentPreference && user.paymentPreference.check.state == 'KS') { %> selected <% } %> >
-                              Kansas
+                          <option value="IA"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'IA') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Iowa
                           </option>
-                          <option value="KY" <% if(user.paymentPreference && user.paymentPreference.check.state == 'KY') { %> selected <% } %> >
-                              Kentucky
+                          <option value="KS"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'KS') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Kansas
                           </option>
-                          <option value="LA" <% if(user.paymentPreference && user.paymentPreference.check.state == 'LA') { %> selected <% } %> >
-                              Louisiana
+                          <option value="KY"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'KY') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Kentucky
                           </option>
-                          <option value="ME" <% if(user.paymentPreference && user.paymentPreference.check.state == 'ME') { %> selected <% } %> >
-                              Maine
+                          <option value="LA"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'LA') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Louisiana
                           </option>
-                          <option value="MD" <% if(user.paymentPreference && user.paymentPreference.check.state == 'MD') { %> selected <% } %> >
-                              Maryland
+                          <option value="ME"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'ME') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Maine
                           </option>
-                          <option value="MA" <% if(user.paymentPreference && user.paymentPreference.check.state == 'MA') { %> selected <% } %> >
-                              Massachusetts
+                          <option value="MD"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'MD') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Maryland
                           </option>
-                          <option value="MI" <% if(user.paymentPreference && user.paymentPreference.check.state == 'MI') { %> selected <% } %> >
-                              Michigan
+                          <option value="MA"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'MA') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Massachusetts
                           </option>
-                          <option value="MN" <% if(user.paymentPreference && user.paymentPreference.check.state == 'MN') { %> selected <% } %> >
-                              Minnesota
+                          <option value="MI"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'MI') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Michigan
                           </option>
-                          <option value="MS" <% if(user.paymentPreference && user.paymentPreference.check.state == 'MS') { %> selected <% } %> >
-                              Mississippi
+                          <option value="MN"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'MN') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Minnesota
                           </option>
-                          <option value="MO" <% if(user.paymentPreference && user.paymentPreference.check.state == 'MO') { %> selected <% } %> >
-                              Missouri
+                          <option value="MS"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'MS') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Mississippi
                           </option>
-                          <option value="MT" <% if(user.paymentPreference && user.paymentPreference.check.state == 'MT') { %> selected <% } %> >
-                              Montana
+                          <option value="MO"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'MO') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Missouri
                           </option>
-                          <option value="NE" <% if(user.paymentPreference && user.paymentPreference.check.state == 'NE') { %> selected <% } %> >
-                              Nebraska
+                          <option value="MT"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'MT') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Montana
                           </option>
-                          <option value="NV" <% if(user.paymentPreference && user.paymentPreference.check.state == 'NV') { %> selected <% } %> >
-                              Nevada
+                          <option value="NE"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'NE') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Nebraska
                           </option>
-                          <option value="NH" <% if(user.paymentPreference && user.paymentPreference.check.state == 'NH') { %> selected <% } %> >
-                              New Hampshire
-                           </option>
-                          <option value="NJ" <% if(user.paymentPreference && user.paymentPreference.check.state == 'NJ') { %> selected <% } %> >
-                              New Jersey
+                          <option value="NV"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'NV') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Nevada
                           </option>
-                          <option value="NM" <% if(user.paymentPreference && user.paymentPreference.check.state == 'NM') { %> selected <% } %> >
-                              New Mexico
+                          <option value="NH"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'NH') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            New Hampshire
                           </option>
-                          <option value="NY" <% if(user.paymentPreference && user.paymentPreference.check.state == 'NY') { %> selected <% } %> >
-                              New York
+                          <option value="NJ"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'NJ') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            New Jersey
                           </option>
-                          <option value="NC" <% if(user.paymentPreference && user.paymentPreference.check.state == 'NC') { %> selected <% } %> >
-                              North Carolina
+                          <option value="NM"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'NM') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            New Mexico
                           </option>
-                          <option value="ND" <% if(user.paymentPreference && user.paymentPreference.check.state == 'ND') { %> selected <% } %> >
-                              North Dakota
+                          <option value="NY"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'NY') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            New York
                           </option>
-                          <option value="OH" <% if(user.paymentPreference && user.paymentPreference.check.state == 'OH') { %> selected <% } %> >
-                              Ohio
+                          <option value="NC"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'NC') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            North Carolina
                           </option>
-                          <option value="OK" <% if(user.paymentPreference && user.paymentPreference.check.state == 'OK') { %> selected <% } %> >
-                              Oklahoma
+                          <option value="ND"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'ND') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            North Dakota
                           </option>
-                          <option value="OR" <% if(user.paymentPreference && user.paymentPreference.check.state == 'OR') { %> selected <% } %> >
-                              Oregon
+                          <option value="OH"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'OH') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Ohio
                           </option>
-                          <option value="PA" <% if(user.paymentPreference && user.paymentPreference.check.state == 'PA') { %> selected <% } %> >
-                              Pennsylvania
+                          <option value="OK"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'OK') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Oklahoma
                           </option>
-                          <option value="RI" <% if(user.paymentPreference && user.paymentPreference.check.state == 'RI') { %> selected <% } %> >
-                              Rhode Island
+                          <option value="OR"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'OR') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Oregon
                           </option>
-                          <option value="SC" <% if(user.paymentPreference && user.paymentPreference.check.state == 'SC') { %> selected <% } %> >
-                              South Carolina
+                          <option value="PA"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'PA') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Pennsylvania
                           </option>
-                          <option value="SD" <% if(user.paymentPreference && user.paymentPreference.check.state == 'SD') { %> selected <% } %> >
-                              South Dakota
+                          <option value="RI"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'RI') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Rhode Island
                           </option>
-                          <option value="TN" <% if(user.paymentPreference && user.paymentPreference.check.state == 'TN') { %> selected <% } %> >
-                              Tennessee
+                          <option value="SC"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'SC') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            South Carolina
                           </option>
-                          <option value="TX" <% if(user.paymentPreference && user.paymentPreference.check.state == 'TX') { %> selected <% } %> >
-                              Texas
+                          <option value="SD"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'SD') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            South Dakota
                           </option>
-                          <option value="UT" <% if(user.paymentPreference && user.paymentPreference.check.state == 'UT') { %> selected <% } %> >
-                              Utah
+                          <option value="TN"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'TN') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Tennessee
                           </option>
-                          <option value="VT" <% if(user.paymentPreference && user.paymentPreference.check.state == 'VT') { %> selected <% } %> >
-                              Vermont
+                          <option value="TX"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'TX') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Texas
                           </option>
-                          <option value="VA" <% if(user.paymentPreference && user.paymentPreference.check.state == 'VA') { %> selected <% } %> >
-                              Virginia
+                          <option value="UT"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'UT') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Utah
                           </option>
-                          <option value="WA" <% if(user.paymentPreference && user.paymentPreference.check.state == 'WA') { %> selected <% } %> >
-                              Washington
+                          <option value="VT"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'VT') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Vermont
                           </option>
-                          <option value="WV" <% if(user.paymentPreference && user.paymentPreference.check.state == 'WV') { %> selected <% } %> >
-                              West Virginia
+                          <option value="VA"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'VA') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Virginia
                           </option>
-                          <option value="WI" <% if(user.paymentPreference && user.paymentPreference.check.state == 'WI') { %> selected <% } %> >
-                              Wisconsin
+                          <option value="WA"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'WA') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Washington
                           </option>
-                          <option value="WY" <% if(user.paymentPreference && user.paymentPreference.check.state == 'WY') { %> selected <% } %> >
-                              Wyoming
+                          <option value="WV"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'WV') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            West Virginia
+                          </option>
+                          <option value="WI"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'WI') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Wisconsin
+                          </option>
+                          <option value="WY"
+                                  <% if(user.paymentPreference && user.paymentPreference.check.state == 'WY') { %>
+                                  selected
+                                  <% } %>
+                          >
+                            Wyoming
                           </option>
                         </select>
                       </div>
@@ -476,9 +991,9 @@
                     <div class="row mb-2">
                       <div class="col-sm-6 form-group">
                         <label for="zipCode">Zip Code</label>
-                        <input type="text" class="form-control" 
-                          name="user[paymentPreference][check][zipCode]" id="zipCode"
-                          value="<%= (user.paymentPreference) ? (user.paymentPreference.check.zipCode) : '' %>">
+                        <input type="text" class="form-control"
+                               name="user[paymentPreference][check][zipCode]" id="zipCode"
+                               value="<%= (user.paymentPreference) ? (user.paymentPreference.check.zipCode) : '' %>">
                       </div>
                     </div>
                   </div>
@@ -540,10 +1055,10 @@
 
   });
 
-  $('#isAdmin').change(function (){
-    if (this.checked) {      
+  $('#isAdmin').change(function() {
+    if(this.checked) {
       $('#isAdmin').val(true);
-    }else{      
+    } else {
       $('#isAdmin').val(false);
     }
   });

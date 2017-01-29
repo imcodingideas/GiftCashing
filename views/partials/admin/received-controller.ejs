@@ -1,34 +1,35 @@
 <div class="row mt-1 mb-1 p-1 flex-items-md-between">
-  <div class="mr-1">    
-      <div class="btn-group pl-1" id="bulkActions">
-        <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-          Actions
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" id="accepted"
-            href="#" onclick="updateAction('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'accepted');">
-            <i class="fa fa-check" aria-hidden="true"></i> Accept
-          </a>
-          <a class="dropdown-item"
-             href="#" id="declined" onclick="updateAction('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'declined');">
-            <i class="fa fa-ban" aria-hidden="true"></i> Decline
-          </a>
-          <a class="dropdown-item" id="paid" 
-            href="#" onclick="updateAction('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'paid');">
-            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Paid
-          </a>
-          <a class="dropdown-item" id="excel" 
-            href="/admin/users/excel-gift/<%= foundGift.id %>" target="_blank">
-            <i class="fa fa-file-excel-o" aria-hidden="true"></i> Export to Excel
-          </a>
-          <a class="dropdown-item" id="delete"
-             href="#" onclick="updateAction('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'delete');">
-            <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
-          </a>
-        </div>
-        <button type="button" class="ml-2 btn btn-sm btn-outline-primary" onclick="go()">GO</button>
-      </div>    
+  <div class="mr-1">
+    <div class="btn-group pl-1">
+      <button type="button" id="bulkActions"
+              class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+        Actions
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" id="accepted"
+           href="#" onclick="updateAction('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'accepted');">
+          <i class="fa fa-check" aria-hidden="true"></i> Accept
+        </a>
+        <a class="dropdown-item"
+           href="#" id="declined" onclick="updateAction('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'declined');">
+          <i class="fa fa-ban" aria-hidden="true"></i> Decline
+        </a>
+        <a class="dropdown-item" id="paid"
+           href="#" onclick="updateAction('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'paid');">
+          <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Paid
+        </a>
+        <a class="dropdown-item" id="excel"
+           href="/admin/users/excel-gift/<%= foundGift.id %>" target="_blank">
+          <i class="fa fa-file-excel-o" aria-hidden="true"></i> Export to Excel
+        </a>
+        <a class="dropdown-item" id="delete"
+           href="#" onclick="updateAction('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'delete');">
+          <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+        </a>
+      </div>
+      <button type="button" class="ml-2 btn btn-sm btn-outline-primary" onclick="go()">GO</button>
+    </div>
   </div>
   <div class="mr-1">
     <% if(pagination) { %>
@@ -59,25 +60,25 @@
 
 
 <script>
-  
+
   var data = {};
 
   function updateAction (userId, giftId, action){
     data = {
       userId: userId,
       giftId: giftId,
-      action: action      
+      action: action
     };
 
     //remove class for a active
     /*$('#bulkActions a').removeClass('active');
-    //add active class for item
-    $('#' + action).addClass('active');*/
+     //add active class for item
+     $('#' + action).addClass('active');*/
   }
 
-  function go(){    
-    if (data.userId && data.giftId && data.action) {      
-      var url = '/admin/users/' +  data.userId + '/gifts/' + data.giftId;      
+  function go(){
+    if (data.userId && data.giftId && data.action) {
+      var url = '/admin/users/' +  data.userId + '/gifts/' + data.giftId;
       $.ajax({
         url: url,
         type: 'PUT',
@@ -87,7 +88,7 @@
           if (res.success) {
             alert(res.message);
             if (data.action === 'delete') {
-              window.location.href= '/admin/gifts'; 
+              window.location.href= '/admin/gifts';
             }
           }
         },
@@ -96,13 +97,20 @@
           alert(err.message);
         }
       });
-    }    
+    }
   }
 
   function updateActionAndGo(userId, giftId, action){
     updateAction(userId, giftId, action);
     setTimeout(function (){
-      go(); 
-    }, 800);        
+      go();
+    }, 800);
   }
+
+  $(function(){
+    $(".dropdown-menu").on('click', 'a', function(){
+      $("#bulkActions:first-child").text($(this).text());
+      $("#bulkActions:first-child").val($(this).text());
+    });
+  });
 </script>

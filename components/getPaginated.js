@@ -3,7 +3,7 @@ module.exports =
     let pagination = {
       page: (parseInt(req.query.page) > 0)? req.query.page : 1,
       pages: 0,
-      perPage: perPage || 1,
+      perPage: perPage || 30,
       records: 0,
       showing: 0
     };
