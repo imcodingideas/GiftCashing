@@ -2,6 +2,18 @@
  * Created by joseph on 12/11/16.
  */
 $(document).ready(function() {
+  
+  function init() {
+    $('#newTweet').on('click', tweetIt);
+  }
+  
+  init();
+  
+  function tweetIt() {
+    var getShareMessage = $('#shareMessage').text();
+    $('#newTweet').attr('href', 'https://twitter.com/intent/tweet?text=' + getShareMessage)
+  }
+  
   // close alert row
   window.setTimeout(function() {
     $('.alert').fadeTo(500, 0).slideUp(500, function() {
@@ -39,7 +51,6 @@ $(document).ready(function() {
   }).on('typeahead:selected', function(obj, data) {
     $('#userId').val(data.id);
   });
-  
   
   $('.dropdown-menu a').click(function() {
     let selectedAction = $(this).text();

@@ -15,8 +15,7 @@
         <div class="row bg-purple-light mt-2 mb-1 p-1 share-messages">
           <div class="col-xs-12 col-md-8 p-2">
             <h5 class="text-bold text-primary">It's my birthday</h5>
-            <p class="m-0">Send me a gift card and I’ll send you a picture! Go to mgexps.com and send a gift card
-              to <%= currentUser.aliasFirstName + ' ' + currentUser.aliasLastName %> at 877-949-GIFT</p>
+            <p class="m-0" id="shareMessage">Send me a gift card and I’ll send you a picture! Go to mgexps.com and send a gift card to <%= currentUser.aliasFirstName + ' ' + currentUser.aliasLastName %> at 877-949-GIFT</p>
           </div>
           <div class="col-xs-6 col-md-2 p-2">
             <a href="#" class="social-link">
@@ -25,7 +24,7 @@
             </a>
           </div>
           <div class="col-xs-6 col-md-2 p-2">
-            <a href="#" class="social-link">
+            <a target="_blank" href="#" class="social-link" id="newTweet">
               <i class="icon fa fa-twitter"></i>
               <span class="twitter">Tweet</span>
             </a>
@@ -34,9 +33,7 @@
         <div class="row bg-purple-light mt-2 mb-1 p-1 share-messages">
           <div class="col-xs-12 col-md-8 p-2">
             <h5 class="text-bold text-primary">It's my birthday</h5>
-            <p class="m-0">It’s my Birthday! Send me a gift card from mgexps.com
-              to <%= currentUser.aliasFirstName + ' ' + currentUser.aliasLastName %> at 877-949-GIFT. And then, I’ll
-              send you a surprise!</p>
+            <p class="m-0" id="shareMessage">It’s my Birthday! Send me a gift card from mgexps.com to <%= currentUser.aliasFirstName + ' ' + currentUser.aliasLastName %> at 877-949-GIFT. And then, I’ll send you a surprise!</p>
           </div>
           <div class="col-xs-6 col-md-2 p-2">
             <a href="#" class="social-link">
@@ -45,7 +42,7 @@
             </a>
           </div>
           <div class="col-xs-6 col-md-2 p-2">
-            <a href="#" class="social-link">
+            <a target="_blank" href="#" class="social-link" id="newTweet">
               <i class="icon fa fa-twitter"></i>
               <span class="twitter">Tweet</span>
             </a>
