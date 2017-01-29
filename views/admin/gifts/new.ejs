@@ -12,14 +12,21 @@
     <% include ../../partials/sidebar %>
     <div class="offset-md-1 col-md-6 pt-2">
       <form action="/admin/gifts/" method="POST">
+          
+        <!-- Hidden field to store the userId of dropdown -->  
+        <input type="hidden" name="user" id="userId">
         <div class="row">
           <div class="col-sm-12">
-            <div class="form-group">
-              <label for="username">For</label>
-              <input type="text" class="form-control" name="user" id="userSearch" placeholder="Search">
+            <div class="form-group" >
+              <label for="username">Search test</label>
+              <div id="searchtest">
+                <input type="text" class="form-control typeahead" name="userName" id="test" placeholder="search test" autocomplete="off">
+              </div>
             </div>
           </div>
         </div>
+          
+          
 
         <div class="row">
           <div class="col-sm-6 form-group">
@@ -97,3 +104,26 @@
 
 <% include ../../partials/contact %>
 <% include ../../partials/footer %>
+
+<script>
+  // TODO: Where is the correct path for this script?  
+  $(document).ready(function() {
+      var giftsFrom = new Bloodhound({
+          datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+          queryTokenizer: Bloodhound.tokenizers.whitespace,
+          remote: {
+              // TODO: This search endpoint should be request the data with query parameter instead aliasFirstNAme
+              url: '/admin/search?aliasFirstName=%QUERY',
+              wildcard: '%QUERY'
+          }
+      });
+
+      $('#searchtest .typeahead').typeahead(null, {
+          name: 'gifts_from',
+          display: 'value',
+          source: giftsFrom
+      }).on('typeahead:selected', function (obj, data) {
+          $('#userId').val(data.id);
+      });
+  });
+</script>
