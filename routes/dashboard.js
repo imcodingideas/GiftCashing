@@ -8,8 +8,7 @@ const
   }),
   User = require('../models/user'),
   Gift = require('../models/gift'),
-  middleware = require('../middleware'),
-  getPaginated = require('../components/getPaginated');
+  middleware = require('../middleware');
 
 router.get(
   '/gifts',
@@ -43,12 +42,22 @@ router.get(
         };
         break;
     }
-    
-    getPaginated(Gift, 'user', query, req, result => {
-      result.title ='Received Gifts';
-      result.breadcrumbsName = 'Received';
-      res.render('admin/gifts/index', result);
-    });
+  
+    Gift
+      .find(query)
+      .populate('user')
+      .exec((err, gifts) => {
+        if (err) {
+          req.flash('error', err.message);
+          gifts = [];
+        }
+      
+        res.render('dashboard/gifts/index', {
+          title: 'Received Gifts',
+          breadcrumbsName: 'Received',
+          gifts: gifts
+        });
+      });
   });
 
 
