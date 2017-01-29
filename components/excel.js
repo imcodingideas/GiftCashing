@@ -111,5 +111,72 @@ module.exports = {
     ]);
     
     return report;
-  }
+  },
+  generateUsers : function (usersDataSet){
+    //Here you specify the export structure
+    var specification = {
+      firstName: { // <- the key should match the actual data key
+        displayName: 'First Name', // <- Here you specify the column header
+        headerStyle: styles.header, // <- Header style
+        cellStyle: styles.header,
+        width: 120 // <- width in pixels
+      },
+      lastName: { // <- the key should match the actual data key
+        displayName: 'Last Name', // <- Here you specify the column header
+        headerStyle: styles.header, // <- Header style
+        cellStyle: styles.header,
+        width: 120 // <- width in pixels
+      },
+      aliasFirstName: { // <- the key should match the actual data key
+        displayName: 'Alias First Name', // <- Here you specify the column header
+        headerStyle: styles.header, // <- Header style
+        cellStyle: styles.header,
+        width: 120 // <- width in pixels
+      },
+      aliasLastName: { // <- the key should match the actual data key
+        displayName: 'Alias Last Name', // <- Here you specify the column header
+        headerStyle: styles.header, // <- Header style
+        cellStyle: styles.header,
+        width: 120 // <- width in pixels
+      },
+      username: { // <- the key should match the actual data key
+        displayName: 'Username', // <- Here you specify the column header
+        headerStyle: styles.header, // <- Header style
+        cellStyle: styles.header,
+        width: 120 // <- width in pixels
+      },
+      lastLoginDate: { // <- the key should match the actual data key
+        displayName: 'Last Login Date', // <- Here you specify the column header
+        headerStyle: styles.header, // <- Header style
+        cellStyle: styles.header,
+        width: 120 // <- width in pixels
+      },
+      preferredPaymentMethod: { // <- the key should match the actual data key
+        displayName: 'Preferred Payment Method', // <- Here you specify the column header
+        headerStyle: styles.header, // <- Header style
+        cellStyle: styles.header,
+        width: 120 // <- width in pixels
+      },
+      isAdmin: { // <- the key should match the actual data key
+        displayName: 'Admin', // <- Here you specify the column header
+        headerStyle: styles.header, // <- Header style
+        cellFormat: function(value, row){
+          return (value) ? 'Admin' : 'Non admin';
+        },
+        width: 120 // <- width in pixels
+      }
+    };
+    
+    //create the excel report
+    var report = excel.buildExport([
+      {
+        //name: 'Sheet name', // <- Specify sheet name (optional)
+        //heading: heading, // <- Raw heading array (optional)
+        specification: specification, // <- Report specification
+        data: usersDataSet // <-- Report data
+      }
+    ]);
+    
+    return report;
+  },
 };

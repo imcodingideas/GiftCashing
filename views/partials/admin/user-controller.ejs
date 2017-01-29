@@ -1,9 +1,10 @@
 <div class="row mt-1 mb-1 p-1 flex-items-md-between flex-items-md-middle">
   <div class="mr-1">
-    <span class="checkbox d-inline-flex flex-items-md-middle"><input type="checkbox"
-                                                                     id="checkAll"> <span>Select All</span></span>
+    <span class="checkbox d-inline-flex flex-items-md-middle">
+      <input type="checkbox" id="checkAll" onchange="selectedAllUsers()"> <span>Select All</span>
+    </span>
     <div class="btn-group pl-1">
-      <button type="button" class="btn btn-outline-primary btn-sm">
+      <button type="button" class="btn btn-outline-primary btn-sm" onclick="exportToExcel()">
         <span><i class="icon fa fa-file-excel-o"></i></span>
         Export to Excel
       </button>
