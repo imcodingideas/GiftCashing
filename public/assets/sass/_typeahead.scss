@@ -37,6 +37,8 @@ span.twitter-typeahead {
         background-clip: padding-box;
         border: 1px solid rgba(0, 0, 0, 0.15);
         border-radius: 0.25rem;
+
+        @extend .col-sm-12;
     }
     .tt-suggestion {
         display: block;
@@ -97,4 +99,10 @@ span.twitter-typeahead {
     .tt-menu {
         top: 2.375rem !important;
     }
+}
+
+.tt-dataset {
+    .profile-picture {
+        width: 32px;
+    } 
 }

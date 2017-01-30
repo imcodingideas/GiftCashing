@@ -47,7 +47,30 @@ $(document).ready(function() {
   $('#typehead-search .typeahead').typeahead(null, {
     name: 'gifts_from',
     display: 'value',
-    source: giftsFrom
+    source: giftsFrom,
+    templates: {
+      // TODO: Verify why NotFound is not working properly
+      // notFound: [
+      //   '<div>',
+      //     '<div class="row">',
+      //       '<div class="col-sm-12">unable to find any User that match the current query</div>',
+      //     '</div>',
+      //   '</div>'
+      // ].join('\n')
+      // ,
+      suggestion: function(data) {
+        console.log(arguments);
+        return [
+          '<div>',
+            '<div class="row">',
+              '<div class="col-sm-1">',
+                '<img class="profile-picture img-circle" src="' + data.profilePic + '" /></div>',
+              '<div class="col-sm-11">' + data.value + '</div>',
+            '</div>',
+          '</div>'
+        ].join('\n')
+      }
+    }
   }).on('typeahead:selected', function(obj, data) {
     $('#userId').val(data.id);
   });

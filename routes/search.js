@@ -47,7 +47,8 @@ router.get('/', (req, res) => {
         return {
           // TODO: Specify the with data (normal name or alias) we should return here.
           value: item.aliasFirstName + ' ' + item.aliasLastName,
-          id: item._id
+          id: item._id,
+          profilePic: item.profilePic
         }
       });
 
