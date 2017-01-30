@@ -71,8 +71,10 @@ router.put(
     
     // TODO fix exception error
     if(req.user.preferredPaymentMethod.length === 0) {
-      req.flash('error', 'Please set your preferred payment method.');
-      req.redirect('back');
+      return res.status(404).send({
+        success: false,
+        err: 'Please set your preferred payment method.'
+      });
     } else {
       Gift
         .findOne({
