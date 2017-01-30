@@ -10,17 +10,10 @@ const express = require('express'),
 
 
 /* GET admins listing. */
-
 router.get('/',
   middleware.isLoggedIn,
   (req, res) => {
     let query = {isAdmin: true};
-    
-    /*switch(req.query.search) {
-     default :
-     query = {username: new RegExp(req.query.search, 'gi')};
-     break;
-     }*/
     
     getPaginated(User, 'gifts', query, req, result => {
       result.title ='Admins';

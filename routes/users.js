@@ -9,10 +9,8 @@ const express = require('express'),
   Gift = require('../models/gift'),
   locus = require('locus'),
   middleware = require('../middleware'),
+  excel = require('../components/excel'),
   getPaginated = require('../components/getPaginated');
-
-const excel = require('../components/excel');
-
 
 /* GET users listing. */
 router.get('/',
@@ -27,7 +25,7 @@ router.get('/',
     }
     
     getPaginated(User, 'gifts', query, req, result => {
-      result.title ='Users';
+      result.title = 'Users';
       result.breadcrumbsName = 'Users';
       result.items = result.items.map(user => {
         user.totalAmountOfGifts = 0;
@@ -53,7 +51,7 @@ router.get(
     };
     
     getPaginated(Gift, 'user', query, req, result => {
-      result.user = (result.items.length > 0) ? result.items[0].user : {_id : query.user};
+      result.user = (result.items.length > 0) ? result.items[0].user : {_id: query.user};
       result.title = 'Review Gifts';
       result.breadcrumbsName = 'Gifts';
       res.render('admin/users/gifts', result);
@@ -64,7 +62,6 @@ router.get(
   '/:id/gifts/:gift_id',
   middleware.isLoggedIn,
   (req, res) => {
-    
     
     User.findById(req.params.id, (err, user) => {
       let pagination = {
@@ -81,9 +78,9 @@ router.get(
       if(giftIds.length > 1) {
         for(let i = 0; i < giftIds.length; i++) {
           if(giftIds[i] == req.params.gift_id) {
-            if(i > 0) pagination.previousGiftId = giftIds[i-1];
-            if(i < giftIds.length-1) pagination.nextGiftId = giftIds[i+1];
-            pagination.showing = i+1;
+            if(i > 0) pagination.previousGiftId = giftIds[i - 1];
+            if(i < giftIds.length - 1) pagination.nextGiftId = giftIds[i + 1];
+            pagination.showing = i + 1;
             break;
           }
         }
@@ -112,14 +109,14 @@ router.get(
  * @param  {Id of Gift} giftId
  * @param  {Response} res
  */
-function deleteGift(giftId, res){
+function deleteGift(giftId, res) {
   Gift.remove({_id: giftId}, (err) => {
-    if (!err) {
+    if(!err) {
       return res.send({
         success: true,
         message: 'Delete success'
       });
-    }else{
+    } else {
       return res.status(500).send({
         success: false,
         message: 'Error, contact support'
@@ -129,18 +126,19 @@ function deleteGift(giftId, res){
 }
 
 /* Update Gift listing. */
-router.put('/:id/gifts/:gift_id',
+router.put(
+  '/:id/gifts/:gift_id',
   (req, res) => {
     
-    var status = {
-      "paid" : false,
-      "declined" : false,
-      "redeemed" : false,
-      "accepted" : false,
-      "review" : false
+    let status = {
+      'paid': false,
+      'declined': false,
+      'redeemed': false,
+      'accepted': false,
+      'review': false
     };
     
-    switch(req.body.action || ''){
+    switch(req.body.action || '') {
       case 'accepted':
         status['accepted'] = true;
         break;
@@ -158,9 +156,10 @@ router.put('/:id/gifts/:gift_id',
           success: false,
           message: 'Error, contact support'
         });
-    };
+    }
+    ;
     
-    var gift = {
+    let gift = {
       status: status
     };
     
@@ -168,13 +167,13 @@ router.put('/:id/gifts/:gift_id',
     Gift.findOneAndUpdate(
       {'_id': req.params.gift_id || ''},
       gift,
-      (err, foundGift)=>{
-        if (!err) {
+      (err, foundGift) => {
+        if(!err) {
           return res.send({
             success: true,
             message: 'Update success'
           });
-        }else{
+        } else {
           return res.status(500).send({
             success: false,
             message: 'Error, contact support'
@@ -184,35 +183,36 @@ router.put('/:id/gifts/:gift_id',
     
   });
 
-
-
 /*Gift specific to excel report*/
-router.get('/excel-gift/:gift_id', function (req, res){
-  Gift
-    .findById(req.params.gift_id || '', (err, gift) => {
-      if (err) {
-        return res.status(500).send({
-          success: false,
-          message: 'Error, contact support'
+router.get('/excel-gift/:gift_id',
+  (req, res) => {
+    Gift
+      .findById(
+        req.params.gift_id || '',
+        (err, gift) => {
+          if(err) {
+            return res.status(500).send({
+              success: false,
+              message: 'Error, contact support'
+            });
+          } else {
+            //dataset for report excel
+            let gifts = [];
+            gifts.push(gift);
+            //Call function to generate the excel
+            let report = excel.generateGifts(gifts);
+            res.attachment('report.xlsx');
+            return res.status(200).send(report);
+          }
         });
-      }else{
-        //dataset for report excel
-        var gifts = [];
-        gifts.push(gift);
-        //Call function to generate the excel
-        var report = excel.generateGifts(gifts);
-        res.attachment('report.xlsx');
-        return res.status(200).send(report);
-      }
-    });
-});
-
+  });
 
 /* Export to excel report*/
-router.post('/excel-report', function (req, res){
-  var report = excel.generateUsers(req.body.users || []);
-  res.attachment('report.xlsx');
-  return res.status(200).send(report);
-});
+router.post('/excel-report',
+  (req, res) => {
+    let report = excel.generateUsers(req.body.users || []);
+    res.attachment('report.xlsx');
+    return res.status(200).send(report);
+  });
 
 module.exports = router;
