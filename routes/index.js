@@ -11,7 +11,7 @@ const
   User = require('../models/user'),
   middleware = require('../middleware'),
   mailer = require('../mailer'),
-  mailService = require('../services/mailService');
+  emailService = require('../services/email');
 
 let locus = require('locus');
 
@@ -186,7 +186,7 @@ router.post(
                       res.redirect('back');
                     }
                     
-                    mailService.sendForgotPassword(foundUser, passwordString);
+                    emailService.sendForgotPassword(foundUser, passwordString);
                     req.flash('success', 'Please check your email.');
                     res.redirect('/login');
                   });

@@ -42,16 +42,16 @@ router.get(
         };
         break;
     }
-  
+    
     Gift
       .find(query)
       .populate('user')
       .exec((err, gifts) => {
-        if (err) {
+        if(err) {
           req.flash('error', err.message);
           gifts = [];
         }
-      
+        
         res.render('dashboard/gifts/index', {
           title: 'Received Gifts',
           breadcrumbsName: 'Received',
@@ -68,54 +68,60 @@ router.put(
     let _id = req.params.id;
     let status = req.params.status;
     let message = req.body.message;
-    Gift
-      .findOne({
-        _id,
-        user: req.user._id
-      })
-      .exec((err, gift) => {
-        if(err) {
-          return res.status(500).send({
-            success: false,
-            err: err.message
-          });
-        }
-        
-        if(!gift) {
-          return res.status(404).send({
-            success: false,
-            err: 'No gift found'
-          });
-        }
-        
-        for(let status in gift.status) {
-          gift.status[status] = false;
-        }
-        gift.status[status] = true;
-        
-        Gift
-          .update(
-            {_id},
-            {
-              $set: {
-                status: gift.status,
-                giftMessage: message
-              }
-            },
-            (err, result) => {
-              if(err) {
-                return res.status(500).send({
-                  success: false,
-                  err: err.message
-                });
-              }
-              
-              res.status(200).send({
-                success: true,
-                result
-              });
+    
+    // TODO fix exception error
+    if(req.user.preferredPaymentMethod.length === 0) {
+      req.flash('error', 'Please set your preferred payment method.');
+      req.redirect('back');
+    } else {
+      Gift
+        .findOne({
+          _id,
+          user: req.user._id
+        })
+        .exec((err, gift) => {
+          if(err) {
+            req.flash('error', err.message);
+            req.redirect('back');
+          }
+          
+          if(!gift) {
+            return res.status(404).send({
+              success: false,
+              err: 'No gift found'
             });
-      });
+          }
+          
+          for(let status in gift.status) {
+            gift.status[status] = false;
+          }
+          gift.status[status] = true;
+          
+          Gift
+            .update(
+              {_id},
+              {
+                $set: {
+                  status: gift.status,
+                  giftMessage: message
+                }
+              },
+              (err, result) => {
+                if(err) {
+                  return res.status(500).send({
+                    success: false,
+                    err: err.message
+                  });
+                }
+                
+                res.status(200).send({
+                  success: true,
+                  result
+                });
+              });
+        });
+    }
+    
   });
 
 
