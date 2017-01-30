@@ -14,33 +14,24 @@ module.exports.runJobs = function() {
   new CronJob({
     /**
      * Runs every day
-     * at 08:00:00 AM.
+     * at 11:57:00 PM.
      */
-    cronTime: '00 18 22 * * *',
+    cronTime: '00 28 08 * * *',
     onTick: function() {
-
-        // TODO: Repleace this with query data set fo giftStatusIsPaid
-        let users = [{
-            firstName: 'Isaac',
-            lastName: 'Peraza',
-            username: 'isaac.peraza@gmail.com',
-            password: '1234567890'
-        }];
-
-        users.forEach(function(user) {
-            mailService.giftStatusIsReview(user);
+      let start = new Date();
+      start.setHours(0,0,0,0);
+      
+      let end = new Date();
+      end.setHours(23,59,59,999);
+      Gift
+        .find({'status.review':true, changedStatusDate : {$gte : start, $lte : end}})
+        .populate('user')
+        .exec((err, gifts) => {
+          gifts.forEach((gift) => {
+            eval(locus);
+            mailService.giftStatusIsReview(gift);
+          });
         });
-      //  
-      // Gift
-      //   .find({
-      //      
-      //   })
-      //   .populate('user')
-      //   .exec((err, gifts) => {
-      //     gifts.forEach(function(gift) {
-      //         mailService.giftStatusIsReview(user);
-      //     });
-      //   });
     },
     start: true
     // timeZone: 'UTC'
@@ -53,25 +44,27 @@ module.exports.runJobs = function() {
   new CronJob({
     /**
      * Runs every day
-     * at 08:00:00 AM.
+     * at 11:59:00 PM.
      */
     cronTime: '00 00 08 * * *',
     onTick: function() {
       
-      // TODO: Repleace this with query data set fo giftStatusIsPaid
-      let users = [{
-        firstName: 'Isaac',
-        lastName: 'Peraza',
-        username: 'isaac.peraza@gmail.com',
-        password: '1234567890'
-      }];
-      
-      users.forEach(function(user) {
-        mailService.giftStatusIsPaid(user);
-      })
+      let start = new Date();
+      start.setHours(0,0,0,0);
+  
+      let end = new Date();
+      end.setHours(23,59,59,999);
+      Gift
+        .find({'status.paid':true, changedStatusDate : {$gte : start, $lte : end}})
+        .populate('user')
+        .exec((err, gifts) => {
+          gifts.forEach((gift) => {
+            mailService.giftStatusIsPaid(gift);
+          });
+        });
     },
     start: true,
-    timeZone: 'UTC'
+    // timeZone: 'UTC'
   });
   
   
@@ -81,7 +74,7 @@ module.exports.runJobs = function() {
   new CronJob({
     /**
      * Runs every day
-     * at 08:00:00 AM.
+     * at 11:59:00 PM.
      */
     cronTime: '00 00 08 * * *',
     onTick: function() {
