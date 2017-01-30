@@ -123,11 +123,11 @@ $(document).ready(function() {
    * @return {String}             string random number
    */
   function generateSerieRandomNumber(lengthSerie) {
-    var finalNumber = "";
+    var finalNumber = '';
     for(var i = 0; i < lengthSerie; i++) {
       //generate random number between 1 to 9
-      var randomn = Math.floor((Math.random() * 9 ) + 1);
-      finalNumber = finalNumber + randomn;
+      var random = Math.floor((Math.random() * 9 ) + 1);
+      finalNumber = finalNumber + random;
     }
     return finalNumber;
   }
