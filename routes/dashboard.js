@@ -105,7 +105,7 @@ router.put(
               {
                 $set: {
                   status: gift.status,
-                  giftMessage: message
+                  acceptedGiftMessage: message
                 }
               },
               (err, result) => {

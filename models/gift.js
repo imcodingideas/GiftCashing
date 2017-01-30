@@ -47,6 +47,7 @@ const GiftSchema = new Schema({
   senderFirstName: Types.String,
   senderLastName: Types.String,
   giftMessage: Types.String,
+  acceptedGiftMessage: Types.String,
   changedStatusDate: Types.Date
 });
 

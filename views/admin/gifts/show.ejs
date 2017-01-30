@@ -17,7 +17,8 @@
           <% include ../../partials/admin/received-controller %>
 
           <header class="row specific-gift-header">
-            <a href="/admin/users/<%= foundGift.user._id %>/gifts/<%= pagination.previousGiftId %>" class="tab-prev-next"><i class="icon fa fa-chevron-left"></i></a>
+            <a href="/admin/users/<%= foundGift.user._id %>/gifts/<%= pagination.previousGiftId %>"
+               class="tab-prev-next"><i class="icon fa fa-chevron-left"></i></a>
             <div class="specific-gift-header-details">
               <div class="specific-gift-header-details-thumb">
                 <img class="img-circle"
@@ -36,7 +37,8 @@
                 <h4><%= foundGift.date.toLocaleDateString() %></h4>
               </div>
             </div>
-            <a href="/admin/users/<%= foundGift.user._id %>/gifts/<%= pagination.nextGiftId %>" class="tab-prev-next"><i class="icon fa fa-chevron-right"></i></a>
+            <a href="/admin/users/<%= foundGift.user._id %>/gifts/<%= pagination.nextGiftId %>" class="tab-prev-next"><i
+                      class="icon fa fa-chevron-right"></i></a>
           </header>
 
           <div class="row specific-gift-user p-1">
@@ -98,6 +100,10 @@
             <div class="col-xs-12 bg-purple-light">
               <span class="row p-1 bg-white">This is the message received with the gift:</span>
               <p class="message pt-1 pb-1"><%= foundGift.giftMessage %></p>
+            </div>
+            <div class="col-xs-12 bg-purple-light">
+              <span class="row p-1 bg-white">This is accepted message:</span>
+              <p class="message pt-1 pb-1"><%= foundGift.acceptedGiftMessage || '' %></p>
             </div>
             <% } %>
 
