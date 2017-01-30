@@ -16,30 +16,34 @@ module.exports.runJobs = function() {
      * Runs every day
      * at 08:00:00 AM.
      */
-    cronTime: '00 00 08 * * *',
+    cronTime: '00 18 22 * * *',
     onTick: function() {
-      
-      // TODO: Repleace this with query data set fo giftStatusIsReview
-      let users = [{
-        firstName: 'Isaac',
-        lastName: 'Peraza',
-        username: 'isaac.peraza@gmail.com',
-        password: '1234567890'
-      }];
-  
-      Gift
-        .find(query)
-        .populate('user')
-        .exec((err, gifts) => {
-          gifts.forEach(function(gift) {
-            eval(locus);
-            
-            mailService.giftStatusIsReview(gift);
-          });
+
+        // TODO: Repleace this with query data set fo giftStatusIsPaid
+        let users = [{
+            firstName: 'Isaac',
+            lastName: 'Peraza',
+            username: 'isaac.peraza@gmail.com',
+            password: '1234567890'
+        }];
+
+        users.forEach(function(user) {
+            mailService.giftStatusIsReview(user);
         });
+      //  
+      // Gift
+      //   .find({
+      //      
+      //   })
+      //   .populate('user')
+      //   .exec((err, gifts) => {
+      //     gifts.forEach(function(gift) {
+      //         mailService.giftStatusIsReview(user);
+      //     });
+      //   });
     },
-    start: true,
-    timeZone: 'UTC'
+    start: true
+    // timeZone: 'UTC'
   });
   
   
