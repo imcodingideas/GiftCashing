@@ -24,7 +24,7 @@ router.get(
     let query = {'status.review': true};
     
     switch(req.query.filter) {
-      case 'accepted-redeemed' :
+      case 'accepted' :
         query = {'status.accepted': true};
         break;
       case 'declined' :
