@@ -18,13 +18,9 @@ module.exports.runJobs = function() {
      */
     cronTime: '00 28 08 * * *',
     onTick: function() {
-      let start = new Date();
-      start.setHours(0,0,0,0);
-      
-      let end = new Date();
-      end.setHours(23,59,59,999);
+
       Gift
-        .find({'status.review':true, changedStatusDate : {$gte : start, $lte : end}})
+        .find({'status.review':true})
         .populate('user')
         .exec((err, gifts) => {
           gifts.forEach((gift) => {
@@ -80,18 +76,34 @@ module.exports.runJobs = function() {
     onTick: function() {
       
       // TODO: Repleace this with query data set fo giftStatusIsReviewOverSevenDays
-      let users = [{
-        firstName: 'Isaac',
-        lastName: 'Peraza',
-        username: 'isaac.peraza@gmail.com',
-        password: '1234567890'
-      }];
       
-      users.forEach(function(user) {
-        mailService.giftStatusIsReviewOverSevenDays(user);
-      })
+      // users.forEach(function(user) {
+      //   mailService.giftStatusIsReviewOverSevenDays(user);
+      // })
     },
-    start: true,
-    timeZone: 'UTC'
+    start: true
+    // timeZone: 'UTC'
+  });
+  
+  /**
+   * giftOrderCancelled
+   */
+  new CronJob({
+    /**
+     * Runs every day
+     * at 11:50:00 PM.
+     */
+    cronTime: '00 00 08 * * *',
+    onTick: function() {
+      
+      // TODO: Replace this with query data set fo giftOrderCancelled
+      // remember to update status date
+      
+      // users.forEach(function(user) {
+      //   mailService.giftOrderCancelled(user);
+      // })
+    },
+    start: true
+    // timeZone: 'UTC'
   });
 };

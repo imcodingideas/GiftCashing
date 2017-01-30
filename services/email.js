@@ -72,3 +72,17 @@ module.exports.giftStatusIsReviewOverSevenDays = function(user) {
 
   sendMail(emailOptions);
 };
+
+module.exports.giftOrderCancelled = function(user) {
+  emailOptions.to = user.username;
+  emailOptions.subject = 'Gift Has Been Cancelled';
+  emailOptions.html = `
+	        <p>Dear ${user.firstName} ${user.lastName},</p>
+	        <p>Your gift has been expired and refunded back to the sender.</p>
+	        <p>Contact us with any questions/concerns at support@giftcashing.com.</p>
+	        <p>Best Regards,<br/>
+	        GiftCashing.com</p>
+    	`;
+  
+  sendMail(emailOptions);
+};
