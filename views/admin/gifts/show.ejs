@@ -76,20 +76,24 @@
 
           <div class="row specific-gift-specs p-1">
             <div class="col-xs-6 col-md-3 bg-purple-light p-1">
-              <span>Amount:</span>
-              <h4 class="text-primary">$<%= foundGift.giftAmount %></h4>
+              <label for="amount">Amount:</label>
+              <input type="text" class="form-control" name="foundGift[giftAmount]" id="amount"
+                     value="<%= foundGift.giftAmount %>">
             </div>
             <div class="col-xs-6 col-md-3 bg-purple-light p-1">
-              <span>Passcode:</span>
-              <h4 class="text-primary"><%= foundGift.passCode %></h4>
+              <label for="passcode">Passcode:</label>
+              <input type="text" class="form-control" name="foundGift[passCode]" id="passcode"
+                     value="<%= foundGift.passCode %>">
             </div>
             <div class="col-xs-6 col-md-3 bg-purple-light p-1">
-              <span>Gift Code:</span>
-              <h4 class="text-primary"><%= foundGift.giftCode %></h4>
+              <label for="giftCode">Gift Code:</label>
+              <input type="text" class="form-control" name="foundGift[giftCode]" id="giftCode"
+                     value="<%= foundGift.giftCode %>">
             </div>
             <div class="col-xs-6 col-md-3 bg-purple-light p-1">
-              <span>Redeem Code:</span>
-              <h4 class="text-primary"><%= foundGift.redeemCode %></h4>
+              <label for="redeemCode">Redeem Code:</label>
+              <input type="text" class="form-control" name="foundGift[redeemCode]" id="redeemCode"
+                     value="<%= foundGift.redeemCode %>">
             </div>
             <% if(foundGift.giftMessage === undefined) { %>
             <div class="container empty-state">
