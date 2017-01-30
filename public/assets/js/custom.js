@@ -133,4 +133,6 @@ $(document).ready(function() {
   }
   
   $('#giftNumber').val(generateSerieRandomNumber(8));
+  
+  $('[data-toggle="tooltip"]').tooltip()
 });

@@ -37,22 +37,20 @@
     <% } %>
   </div>
   <div class="link-actions">
-    <a href="#" onclick="updateActionAndGo('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'declined');">
+    <a href="#" onclick="updateActionAndGo('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'declined');"
+       data-toggle="tooltip" data-placement="top" title="Declined">
       <i class="icon fa fa-ban"></i>
     </a>
-    <a href="#" onclick="updateActionAndGo('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'paid');">
+    <a href="#" onclick="updateActionAndGo('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'paid');"
+       data-toggle="tooltip" data-placement="top" title="Paid">
       <i class="icon fa fa-cart-arrow-down"></i>
     </a>
-    <a href="/admin/users/excel-gift/<%= foundGift.id %>" target="_blank">
+    <a href="/admin/users/excel-gift/<%= foundGift.id %>" target="_blank" data-toggle="tooltip" data-placement="top"
+       title="Export to Excel">
       <i class="icon fa fa-file-excel-o"></i>
     </a>
-    <a href="#">
-      <i class="icon fa fa-chevron-left"></i>
-    </a>
-    <a href="#">
-      <i class="icon fa fa-chevron-right"></i>
-    </a>
-    <a href="#" onclick="updateActionAndGo('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'delete');">
+    <a href="#" onclick="updateActionAndGo('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'delete');"
+       data-toggle="tooltip" data-placement="top" title="Delete">
       <i class="icon fa fa-trash-o"></i>
     </a>
   </div>
@@ -69,11 +67,6 @@
       giftId: giftId,
       action: action
     };
-
-    //remove class for a active
-    /*$('#bulkActions a').removeClass('active');
-     //add active class for item
-     $('#' + action).addClass('active');*/
   }
 
   function go(){
