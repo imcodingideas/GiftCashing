@@ -25,8 +25,8 @@ router.get('/',
     }
     
     getPaginated(User, 'gifts', query, req, result => {
-      result.title = 'Users';
-      result.breadcrumbsName = 'Users';
+      result.title = 'Members';
+      result.breadcrumbsName = 'Members';
       result.items = result.items.map(user => {
         user.totalAmountOfGifts = 0;
         if(user.gifts.length > 0) {
