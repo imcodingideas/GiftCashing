@@ -15,6 +15,7 @@ const
   faker = require('faker'),
   _ = require('lodash'),
   path = require('path');
+  cronjobs = require('./services/cronjobs');
 
 const
   indexRoute = require('./routes/index'),
@@ -88,5 +89,8 @@ app.use('/dashboard', dashboardRoute);
 app.use('/admin/admins', adminsRoute);
 
 mongoose.Promise = global.Promise;
+
+// Run Cronjobs
+cronjobs.runJobs();
 
 module.exports = app;
