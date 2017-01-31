@@ -7942,3 +7942,6 @@ td.user-gift {
   margin: 0 10px; }
   .link-actions a:hover {
     color: #8E44AD; }
+
+span.current-page.text-md-right {
+  text-transform: uppercase; }

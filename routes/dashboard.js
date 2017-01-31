@@ -52,11 +52,22 @@ router.get(
           gifts = [];
         }
         
-        res.render('dashboard/gifts/index', {
-          title: 'Received Gifts',
-          breadcrumbsName: 'Received',
-          gifts: gifts
-        });
+        if(req.query.filter === 'received') {
+          res.render('dashboard/gifts/index', {
+            title: 'Received Gifts',
+            breadcrumbsName: 'Received',
+            gifts: gifts
+          });
+        }
+  
+        if(req.query.filter === 'accepted' || 'declined' || 'paid') {
+          res.render('dashboard/gifts/other', {
+            title: req.query.filter,
+            breadcrumbsName: req.query.filter,
+            gifts: gifts
+          });
+        }
+        
       });
   });
 

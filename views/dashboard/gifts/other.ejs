@@ -33,15 +33,11 @@
             <p class="mt-1 mb-0">Sent by:</p>
             <strong class="text-primary"><%= gift.senderFirstName %></strong>
             <strong class="text-primary"><%= gift.senderLastName %></strong>
-            <button class="btn btn-outline-primary btn-sm d-block mt-1 full-width">Decline</button>
           </div>
           <div class="col-xs-12 col-md-3">
             <span>Date: <strong class="text-primary"><%= gift.date.toLocaleDateString() %></strong></span>
             <p class="mt-1 mb-0">Gift #:</p>
             <strong class="text-primary"><%= gift.giftNumber %></strong>
-            <a class="btn btn-primary btn-sm d-block mt-1 full-width" href="#" data-id="<%= gift._id %>"
-               data-toggle="modal"
-               data-target="#acceptGiftModal" data-sender="<%= gift.senderFirstName %>">Accept</a>
           </div>
         </div>
         <% }) %>
