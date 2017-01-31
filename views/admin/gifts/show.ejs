@@ -102,11 +102,12 @@
             </div>
             <% } else { %>
             <div class="col-xs-12 bg-purple-light">
-              <span class="row p-1 bg-white">This is the message received with the gift:</span>
+              <h5 class="row p-1 bg-white">This is the message received with the gift:</h5>
               <p class="message pt-1 pb-1"><%= foundGift.giftMessage %></p>
             </div>
             <div class="col-xs-12 bg-purple-light">
-              <span class="row p-1 bg-white">This is accepted message:</span>
+              <h5 class="row p-1 bg-white">This is accepted message:</h5>
+
               <p class="message pt-1 pb-1"><%= foundGift.acceptedGiftMessage || '' %></p>
             </div>
             <% } %>

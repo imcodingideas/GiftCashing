@@ -15,7 +15,7 @@ var sendMail = function (emailOptions) {
 
 module.exports.sendForgotPassword = function(user, password) {
   emailOptions.to = user.username;
-  emailOptions.subject = 'Forgot account';
+  emailOptions.subject = 'Gift Cashing New Password';
   emailOptions.html = `
 	        <p>Dear ${user.firstName} ${user.lastName},</p>
 	        <p>Your password are is restored, please visit the Login Page for access with the new password.</p>

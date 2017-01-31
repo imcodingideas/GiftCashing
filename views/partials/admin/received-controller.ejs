@@ -7,6 +7,9 @@
         Actions
       </button>
       <div class="dropdown-menu">
+        <a class="dropdown-item" href="#" id="review" onclick="updateStatusType('review')">
+          <i class="fa fa-check" aria-hidden="true"></i> Review
+        </a>
         <a class="dropdown-item" id="accepted"
            href="#" onclick="updateAction('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'accepted');">
           <i class="fa fa-check" aria-hidden="true"></i> Accept
