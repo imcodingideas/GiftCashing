@@ -84,26 +84,4 @@ module.exports.runJobs = function() {
     start: true
     // timeZone: 'UTC'
   });
-  
-  /**
-   * giftOrderCancelled
-   */
-  new CronJob({
-    /**
-     * Runs every day
-     * at 11:50:00 PM.
-     */
-    cronTime: '00 00 08 * * *',
-    onTick: function() {
-      
-      // TODO: Replace this with query data set fo giftOrderCancelled
-      // remember to update status date
-      
-      // users.forEach(function(user) {
-      //   mailService.giftOrderCancelled(user);
-      // })
-    },
-    start: true
-    // timeZone: 'UTC'
-  });
 };
