@@ -52,17 +52,27 @@
             </div>
             <div class="col-xs-6 col-md-3 mt-2 mb-2">
               <span>Gift Status:</span>
+
               <% if (foundGift.status.review === true) { %>
               <h4>Review</h4>
-              <% } else if (foundGift.user.redeemed === true) { %>
+              <% } %>
+
+              <% if (foundGift.status.redeemed === true) { %>
               <h4>Redeemed</h4>
-              <% } else if (foundGift.user.paid === true) { %>
+              <% } %>
+
+              <% if (foundGift.status.paid === true) { %>
               <h4>Paid</h4>
-              <% } else if (foundGift.user.declined === true) { %>
+              <% } %>
+
+              <% if (foundGift.status.declined === true) { %>
               <h4>Declined</h4>
-              <% } else { %>
+              <% } %>
+
+              <% if (foundGift.status.accepted === true) { %>
               <h4>Accepted</h4>
               <% } %>
+
             </div>
             <div class="col-xs-6 col-md-4 mt-1 mb-1">
               <span>User:</span>
