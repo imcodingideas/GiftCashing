@@ -525,38 +525,51 @@
           <div class="tab-pane" id="payment-preference" role="tabpanel">
 
             <div class="mb-2">
-              <p class="mt-1">Preferred Payment Method:</p>
-              <label class="form-check-inline">
-                <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]"
-                       id="inlineRadio1"
-                       value="paypal"
-                        <% if (user.preferredPaymentMethod === "paypal") { %>
-                       checked="checked"
-                        <% } %>
-                >
-                <i class="fa fa-paypal"> </i> PayPal
-              </label>
-              <label class="form-check-inline">
-                <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]"
-                       id="inlineRadio2"
-                       value="check"
-                        <% if (user.preferredPaymentMethod === "check") { %>
-                       checked="checked"
-                        <% } %>
-                >
-                <i class="fa fa-bank"> </i> Check
-              </label>
-              <label class="form-check-inline">
-                <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]"
-                       id="inlineRadio3"
-                       value="deposit"
-                        <% if (user.preferredPaymentMethod === "deposit") { %>
-                       checked="checked"
-                        <% } %>
-                       disabled
-                >
-                <i class="fa fa-dollar"> </i> Deposit
-              </label>
+              <div class="row">
+                <div class="col-md-5">
+                  <span>Preferred Payment Method:</span>
+                </div>
+                <div class="col-md-7">
+                  <label class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]"
+                           id="inlineRadio1"
+                           value="paypal"
+                            <% if (user.preferredPaymentMethod === "paypal") { %>
+                           checked="checked"
+                            <% } %>
+                    >
+                    <i class="fa fa-paypal"> </i> PayPal
+                  </label>
+                  <label class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]"
+                           id="inlineRadio2"
+                           value="check"
+                            <% if (user.preferredPaymentMethod === "check") { %>
+                           checked="checked"
+                            <% } %>
+                    >
+                    <i class="fa fa-bank"> </i> Check
+                  </label>
+                  <label class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="user[preferredPaymentMethod]"
+                           id="inlineRadio3"
+                           value="deposit"
+                            <% if (user.preferredPaymentMethod === "deposit") { %>
+                           checked="checked"
+                            <% } %>
+                           disabled
+                    >
+                    <i class="fa fa-dollar"> </i> Deposit
+                  </label>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <h5 class="text-primary text-bold">Settings</h5>
+              </div>
             </div>
 
             <ul class="nav nav-tabs nav-tabs-rounded" role="tablist">

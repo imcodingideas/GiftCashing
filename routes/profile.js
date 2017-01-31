@@ -36,7 +36,7 @@ router.get(
         res.render('dashboard/profile/edit', {
           user: foundUser,
           title: 'Member Profile',
-          breadcrumbsName: 'Member Profile'
+          breadcrumbsName: 'Profile'
         });
       });
   });
