@@ -178,11 +178,17 @@
         gift.status = statusType;
       });
 
+      var finalGifts = gifts.filter(function (gift){
+        if (gift.select) {
+          return gift;
+        }
+      });
+
       var $this = $(this);
       $.ajax({
         url: $this.attr('action'),
         type: $this.attr('method'),
-        data: {gifts: gifts},
+        data: {gifts: finalGifts},
         success: function(response) {
           if(response.message) {
             $('.noty-alerts:first').noty({text: response.message, type: 'success'});
