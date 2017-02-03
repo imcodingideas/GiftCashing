@@ -26,6 +26,7 @@
           </thead>
           <tbody>
           <% items.forEach(function (user) { %>
+          <% if(!user.isAdmin) { %>
           <tr>
             <td>
               <input type="checkbox" class="check" onchange="individualCheck('<%= user._id %>');">
@@ -47,6 +48,7 @@
             <td class="text-primary text-bold">$<%= user.totalAmountOfGifts %></td>
             <td><a href="/admin/users/<%= user._id %>/gifts" class="text-bold">View Gifts</a></td>
           </tr>
+          <% } %>
           <% }) %>
           </tbody>
         </table>
