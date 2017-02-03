@@ -16,16 +16,15 @@ module.exports.runJobs = function() {
      * Runs every day
      * at 11:57:00 PM.
      */
-    cronTime: '00 28 08 * * *',
+    cronTime: '00 11 11 * * *',
     onTick: function() {
-
+      
       Gift
-        .find({'status.review':true})
+        .find({'status.review': true})
         .populate('user')
         .exec((err, gifts) => {
           gifts.forEach((gift) => {
-            eval(locus);
-            mailService.giftStatusIsReview(gift);
+            mailService.giftStatusIsReview(gift.user);
           });
         });
     },
@@ -42,20 +41,15 @@ module.exports.runJobs = function() {
      * Runs every day
      * at 11:59:00 PM.
      */
-    cronTime: '00 00 08 * * *',
+    cronTime: '00 30 11 * * *',
     onTick: function() {
       
-      let start = new Date();
-      start.setHours(0,0,0,0);
-  
-      let end = new Date();
-      end.setHours(23,59,59,999);
       Gift
-        .find({'status.paid':true, changedStatusDate : {$gte : start, $lte : end}})
+        .find({'status.paid': true})
         .populate('user')
         .exec((err, gifts) => {
           gifts.forEach((gift) => {
-            mailService.giftStatusIsPaid(gift);
+            mailService.giftStatusIsPaid(gift.user);
           });
         });
     },
@@ -74,12 +68,19 @@ module.exports.runJobs = function() {
      */
     cronTime: '00 00 08 * * *',
     onTick: function() {
-      
-      // TODO: Repleace this with query data set fo giftStatusIsReviewOverSevenDays
-      
-      // users.forEach(function(user) {
-      //   mailService.giftStatusIsReviewOverSevenDays(user);
-      // })
+    
+      let days = 7;
+      let date = new Date();
+      let last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
+    
+      Gift
+        .find({'status.review': true, changedStatusDate: {$lte: last}})
+        .populate('user')
+        .exec((err, gifts) => {
+          gifts.forEach((gift) => {
+            mailService.giftStatusIsReviewOverSevenDays(gift.user);
+          });
+        });
     },
     start: true
     // timeZone: 'UTC'

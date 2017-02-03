@@ -169,6 +169,27 @@ router.put(
       });
   });
 
+router.get(
+  '/filter',
+  (req, res) => {
+    
+    let dateFrom = Date.parse(req.query.datefrom);
+    let dateTo = Date.parse(req.query.dateto);
+    
+    let query = {
+      'date': {$gt: dateFrom, $lt: dateTo}
+    };
+    // let query = { date: { $or: [
+    //   { $gt: dateFrom, $lt: dateTo },
+    //   { $gt: date2From, $lt: date2To }
+    // ] } };
+    
+    getPaginated(Gift, 'user', query, req, result => {
+      result.title = 'Filtered Gifts';
+      result.breadcrumbsName = 'Gifts';
+      res.render('admin/gifts/index', result);
+    });
+  });
 
 /* Export to excel report*/
 router.post(
