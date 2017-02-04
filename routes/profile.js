@@ -28,16 +28,16 @@ router.get(
   (req, res, next) => {
     
     User
-      .findOne({_id: req.params.id}, (err, foundUser) => {
-        if(err) {
-          req.flash('error', err.message);
-        }
-        
+      .findById(req.params.id)
+      .then(foundUser => {
         res.render('dashboard/profile/edit', {
           user: foundUser,
           title: 'Member Profile',
           breadcrumbsName: 'Profile'
         });
+      })
+      .catch(err => {
+        if(err && err.message) req.flash('error', err.message);
       });
   });
 
@@ -71,7 +71,20 @@ router.put(
 
     //define is admin or non admin 
     user.isAdmin = (user.isAdmin) === 'true' ? true : false;    
-
+    
+    // const findById = (id) => {
+    //   return new Promise((resolve, reject) => {
+    //     User
+    //       .findOne({_id: id}, (err, doc) => {
+    //         if(err) return reject(err);
+    //         resolve(doc);
+    //       });
+    //   });
+    // };
+    // findById(req.params.id)
+    //   .then(console.log)
+    //   .catch(console.error);
+    
     User
       .findByIdAndUpdate(
         req.params.id,

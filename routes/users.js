@@ -94,6 +94,10 @@ router.get(
             req.flash('error', err.message);
           }
           
+          if(!foundGift) {
+            res.redirect('/admin/users/'+req.params.id+'/gifts');
+            return;
+          }
           res.render('admin/gifts/show', {
             title: 'Received Gift',
             breadcrumbsName: 'Gift',
@@ -114,10 +118,13 @@ function deleteGift(giftId, res) {
     if(!err) {
       return res.send({
         success: true,
-        message: 'Delete success'
+        message: 'Delete success',
+        gift: {
+          status: {deleted: true}
+        }
       });
     } else {
-      return res.status(500).send({
+      return res.send({
         success: false,
         message: 'Error, contact support'
       });
@@ -139,47 +146,56 @@ router.put(
     };
     
     switch(req.body.action || '') {
-      case 'accepted':
-        status['accepted'] = true;
-        break;
+      case 'review':
+      case 'accepted' :
       case 'declined':
-        status['declined'] = true;
-        break;
       case 'paid':
-        status['paid'] = true;
+        status[req.body.action] = true;
         break;
+        
       case 'delete':
         return deleteGift(req.params.gift_id || '', res);
         break;
+        
       default:
-        return res.status(500).send({
+        return res.send({
           success: false,
           message: 'Error, contact support'
         });
     }
-    ;
     
-    let gift = {
+    let set = {
       status: status,
       changedStatusDate : new Date()
     };
     
     //Update status gift
-    Gift.findOneAndUpdate(
-      {'_id': req.params.gift_id || ''},
-      gift,
-      (err, foundGift) => {
-        if(!err) {
-          return res.send({
-            success: true,
-            message: 'Update success'
-          });
-        } else {
-          return res.status(500).send({
-            success: false,
-            message: 'Error, contact support'
-          });
+    Gift
+      .findById(req.params.gift_id)
+      .then((record) => {
+        record = Object.assign(record, set);
+        return record.save();
+      })
+      .then((updatedRecord) => {
+        let
+          message = 'Could not find and modify gift.',
+          success = false;
+        if(updatedRecord && updatedRecord.status[req.body.action] == true) {
+          message = 'Gift status has been modified successfully.';
+          success = true;
         }
+        res.send({
+          success,
+          message,
+          gift: updatedRecord
+        });
+      })
+      .catch((err) => {
+        console.log('Error:', err);
+        return res.send({
+          success: false,
+          error: 'Error, contact support'
+        });
       });
     
   });

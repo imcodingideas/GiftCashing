@@ -52,27 +52,17 @@
             </div>
             <div class="col-xs-6 col-md-3 mt-2 mb-2">
               <span>Gift Status:</span>
-
-              <% if (foundGift.status.review === true) { %>
-              <h4>Review</h4>
-              <% } %>
-
-              <% if (foundGift.status.redeemed === true) { %>
-              <h4>Redeemed</h4>
-              <% } %>
-
-              <% if (foundGift.status.paid === true) { %>
-              <h4>Paid</h4>
-              <% } %>
-
-              <% if (foundGift.status.declined === true) { %>
-              <h4>Declined</h4>
-              <% } %>
-
-              <% if (foundGift.status.accepted === true) { %>
-              <h4>Accepted</h4>
-              <% } %>
-
+              <h4 class="gift-status">
+              <% for(var status in foundGift.status) {
+                if(foundGift.status[status]) {
+                  status = status.charAt(0).toUpperCase() + status.slice(1).toLowerCase();
+                  %>
+                  <%= status %>
+                  <%
+                  break;
+                }
+              }%>
+              </h4>
             </div>
             <div class="col-xs-6 col-md-4 mt-1 mb-1">
               <span>User:</span>
@@ -103,26 +93,29 @@
           </div>
 
           <div class="row specific-gift-specs p-1">
-            <div class="col-xs-6 col-md-3 bg-purple-light p-1">
-              <label for="amount">Amount:</label>
-              <input type="text" class="form-control" name="foundGift[giftAmount]" id="amount"
-                     value="<%= foundGift.giftAmount %>">
-            </div>
-            <div class="col-xs-6 col-md-3 bg-purple-light p-1">
-              <label for="passcode">Passcode:</label>
-              <input type="text" class="form-control" name="foundGift[passCode]" id="passcode"
-                     value="<%= foundGift.passCode %>">
-            </div>
-            <div class="col-xs-6 col-md-3 bg-purple-light p-1">
-              <label for="giftCode">Gift Code:</label>
-              <input type="text" class="form-control" name="foundGift[giftCode]" id="giftCode"
-                     value="<%= foundGift.giftCode %>">
-            </div>
-            <div class="col-xs-6 col-md-3 bg-purple-light p-1">
-              <label for="redeemCode">Redeem Code:</label>
-              <input type="text" class="form-control" name="foundGift[redeemCode]" id="redeemCode"
-                     value="<%= foundGift.redeemCode %>">
-            </div>
+              <div class="col-xs-6 col-md-3 bg-purple-light p-1">
+                <label for="amount">Amount:</label>
+                <input type="text" class="form-control" name="foundGift[giftAmount]" id="amount"
+                       value="<%= foundGift.giftAmount %>">
+              </div>
+              <div class="col-xs-6 col-md-3 bg-purple-light p-1">
+                <label for="passcode">Passcode:</label>
+                <input type="text" class="form-control" name="foundGift[passCode]" id="passcode"
+                       value="<%= foundGift.passCode %>">
+              </div>
+              <div class="col-xs-6 col-md-3 bg-purple-light p-1">
+                <label for="giftCode">Gift Code:</label>
+                <input type="text" class="form-control" name="foundGift[giftCode]" id="giftCode"
+                       value="<%= foundGift.giftCode %>">
+              </div>
+              <div class="col-xs-6 col-md-3 bg-purple-light p-1">
+                <label for="redeemCode">Redeem Code:</label>
+                <input type="text" class="form-control" name="foundGift[redeemCode]" id="redeemCode"
+                       value="<%= foundGift.redeemCode %>">
+              </div>
+              <div class="col-xs-12 bg-purple-light p-1">
+                <button class="btn btn-primary pull-right">Update</button>
+              </div>
             <% if(foundGift.giftMessage === undefined) { %>
             <div class="container empty-state">
               <i class="icon fa fa-envelope-open"></i>

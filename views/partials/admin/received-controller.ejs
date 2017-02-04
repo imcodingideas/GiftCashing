@@ -7,19 +7,19 @@
         Actions
       </button>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="#" id="review" onclick="updateStatusType('review')">
+        <a class="dropdown-item" href="#" id="review" onclick="setProp('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'review')">
           <i class="fa fa-check" aria-hidden="true"></i> Review
         </a>
         <a class="dropdown-item" id="accepted"
-           href="#" onclick="updateAction('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'accepted');">
+           href="#" onclick="setProp('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'accepted');">
           <i class="fa fa-check" aria-hidden="true"></i> Accept
         </a>
         <a class="dropdown-item"
-           href="#" id="declined" onclick="updateAction('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'declined');">
+           href="#" id="declined" onclick="setProp('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'declined');">
           <i class="fa fa-ban" aria-hidden="true"></i> Decline
         </a>
         <a class="dropdown-item" id="paid"
-           href="#" onclick="updateAction('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'paid');">
+           href="#" onclick="setProp('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'paid');">
           <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Paid
         </a>
         <a class="dropdown-item" id="excel"
@@ -27,7 +27,7 @@
           <i class="fa fa-file-excel-o" aria-hidden="true"></i> Export to Excel
         </a>
         <a class="dropdown-item" id="delete"
-           href="#" onclick="updateAction('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'delete');">
+           href="#" onclick="setProp('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'delete');">
           <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
         </a>
       </div>
@@ -64,7 +64,7 @@
 
   var data = {};
 
-  function updateAction (userId, giftId, action){
+  function setProp(userId, giftId, action){
     data = {
       userId: userId,
       giftId: giftId,
@@ -79,25 +79,41 @@
         url: url,
         type: 'PUT',
         data: {action: data.action},
-        success: function (res){
-          console.log('res: ', res);
-          if (res.success) {
-            alert(res.message);
-            if (data.action === 'delete') {
-              window.location.href= '/admin/gifts';
+        success: function (response){
+          if(response.message) {
+            $('.noty-alerts:first').noty({text: response.message, type: 'success'});
+          }
+
+          if(response.error) {
+            $('.noty-alerts:first').noty({text: response.error, type: 'alert'});
+          }
+
+          if(response.success) {
+            if(response.gift.status.deleted) {
+              setTimeout(function() {
+                window.location.href = '/admin/gifts?filter=review';
+              }, 2000);
+              return;
+            }
+
+            for(var status in response.gift.status) {
+              if(response.gift.status[status]) {
+                status = status.charAt(0).toUpperCase() + status.slice(1).toLowerCase();
+                $('.gift-status').html(status);
+                break;
+              }
             }
           }
         },
         error: function (err){
-          console.log('err: ', err);
-          alert(err.message);
+          $('.noty-alerts:first').noty({text: err.message, type: 'alert'});
         }
       });
     }
   }
 
   function updateActionAndGo(userId, giftId, action){
-    updateAction(userId, giftId, action);
+    setProp(userId, giftId, action);
     setTimeout(function (){
       go();
     }, 800);

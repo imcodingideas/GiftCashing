@@ -2,6 +2,7 @@
 'use strict';
 
 const
+  _ = require('lodash'),
   express = require('express'),
   router = express.Router({
     mergeParams: true
@@ -60,7 +61,7 @@ router.get(
           });
         }
   
-        if(req.query.filter === 'accepted' || 'declined' || 'paid') {
+        if(['accepted', 'declined', 'paid'].indexOf(req.query.filter) > -1) {
           res.render('dashboard/gifts/other', {
             title: req.query.filter,
             breadcrumbsName: req.query.filter,
@@ -81,10 +82,10 @@ router.put(
     let message = req.body.message;
     
     // TODO fix exception error
-    if(req.user.preferredPaymentMethod.length === 0) {
-      return res.status(404).send({
+    if(_.trim(req.user.preferredPaymentMethod) == '') {
+      return res.send({
         success: false,
-        err: 'Please set your preferred payment method.'
+        error: 'Please set your preferred payment method.'
       });
     } else {
       Gift
@@ -169,29 +170,38 @@ router.put(
       'review': false
     };
 
-    let gift = {
+    let set = {
       status: status,
       changedStatusDate: new Date()
     };
-
-     Gift
-      .findByIdAndUpdate(
-        req.params.gift_id,
-        gift,
-        (err) => {
-          if (err) {
-            console.log('Error:', err);
-            return res.status(500).send({
-              success: false,
-              error: 'Error, contact support'
-            });
-          }
   
-          // req.flash('success', 'Gift has been declined successfully.');
-          // eval(locus);
-          res.redirect('back');
-    });
-
+    Gift
+      .findById(req.params.gift_id)
+      .then((record) => {
+        record = Object.assign(record, set);
+        return record.save();
+      })
+      .then((updatedRecord) => {
+        let
+          message = 'Could not find and modify gift.',
+          success = false;
+        if(updatedRecord && updatedRecord.status.declined == true) {
+          message = 'Gift has been declined successfully.';
+          success = true;
+        }
+        res.send({
+          success,
+          message,
+          gift: updatedRecord
+        });
+      })
+      .catch((err) => {
+        console.log('Error:', err);
+        return res.send({
+          success: false,
+          error: 'Error, contact support'
+        });
+      });
 });
 
 module.exports = router;

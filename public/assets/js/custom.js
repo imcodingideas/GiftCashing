@@ -1,6 +1,42 @@
 /**
  * Created by joseph on 12/11/16.
  */
+var uiTools = {
+  removeElementByDataId: function(id) {
+    $('[data-id="'+id+'"]:first').fadeOut(200, function(){$(this).remove();});
+  }
+};
+
+$(function() {
+  $('.ajax-call').on('click', function(e) {
+    e.preventDefault();
+    
+    var onSuccess = $(this).data('success');
+    
+    $(this).attr('disabled', 'disabled');
+    $.ajax({
+      url: $(this).data('action'),
+      type: $(this).data('method'),
+      success: function(response) {
+        if(response.message) {
+          $('.noty-alerts:first').noty({text: response.message, type: 'success'});
+        }
+        
+        if(response.error) {
+          $('.noty-alerts:first').noty({text: response.error, type: 'alert'});
+        }
+        
+        if(response.success) {
+          eval(onSuccess);
+        }
+      },
+      complete: function() {
+        $(this).removeAttr('disabled');
+      }
+    });
+  });
+});
+
 $(document).ready(function() {
   
   function init() {
@@ -120,6 +156,19 @@ $(document).ready(function() {
       type: $this.attr('method'),
       data: $this.serializeArray(),
       success: function(response) {
+        if(response.error) {
+          window.modals.notify('Error', response.error);
+          return;
+        }
+        
+        if(response.message) {
+          window.modals.notify('Message', response.message, function() {
+            $acceptGiftModal.modal('hide');
+            window.location.reload();
+          });
+          return;
+        }
+  
         $acceptGiftModal.modal('hide');
         window.location.reload();
       },
