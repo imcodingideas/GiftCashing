@@ -5,6 +5,7 @@ $(document).ready(function() {
   
   function init() {
     $('#newTweet').on('click', tweetIt);
+    $('#shareFacebook').on('click', shareFacebook);
   }
   
   init();
@@ -12,6 +13,17 @@ $(document).ready(function() {
   function tweetIt() {
     var getShareMessage = $('#shareMessage').text();
     $('#newTweet').attr('href', 'https://twitter.com/intent/tweet?text=' + getShareMessage)
+  }
+
+  function shareFacebook() {
+    FB.ui({
+      method: 'feed',
+      link: 'https://www.giftcashing.com',
+      title: 'Gift Cashing',
+      caption: $('#shareMessage').text(),
+      description: $('#shareMessage').text(),
+      picture: 'http://www.mujerhoy.com/pic.aspx/?img=paquete965336792.jpg&w=651'
+    }, function(response){});
   }
   
   // close alert row

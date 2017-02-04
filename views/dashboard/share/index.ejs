@@ -18,7 +18,7 @@
             <p class="m-0" id="shareMessage">Send me a gift card and I’ll send you a picture! Go to mgexps.com and send a gift card to <%= currentUser.aliasFirstName + ' ' + currentUser.aliasLastName %> at 877-949-GIFT</p>
           </div>
           <div class="col-xs-6 col-md-2 p-2">
-            <a href="#" class="social-link">
+            <a href="#" class="social-link" id="shareFacebook">
               <i class="icon fa fa-facebook"></i>
               <span class="facebook">Share</span>
             </a>
@@ -52,6 +52,27 @@
     </div>
   </div>
 </div>
+
+<!--SDK Facebook-->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1787352534919699',
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
 <% include ../../partials/contact %>
 <% include ../../partials/newmessage %>
 <% include ../../partials/footer %>
