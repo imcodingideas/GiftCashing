@@ -155,4 +155,43 @@ router.get(
       });
   });
 
+
+router.put(
+  '/gift/declined/:gift_id',
+  middleware.isLoggedIn,
+  function (req, res){    
+
+    let status = {
+      'paid': false,
+      'declined': true,
+      'redeemed': false,
+      'accepted': false,
+      'review': false
+    };
+
+    let gift = {
+      status: status,
+      changedStatusDate: new Date()
+    };
+
+     Gift
+      .findByIdAndUpdate(
+        req.params.gift_id,
+        gift,
+        (err) => {
+          if (err) {
+            console.log('Error:', err);
+            return res.status(500).send({
+              success: false,
+              error: 'Error, contact support'
+            });
+          }
+  
+          // req.flash('success', 'Gift has been declined successfully.');
+          // eval(locus);
+          res.redirect('back');
+    });
+
+});
+
 module.exports = router;
