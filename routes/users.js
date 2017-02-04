@@ -160,7 +160,8 @@ router.put(
     ;
     
     let gift = {
-      status: status
+      status: status,
+      changedStatusDate : new Date()
     };
     
     //Update status gift

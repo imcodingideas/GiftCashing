@@ -179,6 +179,7 @@ router.get(
     let query = {
       'date': {$gt: dateFrom, $lt: dateTo}
     };
+    
     // let query = { date: { $or: [
     //   { $gt: dateFrom, $lt: dateTo },
     //   { $gt: date2From, $lt: date2To }
