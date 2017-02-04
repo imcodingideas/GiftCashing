@@ -216,4 +216,15 @@ router.get(
     });
   });
 
+//Contact
+router.post('/contact',
+  (req, res) => {
+    emailService.sendContact({
+      email: req.body.sender_email,
+      message: req.body.message_text
+    });
+    req.flash('success', 'Contact sent successfully');
+    res.redirect('back');
+  });
+
 module.exports = router;

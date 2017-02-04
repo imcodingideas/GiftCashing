@@ -72,3 +72,19 @@ module.exports.giftStatusIsReviewOverSevenDays = function(user) {
 
   sendMail(emailOptions);
 };
+
+module.exports.sendContact = function(contact) {
+  emailOptions.to = 'joseph@michael-chambers.com';
+  emailOptions.subject = 'Gift Cashing | Contact';
+  emailOptions.html = `
+          <p>You have a new message of contact</p>
+          <p>Email: ${contact.email}</p>
+          <p>Message:</p>
+          <p>
+            ${contact.message}
+            <br/>
+            GiftCashing.com
+          </p>
+      `;
+  sendMail(emailOptions);
+};
