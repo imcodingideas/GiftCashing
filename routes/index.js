@@ -206,4 +206,14 @@ router.post(
         });
   });
 
+//Show how does it work
+router.get(
+  '/how-does-it-work',
+  (req, res) => {
+    res.render('how-does-it-work', {
+      title: 'How does it work?',
+      breadcrumbsName: 'How it works'
+    });
+  });
+
 module.exports = router;
