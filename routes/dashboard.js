@@ -2,13 +2,13 @@
 'use strict';
 
 const
-  _ = require('lodash'),
   express = require('express'),
   router = express.Router({
     mergeParams: true
   }),
   User = require('../models/user'),
   Gift = require('../models/gift'),
+  _ = require('lodash'),
   middleware = require('../middleware');
 
 router.get(
@@ -81,7 +81,6 @@ router.put(
     let status = req.params.status;
     let message = req.body.message;
     
-    // TODO fix exception error
     if(_.trim(req.user.preferredPaymentMethod) == '') {
       return res.send({
         success: false,

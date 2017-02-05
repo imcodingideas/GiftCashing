@@ -180,11 +180,6 @@ router.get(
       'date': {$gt: dateFrom, $lt: dateTo}
     };
     
-    // let query = { date: { $or: [
-    //   { $gt: dateFrom, $lt: dateTo },
-    //   { $gt: date2From, $lt: date2To }
-    // ] } };
-    
     getPaginated(Gift, 'user', query, req, result => {
       result.title = 'Filtered Gifts';
       result.breadcrumbsName = 'Gifts';
