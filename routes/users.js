@@ -201,24 +201,22 @@ router.put(
 router.get('/excel-gift/:gift_id',
   (req, res) => {
     Gift
-      .findById(
-        req.params.gift_id || '',
-        (err, gift) => {
-          if(err) {
-            return res.status(500).send({
-              success: false,
-              message: 'Error, contact support'
-            });
-          } else {
-            //dataset for report excel
-            let gifts = [];
-            gifts.push(gift);
-            //Call function to generate the excel
-            let report = excel.generateGifts(gifts);
-            res.attachment('report.xlsx');
-            return res.status(200).send(report);
-          }
+      .findById(req.params.gift_id || '')
+      .then(gift => {
+        let gifts = [];
+        gifts.push(gift);
+        //Call function to generate the excel
+        let report = excel.generateGifts(gifts);
+        
+        res.attachment('report.xlsx');
+        return res.status(200).send(report);
+      })
+      .catch(err => {
+        return res.status(500).send({
+          success: false,
+          message: 'Error, contact support'
         });
+      });
   });
 
 /* Export to excel report*/

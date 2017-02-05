@@ -72,19 +72,6 @@ router.put(
     //define is admin or non admin 
     user.isAdmin = (user.isAdmin) === 'true' ? true : false;
     
-    // const findById = (id) => {
-    //   return new Promise((resolve, reject) => {
-    //     User
-    //       .findOne({_id: id}, (err, doc) => {
-    //         if(err) return reject(err);
-    //         resolve(doc);
-    //       });
-    //   });
-    // };
-    // findById(req.params.id)
-    //   .then(console.log)
-    //   .catch(console.error);
-    
     User
       .findByIdAndUpdate(
         req.params.id,

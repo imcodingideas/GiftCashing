@@ -43,16 +43,12 @@ router.get(
         };
         break;
     }
-    
+  
+  
     Gift
       .find(query)
       .populate('user')
-      .exec((err, gifts) => {
-        if(err) {
-          req.flash('error', err.message);
-          gifts = [];
-        }
-        
+      .then(gifts => {
         if(req.query.filter === 'received') {
           res.render('dashboard/gifts/index', {
             title: 'Received Gifts',
@@ -68,7 +64,12 @@ router.get(
             gifts: gifts
           });
         }
-        
+      })
+      .catch(err => {
+        if(err && err.message) {
+          req.flash('error', err.message);
+          gifts = [];
+        }
       });
   });
 
