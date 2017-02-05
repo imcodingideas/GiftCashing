@@ -17,12 +17,12 @@
           <% include ../../partials/admin/received-controller %>
 
           <header class="row specific-gift-header">
-            <a href="/admin/users/<%= foundGift.user._id %>/gifts/<%= pagination.previousGiftId %>"
-               class="tab-prev-next"><i class="icon fa fa-chevron-left"></i></a>
+            <a href="/admin/users/<%= foundGift.user._id %>/gifts/<%= pagination.previousGiftId %>" class="tab-prev-next">
+              <i class="icon fa fa-chevron-left"></i>
+            </a>
             <div class="specific-gift-header-details">
               <div class="specific-gift-header-details-thumb">
-                <img class="img-circle"
-                     src="<%= foundGift.user.profilePic || '/assets/img/user.png' %>">
+                <img class="img-circle" src="<%= foundGift.user.profilePic || '/assets/img/user.png' %>">
               </div>
               <div class="specific-gift-header-details-desc">
                 <span>Gift Description:</span>
@@ -37,8 +37,9 @@
                 <h4><%= foundGift.date.toLocaleDateString() %></h4>
               </div>
             </div>
-            <a href="/admin/users/<%= foundGift.user._id %>/gifts/<%= pagination.nextGiftId %>" class="tab-prev-next"><i
-                      class="icon fa fa-chevron-right"></i></a>
+            <a href="/admin/users/<%= foundGift.user._id %>/gifts/<%= pagination.nextGiftId %>" class="tab-prev-next">
+              <i class="icon fa fa-chevron-right"></i>
+            </a>
           </header>
 
           <div class="row specific-gift-user p-1">
@@ -95,23 +96,19 @@
           <div class="row specific-gift-specs p-1">
               <div class="col-xs-6 col-md-3 bg-purple-light p-1">
                 <label for="amount">Amount:</label>
-                <input type="text" class="form-control" name="foundGift[giftAmount]" id="amount"
-                       value="<%= foundGift.giftAmount %>">
+                <input type="text" class="form-control" name="foundGift[giftAmount]" id="amount" value="<%= foundGift.giftAmount %>">
               </div>
               <div class="col-xs-6 col-md-3 bg-purple-light p-1">
                 <label for="passcode">Passcode:</label>
-                <input type="text" class="form-control" name="foundGift[passCode]" id="passcode"
-                       value="<%= foundGift.passCode %>">
+                <input type="text" class="form-control" name="foundGift[passCode]" id="passcode" value="<%= foundGift.passCode %>">
               </div>
               <div class="col-xs-6 col-md-3 bg-purple-light p-1">
                 <label for="giftCode">Gift Code:</label>
-                <input type="text" class="form-control" name="foundGift[giftCode]" id="giftCode"
-                       value="<%= foundGift.giftCode %>">
+                <input type="text" class="form-control" name="foundGift[giftCode]" id="giftCode" value="<%= foundGift.giftCode %>">
               </div>
               <div class="col-xs-6 col-md-3 bg-purple-light p-1">
                 <label for="redeemCode">Redeem Code:</label>
-                <input type="text" class="form-control" name="foundGift[redeemCode]" id="redeemCode"
-                       value="<%= foundGift.redeemCode %>">
+                <input type="text" class="form-control" name="foundGift[redeemCode]" id="redeemCode" value="<%= foundGift.redeemCode %>">
               </div>
               <div class="col-xs-12 bg-purple-light p-1">
                 <button class="btn btn-primary pull-right">Update</button>
@@ -128,7 +125,6 @@
             </div>
             <div class="col-xs-12 bg-purple-light">
               <h5 class="row p-1 bg-white">This is accepted message:</h5>
-
               <p class="message pt-1 pb-1"><%= foundGift.acceptedGiftMessage || '' %></p>
             </div>
             <% } %>

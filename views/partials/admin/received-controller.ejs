@@ -10,24 +10,19 @@
         <a class="dropdown-item" href="#" id="review" onclick="setProp('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'review')">
           <i class="fa fa-file" aria-hidden="true"></i> Review
         </a>
-        <a class="dropdown-item" id="accepted"
-           href="#" onclick="setProp('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'accepted');">
+        <a class="dropdown-item" id="accepted" href="#" onclick="setProp('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'accepted');">
           <i class="fa fa-check" aria-hidden="true"></i> Accept
         </a>
-        <a class="dropdown-item"
-           href="#" id="declined" onclick="setProp('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'declined');">
+        <a class="dropdown-item" href="#" id="declined" onclick="setProp('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'declined');">
           <i class="fa fa-ban" aria-hidden="true"></i> Decline
         </a>
-        <a class="dropdown-item" id="paid"
-           href="#" onclick="setProp('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'paid');">
+        <a class="dropdown-item" id="paid" href="#" onclick="setProp('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'paid');">
           <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Paid
         </a>
-        <a class="dropdown-item" id="excel"
-           href="/admin/users/excel-gift/<%= foundGift.id %>" target="_blank">
+        <a class="dropdown-item" id="excel" href="/admin/users/excel-gift/<%= foundGift.id %>" target="_blank">
           <i class="fa fa-file-excel-o" aria-hidden="true"></i> Export to Excel
         </a>
-        <a class="dropdown-item" id="delete"
-           href="#" onclick="setProp('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'delete');">
+        <a class="dropdown-item" id="delete" href="#" onclick="setProp('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'delete');">
           <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
         </a>
       </div>
@@ -40,20 +35,16 @@
     <% } %>
   </div>
   <div class="link-actions">
-    <a href="#" onclick="updateActionAndGo('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'declined');"
-       data-toggle="tooltip" data-placement="top" title="Declined">
+    <a href="#" onclick="updateActionAndGo('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'declined');" data-toggle="tooltip" data-placement="top" title="Declined">
       <i class="icon fa fa-ban"></i>
     </a>
-    <a href="#" onclick="updateActionAndGo('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'paid');"
-       data-toggle="tooltip" data-placement="top" title="Paid">
+    <a href="#" onclick="updateActionAndGo('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'paid');" data-toggle="tooltip" data-placement="top" title="Paid">
       <i class="icon fa fa-cart-arrow-down"></i>
     </a>
-    <a href="/admin/users/excel-gift/<%= foundGift.id %>" target="_blank" data-toggle="tooltip" data-placement="top"
-       title="Export to Excel">
+    <a href="/admin/users/excel-gift/<%= foundGift.id %>" target="_blank" data-toggle="tooltip" data-placement="top" title="Export to Excel">
       <i class="icon fa fa-file-excel-o"></i>
     </a>
-    <a href="#" onclick="updateActionAndGo('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'delete');"
-       data-toggle="tooltip" data-placement="top" title="Delete">
+    <a href="#" onclick="updateActionAndGo('<%= foundGift.user._id%>', '<%= foundGift.id%>', 'delete');" data-toggle="tooltip" data-placement="top" title="Delete">
       <i class="icon fa fa-trash-o"></i>
     </a>
   </div>

@@ -18,72 +18,72 @@ module.exports = {
   generateGifts : function (giftsDataSet){
     //Here you specify the export structure
     var specification = {
-      giftNumber: { // <- the key should match the actual data key
-        displayName: 'Gift Number', // <- Here you specify the column header
-        headerStyle: styles.header, // <- Header style
-        cellFormat: function(value, row) { // <- Renderer function, you can access also any row.property
+      giftNumber: {
+        displayName: 'Gift Number',
+        headerStyle: styles.header,
+        cellFormat: function(value, row) {
           return '' + value;
         },
-        width: 120 // <- width in pixels
+        width: 120
       },
-      date: { // <- the key should match the actual data key
-        displayName: 'Date', // <- Here you specify the column header
-        headerStyle: styles.header, // <- Header style
+      date: {
+        displayName: 'Date',
+        headerStyle: styles.header,
         cellStyle: styles.header,
-        width: 120 // <- width in pixels
+        width: 120
       },
-      giftDescription: { // <- the key should match the actual data key
-        displayName: 'Gift description', // <- Here you specify the column header
-        headerStyle: styles.header, // <- Header style
+      giftDescription: {
+        displayName: 'Gift description',
+        headerStyle: styles.header,
         cellStyle: styles.header,
-        width: 120 // <- width in pixels
+        width: 120
       },
-      giftAmount: { // <- the key should match the actual data key
-        displayName: 'Gift Amount', // <- Here you specify the column header
-        headerStyle: styles.header, // <- Header style
+      giftAmount: {
+        displayName: 'Gift Amount',
+        headerStyle: styles.header,
         cellStyle: styles.header,
-        width: 120 // <- width in pixels
+        width: 120
       },
-      giftCode: { // <- the key should match the actual data key
-        displayName: 'Gift Code', // <- Here you specify the column header
-        headerStyle: styles.header, // <- Header style
+      giftCode: {
+        displayName: 'Gift Code',
+        headerStyle: styles.header,
         cellStyle: styles.header,
-        width: 120 // <- width in pixels
+        width: 120
       },
-      redeemCode: { // <- the key should match the actual data key
-        displayName: 'Redeem Code', // <- Here you specify the column header
-        headerStyle: styles.header, // <- Header style
+      redeemCode: {
+        displayName: 'Redeem Code',
+        headerStyle: styles.header,
         cellStyle: styles.header,
-        width: 120 // <- width in pixels
+        width: 120
       },
-      passCode: { // <- the key should match the actual data key
-        displayName: 'Pass Code', // <- Here you specify the column header
-        headerStyle: styles.header, // <- Header style
+      passCode: {
+        displayName: 'Pass Code',
+        headerStyle: styles.header,
         cellStyle: styles.header,
-        width: 120 // <- width in pixels
+        width: 120
       },
-      senderFirstName: { // <- the key should match the actual data key
-        displayName: 'Sender FirstName', // <- Here you specify the column header
-        headerStyle: styles.header, // <- Header style
+      senderFirstName: {
+        displayName: 'Sender FirstName',
+        headerStyle: styles.header,
         cellStyle: styles.header,
-        width: 120 // <- width in pixels
+        width: 120
       },
-      senderLastName: { // <- the key should match the actual data key
-        displayName: 'Sender LastName', // <- Here you specify the column header
-        headerStyle: styles.header, // <- Header style
+      senderLastName: {
+        displayName: 'Sender LastName',
+        headerStyle: styles.header,
         cellStyle: styles.header,
-        width: 120 // <- width in pixels
+        width: 120
       },
-      giftMessage: { // <- the key should match the actual data key
-        displayName: 'Gift Message', // <- Here you specify the column header
-        headerStyle: styles.header, // <- Header style
+      giftMessage: {
+        displayName: 'Gift Message',
+        headerStyle: styles.header,
         cellStyle: styles.header,
-        width: 120 // <- width in pixels
+        width: 120
       },
-      status: { // <- the key should match the actual data key
-        displayName: 'Status', // <- Here you specify the column header
-        headerStyle: styles.header, // <- Header style
-        cellFormat: function(value, row) { // <- Renderer function, you can access also any row.property
+      status: {
+        displayName: 'Status',
+        headerStyle: styles.header,
+        cellFormat: function(value, row) {
           if (value.paid) {
             return 'Paid';
           }else if(value.declined){
@@ -96,84 +96,84 @@ module.exports = {
             return 'Review';
           }
         },
-        width: 120 // <- width in pixels
+        width: 120
       }
     };
     
     //create the excel report
     var report = excel.buildExport([
       {
-        //name: 'Sheet name', // <- Specify sheet name (optional)
-        //heading: heading, // <- Raw heading array (optional)
-        specification: specification, // <- Report specification
-        data: giftsDataSet // <-- Report data
+        //name: 'Sheet name', // (optional)
+        //heading: heading, // (optional)
+        specification: specification,
+        data: giftsDataSet
       }
     ]);
     
     return report;
   },
   generateUsers : function (usersDataSet){
-    //Here you specify the export structure
+    
     var specification = {
-      firstName: { // <- the key should match the actual data key
-        displayName: 'First Name', // <- Here you specify the column header
-        headerStyle: styles.header, // <- Header style
+      firstName: {
+        displayName: 'First Name',
+        headerStyle: styles.header,
         cellStyle: styles.header,
-        width: 120 // <- width in pixels
+        width: 120
       },
-      lastName: { // <- the key should match the actual data key
-        displayName: 'Last Name', // <- Here you specify the column header
-        headerStyle: styles.header, // <- Header style
+      lastName: {
+        displayName: 'Last Name',
+        headerStyle: styles.header,
         cellStyle: styles.header,
-        width: 120 // <- width in pixels
+        width: 120
       },
-      aliasFirstName: { // <- the key should match the actual data key
-        displayName: 'Alias First Name', // <- Here you specify the column header
-        headerStyle: styles.header, // <- Header style
+      aliasFirstName: {
+        displayName: 'Alias First Name',
+        headerStyle: styles.header,
         cellStyle: styles.header,
-        width: 120 // <- width in pixels
+        width: 120
       },
-      aliasLastName: { // <- the key should match the actual data key
-        displayName: 'Alias Last Name', // <- Here you specify the column header
-        headerStyle: styles.header, // <- Header style
+      aliasLastName: {
+        displayName: 'Alias Last Name',
+        headerStyle: styles.header,
         cellStyle: styles.header,
-        width: 120 // <- width in pixels
+        width: 120
       },
-      username: { // <- the key should match the actual data key
-        displayName: 'Username', // <- Here you specify the column header
-        headerStyle: styles.header, // <- Header style
+      username: {
+        displayName: 'Username',
+        headerStyle: styles.header,
         cellStyle: styles.header,
-        width: 120 // <- width in pixels
+        width: 120
       },
-      lastLoginDate: { // <- the key should match the actual data key
-        displayName: 'Last Login Date', // <- Here you specify the column header
-        headerStyle: styles.header, // <- Header style
+      lastLoginDate: {
+        displayName: 'Last Login Date',
+        headerStyle: styles.header,
         cellStyle: styles.header,
-        width: 120 // <- width in pixels
+        width: 120
       },
-      preferredPaymentMethod: { // <- the key should match the actual data key
-        displayName: 'Preferred Payment Method', // <- Here you specify the column header
-        headerStyle: styles.header, // <- Header style
+      preferredPaymentMethod: {
+        displayName: 'Preferred Payment Method',
+        headerStyle: styles.header,
         cellStyle: styles.header,
-        width: 120 // <- width in pixels
+        width: 120
       },
-      isAdmin: { // <- the key should match the actual data key
-        displayName: 'Admin', // <- Here you specify the column header
-        headerStyle: styles.header, // <- Header style
+      isAdmin: {
+        displayName: 'Admin',
+        headerStyle: styles.header,
         cellFormat: function(value, row){
           return (value) ? 'Admin' : 'Non admin';
         },
-        width: 120 // <- width in pixels
+        width: 120
       }
     };
     
     //create the excel report
     var report = excel.buildExport([
       {
-        //name: 'Sheet name', // <- Specify sheet name (optional)
-        //heading: heading, // <- Raw heading array (optional)
-        specification: specification, // <- Report specification
-        data: usersDataSet // <-- Report data
+        //name: 'Sheet name', // (optional)
+        //heading: heading, // (optional)
+        specification: specification,
+        data: usersDataSet
       }
     ]);
     

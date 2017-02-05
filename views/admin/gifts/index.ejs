@@ -223,16 +223,13 @@
 
             var blob = new Blob([this.response], {type: type});
             if(typeof window.navigator.msSaveBlob !== 'undefined') {
-              // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
               window.navigator.msSaveBlob(blob, filename);
             } else {
               var URL = window.URL || window.webkitURL;
               var downloadUrl = URL.createObjectURL(blob);
 
               if(filename) {
-                // use HTML5 a[download] attribute to specify filename
-                var a = document.createElement("a");
-                // safari doesn't support this yet
+                var a = document.createElement('a');
                 if(typeof a.download === 'undefined') {
                   window.location = downloadUrl;
                 } else {
@@ -247,7 +244,7 @@
 
               setTimeout(function() {
                 URL.revokeObjectURL(downloadUrl);
-              }, 100); // cleanup
+              }, 100);
             }
           } else {
             alert('Error, contact support');
@@ -261,7 +258,7 @@
           }
         });
 
-        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
         xhr.send(JSON.stringify({gifts: finalGifts}));
       }
 
