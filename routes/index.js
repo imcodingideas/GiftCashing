@@ -143,34 +143,23 @@ router.post(
     let passwordString = Math.random().toString(36).slice(-10);
     
     User
-      .findOne(
-        {'username': req.body.email},
-        (err, foundUser) => {
-          if(err) {
-            req.flash('error', 'Internal error');
-            res.redirect('back');
-          }
-          if(foundUser) {
-            foundUser.setPassword(
-              passwordString,
+      .findOne({'username': req.body.email})
+      .then(foundUser => {
+        foundUser.setPassword(
+          passwordString,
+          () => {
+            foundUser.save(
               () => {
-                foundUser.save(
-                  (errSaving, resultSave) => {
-                    if(errSaving) {
-                      req.flash('error', errSaving.message);
-                      res.redirect('back');
-                    }
-                    
-                    emailService.sendForgotPassword(foundUser, passwordString);
-                    req.flash('success', 'Please check your email.');
-                    res.redirect('/login');
-                  });
+                emailService.sendForgotPassword(foundUser, passwordString);
+                req.flash('success', 'Please check your email.');
+                res.redirect('/login');
               });
-          } else {
-            req.flash('error', 'Cannot find a user by that email.');
-            res.redirect('back');
-          }
-        });
+          });
+      })
+      .catch(err => {
+        if(err && err.message) req.flash('error', 'Cannot find a user by that email.');
+        res.redirect('back');
+      });
   });
 
 //Show how does it work
