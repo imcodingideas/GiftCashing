@@ -82,22 +82,16 @@ router.post(
         if(err) {
           req.flash('error', err.message);
         }
+  
+        User
+          .findByIdAndUpdate(user, {$push: { gifts: newlyCreated._id }})
+          .then(foundUser => {
+            res.redirect('/admin/created-gift');
+          })
+          .catch(err => {
+            if(err && err.message) req.flash('error', err.message);
+          });
         
-        if(!err) {
-          User.findByIdAndUpdate(
-            user, {
-              $push: {
-                gifts: newlyCreated._id
-              }
-            },
-            (err, result) => {
-              if(err) {
-                req.flash('error', err.message);
-              }
-              
-              res.redirect('/admin/created-gift');
-            })
-        }
       });
     
   });
