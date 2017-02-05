@@ -178,11 +178,6 @@ $(document).ready(function() {
     });
   });
   
-  /**
-   * Function generate random number
-   * @param  {Integer} lengthSerie
-   * @return {String}             string random number
-   */
   function generateSerieRandomNumber(lengthSerie) {
     var finalNumber = '';
     for(var i = 0; i < lengthSerie; i++) {
@@ -195,5 +190,11 @@ $(document).ready(function() {
   
   $('#giftNumber').val(generateSerieRandomNumber(8));
   
-  $('[data-toggle="tooltip"]').tooltip()
+  $('[data-toggle="tooltip"]').tooltip();
+  
+  $('.dropdown-menu').on('click', 'a', function(){
+    $('#bulkActions:first-child').text($(this).text());
+    $('#bulkActions:first-child').val($(this).text());
+  });
+  
 });
