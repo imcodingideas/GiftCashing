@@ -95,7 +95,7 @@ router.get(
           }
           
           if(!foundGift) {
-            res.redirect('/admin/users/'+req.params.id+'/gifts');
+            res.redirect('/admin/users/' + req.params.id + '/gifts');
             return;
           }
           res.render('admin/gifts/show', {
@@ -152,11 +152,11 @@ router.put(
       case 'paid':
         status[req.body.action] = true;
         break;
-        
+      
       case 'delete':
         return deleteGift(req.params.gift_id || '', res);
         break;
-        
+      
       default:
         return res.send({
           success: false,
@@ -166,7 +166,7 @@ router.put(
     
     let set = {
       status: status,
-      changedStatusDate : new Date()
+      changedStatusDate: new Date()
     };
     
     //Update status gift
