@@ -142,8 +142,10 @@ router.get(
   '/share',
   middleware.isLoggedIn,
   (req, res) => {
+  
     User
-      .findOne({_id: req.user.id}, (err, user) => {
+      .findOne({_id: req.user.id})
+      .then(user => {
         if(err) {
           req.flash('error', err.message);
         }
@@ -152,6 +154,9 @@ router.get(
           title: 'Share Gifts',
           breadcrumbsName: 'Share'
         });
+      })
+      .catch((err) => {
+        if(err && err.message) req.flash('error', err.message);
       });
   });
 

@@ -89,11 +89,7 @@ router.get(
       Gift
         .findById(req.params.gift_id)
         .populate('user')
-        .exec((err, foundGift) => {
-          if(err) {
-            req.flash('error', err.message);
-          }
-          
+        .then(foundGift => {
           if(!foundGift) {
             res.redirect('/admin/users/' + req.params.id + '/gifts');
             return;
@@ -104,18 +100,19 @@ router.get(
             foundGift: foundGift,
             pagination
           });
+        })
+        .catch(err => {
+          if(err && err.message) req.flash('error', err.message);
         });
+      
     });
   });
 
-/**
- * Delete a Gift
- * @param  {Id of Gift} giftId
- * @param  {Response} res
- */
 function deleteGift(giftId, res) {
-  Gift.remove({_id: giftId}, (err) => {
-    if(!err) {
+  
+  Gift
+    .remove({_id: giftId})
+    .then(() => {
       return res.send({
         success: true,
         message: 'Delete success',
@@ -123,13 +120,13 @@ function deleteGift(giftId, res) {
           status: {deleted: true}
         }
       });
-    } else {
+    })
+    .catch(err => {
       return res.send({
         success: false,
         message: 'Error, contact support'
       });
-    }
-  });
+    });
 }
 
 /* Update Gift listing. */
