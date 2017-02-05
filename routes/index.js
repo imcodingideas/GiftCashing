@@ -13,8 +13,6 @@ const
   mailer = require('../mailer'),
   emailService = require('../services/email');
 
-let locus = require('locus');
-
 /* GET home page. */
 router.get(
   '/',

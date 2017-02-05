@@ -7,7 +7,6 @@ const express = require('express'),
   }),
   User = require('../models/user'),
   Gift = require('../models/gift'),
-  locus = require('locus'),
   middleware = require('../middleware'),
   excel = require('../components/excel'),
   getPaginated = require('../components/getPaginated');
