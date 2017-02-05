@@ -78,11 +78,8 @@ router.post(
       };
     
     Gift
-      .create(newGift, (err, newlyCreated) => {
-        if(err) {
-          req.flash('error', err.message);
-        }
-  
+      .create(newGift)
+      .then(newlyCreated => {
         User
           .findByIdAndUpdate(user, {$push: { gifts: newlyCreated._id }})
           .then(foundUser => {
@@ -91,9 +88,10 @@ router.post(
           .catch(err => {
             if(err && err.message) req.flash('error', err.message);
           });
-        
+      })
+      .catch(err => {
+        if(err && err.message) req.flash('error', err.message);
       });
-    
   });
 
 router.get(
