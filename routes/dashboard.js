@@ -43,8 +43,8 @@ router.get(
         };
         break;
     }
-  
-  
+    
+    
     Gift
       .find(query)
       .populate('user')
@@ -56,7 +56,7 @@ router.get(
             gifts: gifts
           });
         }
-  
+        
         if(['accepted', 'declined', 'paid'].indexOf(req.query.filter) > -1) {
           res.render('dashboard/gifts/other', {
             title: req.query.filter,
@@ -81,61 +81,51 @@ router.put(
     let _id = req.params.id;
     let status = req.params.status;
     let message = req.body.message;
-    
+  
     if(_.trim(req.user.preferredPaymentMethod) == '') {
       return res.send({
         success: false,
         error: 'Please set your preferred payment method.'
       });
     } else {
+    
       Gift
-        .findOne({
-          _id,
-          user: req.user._id
-        })
-        .exec((err, gift) => {
-          if(err) {
-            req.flash('error', err.message);
-            req.redirect('back');
-          }
-          
+        .findOne({_id, user: req.user._id})
+        .then(gift => {
           if(!gift) {
             return res.status(404).send({
               success: false,
               err: 'No gift found'
             });
           }
-          
+        
           for(let status in gift.status) {
             gift.status[status] = false;
           }
           gift.status[status] = true;
-          
+        
           Gift
-            .update(
-              {_id},
-              {
-                $set: {
-                  status: gift.status,
-                  acceptedGiftMessage: message
-                }
-              },
-              (err, result) => {
-                if(err) {
-                  return res.status(500).send({
-                    success: false,
-                    err: err.message
-                  });
-                }
-                
-                res.status(200).send({
-                  success: true,
-                  result
-                });
+            .update({_id}, {$set: {status: gift.status, acceptedGiftMessage: message}})
+            .then((result) => {
+              res.status(200).send({
+                success: true,
+                result
               });
+            })
+            .catch(err => {
+              return res.status(500).send({
+                success: false,
+                err: err.message
+              });
+            });
+        })
+        .catch(err => {
+          if(err) {
+            req.flash('error', err.message);
+            req.redirect('back');
+          }
         });
     }
-    
   });
 
 
@@ -143,7 +133,7 @@ router.get(
   '/share',
   middleware.isLoggedIn,
   (req, res) => {
-  
+    
     User
       .findOne({_id: req.user.id})
       .then(user => {
@@ -165,8 +155,8 @@ router.get(
 router.put(
   '/gift/declined/:gift_id',
   middleware.isLoggedIn,
-  function (req, res){    
-
+  function(req, res) {
+    
     let status = {
       'paid': false,
       'declined': true,
@@ -174,12 +164,12 @@ router.put(
       'accepted': false,
       'review': false
     };
-
+    
     let set = {
       status: status,
       changedStatusDate: new Date()
     };
-  
+    
     Gift
       .findById(req.params.gift_id)
       .then((record) => {
@@ -207,6 +197,6 @@ router.put(
           error: 'Error, contact support'
         });
       });
-});
+  });
 
 module.exports = router;
