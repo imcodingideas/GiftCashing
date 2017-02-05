@@ -72,10 +72,10 @@ router.post(
     
     User.findOneAndUpdate({ username: req.user.username }, user)
         .then(foundUser => {
-          if (req.user.isAdmin === true) {
+          if (foundUser.isAdmin === true) {
             res.redirect('/admin/gifts?filter=review');
           }
-          if (req.user.isAdmin === false) {
+          if (foundUser.isAdmin === false) {
             res.redirect('/dashboard/gifts?filter=received');
           }
         })

@@ -36,7 +36,7 @@ module.exports.runJobs = function() {
     cronTime: '00 30 11 * * *',
     onTick: function() {
   
-      User.({'status.paid': true})
+      User.find({'status.paid': true})
           .populate('user')
           .then(gifts => {
             gifts.forEach((gift) => {
@@ -60,7 +60,7 @@ module.exports.runJobs = function() {
       let date = new Date();
       let last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
   
-      User.({'status.review': true, changedStatusDate: {$lte: last}})
+      User.find({'status.review': true, changedStatusDate: {$lte: last}})
           .populate('user')
           .then(gifts => {
             gifts.forEach((gift) => {
