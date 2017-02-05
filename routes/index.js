@@ -27,29 +27,30 @@ router.get('/register', (req, res) => {
   });
 });
 
-// handle sign up logic
 router.post('/register', (req, res) => {
-  let newUser = new User({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    aliasFirstName: req.body.aliasFirstName,
-    aliasLastName: req.body.aliasLastName,
-    username: req.body.username
-  });
+  let data = _.pick(
+    req.body,
+    [
+      'firstName',
+      'lastName',
+      'aliasFirstName',
+      'aliasLastName',
+      'username'
+    ]);
+  let newUser = new User(data);
   
-  User.register(newUser, req.body.password, (err, user) => {
-    if (err) {
+  registerUser(newUser, req.body.password)
+    .then(user => {
+      emailService.registration(user);
+      passport.authenticate('local')(req, res, () => {
+        req.flash('success', 'Welcome to GiftCashing ' + user.firstName);
+        res.redirect('/dashboard/gifts?filter=received');
+      });
+    })
+    .catch(err => {
       req.flash('error', err.message);
       res.redirect('back');
-    }
-    
-    emailService.registration(user);
-    
-    passport.authenticate('local')(req, res, () => {
-      req.flash('success', 'Welcome to GiftCashing' + user.firstName);
-      res.redirect('/dashboard/gifts?filter=received');
     });
-  });
 });
 
 // show login form
@@ -146,5 +147,17 @@ router.post('/contact', (req, res) => {
   req.flash('success', 'Contact sent successfully');
   res.redirect('back');
 });
+
+function registerUser(newUser, password) {
+  return new Promise((resolve, reject) => {
+    User.register(
+      newUser,
+      password,
+      (err, user) => {
+        if(err) return reject(err);
+        resolve(user);
+      });
+  });
+}
 
 module.exports = router;

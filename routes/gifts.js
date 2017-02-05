@@ -17,24 +17,25 @@ const excel = require('../components/excel');
 
 /* GET Gifts page. */
 router.get('/', middleware.isLoggedIn, (req, res) => {
-  let query = { 'status.review': true };
+  let query = {'status.review': true};
   
-  switch (req.query.filter) {
+  switch(req.query.filter) {
     case 'accepted':
-      query = { 'status.accepted': true };
+      query = {'status.accepted': true};
       break;
     case 'declined':
-      query = { 'status.declined': true };
+      query = {'status.declined': true};
       break;
     case 'pending':
-      query = { 'status.pending': true };
+      query = {'status.pending': true};
       break;
     case 'paid':
-      query = { 'status.paid': true };
+      query = {'status.paid': true};
       break;
   }
   
-  getPaginated(Gift, 'user', query, req, result => {
+  getPaginated(Gift, 'user', query, req)
+    .then(result => {
     result.title = 'Review Gifts';
     result.breadcrumbsName = 'Gifts';
     res.render('admin/gifts/index', result);
@@ -44,6 +45,7 @@ router.get('/', middleware.isLoggedIn, (req, res) => {
 // Create a Gift
 router.post('/', middleware.isLoggedIn, (req, res) => {
   // get data from form and add to gift array.
+  
   let user = req.body.user,
     giftNumber = req.body.giftNumber,
     date = req.body.date,
@@ -71,16 +73,16 @@ router.post('/', middleware.isLoggedIn, (req, res) => {
   
   Gift.create(newGift)
       .then(newlyCreated => {
-        User.findByIdAndUpdate(user, { $push: { gifts: newlyCreated._id } })
-            .then(foundUser => {
+        User.findByIdAndUpdate(user, {$push: {gifts: newlyCreated._id}})
+            .then(() => {
               res.redirect('/admin/created-gift');
             })
             .catch(err => {
-              if (err && err.message) req.flash('error', err.message);
+              if(err && err.message) req.flash('error', err.message);
             });
       })
       .catch(err => {
-        if (err && err.message) req.flash('error', err.message);
+        if(err && err.message) req.flash('error', err.message);
       });
 });
 
@@ -98,7 +100,7 @@ function updateGiftStatus(gift, done) {
   gift.changedStatusDate = new Date();
   
   gift = _.pick(gift, ['status', 'changedStatusDate']);
-  for (let s in gift.status) {
+  for(let s in gift.status) {
     gift.status[s] = gift.status[s] === 'true' || gift.status[s] === true;
   }
   
@@ -107,19 +109,19 @@ function updateGiftStatus(gift, done) {
         done(null, 'Gift success update.');
       })
       .catch(err => {
-        if (err && err.message) req.flash('error', err.message);
+        if(err && err.message) req.flash('error', err.message);
       });
 }
 
 router.put('/', middleware.isLoggedIn, (req, res) => {
-  if (!_.isArray(req.body.gifts) || _.isEmpty(req.body.gifts)) {
+  if(!_.isArray(req.body.gifts) || _.isEmpty(req.body.gifts)) {
     return res.send({
       success: true
     });
   }
   
   async.each(req.body.gifts, updateGiftStatus, err => {
-    if (err) {
+    if(err) {
       console.log('err async each: ', err);
       return res.status(500).send({
         success: false,
@@ -139,14 +141,17 @@ router.get('/filter', (req, res) => {
   let dateTo = Date.parse(req.query.dateto);
   
   let query = {
-    date: { $gt: dateFrom, $lt: dateTo }
-  };
+    $or: [
+      {'date': {$gt: dateFrom, $lt: dateTo}},
+      {'changedStatusDate': {$gt: dateFrom, $lt: dateTo}}
+    ]};
   
-  getPaginated(Gift, 'user', query, req, result => {
-    result.title = 'Filtered Gifts';
-    result.breadcrumbsName = 'Gifts';
-    res.render('admin/gifts/index', result);
-  });
+  getPaginated(Gift, 'user', query, req)
+    .then(result => {
+      result.title = 'Filtered Gifts';
+      result.breadcrumbsName = 'Gifts';
+      res.render('admin/gifts/index', result);
+    });
 });
 
 /* Export to excel report*/

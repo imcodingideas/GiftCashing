@@ -11,22 +11,23 @@ const express = require('express'),
 
 /* GET admins listing. */
 router.get('/', middleware.isLoggedIn, (req, res) => {
-  let query = { isAdmin: true };
+  let query = {isAdmin: true};
   
-  getPaginated(User, 'gifts', query, req, result => {
-    result.title = 'Admins';
-    result.breadcrumbsName = 'Admins';
-    result.items = result.items.map(user => {
-      user.totalAmountOfGifts = 0;
-      if (user.gifts.length > 0) {
-        for (let gift of user.gifts) {
-          user.totalAmountOfGifts += gift.giftAmount;
+  getPaginated(User, 'gifts', query, req)
+    .then(result => {
+      result.title = 'Admins';
+      result.breadcrumbsName = 'Admins';
+      result.items = result.items.map(user => {
+        user.totalAmountOfGifts = 0;
+        if(user.gifts.length > 0) {
+          for(let gift of user.gifts) {
+            user.totalAmountOfGifts += gift.giftAmount;
+          }
         }
-      }
-      return user;
+        return user;
+      });
+      res.render('admin/admins/index', result);
     });
-    res.render('admin/admins/index', result);
-  });
 });
 
 module.exports = router;

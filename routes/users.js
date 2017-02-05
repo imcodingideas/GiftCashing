@@ -15,26 +15,27 @@ const express = require('express'),
 router.get('/', middleware.isLoggedIn, (req, res) => {
   let query = {};
   
-  switch (req.query.search) {
+  switch(req.query.search) {
     default:
-      query = { username: new RegExp(req.query.search, 'gi') };
+      query = {username: new RegExp(req.query.search, 'gi')};
       break;
   }
   
-  getPaginated(User, 'gifts', query, req, result => {
-    result.title = 'Members';
-    result.breadcrumbsName = 'Members';
-    result.items = result.items.map(user => {
-      user.totalAmountOfGifts = 0;
-      if (user.gifts.length > 0) {
-        for (let gift of user.gifts) {
-          user.totalAmountOfGifts += gift.giftAmount;
+  getPaginated(User, 'gifts', query, req)
+    .then(result => {
+      result.title = 'Members';
+      result.breadcrumbsName = 'Members';
+      result.items = result.items.map(user => {
+        user.totalAmountOfGifts = 0;
+        if(user.gifts.length > 0) {
+          for(let gift of user.gifts) {
+            user.totalAmountOfGifts += gift.giftAmount;
+          }
         }
-      }
-      return user;
+        return user;
+      });
+      res.render('admin/users/index', result);
     });
-    res.render('admin/users/index', result);
-  });
 });
 
 router.get('/:id/gifts', middleware.isLoggedIn, (req, res) => {
@@ -42,14 +43,15 @@ router.get('/:id/gifts', middleware.isLoggedIn, (req, res) => {
     user: req.params.id
   };
   
-  getPaginated(Gift, 'user', query, req, result => {
-    result.user = result.items.length > 0
-      ? result.items[0].user
-      : { _id: query.user };
-    result.title = 'Review Gifts';
-    result.breadcrumbsName = 'Gifts';
-    res.render('admin/users/gifts', result);
-  });
+  getPaginated(Gift, 'user', query, req)
+    .then(result => {
+      result.user = result.items.length > 0
+        ? result.items[0].user
+        : {_id: query.user};
+      result.title = 'Review Gifts';
+      result.breadcrumbsName = 'Gifts';
+      res.render('admin/users/gifts', result);
+    });
 });
 
 router.get('/:id/gifts/:gift_id', middleware.isLoggedIn, (req, res) => {
@@ -65,11 +67,11 @@ router.get('/:id/gifts/:gift_id', middleware.isLoggedIn, (req, res) => {
     };
     
     let giftIds = user.gifts;
-    if (giftIds.length > 1) {
-      for (let i = 0; i < giftIds.length; i++) {
-        if (giftIds[i] == req.params.gift_id) {
-          if (i > 0) pagination.previousGiftId = giftIds[i - 1];
-          if (i < giftIds.length - 1) pagination.nextGiftId = giftIds[i + 1];
+    if(giftIds.length > 1) {
+      for(let i = 0; i < giftIds.length; i++) {
+        if(giftIds[i] == req.params.gift_id) {
+          if(i > 0) pagination.previousGiftId = giftIds[i - 1];
+          if(i < giftIds.length - 1) pagination.nextGiftId = giftIds[i + 1];
           pagination.showing = i + 1;
           break;
         }
@@ -79,7 +81,7 @@ router.get('/:id/gifts/:gift_id', middleware.isLoggedIn, (req, res) => {
     Gift.findById(req.params.gift_id)
         .populate('user')
         .then(foundGift => {
-          if (!foundGift) {
+          if(!foundGift) {
             res.redirect('/admin/users/' + req.params.id + '/gifts');
             return;
           }
@@ -91,19 +93,19 @@ router.get('/:id/gifts/:gift_id', middleware.isLoggedIn, (req, res) => {
           });
         })
         .catch(err => {
-          if (err && err.message) req.flash('error', err.message);
+          if(err && err.message) req.flash('error', err.message);
         });
   });
 });
 
 function deleteGift(giftId, res) {
-  Gift.remove({ _id: giftId })
+  Gift.remove({_id: giftId})
       .then(() => {
         return res.send({
           success: true,
           message: 'Delete success',
           gift: {
-            status: { deleted: true }
+            status: {deleted: true}
           }
         });
       })
@@ -125,7 +127,7 @@ router.put('/:id/gifts/:gift_id', (req, res) => {
     review: false
   };
   
-  switch (req.body.action || '') {
+  switch(req.body.action || '') {
     case 'review':
     case 'accepted':
     case 'declined':
@@ -157,7 +159,7 @@ router.put('/:id/gifts/:gift_id', (req, res) => {
       })
       .then(updatedRecord => {
         let message = 'Could not find and modify gift.', success = false;
-        if (updatedRecord && updatedRecord.status[req.body.action] == true) {
+        if(updatedRecord && updatedRecord.status[req.body.action] == true) {
           message = 'Gift status has been modified successfully.';
           success = true;
         }
