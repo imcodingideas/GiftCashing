@@ -18,7 +18,7 @@ module.exports.runJobs = function() {
       Gift
         .find({'status.review': true})
         .populate('user')
-        .exec((err, gifts) => {
+        .then(gifts => {
           gifts.forEach((gift) => {
             mailService.giftStatusIsReview(gift.user);
           });
