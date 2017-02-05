@@ -74,7 +74,7 @@ module.exports.giftStatusIsReviewOverSevenDays = function(user) {
 };
 
 module.exports.sendContact = function(contact) {
-  emailOptions.to = 'joseph@michael-chambers.com';
+  emailOptions.to = emailOptions.from;
   emailOptions.subject = 'Gift Cashing | Contact';
   emailOptions.html = `
           <p>You have a new message from the contact form:</p>
@@ -88,8 +88,7 @@ module.exports.sendContact = function(contact) {
 
 
 module.exports.registration = function(user) {
-  eval(locus);
-  emailOptions.to = 'user.username';
+  emailOptions.to = user.username;
   emailOptions.subject = 'Thank You for Signing Up!';
   emailOptions.html = `
 	        <p><strong>Thank You for Signing Up!</strong></p>
