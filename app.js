@@ -14,7 +14,8 @@ const
   User = require('./models/user'),
   faker = require('faker'),
   _ = require('lodash'),
-  path = require('path');
+  path = require('path'),
+  middleware = require('./middleware'),
   cronjobs = require('./services/cronjobs');
 
 const
@@ -80,13 +81,12 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', indexRoute);
-app.use('/admin/users', usersRoute);
-app.use('/dashboard/profile', profileRoute);
-app.use('/admin/gifts', giftsRoute);
+app.use('/admin/users', middleware.isLoggedIn, usersRoute);
+app.use('/dashboard/profile', middleware.isLoggedIn, profileRoute);
+app.use('/admin/gifts', middleware.isLoggedIn, giftsRoute);
 app.use('/admin/search', searchRoute);
-app.use('/dashboard', dashboardRoute);
-
-app.use('/admin/admins', adminsRoute);
+app.use('/dashboard', middleware.isLoggedIn, dashboardRoute);
+app.use('/admin/admins', middleware.isLoggedIn, adminsRoute);
 
 mongoose.Promise = global.Promise;
 

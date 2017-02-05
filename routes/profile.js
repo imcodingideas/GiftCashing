@@ -7,11 +7,10 @@ const
     mergeParams: true
   }),
   _ = require('lodash'),
-  User = require('../models/user'),
-  middleware = require('../middleware');
+  User = require('../models/user');
 
 // Edit User
-router.get('/:id/edit', middleware.isLoggedIn, (req, res) => {
+router.get('/:id/edit', (req, res) => {
   User.findById(req.params.id)
       .then(foundUser => {
         res.render('dashboard/profile/edit', {
@@ -26,7 +25,7 @@ router.get('/:id/edit', middleware.isLoggedIn, (req, res) => {
 });
 
 // Update User
-router.put('/:id', middleware.isLoggedIn, (req, res) => {
+router.put('/:id', (req, res) => {
   //Variables and params
   let user = req.body.user;
   let passwords = user.password;

@@ -9,14 +9,13 @@ const
   _ = require('lodash'),
   User = require('../models/user'),
   Gift = require('../models/gift'),
-  middleware = require('../middleware'),
   async = require('async'),
   getPaginated = require('../components/getPaginated');
 
 const excel = require('../components/excel');
 
 /* GET Gifts page. */
-router.get('/', middleware.isLoggedIn, (req, res) => {
+router.get('/', (req, res) => {
   let query = {'status.review': true};
   
   switch(req.query.filter) {
@@ -43,7 +42,7 @@ router.get('/', middleware.isLoggedIn, (req, res) => {
 });
 
 // Create a Gift
-router.post('/', middleware.isLoggedIn, (req, res) => {
+router.post('/', (req, res) => {
   // get data from form and add to gift array.
   
   let user = req.body.user,
@@ -86,7 +85,7 @@ router.post('/', middleware.isLoggedIn, (req, res) => {
       });
 });
 
-router.get('/new', middleware.isLoggedIn, (req, res) => {
+router.get('/new', (req, res) => {
   res.render('admin/gifts/new', {
     title: 'New Gift',
     user: req.user,
@@ -113,7 +112,7 @@ function updateGiftStatus(gift, done) {
       });
 }
 
-router.put('/', middleware.isLoggedIn, (req, res) => {
+router.put('/', (req, res) => {
   if(!_.isArray(req.body.gifts) || _.isEmpty(req.body.gifts)) {
     return res.send({
       success: true

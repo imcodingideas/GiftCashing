@@ -5,12 +5,11 @@ const express = require('express'),
     mergeParams: true
   }),
   User = require('../models/user'),
-  getPaginated = require('../components/getPaginated'),
-  middleware = require('../middleware');
+  getPaginated = require('../components/getPaginated');
 
 
 /* GET admins listing. */
-router.get('/', middleware.isLoggedIn, (req, res) => {
+router.get('/', (req, res) => {
   let query = {isAdmin: true};
   
   getPaginated(User, 'gifts', query, req)

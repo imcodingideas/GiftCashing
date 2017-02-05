@@ -8,10 +8,9 @@ const
   }),
   User = require('../models/user'),
   Gift = require('../models/gift'),
-  _ = require('lodash'),
-  middleware = require('../middleware');
+  _ = require('lodash');
 
-router.get('/gifts', middleware.isLoggedIn, (req, res) => {
+router.get('/gifts', (req, res) => {
   let query = {};
   
   switch (req.query.filter) {
@@ -69,7 +68,7 @@ router.get('/gifts', middleware.isLoggedIn, (req, res) => {
 });
 
 
-router.put('/gifts/:id/:status', middleware.isLoggedIn, (req, res) => {
+router.put('/gifts/:id/:status', (req, res) => {
   let _id = req.params.id;
   let status = req.params.status;
   let message = req.body.message;
@@ -120,13 +119,9 @@ router.put('/gifts/:id/:status', middleware.isLoggedIn, (req, res) => {
 });
 
 
-router.get('/share', middleware.isLoggedIn, (req, res) => {
+router.get('/share', (req, res) => {
   User.findOne({ _id: req.user.id })
       .then(user => {
-        if (err) {
-          req.flash('error', err.message);
-        }
-    
         res.render('dashboard/share/index', {
           title: 'Share Gifts',
           breadcrumbsName: 'Share'
@@ -137,9 +132,7 @@ router.get('/share', middleware.isLoggedIn, (req, res) => {
       });
 });
 
-
-
-router.put('/gift/declined/:gift_id', middleware.isLoggedIn, (req, res) => {
+router.put('/gift/declined/:gift_id', (req, res) => {
   let status = {
     paid: false,
     declined: true,

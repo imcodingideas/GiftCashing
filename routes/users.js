@@ -7,12 +7,11 @@ const express = require('express'),
   }),
   User = require('../models/user'),
   Gift = require('../models/gift'),
-  middleware = require('../middleware'),
   excel = require('../components/excel'),
   getPaginated = require('../components/getPaginated');
 
 /* GET users listing. */
-router.get('/', middleware.isLoggedIn, (req, res) => {
+router.get('/', (req, res) => {
   let query = {};
   
   switch(req.query.search) {
@@ -38,7 +37,7 @@ router.get('/', middleware.isLoggedIn, (req, res) => {
     });
 });
 
-router.get('/:id/gifts', middleware.isLoggedIn, (req, res) => {
+router.get('/:id/gifts', (req, res) => {
   const query = {
     user: req.params.id
   };
@@ -54,7 +53,7 @@ router.get('/:id/gifts', middleware.isLoggedIn, (req, res) => {
     });
 });
 
-router.get('/:id/gifts/:gift_id', middleware.isLoggedIn, (req, res) => {
+router.get('/:id/gifts/:gift_id', (req, res) => {
   User.findById(req.params.id, (err, user) => {
     let pagination = {
       page: 1,
