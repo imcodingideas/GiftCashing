@@ -52,25 +52,25 @@ router.put(
     let user = req.body.user;
     let passwords = user.password;
     let finalPassword = '';
-
+    
     //delete property on user
-    delete user.password;    
+    delete user.password;
     
     //If exist passwords
     if(passwords && passwords[0] && passwords[1]) {
-
+      
       //Password invalid
-      if(!( (passwords[0] === passwords[1]) && passwords[0].length > 3) ) {
+      if(!( (passwords[0] === passwords[1]) && passwords[0].length > 3)) {
         req.flash('error', 'Passwords do not match.');
         return res.redirect('back');
       }
       
       //set final password
       finalPassword = passwords[0];
-    }     
-
+    }
+    
     //define is admin or non admin 
-    user.isAdmin = (user.isAdmin) === 'true' ? true : false;    
+    user.isAdmin = (user.isAdmin) === 'true' ? true : false;
     
     // const findById = (id) => {
     //   return new Promise((resolve, reject) => {
@@ -94,9 +94,9 @@ router.put(
             req.flash('error', err.message);
             return res.redirect('back');
           }
-
+          
           //if exist final password
-          if (finalPassword && finalPassword.length > 0) {
+          if(finalPassword && finalPassword.length > 0) {
             //update password
             foundUser.setPassword(
               finalPassword,
@@ -104,7 +104,7 @@ router.put(
                 foundUser.save(
                   (errSaving, resultSave) => {
                     
-                    if(errSaving) {                      
+                    if(errSaving) {
                       req.flash('error', errSaving.message);
                       return res.redirect('back');
                     }
@@ -112,11 +112,11 @@ router.put(
                     req.flash('success', 'Updated successfully.');
                     return res.redirect('back');
                   });
-            });
-          }else{            
+              });
+          } else {
             req.flash('success', 'Updated successfully.');
             return res.redirect('back');
-          }                            
+          }
         });
   });
 
