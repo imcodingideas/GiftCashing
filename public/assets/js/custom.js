@@ -3,7 +3,9 @@
  */
 var uiTools = {
   removeElementByDataId: function(id) {
-    $('[data-id="'+id+'"]:first').fadeOut(200, function(){$(this).remove();});
+    $('[data-id="' + id + '"]:first').fadeOut(200, function() {
+      $(this).remove();
+    });
   }
 };
 
@@ -18,15 +20,18 @@ $(function() {
       url: $(this).data('action'),
       type: $(this).data('method'),
       success: function(response) {
-        if(response.message) {
-          $('.noty-alerts:first').noty({text: response.message, type: 'success'});
+        if (response.message) {
+          $('.noty-alerts:first').noty({
+            text: response.message,
+            type: 'success'
+          });
         }
         
-        if(response.error) {
-          $('.noty-alerts:first').noty({text: response.error, type: 'alert'});
+        if (response.error) {
+          $('.noty-alerts:first').noty({ text: response.error, type: 'alert' });
         }
         
-        if(response.success) {
+        if (response.success) {
           eval(onSuccess);
         }
       },
@@ -38,7 +43,6 @@ $(function() {
 });
 
 $(document).ready(function() {
-  
   function init() {
     $('#newTweet').on('click', tweetIt);
     $('#shareFacebook').on('click', shareFacebook);
@@ -48,39 +52,48 @@ $(document).ready(function() {
   
   function tweetIt() {
     var getShareMessage = $('#shareMessage').text();
-    $('#newTweet').attr('href', 'https://twitter.com/intent/tweet?text=' + getShareMessage)
+    $('#newTweet').attr(
+      'href',
+      'https://twitter.com/intent/tweet?text=' + getShareMessage
+    );
   }
-
+  
   function shareFacebook() {
-    FB.ui({
-      method: 'feed',
-      link: 'https://www.giftcashing.com',
-      title: 'Gift Cashing',
-      caption: $('#shareMessage').text(),
-      description: $('#shareMessage').text(),
-      picture: 'http://www.mujerhoy.com/pic.aspx/?img=paquete965336792.jpg&w=651'
-    }, function(response){});
+    FB.ui(
+      {
+        method: 'feed',
+        link: 'https://www.giftcashing.com',
+        title: 'Gift Cashing',
+        caption: $('#shareMessage').text(),
+        description: $('#shareMessage').text(),
+        picture: 'http://www.mujerhoy.com/pic.aspx/?img=paquete965336792.jpg&w=651'
+      },
+      function(response) {}
+    );
   }
   
   // close alert row
-  window.setTimeout(function() {
-    $('.alert').fadeTo(500, 0).slideUp(500, function() {
-      $(this).remove();
-    });
-  }, 4000);
+  window.setTimeout(
+    function() {
+      $('.alert').fadeTo(500, 0).slideUp(500, function() {
+        $(this).remove();
+      });
+    },
+    4000
+  );
   
   $('#datefrom').datepicker();
   $('#dateto').datepicker();
-  $('#createGiftDate').datepicker({
-    dateFormat: 'mm-dd-yy'
-  }).datepicker('setDate', '0');
+  $('#createGiftDate')
+    .datepicker({
+      dateFormat: 'mm-dd-yy'
+    })
+    .datepicker('setDate', '0');
   
   /* Select All */
   $('#checkAll').click(function() {
-    $('.check').prop('checked',
-      $(this).prop('checked'));
+    $('.check').prop('checked', $(this).prop('checked'));
   });
-  
   
   var giftsFrom = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
@@ -92,42 +105,47 @@ $(document).ready(function() {
     }
   });
   
-  $('#typehead-search .typeahead').typeahead(null, {
-    name: 'gifts_from',
-    display: 'value',
-    source: giftsFrom,
-    templates: {
-      // TODO: Verify why NotFound is not working properly
-      // notFound: [
-      //   '<div>',
-      //     '<div class="row">',
-      //       '<div class="col-sm-12">unable to find any User that match the current query</div>',
-      //     '</div>',
-      //   '</div>'
-      // ].join('\n')
-      // ,
-      suggestion: function(data) {
-        console.log(arguments);
-        return [
-          '<div>',
+  $('#typehead-search .typeahead')
+    .typeahead(null, {
+      name: 'gifts_from',
+      display: 'value',
+      source: giftsFrom,
+      templates: {
+        // TODO: Verify why NotFound is not working properly
+        // notFound: [
+        //   '<div>',
+        //     '<div class="row">',
+        //       '<div class="col-sm-12">unable to find any User that match the current query</div>',
+        //     '</div>',
+        //   '</div>'
+        // ].join('\n')
+        // ,
+        suggestion: function(data) {
+          console.log(arguments);
+          return [
+            '<div>',
             '<div class="row">',
-              '<div class="col-sm-1">',
-                '<img class="profile-picture img-circle" src="' + data.profilePic + '" /></div>',
-              '<div class="col-sm-11">' + data.value + '</div>',
+            '<div class="col-sm-1">',
+            '<img class="profile-picture img-circle" src="' +
+            data.profilePic +
+            '" /></div>',
+            '<div class="col-sm-11">' + data.value + '</div>',
             '</div>',
-          '</div>'
-        ].join('\n')
+            '</div>'
+          ].join('\n');
+        }
       }
-    }
-  }).on('typeahead:selected', function(obj, data) {
-    $('#userId').val(data.id);
-  });
+    })
+    .on('typeahead:selected', function(obj, data) {
+      $('#userId').val(data.id);
+    });
   
   $('.dropdown-menu a').click(function() {
     let selectedAction = $(this).text();
-    $(this).parents('.dropdown')
-           .find('.dropdown-toggle')
-           .html(selectedAction + '<span class="caret"></span>');
+    $(this)
+      .parents('.dropdown')
+      .find('.dropdown-toggle')
+      .html(selectedAction + '<span class="caret"></span>');
   });
   
   $('.toggle-nav').on('click', function() {
@@ -141,9 +159,13 @@ $(document).ready(function() {
     let id = button.data('id');
     
     let modal = $(this);
-    modal.find('form:first').attr('action', '/dashboard/gifts/' + id + '/accepted');
+    modal
+      .find('form:first')
+      .attr('action', '/dashboard/gifts/' + id + '/accepted');
     modal.find('.modal-title').text('Say thanks to ' + senderFirstName);
-    modal.find('#message-text').attr('placeholder', 'Hey, ' + senderFirstName + ' thanks for gift!');
+    modal
+      .find('#message-text')
+      .attr('placeholder', 'Hey, ' + senderFirstName + ' thanks for gift!');
   });
   
   $acceptGiftModal.find('form').submit(function(e) {
@@ -156,19 +178,19 @@ $(document).ready(function() {
       type: $this.attr('method'),
       data: $this.serializeArray(),
       success: function(response) {
-        if(response.error) {
+        if (response.error) {
           window.modals.notify('Error', response.error);
           return;
         }
         
-        if(response.message) {
+        if (response.message) {
           window.modals.notify('Message', response.message, function() {
             $acceptGiftModal.modal('hide');
             window.location.reload();
           });
           return;
         }
-  
+        
         $acceptGiftModal.modal('hide');
         window.location.reload();
       },
@@ -180,9 +202,9 @@ $(document).ready(function() {
   
   function generateSerieRandomNumber(lengthSerie) {
     var finalNumber = '';
-    for(var i = 0; i < lengthSerie; i++) {
+    for (var i = 0; i < lengthSerie; i++) {
       //generate random number between 1 to 9
-      var random = Math.floor((Math.random() * 9 ) + 1);
+      var random = Math.floor(Math.random() * 9 + 1);
       finalNumber = finalNumber + random;
     }
     return finalNumber;
@@ -192,9 +214,8 @@ $(document).ready(function() {
   
   $('[data-toggle="tooltip"]').tooltip();
   
-  $('.dropdown-menu').on('click', 'a', function(){
+  $('.dropdown-menu').on('click', 'a', function() {
     $('#bulkActions:first-child').text($(this).text());
     $('#bulkActions:first-child').val($(this).text());
   });
-  
 });

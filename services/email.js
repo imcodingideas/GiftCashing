@@ -6,14 +6,14 @@ let emailOptions = {
   html: ''
 };
 
-let sendMail = function (emailOptions) {
+let sendMail = (emailOptions) => {
   mailer.sendMail(emailOptions, (err, info) => {
     if (err) console.log('Mailing Error: ', err);
     console.log('mailing......................', info);
   });
 };
 
-module.exports.sendForgotPassword = function(user, password) {
+module.exports.sendForgotPassword = (user, password) => {
   emailOptions.to = user.username;
   emailOptions.subject = 'Gift Cashing New Password';
   emailOptions.html = `
@@ -27,7 +27,7 @@ module.exports.sendForgotPassword = function(user, password) {
   sendMail(emailOptions);
 };
 
-module.exports.giftStatusIsReview = function(user) {
+module.exports.giftStatusIsReview = (user) => {
   emailOptions.to = user.username;
   emailOptions.subject = 'You have received a new gift';
   emailOptions.html = `
@@ -43,7 +43,7 @@ module.exports.giftStatusIsReview = function(user) {
   sendMail(emailOptions);
 };
 
-module.exports.giftStatusIsPaid = function(user) {
+module.exports.giftStatusIsPaid = (user) => {
   emailOptions.to = user.username;
   emailOptions.subject = 'Your have been paid.';
   emailOptions.html = `
@@ -57,7 +57,7 @@ module.exports.giftStatusIsPaid = function(user) {
   sendMail(emailOptions);
 };
 
-module.exports.giftStatusIsReviewOverSevenDays = function(user) {
+module.exports.giftStatusIsReviewOverSevenDays = (user) => {
   emailOptions.to = user.username;
   emailOptions.subject = 'Hurry and Claim Your Gift!';
   emailOptions.html = `
@@ -73,7 +73,7 @@ module.exports.giftStatusIsReviewOverSevenDays = function(user) {
   sendMail(emailOptions);
 };
 
-module.exports.sendContact = function(contact) {
+module.exports.sendContact = (contact) => {
   emailOptions.to = emailOptions.from;
   emailOptions.subject = 'Gift Cashing | Contact';
   emailOptions.html = `
@@ -87,7 +87,7 @@ module.exports.sendContact = function(contact) {
 };
 
 
-module.exports.registration = function(user) {
+module.exports.registration = (user) => {
   emailOptions.to = user.username;
   emailOptions.subject = 'Thank You for Signing Up!';
   emailOptions.html = `
