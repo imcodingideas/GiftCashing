@@ -36,7 +36,6 @@
     "mongoose": "^4.7.1",
     "mongoose-pages": "0.0.3",
     "morgan": "~1.7.0",
-    "multer": "^1.2.1",
     "node-excel-export": "^1.2.0",
     "node-sass": "^3.13.0",
     "nodemailer": "^2.7.0",

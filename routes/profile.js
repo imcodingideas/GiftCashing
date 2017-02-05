@@ -8,18 +8,7 @@ const
   }),
   _ = require('lodash'),
   User = require('../models/user'),
-  multer = require('multer'),
   middleware = require('../middleware');
-
-const storage = multer.diskStorage({
-    destination: function(req, file, callback) {
-      callback(null, './uploads');
-    },
-    filename: function(req, file, callback) {
-      callback(null, req.params.id + file.originalname);
-    }
-  }),
-  upload = multer({storage: storage});
 
 // Edit User
 router.get(
@@ -45,7 +34,6 @@ router.get(
 router.put(
   '/:id',
   middleware.isLoggedIn,
-  upload.single('pic'),
   (req, res) => {
     
     //Variables and params
