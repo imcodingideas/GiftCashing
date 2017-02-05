@@ -118,17 +118,15 @@ function updateGiftStatus(gift, done) {
     gift.status[s] = (gift.status[s] === 'true' || gift.status[s] === true);
   }
   
-  //find gift for update
   Gift
-    .findByIdAndUpdate(
-      id,
-      gift,
-      (err) => {
-        if(err) {
-          done(`Error updating the Gift: ${gift._id}`);
-        }
-        done(null, 'Gift success update.');
-      });
+    .findByIdAndUpdate(id, gift)
+    .then(updatedGift => {
+      done(null, 'Gift success update.');
+    })
+    .catch(err => {
+      if(err && err.message) req.flash('error', err.message);
+    });
+  
 }
 router.put(
   '/',
