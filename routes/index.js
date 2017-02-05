@@ -18,7 +18,7 @@ let locus = require('locus');
 /* GET home page. */
 router.get(
   '/',
-  (req, res, next) => {
+  (req, res) => {
     res.render('index', {
       title: 'Gift Cashing'
     });
@@ -86,24 +86,20 @@ router.post(
       lastLoginDate: new Date()
     };
     
-    //Update last login date
     User
-      .findOneAndUpdate(
-        {'username': req.user.username},
-        user,
-        (err, foundUser) => {
-          if(err) {
-            console.log('lastLoginDate error update: ', err);
-          }
-          console.log('lastLoginDate success update');
-        });
+      .findOneAndUpdate({'username': req.user.username}, user)
+      .then(foundUser => {
+        if(req.user.isAdmin === true) {
+          res.redirect('/admin/gifts?filter=review');
+        }
+        if(req.user.isAdmin === false) {
+          res.redirect('/dashboard/gifts?filter=received');
+        }
+      })
+      .catch(err => {
+        if(err && err.message) req.flash('error', err.message);
+      });
     
-    if(req.user.isAdmin === true) {
-      res.redirect('/admin/gifts?filter=review');
-    }
-    if(req.user.isAdmin === false) {
-      res.redirect('/dashboard/gifts?filter=received');
-    }
   });
 
 // logout route
