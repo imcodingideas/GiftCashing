@@ -7,6 +7,7 @@ const
     mergeParams: true
   }),
   _ = require('lodash'),
+  moment = require('moment'),
   User = require('../models/user'),
   Gift = require('../models/gift'),
   async = require('async'),
@@ -45,6 +46,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   // get data from form and add to gift array.
   
+  // TODO: refactor
   let user = req.body.user,
     giftNumber = req.body.giftNumber,
     date = req.body.date,
@@ -135,17 +137,36 @@ router.put('/', (req, res) => {
   });
 });
 
+function buildQuery(req) {
+  let query = {};
+  
+  if(req.query.filter) {
+    query['status.'+req.query.filter] = true;
+  }
+  
+  let dateCondition = {};
+  
+  let dateFrom = new moment(req.query.datefrom);
+  if(dateFrom.isValid()) {
+    dateCondition['$gte'] = dateFrom.format('YYYY-MM-DD')+'T00:00:00.000Z';
+  }
+  
+  let dateTo = new moment(req.query.dateto);
+  if(dateTo.isValid()) {
+    dateCondition['$lt'] = dateTo.add(1, 'day').format('YYYY-MM-DD')+'T00:00:00.000Z';
+  }
+  
+  if(dateCondition) {
+    query['$or'] = [
+      {'date': dateCondition},
+      {'changedStatusDate': dateCondition}
+    ];
+  }
+  console.log(query['$or'], query);
+  return query;
+}
 router.get('/filter', (req, res) => {
-  let dateFrom = Date.parse(req.query.datefrom);
-  let dateTo = Date.parse(req.query.dateto);
-  
-  let query = {
-    $or: [
-      {'date': {$gt: dateFrom, $lt: dateTo}},
-      {'changedStatusDate': {$gt: dateFrom, $lt: dateTo}}
-    ]};
-  
-  getPaginated(Gift, 'user', query, req)
+  getPaginated(Gift, 'user', buildQuery(req), req)
     .then(result => {
       result.title = 'Filtered Gifts';
       result.breadcrumbsName = 'Gifts';

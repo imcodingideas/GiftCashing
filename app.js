@@ -2,6 +2,7 @@ const
   express = require('express'),
   app = express(),
   bodyParser = require('body-parser'),
+  multiparty = require('connect-multiparty'),
   mongoose = require('mongoose'),
   session = require('express-session'),
   MongoStore = require('connect-mongo')(session),
@@ -37,8 +38,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
-app.use(bodyParser.json());
+app.use(multiparty());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));

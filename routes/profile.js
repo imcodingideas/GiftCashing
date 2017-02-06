@@ -26,13 +26,17 @@ router.get('/:id/edit', (req, res) => {
 
 // Update User
 router.put('/:id', (req, res) => {
+  if(req.user._id != req.params.id && !req.user.isAdmin) {
+    return res.redirect('back');
+  }
+  
   //Variables and params
-  let user = req.body.user;
-  let passwords = user.password;
+  let data = req.body.user;
+  let passwords = data.password;
   let finalPassword = '';
   
   //delete property on user
-  delete user.password;
+  delete data.password;
   
   //If exist passwords
   if (passwords && passwords[0] && passwords[1]) {
@@ -47,33 +51,38 @@ router.put('/:id', (req, res) => {
   }
   
   //define is admin or non admin
-  user.isAdmin = user.isAdmin === 'true' ? true : false;
+  data.isAdmin = (req.user.isAdmin)?
+                  (data.isAdmin === 'true' ? true : false)
+                  : false;
   
-  User.findByIdAndUpdate(req.params.id, user, (err, foundUser) => {
-    if (err) {
-      req.flash('error', err.message);
-      return res.redirect('back');
-    }
-    
-    //if exist final password
-    if (finalPassword && finalPassword.length > 0) {
-      //update password
-      foundUser.setPassword(finalPassword, () => {
-        foundUser.save((errSaving, resultSave) => {
-          if (errSaving) {
-            req.flash('error', errSaving.message);
-            return res.redirect('back');
-          }
-          
-          req.flash('success', 'Updated successfully.');
-          return res.redirect('back');
+  let setPassword = (user, password) => {
+    return new Promise(
+        (resolve, reject ) => {
+          if(!password) return resolve(user);
+  
+          user.setPassword(
+            password,
+            () => {
+              user.save((err, result) => {
+                if(err) return reject(err);
+                resolve(result);
+              });
+            });
         });
-      });
-    } else {
+  };
+  
+  User
+    .findById(req.params.id)
+    .then(user => _.assign(user, data).save()) // update user record
+    .then(user => setPassword(user, finalPassword)) // set password
+    .then(() => {
       req.flash('success', 'Updated successfully.');
       return res.redirect('back');
-    }
-  });
+    })
+    .catch(err => {
+      req.flash('error', err.message);
+      return res.redirect('back');
+    });
 });
 
 module.exports = router;

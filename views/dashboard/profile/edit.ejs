@@ -45,7 +45,7 @@
         </div>
       </div>
 
-      <form enctype="multipart/form-data" action="/dashboard/profile/<%= user._id %>/?_method=PUT" method="POST">
+      <form enctype="multipart/form-data" action="/dashboard/profile/<%= user._id %>?_method=PUT" method="POST">
         <input type="file" id="profile-pic-chooser" class="hidden-xs-up"/>
         <input type="hidden" id="profile-pic-data-url" name="user[profilePic]" class="hidden-xs-up"
                value="<%= user.profilePic %>"/>
@@ -484,11 +484,11 @@
             <div class="row mb-2">
               <div class="col-sm-6 form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" name="user[password]" id="password">
+                <input type="password" class="form-control" name="user[password][]" id="password">
               </div>
               <div class="col-sm-6 form-group">
                 <label for="password">Confirm Password</label>
-                <input type="password" class="form-control" name="user[password]" id="password">
+                <input type="password" class="form-control" name="user[password][]" id="password">
               </div>
             </div>
 

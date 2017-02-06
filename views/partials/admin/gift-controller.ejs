@@ -38,6 +38,7 @@
   <div class="filter">
     <form action="/admin/gifts/filter" method="GET">
       <span class="mr-1">Search By: </span>
+      <input type="hidden" name="filter" value="<%= query.filter %>">
       <div class="input-group input-group-sm datepicker d-inline-flex">
         <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
         <input type="text" class="form-control" id="datefrom" name="datefrom" placeholder="Date from...">
