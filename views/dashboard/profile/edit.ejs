@@ -20,7 +20,7 @@
           </div>
           <div class="chip-user__name">
             <span class="real-name d-block text-primary text-bold"><%= user.firstName + ' ' + user.lastName %></span>
-            <span class="alias-name d-block text-bold"><%= user.aliasFirstName + ' ' + user.aliasLastName %></span>
+            <span class="alias-name d-block text-bold"><%= user.aliasFullName %></span>
           </div>
         </div>
         <div class="prefered-payment">
@@ -64,15 +64,13 @@
               </div>
             </div>
             <div class="row mb-2">
-              <div class="col-sm-6 form-group">
-                <label for="aliasFirstName">Alias First Name</label>
-                <input type="text" class="form-control" name="user[aliasFirstName]" id="aliasFirstName"
-                       value="<%= user.aliasFirstName %>">
-              </div>
-              <div class="col-sm-6 form-group">
-                <label for="aliasLastName">Alias Last Name</label>
-                <input type="text" class="form-control" name="user[aliasLastName]" id="aliasLastName"
-                       value="<%= user.aliasLastName %>">
+              <div class="col-sm-12 form-group">
+                <label for="aliasFullName">Alias Full Name</label>
+                <input type="text" class="form-control" name="user[aliasFullName]" id="aliasFullName"
+                       value="<%= user.aliasFullName %>"
+                        <% if (!user.isAdmin) { %>
+                       disabled
+                        <% } %> >
               </div>
             </div>
             <div class="row mb-2">

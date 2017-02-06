@@ -25,11 +25,7 @@ const UserSchema = new mongoose.Schema({
     type: Types.String,
     required: true
   },
-  aliasFirstName: {
-    type: Types.String,
-    unique: true
-  },
-  aliasLastName: {
+  aliasFullName: {
     type: Types.String,
     unique: true
   },

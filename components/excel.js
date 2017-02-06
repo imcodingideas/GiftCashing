@@ -127,14 +127,8 @@ module.exports = {
         cellStyle: styles.header,
         width: 120
       },
-      aliasFirstName: {
-        displayName: 'Alias First Name',
-        headerStyle: styles.header,
-        cellStyle: styles.header,
-        width: 120
-      },
-      aliasLastName: {
-        displayName: 'Alias Last Name',
+      aliasFullName: {
+        displayName: 'Alias Full Name',
         headerStyle: styles.header,
         cellStyle: styles.header,
         width: 120

@@ -33,8 +33,7 @@ router.post('/register', (req, res) => {
     [
       'firstName',
       'lastName',
-      'aliasFirstName',
-      'aliasLastName',
+      'aliasFullName',
       'username'
     ]);
   let newUser = new User(data);
@@ -48,6 +47,10 @@ router.post('/register', (req, res) => {
       });
     })
     .catch(err => {
+      if(err.code === 11000) {
+        req.flash('error', 'Sorry, Alias is already in use.');
+        res.redirect('back');
+      }
       req.flash('error', err.message);
       res.redirect('back');
     });

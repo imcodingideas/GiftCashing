@@ -100,7 +100,7 @@ $(document).ready(function() {
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     remote: {
       // TODO: This search endpoint should be request the data with query parameter instead aliasFirstNAme
-      url: '/admin/search?aliasFirstName=%QUERY',
+      url: '/admin/search?aliasFullName=%QUERY',
       wildcard: '%QUERY'
     }
   });
