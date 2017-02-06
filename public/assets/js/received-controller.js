@@ -10,13 +10,29 @@ function setProp(userId, giftId, action){
 }
 
 function go(){
+  
   if (data.userId && data.giftId && data.action) {
     var url = '/admin/users/' +  data.userId + '/gifts/' + data.giftId;
+    
+    var bodyRequest = {
+      action: data.action
+    };
+    
+    if (data.action === 'normal') {
+      bodyRequest.foundGift = {
+        giftAmount: Number($('#amount').val() || 0),
+        passCode: $('#passcode').val() || '',
+        giftCode: $('#giftCode').val() || '',
+        redeemCode: $('#redeemCode').val() || ''
+      };
+    }
+    
     $.ajax({
       url: url,
       type: 'PUT',
-      data: {action: data.action},
+      data: bodyRequest,
       success: function (response){
+        
         if(response.message) {
           $('.noty-alerts:first').noty({text: response.message, type: 'success'});
         }
@@ -26,6 +42,11 @@ function go(){
         }
         
         if(response.success) {
+          
+          if (response.normal) {
+            return false;
+          }
+          
           if(response.gift.status.deleted) {
             setTimeout(function() {
               window.location.href = '/admin/gifts?filter=review';

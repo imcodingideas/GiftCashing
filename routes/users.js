@@ -98,6 +98,23 @@ router.get('/:id/gifts/:gift_id', (req, res) => {
   });
 });
 
+function normalUpdateGift(giftId, gift, res){
+  Gift.findByIdAndUpdate(giftId, gift)
+      .then(() => {
+        return res.status(200).send({
+          success: true,
+          message: 'Update success',
+          normal: true
+        });
+      })
+      .catch((err) => {
+        return res.status(500).send({
+          success: false,
+          message: 'Error, contact support'
+        });
+      });
+}
+
 function deleteGift(giftId, res) {
   Gift.remove({_id: giftId})
       .then(() => {
@@ -137,6 +154,11 @@ router.put('/:id/gifts/:gift_id', (req, res) => {
     
     case 'delete':
       return deleteGift(req.params.gift_id || '', res);
+      break;
+    
+    case 'normal':
+      let gift = req.body.foundGift || {};
+      return normalUpdateGift(req.params.gift_id || '', gift, res);
       break;
     
     default:
