@@ -87,5 +87,39 @@
   </div>
 </div>
 
+<% if(items && items.length > 0) { %>
+<script>
+  //get list users from template
+  var users = <%- JSON.stringify(items) %>;
+  users.forEach(function(user) {
+    user['select'] = false;
+  });
+
+  function individualCheck(id) {
+    users.forEach(function(user) {
+      if (user._id === id) {
+        user['select'] = !user.select;
+        return;
+      }
+    });
+  }
+
+  var selectAll = false;
+  function selectedAllUsers() {
+    selectAll = !selectAll;
+    users
+      .forEach(function(item) {
+        if(item._id == '<%= currentUser._id %>') {
+          return item['select'] = false;
+        }
+        item['select'] = selectAll;
+      });
+    console.log('users :', users)
+  }
+</script>
+<script src="/assets/js/export-users.js"></script>
+
+<% } %>
+
 <% include ../../partials/contact %>
 <% include ../../partials/footer %>
