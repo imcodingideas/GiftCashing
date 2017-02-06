@@ -19,6 +19,7 @@ router.get('/', (req, res) => {
       query = {username: new RegExp(req.query.search, 'gi')};
       break;
   }
+  query.isAdmin = false;
   
   getPaginated(User, 'gifts', query, req)
     .then(result => {
