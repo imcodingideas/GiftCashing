@@ -68,7 +68,7 @@
                 <label for="aliasFullName">Alias Full Name</label>
                 <input type="text" class="form-control" name="user[aliasFullName]" id="aliasFullName"
                        value="<%= user.aliasFullName %>"
-                        <% if (!user.isAdmin) { %>
+                        <% if (!currentUser.isAdmin) { %>
                        disabled
                         <% } %> >
               </div>
