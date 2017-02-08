@@ -27,12 +27,12 @@ module.exports.sendForgotPassword = (user, password) => {
   sendMail(emailOptions);
 };
 
-module.exports.giftStatusIsReview = (user) => {
+module.exports.giftStatusIsReview = (user, gift) => {
   emailOptions.to = user.username;
   emailOptions.subject = 'You have received a new gift';
   emailOptions.html = `
 	        <p>Dear ${user.firstName} ${user.lastName},</p>
-	        <p>You have received a gift from senderFirstName senderLastName.</p>
+	        <p>You have received a gift from ${gift.senderFirstName} ${gift.senderLastName}.</p>
 	        <p>Access your online account and review the gift details. Then, decide whether you want to accept it.</p>
 	        <p>Contact us with any questions/concerns at support@giftcashing.com.</p>
 	        <p>Best Regards,<br/>

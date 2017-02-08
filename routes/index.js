@@ -115,32 +115,33 @@ function generateRandomPassword() {
   return Math.random().toString( 36 ).slice( - 10 );
 }
 
+function setUserPassword(user, password) {
+  return new Promise((resolve, reject) => {
+    user.setPassword(
+      password,
+      (err) => {
+        if(err) return reject(err);
+        resolve(user);
+      });
+  });
+}
+
 //process forgot password
 router.post('/forgot-password', (req, res) => {
-  let newPassword;
-  let user;
+  let newPassword = generateRandomPassword();
   
-  Promise.resolve()
-         .then(() => User.findOne({ username: req.body.email }))
-         .then(_user => {
-           user = _user;
-    
-           newPassword = generateRandomPassword();
-           return user.setPassword(newPassword);
-         })
-         .then(() => user.save())
-         .then(() =>
-           emailService.sendForgotPassword(user, newPassword).catch(error => {
-             return Promise.reject(error);
-           }))
-         .then(() => {
-           req.flash('success', 'Please check your email.');
-           res.redirect('/login');
-         })
-         .catch(error => {
-           if (error && error.message) req.flash('error', error.message);
-           res.redirect('back');
-         });
+  User.findOne({ username: req.body.email })
+     .then(user => setUserPassword(user, newPassword))
+     .then(user => user.save())
+     .then(user => emailService.sendForgotPassword(user, newPassword))
+     .then(() => {
+       req.flash('success', 'Please check your email.');
+       res.redirect('/login');
+     })
+     .catch(error => {
+       if (error && error.message) req.flash('error', error.message);
+       res.redirect('back');
+     });
 });
 
 //Show how does it work

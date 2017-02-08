@@ -1,5 +1,6 @@
 const
   CronJob = require('cron').CronJob,
+  moment = require('moment'),
   User = require('../models/user'),
   Gift = require('../models/gift'),
   locus = require('locus'),
@@ -12,20 +13,19 @@ module.exports.runJobs = function() {
    * giftStatusIsReview
    */
   new CronJob({
-    cronTime: '00 55 23 * * *',
-    // cronTime: '00 39 13 * * *',
+    cronTime: '00 00 21 * * *',
+    // cronTime: '* * * * * *',
     onTick: function() {
-  
-      let days = 1;
-      let date = new Date();
-      let last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
       
+      // 2017-02-09T16:00:00   2017-02-09T00:00:00
+      let startOfDay = (new moment()).startOf('day').format('YYYY-MM-DD')+'T00:00:00.000Z';
+      //console.log(startOfDay);
       Gift
-        .find({'status.review': true, changedStatusDate: {$gte: last}})
+        .find({'status.review': true, changedStatusDate: {$gte: startOfDay}})
         .populate('user')
         .then(gifts => {
           gifts.forEach((gift) => {
-            mailService.giftStatusIsReview(gift.user);
+            mailService.giftStatusIsReview(gift.user, gift);
           });
         });
     },
@@ -38,15 +38,12 @@ module.exports.runJobs = function() {
    * giftStatusIsPaid
    */
   new CronJob({
-    cronTime: '00 58 23 * * *',
-    // cronTime: '00 9 14 * * *',
+    cronTime: '00 30 21 * * *',
     onTick: function() {
   
-      let days = 1;
-      let date = new Date();
-      let last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
-  
-      Gift.find({'status.paid': true, changedStatusDate: {$gte: last}})
+      let startOfDay = (new moment()).startOf('day').format('YYYY-MM-DD')+'T00:00:00.000Z';
+      
+      Gift.find({'status.paid': true, changedStatusDate: {$gte: startOfDay}})
           .populate('user')
           .then(gifts => {
             gifts.forEach((gift) => {
