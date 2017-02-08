@@ -12,11 +12,16 @@ module.exports.runJobs = function() {
    * giftStatusIsReview
    */
   new CronJob({
-    cronTime: '00 11 11 * * *',
+    cronTime: '00 55 23 * * *',
+    // cronTime: '00 39 13 * * *',
     onTick: function() {
+  
+      let days = 1;
+      let date = new Date();
+      let last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
       
       Gift
-        .find({'status.review': true})
+        .find({'status.review': true, changedStatusDate: {$gte: last}})
         .populate('user')
         .then(gifts => {
           gifts.forEach((gift) => {
@@ -33,10 +38,15 @@ module.exports.runJobs = function() {
    * giftStatusIsPaid
    */
   new CronJob({
-    cronTime: '00 30 11 * * *',
+    cronTime: '00 58 23 * * *',
+    // cronTime: '00 9 14 * * *',
     onTick: function() {
   
-      User.find({'status.paid': true})
+      let days = 1;
+      let date = new Date();
+      let last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
+  
+      Gift.find({'status.paid': true, changedStatusDate: {$gte: last}})
           .populate('user')
           .then(gifts => {
             gifts.forEach((gift) => {
@@ -48,28 +58,4 @@ module.exports.runJobs = function() {
     // timeZone: 'UTC'
   });
   
-  
-  /**
-   * giftStatusIsReviewOverSevenDays
-   */
-  new CronJob({
-    cronTime: '00 00 08 * * *',
-    onTick: function() {
-    
-      let days = 7;
-      let date = new Date();
-      let last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
-  
-      User.find({'status.review': true, changedStatusDate: {$lte: last}})
-          .populate('user')
-          .then(gifts => {
-            gifts.forEach((gift) => {
-              mailService.giftStatusIsReviewOverSevenDays(gift.user);
-            });
-          });
-      
-    },
-    start: true
-    // timeZone: 'UTC'
-  });
 };
