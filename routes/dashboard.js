@@ -94,7 +94,7 @@ router.put('/gifts/:id/:status', (req, res) => {
           gift.status[status] = true;
       
           Gift.update({ _id }, {
-                $set: { status: gift.status, acceptedGiftMessage: message }
+                $set: { status: gift.status, changedStatusDate: new Date(), acceptedGiftMessage: message }
               })
               .then(result => {
                 res.status(200).send({
