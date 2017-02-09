@@ -47,10 +47,16 @@ router.post('/register', (req, res) => {
       });
     })
     .catch(err => {
+      if(err.name === 'UserExistsError'){
+        req.flash('error', 'The email address entered is already registered.');
+        res.redirect('back');
+      }
+      
       if(err.code === 11000) {
         req.flash('error', 'Sorry, Alias is already in use.');
         res.redirect('back');
       }
+      
       req.flash('error', err.message);
       res.redirect('back');
     });

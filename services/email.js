@@ -76,18 +76,16 @@ module.exports.registration = (user) => {
   emailOptions.html = `
 	        <p><strong>Thank You for Signing Up!</strong></p>
 	        <p>Very soon you'll be able to receive gifts from our site.</p>
-	        <p>We are going to add your Alias to our Members listing on SendGiftHere.com and then, send you a confirmation E-mail.</p>
-	        <p>Once added, tell your Friends & Admirers to use SendGiftHere.com to send you a gift.  Also, don’t forget to list SendGiftHere.com as your preferred wish list site.</p>
-	        <p>When gifts are purchased to your Alias, an email will be sent and you will be given the option of either cash or a purchase.</p>
-	        <p><strong>If you prefer cash,</strong> you'll receive up to 80% of the gift amount by check or PayPal. (We're adding direct deposit soon)</p>
-	        <p><strong>If you would like a purchase,</strong> just send us the gift's URL, again, valued up to 80% of the gift amount, and we'll buy it and forward, using your profile address.</p>
+	        <p>We are going to add your Alias to our Members listing on <strong>SendGiftHere.com</strong> and then, send you a confirmation E-mail.</p>
+	        <p>Once added, tell your Friends & Admirers to use <strong>SendGiftHere.com</strong> to send you a gift. Also, don’t forget to list <strong>SendGiftHere.com</strong> as your preferred wish list site.</p>
+	        <p>When gifts are purchased to your Alias, an email will be sent advising you to access your online account to accept your gift.</p>
+	        <p>Then, when it’s time to send you your money, you will receive up to 80% of the gift amount to your preferred payment option. Don’t forget to set it up in your Account Profile. When the payment is made, an email is sent too.</p>
 	        <p>Again, we will send a separate email once you've been added and thank you for signing up!</p>
 	        <p><strong>If you don't hear from us or don't see your name in the Member list when checking out on SendGiftHere.com within two business days, contact us immediately using the contact form on our site.</strong></p>
 	        <p>Thanks Again for Signing Up!</p>
 	        <p>Best Regards,<br/>
 	        GiftCashing.com</p>
-	        <p>Support Team</p>
-	        <p>GiftCashing.com</p>
+	        <p>Support Team, GiftCashing.com</p>
     	`;
   sendMail(emailOptions);
 };
