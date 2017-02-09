@@ -85,7 +85,7 @@ module.exports.registration = (user) => {
 	        <p>Thanks Again for Signing Up!</p>
 	        <p>Best Regards,<br/>
 	        GiftCashing.com</p>
-	        <p>Support Team, GiftCashing.com</p>
+	        <p>Support Team</p>
     	`;
   sendMail(emailOptions);
 };

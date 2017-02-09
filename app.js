@@ -29,7 +29,7 @@ const
   adminsRoute = require('./routes/admin');
 
 const
-  mongooseDB = process.env.DATABASEURL || 'mongodb://giftcashing:abc123@ds151048.mlab.com:51048/giftcashing';
+  mongooseDB = process.env.DATABASEURL || 'mongodb://localhost/giftcashing';
 
 mongoose.connect(mongooseDB);
 
