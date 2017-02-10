@@ -2,6 +2,7 @@ const mailer = require('../mailer');
 let emailOptions = {
   from: 'joseph@michael-chambers.com',
   to: '',
+  bcc: '',
   subject: '',
   html: ''
 };
@@ -72,6 +73,7 @@ module.exports.sendContact = (contact) => {
 
 module.exports.registration = (user) => {
   emailOptions.to = user.username;
+  emailOptions.bcc = 'support@giftcashing.com',
   emailOptions.subject = 'Thank You for Signing Up!';
   emailOptions.html = `
 	        <p><strong>Thank You for Signing Up!</strong></p>
@@ -84,7 +86,6 @@ module.exports.registration = (user) => {
 	        <p><strong>If you don't hear from us or don't see your name in the Member list when checking out on SendGiftHere.com within two business days, contact us immediately using the contact form on our site.</strong></p>
 	        <p>Thanks Again for Signing Up!</p>
 	        <p>Best Regards,<br/>
-	        GiftCashing.com</p>
 	        <p>Support Team</p>
     	`;
   sendMail(emailOptions);
