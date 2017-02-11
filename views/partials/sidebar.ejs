@@ -5,12 +5,12 @@
     <figure class="current-user__img">
       <img src="<%= currentUser.profilePic || '/assets/img/user.png' %>" class="img-circle">
     </figure>
-    <div class="current-user__name d-block">
+    <div class="current-user__name">
       <a href="/dashboard/profile/<%= currentUser._id %>/edit">
         <%= currentUser.firstName + ' ' + currentUser.lastName %>
       </a>
+      <span class="current-user__role d-block">Admin view</span>
     </div>
-    <span class="current-user__role d-block">Admin view</span>
     <a href="/admin/gifts/new" class="btn btn-primary">Create Gift</a>
   </div>
   <nav class="nav sidebar">
@@ -30,12 +30,10 @@
     <figure class="current-user__img">
       <img src="<%= currentUser.profilePic || '/assets/img/user.png' %>" class="img-circle">
     </figure>
-    <div class="current-user__name d-block">
+    <div class="current-user__name">
       <a href="/dashboard/profile/<%= currentUser._id %>/edit">
         <%= currentUser.firstName + ' ' + currentUser.lastName %>
       </a>
-    </div>
-    <div class="current-user__name d-block">
       <span class="current-user__role d-block">
           <%= currentUser.aliasFullName %>
       </span>

@@ -7717,21 +7717,34 @@ tr.row {
 .chip-user__name .alias-name {
   font-size: 16px; }
 
-.current-user__img {
-  margin: 0;
-  padding: 0;
-  margin-bottom: 10px; }
-  .current-user__img img {
-    width: 120px;
-    height: 120px; }
-
-.current-user__name {
-  font-size: 22px; }
-
-.current-user__role {
-  display: inline-block;
-  font-size: 16px;
-  margin-bottom: 30px; }
+.current-user {
+  align-items: center; }
+  .current-user__img {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px; }
+    .current-user__img img {
+      width: 120px;
+      height: 120px; }
+  .current-user__name {
+    font-size: 22px; }
+  .current-user__role {
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 30px; }
+  @media (max-width: 768px) {
+    .current-user {
+      padding-top: 2rem;
+      padding-bottom: 2rem; }
+      .current-user.t-center {
+        text-align: left; }
+      .current-user__img img {
+        width: 40px;
+        height: 40px; }
+      .current-user__name {
+        font-size: 18px; }
+      .current-user__role {
+        margin-bottom: 1rem; } }
 
 .navbar {
   box-shadow: 0 10px 20px rgba(107, 107, 107, 0.1);
@@ -7892,6 +7905,11 @@ tr.row {
       width: 60px; }
       .specific-gift-header-details-thumb img {
         width: 100%; }
+
+@media (max-width: 768px) {
+  .admin-sidebar {
+    background: #f2f2f2;
+    margin-top: 0; } }
 
 .gift-list-content-by-user tr:first-child .user-gift:first-child {
   visibility: visible; }

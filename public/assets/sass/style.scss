@@ -280,6 +280,7 @@ tr.row {
 @import "components/basics";
 @import "components/emptystate";
 @import "components/specific-gift";
+@import "components/admin-sidebar";
 
 .gift-list-content-by-user tr:first-child .user-gift:first-child {
     visibility:visible;

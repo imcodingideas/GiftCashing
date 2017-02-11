@@ -23,7 +23,7 @@
 }
 
 .current-user {
-
+  align-items: center;
   &__img {
     margin: 0;
     padding: 0;
@@ -43,5 +43,28 @@
     display: inline-block;
     font-size: 16px;
     margin-bottom: 30px;
+  }
+
+  @media (max-width: 768px){
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    &.t-center {
+      text-align: left;
+    }
+
+    &__img {
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    &__name {
+      font-size: 18px;
+    }
+
+    &__role {
+      margin-bottom: 1rem;
+    }
   }
 }
