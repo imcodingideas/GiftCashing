@@ -2,7 +2,7 @@
 <% include ../../partials/nav %>
 <div class="row bg-grey">
   <div class="container">
-    <div class="col-md-10 offset-md-2">
+    <div class="col-md-10 offset-md-2 no-mobile">
       <% include ../../partials/no-tabs %>
     </div>
   </div>
@@ -10,6 +10,9 @@
 <div class="container">
   <div class="row">
     <% include ../../partials/sidebar %>
+    <div class="col-xs-12 bg-grey just-mobile">
+      <% include ../../partials/no-tabs %>
+    </div>
     <div class="offset-md-1 col-md-6 pt-2">
       <form action="/admin/gifts/" method="POST">
 
@@ -28,7 +31,7 @@
         <div class="row">
           <div class="col-sm-6 form-group">
             <label for="giftNumber">Gift #</label>
-            <input type="text" class="form-control" name="giftNumber" id="giftNumber" 
+            <input type="text" class="form-control" name="giftNumber" id="giftNumber"
               placeholder="3456789" required>
           </div>
           <div class="col-sm-6 form-group">

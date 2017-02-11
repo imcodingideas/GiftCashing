@@ -51,3 +51,22 @@
 .full-width {
   width: 100%;
 }
+
+.no-mobile {
+  display: block;
+  @media (max-width: 768px){
+    display: none;
+  }
+}
+
+.just-mobile {
+  display: none;
+  @media (max-width: 768px){
+    display: block;
+  }
+}
+
+.form-inline {
+  width: 100%;
+  padding: 1rem 0;
+}

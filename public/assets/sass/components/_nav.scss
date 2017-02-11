@@ -71,6 +71,16 @@
       }
     }
   }
+
+  @media (max-width: 768px){
+    margin-top: 0;
+
+    .nav__item {
+      a {
+        padding: 8px 0;
+      }
+    }
+  }
 }
 
 .nav-tabs-rounded {

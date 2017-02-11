@@ -7789,6 +7789,11 @@ tr.row {
   .sidebar .nav__item.current a {
     color: #8E44AD;
     font-weight: bold; }
+  @media (max-width: 768px) {
+    .sidebar {
+      margin-top: 0; }
+      .sidebar .nav__item a {
+        padding: 8px 0; } }
 
 .nav-tabs-rounded {
   border: 1px solid #8E44AD;
@@ -7849,6 +7854,22 @@ tr.row {
 
 .full-width {
   width: 100%; }
+
+.no-mobile {
+  display: block; }
+  @media (max-width: 768px) {
+    .no-mobile {
+      display: none; } }
+
+.just-mobile {
+  display: none; }
+  @media (max-width: 768px) {
+    .just-mobile {
+      display: block; } }
+
+.form-inline {
+  width: 100%;
+  padding: 1rem 0; }
 
 .empty-state {
   text-align: center;
