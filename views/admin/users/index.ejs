@@ -7,7 +7,7 @@
     </div>
   </div>
 </div>
-<div class="container">
+<div class="container full-width">
   <div class="row">
     <% include ../../partials/sidebar %>
     <div class="col-xs-12 bg-grey just-mobile">
@@ -30,7 +30,7 @@
           <tbody>
           <% items.forEach(function (user) { %>
           <tr>
-            <td>
+            <td data-label="Select item">
               <input type="checkbox" class="check" onchange="individualCheck('<%= user._id %>');">
             </td>
             <td>
@@ -45,9 +45,9 @@
                 </div>
               </div>
             </td>
-            <td class="text-primary text-bold"><%= user.gifts.length %> Gift(s)</td>
-            <td><%= user.lastLoginDate.toLocaleDateString() %></td>
-            <td class="text-primary text-bold">$<%= user.totalAmountOfGifts %></td>
+            <td data-label="Total Gifts" class="text-primary text-bold"><%= user.gifts.length %> Gift(s)</td>
+            <td data-label="Last Login"><%= user.lastLoginDate.toLocaleDateString() %></td>
+            <td data-label="Total Ammount" class="text-primary text-bold">$<%= user.totalAmountOfGifts %></td>
             <td><a href="/admin/users/<%= user._id %>/gifts" class="text-bold">View Gifts</a></td>
           </tr>
           <% }) %>

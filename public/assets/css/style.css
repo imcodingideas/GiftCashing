@@ -7732,7 +7732,7 @@ tr.row {
     display: inline-block;
     font-size: 16px;
     margin-bottom: 30px; }
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     .current-user {
       padding-top: 2rem;
       padding-bottom: 2rem; }
@@ -7755,7 +7755,7 @@ tr.row {
   .navbar ul {
     display: block; }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .navbar .toggle-nav {
     display: block; }
   .navbar .container {
@@ -7789,7 +7789,7 @@ tr.row {
   .sidebar .nav__item.current a {
     color: #8E44AD;
     font-weight: bold; }
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     .sidebar {
       margin-top: 0; }
       .sidebar .nav__item a {
@@ -7857,19 +7857,31 @@ tr.row {
 
 .no-mobile {
   display: block; }
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     .no-mobile {
       display: none; } }
 
 .just-mobile {
   display: none; }
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     .just-mobile {
       display: block; } }
 
 .form-inline {
   width: 100%;
   padding: 1rem 0; }
+
+@media (max-width: 600px) {
+  .table th {
+    display: none; }
+  .table tr td {
+    display: block; }
+  .table tr td:before {
+    content: attr(data-label);
+    color: black;
+    display: block;
+    font-weight: normal;
+    margin-bottom: 4px; } }
 
 .empty-state {
   text-align: center;
@@ -7927,7 +7939,7 @@ tr.row {
       .specific-gift-header-details-thumb img {
         width: 100%; }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .admin-sidebar {
     background: #f2f2f2;
     margin-top: 0; } }

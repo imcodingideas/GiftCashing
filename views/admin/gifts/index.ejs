@@ -7,7 +7,7 @@
     </div>
   </div>
 </div>
-<div class="container">
+<div class="container full-width">
   <div class="row">
     <% include ../../partials/sidebar %>
     <div class="col-xs-12 bg-grey just-mobile">
@@ -31,7 +31,7 @@
           <tbody>
           <% items.forEach((gift) => { %>
           <tr>
-            <td>
+            <td data-label="Select item">
               <input type="checkbox" class="check"
                      onchange="individualCheck('<%= gift._id %>');">
             </td>
@@ -49,23 +49,23 @@
                 </div>
               </div>
             </td>
-            <td class="text-primary text-bold"><%= gift.giftDescription %></td>
-            <td class="text-primary text-bold">
+            <td data-label="Gift description" class="text-primary text-bold"><%= gift.giftDescription %></td>
+            <td  data-label="Order" class="text-primary text-bold">
               <a href="/admin/users/<%= gift.user._id %>/gifts/<%= gift._id %>">
                 #<%= gift.giftNumber %>
               </a>
             </td>
 
-            <td><%= (gift.changedStatusDate === undefined) ? gift.date.toLocaleDateString() : gift.changedStatusDate.toLocaleDateString() %></td>
+            <td data-label="Date"><%= (gift.changedStatusDate === undefined) ? gift.date.toLocaleDateString() : gift.changedStatusDate.toLocaleDateString() %></td>
 
             <% if (gift.user.preferredPaymentMethod === 'paypal') { %>
-            <td><i class="fa fa-cc-paypal"></i></td>
+            <td data-label="Payment"><i class="fa fa-cc-paypal"></i></td>
             <% } else if (gift.user.preferredPaymentMethod === 'check') { %>
-            <td><i class="fa fa-bank text-primary"> </i></td>
+            <td data-label="Payment"><i class="fa fa-bank text-primary"> </i></td>
             <% } else if (gift.user.preferredPaymentMethod === 'deposit') { %>
-            <td><i class="fa fa-dollar text-primary"> </i></td>
+            <td data-label="Payment"><i class="fa fa-dollar text-primary"> </i></td>
             <% } else { %>
-            <td><i class="fa fa-ban text-primary"> </i></td>
+            <td data-label="Payment"><i class="fa fa-ban text-primary"> </i></td>
             <% } %>
           </tr>
           <% }) %>

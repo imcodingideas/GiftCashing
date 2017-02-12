@@ -54,14 +54,14 @@
 
 .no-mobile {
   display: block;
-  @media (max-width: 768px){
+  @media (max-width: 767px){
     display: none;
   }
 }
 
 .just-mobile {
   display: none;
-  @media (max-width: 768px){
+  @media (max-width: 767px){
     display: block;
   }
 }
@@ -69,4 +69,20 @@
 .form-inline {
   width: 100%;
   padding: 1rem 0;
+}
+
+@media (max-width: 600px){
+    .table th {
+        display: none;
+    }
+    .table tr td {
+        display: block;
+    }
+    .table tr td:before {
+        content: attr(data-label);
+        color: black;
+        display: block;
+        font-weight: normal;
+        margin-bottom: 4px;
+    }
 }
