@@ -1,5 +1,5 @@
 <div class="row mt-1 mb-1 p-1 flex-items-md-between">
-  <div class="mr-1">
+  <div class="mr-1 mb-1">
     <form id="goForm" action="/admin/gifts/?_method=PUT" method="POST">
             <span class="checkbox d-inline-flex flex-items-md-middle">
                 <input type="checkbox" id="checkAll" onchange="selectedAllGifts()"> <span>Select All</span>
@@ -30,20 +30,20 @@
       </div>
     </form>
   </div>
-  <div class="mr-1">
+  <div class="mr-1 mb-1">
     <% if(pagination) { %>
     <span><em>Showing <%= pagination.records %> Result(s).</em></span>
     <% } %>
   </div>
   <div class="filter">
     <form action="/admin/gifts/filter" method="GET">
-      <span class="mr-1">Search By: </span>
+      <span class="mr-1 mb-1">Search By: </span>
       <input type="hidden" name="filter" value="<%= query.filter %>">
-      <div class="input-group input-group-sm datepicker d-inline-flex">
+      <div class="input-group input-group-sm datepicker mb-1 d-inline-flex">
         <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
         <input type="text" class="form-control" id="datefrom" name="datefrom" placeholder="Date from...">
       </div>
-      <div class="input-group input-group-sm datepicker d-inline-flex">
+      <div class="input-group input-group-sm datepicker mb-1 d-inline-flex">
         <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
         <input type="text" class="form-control" id="dateto" name="dateto" placeholder="Date to...">
       </div>

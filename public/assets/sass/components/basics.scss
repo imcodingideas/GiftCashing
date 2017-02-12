@@ -71,6 +71,11 @@
   padding: 1rem 0;
 }
 
+@media (max-width: 767px){
+  .m-full-width {
+    width: 100%;
+  }
+}
 @media (max-width: 600px){
     .table th {
         display: none;
