@@ -75,6 +75,18 @@
   .m-full-width {
     width: 100%;
   }
+  .specific-gift-header-details {
+      width: 0%;
+      flex-direction: column;
+  }
+  .specific-gift-header-details > div {
+    width: 100%;
+    margin: 1rem 0 !important;
+  }
+
+  .specific-gift-header-details-thumb img {
+      width: 40px !important;
+  }
 }
 @media (max-width: 600px){
     .table th {
