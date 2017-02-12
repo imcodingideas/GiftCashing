@@ -7497,12 +7497,16 @@ span.twitter-typeahead {
 .tt-dataset .profile-picture {
   width: 32px; }
 
+html {
+  overflow-x: hidden; }
+
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
   display: flex;
   min-height: 100vh;
-  flex-direction: column; }
+  flex-direction: column;
+  overflow-x: hidden; }
 
 a {
   color: #8E44AD; }
@@ -7674,6 +7678,10 @@ tr.row {
   letter-spacing: 1.1px;
   font-size: 22px;
   min-height: 48px; }
+  @media (max-width: 767px) {
+    .breadcrumbs {
+      display: block;
+      width: 100%; } }
 
 .form-group {
   margin: 0;
@@ -7926,8 +7934,8 @@ tr.row {
   .specific-gift-header .tab-prev-next {
     font-size: 28px;
     color: #8E44AD;
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     display: inline-flex;
     align-items: center;
     justify-content: center; }

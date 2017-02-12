@@ -3,13 +3,16 @@
 @import "font-awesome";
 @import "typeahead";
 
-
+html {
+  overflow-x: hidden;
+}
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 a {
@@ -228,6 +231,11 @@ tr.row {
   letter-spacing: 1.1px;
   font-size: 22px;
   min-height: 48px;
+
+  @media (max-width:767px) {
+    display: block;
+    width: 100%;
+  }
 }
 
 .form-group {
