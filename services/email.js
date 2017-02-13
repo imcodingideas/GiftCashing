@@ -1,6 +1,6 @@
 const mailer = require('../mailer');
 let emailOptions = {
-  from: 'joseph@michael-chambers.com',
+  from: 'support@giftcashing.com',
   to: '',
   bcc: '',
   subject: '',
