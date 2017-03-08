@@ -4,7 +4,7 @@ const nodemailer = require('nodemailer'),
 
 const auth = {
   auth: {
-    api_key: 'key-8a976a9cba0ee1e86ec07d7398b544e8',
+    api_key: 'key-12e1c4cc25659a09c9d0f590158f6996',
     domain: 'mg.giftcashing.com'
   }
 }
