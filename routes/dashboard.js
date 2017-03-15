@@ -26,7 +26,7 @@ router.get('/gifts', (req, res) => {
         'status.declined': true
       };
       break;
-    case 'accepted-redeemed':
+    case 'accepted':
       query = {
         user: req.user._id,
         'status.accepted': true
@@ -50,7 +50,7 @@ router.get('/gifts', (req, res) => {
             gifts: gifts
           });
         }
-    
+
         if (['accepted', 'declined', 'paid'].indexOf(req.query.filter) > -1) {
           res.render('dashboard/gifts/other', {
             title: req.query.filter,
