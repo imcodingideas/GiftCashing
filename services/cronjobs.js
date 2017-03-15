@@ -13,16 +13,15 @@ module.exports.runJobs = function() {
    * giftStatusIsReview
    */
   new CronJob({
-    // cronTime: '00 00 21 * * *',
-    cronTime: '* * * * * *',
+    cronTime: '00 00 21 * * *',
+    // cronTime: '* * * * * *',
     onTick: function() {
       
       // 2017-02-09T16:00:00   2017-02-09T00:00:00
       let startOfDay = (new moment()).startOf('day').format('YYYY-MM-DD')+'T00:00:00.000Z';
       // console.log(startOfDay);
       Gift
-        .find({'status.review': true})
-        // .find({'status.review': true, changedStatusDate: {$gte: startOfDay}})
+        .find({'status.review': true, changedStatusDate: {$gte: startOfDay}})
         .populate('user')
         .then(gifts => {
           gifts.forEach((gift) => {
