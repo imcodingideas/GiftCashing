@@ -1,32 +1,32 @@
-/*jshint esversion: 6 */
+/* jshint esversion: 6 */
 /**
  * Created by joseph on 12/2/16.
  */
 
-const
-  mongoose = require('mongoose'),
-  Schema = mongoose.Schema,
-  Types = Schema.Types;
+const mongoose = require('mongoose')
+
+const Schema = mongoose.Schema
+const Types = Schema.Types
 
 const statusSchema = {
   review: Types.Boolean,
   accepted: Types.Boolean,
   declined: Types.Boolean,
   redeemed: Types.Boolean,
-  paid: Types.Boolean
-};
+  paid: Types.Boolean,
+}
 
 const GiftSchema = new Schema({
   user: {
     type: Types.ObjectId,
     ref: 'User',
     required: true,
-    index: true
+    index: true,
   },
   giftNumber: {
     type: Types.Number,
     unique: true,
-    required: true
+    required: true,
   },
   date: Date,
   status: {
@@ -36,8 +36,8 @@ const GiftSchema = new Schema({
       accepted: false,
       redeemed: false,
       declined: false,
-      paid: false
-    }
+      paid: false,
+    },
   },
   giftDescription: Types.String,
   giftAmount: Types.Number,
@@ -48,7 +48,7 @@ const GiftSchema = new Schema({
   senderLastName: Types.String,
   giftMessage: Types.String,
   acceptedGiftMessage: Types.String,
-  changedStatusDate: Types.Date
-});
+  changedStatusDate: Types.Date,
+})
 
-module.exports = mongoose.model('Gift', GiftSchema);
+module.exports = mongoose.model('Gift', GiftSchema)
