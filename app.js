@@ -8,14 +8,13 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const passport = require('passport')
 const flash = require('connect-flash')
-const LocalStrategy = require('passport-local')
 const methodOverride = require('method-override')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const path = require('path')
-const User = require('./models/user')
 const middleware = require('./middleware')
 const cronjobs = require('./services/cronjobs')
+
 const indexRoute = require('./routes/index')
 const usersRoute = require('./routes/users')
 const profileRoute = require('./routes/profile')
@@ -24,9 +23,8 @@ const searchRoute = require('./routes/search')
 const dashboardRoute = require('./routes/dashboard')
 const adminsRoute = require('./routes/admin')
 
-const mongooseDB = process.env.DATABASEURL || 'mongodb://localhost/giftcashing'
-
-mongoose.connect(mongooseDB)
+const config = require('./config')
+require('./handlers/passport')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -44,11 +42,11 @@ app.use(flash())
 
 app.use(
   require('express-session')({
-    secret: 'anything',
+    secret: config.db.secret,
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({
-      url: mongooseDB,
+      url: config.db.uri,
       touchAfter: 24 * 3600,
     }),
   })
@@ -57,13 +55,6 @@ app.use(
 // PASSPORT CONFIGURATION
 app.use(passport.initialize())
 app.use(passport.session())
-
-// use static authenticate method of model in LocalStrategy
-passport.use(new LocalStrategy(User.authenticate()))
-
-// use static serialize and deserialize of model for passport session support
-passport.serializeUser(User.serializeUser())
-passport.deserializeUser(User.deserializeUser())
 
 app.use((req, res, next) => {
   res.locals.currentUser = req.user
