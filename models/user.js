@@ -1,44 +1,44 @@
-/*jshint esversion: 6 */
-const
-  mongoose = require('mongoose'),
-  Schema = mongoose.Schema,
-  Types = Schema.Types,
-  passportLocalMongoose = require('passport-local-mongoose');
+/* jshint esversion: 6 */
+const mongoose = require('mongoose')
+const passportLocalMongoose = require('passport-local-mongoose')
+
+const Schema = mongoose.Schema
+const Types = Schema.Types
 
 const paymentPreference = {
-    paypalEmail:Types.String,
-    check: {
-      addressLine1: Types.String,
-      addressLine2: Types.String,
-      city: Types.String,
-      state: Types.String,
-      zipCode: Types.String
-    }
-};
+  paypalEmail: Types.String,
+  check: {
+    addressLine1: Types.String,
+    addressLine2: Types.String,
+    city: Types.String,
+    state: Types.String,
+    zipCode: Types.String,
+  },
+}
 
 const UserSchema = new mongoose.Schema({
   firstName: {
     type: Types.String,
-    required: true
+    required: true,
   },
   lastName: {
     type: Types.String,
-    required: true
+    required: true,
   },
   aliasFullName: {
     type: Types.String,
-    unique: true
+    unique: true,
   },
   username: {
     type: Types.String,
     unique: true,
-    required: true
+    required: true,
   },
   phone: Types.String,
   password: Types.String,
   isAdmin: {
     type: Types.Boolean,
-    default: false
+    default: false,
   },
   addressLine1: Types.String,
   addressLine2: Types.String,
@@ -47,33 +47,35 @@ const UserSchema = new mongoose.Schema({
   zipCode: Types.Number,
   profilePic: {
     type: Types.String,
-    default: ''
+    default: '',
   },
   preferredPaymentMethod: {
     type: Types.String,
     enum: ['', 'paypal', 'check', 'deposit'],
-    default: ''
+    default: '',
   },
   paymentPreference: {
-    type: paymentPreference
+    type: paymentPreference,
   },
   lastLoginDate: {
     type: Types.Date,
-    default: Date.now
+    default: Date.now,
   },
   notes: {
-    type: Types.String
+    type: Types.String,
   },
-  gifts: [{
-    type: Types.ObjectId,
-    ref: 'Gift',
-    required: true,
-    index: true
-  }]
-});
+  gifts: [
+    {
+      type: Types.ObjectId,
+      ref: 'Gift',
+      required: true,
+      index: true,
+    },
+  ],
+})
 
 UserSchema.plugin(passportLocalMongoose, {
-  usernameLowerCase: true
-});
+  usernameLowerCase: true,
+})
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema)

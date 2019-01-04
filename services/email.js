@@ -1,80 +1,82 @@
-const mailer = require('../mailer');
-let emailOptions = {
+const mailer = require('../mailer')
+
+const emailOptions = {
   from: 'support@giftcashing.com',
   to: '',
   bcc: '',
   subject: '',
-  html: ''
-};
+  html: '',
+}
 
-let sendMail = (emailOptions) => {
+const sendMail = emailOptions => {
   mailer.sendMail(emailOptions, (err, info) => {
-    if (err) console.log('Mailing Error: ', err);
-    console.log('mailing......................', info);
-  });
-};
+    if (err) console.log('Mailing Error: ', err)
+    console.log('mailing......................', info)
+  })
+}
 
 module.exports.sendForgotPassword = (user, password) => {
-  emailOptions.to = user.username;
-  emailOptions.subject = 'Gift Cashing New Password';
+  emailOptions.to = user.username
+  emailOptions.subject = 'Gift Cashing New Password'
   emailOptions.html = `
 	        <p>Dear ${user.firstName} ${user.lastName},</p>
 	        <p>Your password are is restored, please visit the Login Page for access with the new password.</p>
 	        <p>New password: <strong>${password}</strong></p>
 	        <p>Best Regards,<br/>
 	        GiftCashing.com</p>
-    	`;
+    	`
 
-  sendMail(emailOptions);
-};
+  sendMail(emailOptions)
+}
 
 module.exports.giftStatusIsReview = (user, gift) => {
-  emailOptions.to = user.username;
-  emailOptions.subject = 'You have received a new gift';
+  emailOptions.to = user.username
+  emailOptions.subject = 'You have received a new gift'
   emailOptions.html = `
 	        <p>Dear ${user.firstName} ${user.lastName},</p>
-	        <p>You have received a gift from ${gift.senderFirstName} ${gift.senderLastName}.</p>
+	        <p>You have received a gift from ${gift.senderFirstName} ${
+    gift.senderLastName
+  }.</p>
 	        <p>Access your online account and review the gift details. Then, decide whether you want to accept it.</p>
 	        <p>Contact us with any questions/concerns at support@giftcashing.com.</p>
 	        <p>Best Regards,<br/>
 	        GiftCashing.com</p>
-    	`;
+    	`
 
-  sendMail(emailOptions);
-};
+  sendMail(emailOptions)
+}
 
-module.exports.giftStatusIsPaid = (user) => {
-  emailOptions.to = user.username;
-  emailOptions.subject = 'Your have been paid.';
+module.exports.giftStatusIsPaid = user => {
+  emailOptions.to = user.username
+  emailOptions.subject = 'Your have been paid.'
   emailOptions.html = `
 	        <p>Dear ${user.firstName} ${user.lastName},</p>
 	        <p>Great News! You have been paid for your gift. The money is on the way based on your payment preference.</p>
 	        <p>Contact us with any questions/concerns at support@giftcashing.com.</p>
 	        <p>Best Regards,<br/>
 	        GiftCashing.com</p>
-    	`;
+    	`
 
-  sendMail(emailOptions);
-};
+  sendMail(emailOptions)
+}
 
-module.exports.sendContact = (contact) => {
-  emailOptions.to = emailOptions.from;
-  emailOptions.subject = 'Gift Cashing | Contact';
+module.exports.sendContact = contact => {
+  emailOptions.to = emailOptions.from
+  emailOptions.subject = 'Gift Cashing | Contact'
   emailOptions.html = `
           <p>You have a new message from the contact form:</p>
           <p>Email: ${contact.email}</p>
           <p>Message:</p>
           <p>${contact.message} <br/>
             GiftCashing.com </p>
-        `;
-  sendMail(emailOptions);
-};
+        `
+  sendMail(emailOptions)
+}
 
-
-module.exports.registration = (user) => {
-  emailOptions.to = user.username;
-  emailOptions.bcc = 'support@giftcashing.com',
-  emailOptions.subject = 'Thank You for Signing Up!';
+module.exports.registration = user => {
+  emailOptions.to = user.username
+  ;(emailOptions.bcc = 'support@giftcashing.com'),
+    (emailOptions.subject = 'Thank You for Signing Up!')
   emailOptions.html = `
 	        <p><strong>Thank You for Signing Up!</strong></p>
 	        <p>Very soon you'll be able to receive gifts from our site.</p>
@@ -87,6 +89,6 @@ module.exports.registration = (user) => {
 	        <p>Thanks Again for Signing Up!</p>
 	        <p>Best Regards,<br/>
 	        <p>Support Team</p>
-    	`;
-  sendMail(emailOptions);
-};
+    	`
+  sendMail(emailOptions)
+}

@@ -1,41 +1,45 @@
 // Dependencies
-var gulp = require('gulp');
-var nodemon = require('gulp-nodemon');
-var notify = require('gulp-notify');
-var livereload = require('gulp-livereload');
-var sass = require('gulp-sass');
-var autoprefix = require('gulp-autoprefixer');
-var bower = require('gulp-bower');
+const gulp = require('gulp')
+const nodemon = require('gulp-nodemon')
+const notify = require('gulp-notify')
+const livereload = require('gulp-livereload')
+const sass = require('gulp-sass')
+const autoprefix = require('gulp-autoprefixer')
+const bower = require('gulp-bower')
 
-var config = {
+const config = {
   bootstrapDir: './bower_components/bootstrap',
   fontawesomeDir: './bower_components/font-awesome',
   publicDir: './public',
-  bowerDir: './bower_components'
+  bowerDir: './bower_components',
 }
 
 // Task
-gulp.task('bower', function() {
-  return bower()
-    .pipe(gulp.dest(config.bowerDir))
-});
+gulp.task('bower', () => bower().pipe(gulp.dest(config.bowerDir)))
 
-gulp.task('fonts', function() {
-  return gulp.src(config.bowerDir + '/font-awesome/fonts/**.*')
-    .pipe(gulp.dest('./public/assets/fonts'));
-});
+gulp.task('fonts', () =>
+  gulp
+    .src(`${config.bowerDir}/font-awesome/fonts/**.*`)
+    .pipe(gulp.dest('./public/assets/fonts'))
+)
 
-gulp.task('css', function() {
-  return gulp.src('./public/assets/sass/style.scss')
-    .pipe(sass({
-      includePaths: [config.bootstrapDir + '/scss', config.fontawesomeDir + '/scss'],
-    }))
-    .pipe(gulp.dest(config.publicDir + '/assets/css'));
-});
+gulp.task('css', () =>
+  gulp
+    .src('./public/assets/sass/style.scss')
+    .pipe(
+      sass({
+        includePaths: [
+          `${config.bootstrapDir}/scss`,
+          `${config.fontawesomeDir}/scss`,
+        ],
+      })
+    )
+    .pipe(gulp.dest(`${config.publicDir}/assets/css`))
+)
 
-gulp.task('server', function() {
+gulp.task('server', () => {
   // listen for changes
-  livereload.listen();
+  livereload.listen()
   // configure nodemon
   nodemon({
     // the script to run the app
@@ -43,29 +47,33 @@ gulp.task('server', function() {
     nodeArgs: ['--debug'],
     script: 'bin/www',
     ext: 'js ejs json css html',
-    "ignore": ["public/*"],
-  }).on('restart', function() {
+    ignore: ['public/*'],
+  }).on('restart', () => {
     // when the app has restarted, run livereload.
-    gulp.src('*.*')
-      .pipe(livereload({
-        start: true
-      }))
-      .pipe(notify('Restarted Server & Reloading page...'));
+    gulp
+      .src('*.*')
+      .pipe(
+        livereload({
+          start: true,
+        })
+      )
+      .pipe(notify('Restarted Server & Reloading page...'))
   })
-});
+})
 
-gulp.task('client', function() {
-  gulp.src('public/**/*.{js,css,html}')
-    .pipe(livereload({
-      start: true
-    }));
-});
+gulp.task('client', () => {
+  gulp.src('public/**/*.{js,css,html}').pipe(
+    livereload({
+      start: true,
+    })
+  )
+})
 
-gulp.task('watch', function() {
-	gulp.watch('./public/assets/sass/**/*.scss', ['css']);
-  livereload.listen();
-  gulp.watch('public/**/*.{js,css,html}', ['client']);
-});
+gulp.task('watch', () => {
+  gulp.watch('./public/assets/sass/**/*.scss', ['css'])
+  livereload.listen()
+  gulp.watch('public/**/*.{js,css,html}', ['client'])
+})
 
-gulp.task('default', ['watch', 'server']);
-gulp.task('build', ['bower', 'fonts', 'css']);
+gulp.task('default', ['watch', 'server'])
+gulp.task('build', ['bower', 'fonts', 'css'])
