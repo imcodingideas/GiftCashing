@@ -12,6 +12,7 @@ const methodOverride = require('method-override')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const path = require('path')
+const engine = require('ejs-mate')
 const middleware = require('./middleware')
 const cronjobs = require('./services/cronjobs')
 
@@ -26,7 +27,8 @@ const adminsRoute = require('./routes/admin')
 const config = require('./config')
 require('./handlers/passport')
 
-// view engine setup
+// view engine and layout-templates setup
+app.engine('ejs', engine)
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 

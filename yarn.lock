@@ -1493,7 +1493,14 @@ ee-first@1.1.1:
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
-ejs@~2.6.1:
+ejs-mate@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ejs-mate/-/ejs-mate-3.0.0.tgz#823e114bde6b89b350f5cbd56153bb3a1c078e37"
+  integrity sha512-9dw3DkvHsUDm9ZcWveQYzIDCOCVpTtaQ7KXE+0/fmxZVtef1q2J00f4qPQvH7I12BQUza0S+5AqZAHh3M96zXA==
+  dependencies:
+    ejs "^2.6.1"
+
+ejs@^2.6.1, ejs@~2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/ejs/-/ejs-2.6.1.tgz#498ec0d495655abc6f23cd61868d926464071aa0"
   integrity sha512-0xy4A/twfrRCnkhfk8ErDi5DqdAsAqeGxht4xkCUrsvhhbQNs7E+4jV0CN7+NKIY0aHE72+XvqtBIXzD31ZbXQ==
@@ -1742,10 +1749,10 @@ eslint-plugin-prettier@^3.0.1:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-eslint-plugin-react@^7.12.2:
-  version "7.12.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.12.2.tgz#95a4d8117011787824625ea57be9e38401d33548"
-  integrity sha512-6F8uOJXOsWWWD3Mg8cvz4onsqEYp2LFZCFlgjaTAzbPLwqdwRCeK78unbuEaMXYPxq8paXCzTpoaDCwXBvC/gg==
+eslint-plugin-react@^7.12.3:
+  version "7.12.3"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.12.3.tgz#b9ca4cd7cd3f5d927db418a1950366a12d4568fd"
+  integrity sha512-WTIA3cS8OzkPeCi4KWuPmjR33lgG9r9Y/7RmnLTRw08MZKgAfnK/n3BO4X0S67MPkVLazdfCNT/XWqcDu4BLTA==
   dependencies:
     array-includes "^3.0.3"
     doctrine "^2.1.0"
