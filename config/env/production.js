@@ -1,6 +1,6 @@
 const config = {
   host: 'localhost',
-  port: process.env.IP,
+  port: process.env.PORT,
   db: {
     uri: process.env.DATABASE,
     secret: 'anything',

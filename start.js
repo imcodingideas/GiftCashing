@@ -20,7 +20,7 @@ require('./models/gift')
 // Start our app!
 const app = require('./app')
 
-app.set('port', config.port || process.env.IP)
+app.set('port', config.port || process.env.PORT)
 const server = app.listen(app.get('port'), () => {
   console.log(`GiftCashing is running → PORT ${server.address().port}`)
 })
