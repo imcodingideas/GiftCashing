@@ -7,7 +7,8 @@
   },
   "private": true,
   "scripts": {
-    "start": "nodemon start.js",
+    "start": "node start.js",
+    "dev": "nodemon start.js",
     "postinstall": "bower install"
   },
   "dependencies": {
